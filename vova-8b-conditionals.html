@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vova · Homework 8B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --surface2:#eceef2; --border:#dde1e7;
+  --text:#1f2328; --muted:#57606a; --dim:#8b949e;
+  --accent:#b77900; --accent-btn:#f0b429; --accent-soft:rgba(240,180,41,.16);
+  --ok:#1a7f37; --ok-soft:rgba(26,127,55,.09);
+  --err:#cf222e; --err-soft:rgba(207,34,46,.08);
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.topbar .in{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.bar{flex:1;height:4px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent-btn);transition:width .3s}
+
+/* hero */
+.hero{padding:40px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:34px;line-height:1.15;margin:10px 0 12px;font-weight:700;letter-spacing:-.02em}
+.hero p{color:var(--muted);margin:0 0 6px}
+.law{margin-top:18px;font-family:var(--mono);font-size:14px;color:var(--text);background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent-btn);padding:12px 14px;border-radius:6px}
+.law span{color:var(--dim)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chip{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:4px}
+
+/* cheat sheet */
+details.cheat{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:28px}
+details.cheat summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+details.cheat summary::-webkit-details-marker{display:none}
+details.cheat summary::after{content:'+';font-family:var(--mono);color:var(--accent)}
+details.cheat[open] summary::after{content:'−'}
+.cheat .tbl{padding:0 16px 16px;display:grid;gap:10px}
+.row{display:grid;grid-template-columns:56px 1fr;gap:10px;font-size:14px;border-top:1px solid var(--border);padding-top:10px}
+.row b{font-family:var(--mono);color:var(--accent);font-weight:500}
+.row code{font-family:var(--mono);font-size:12.5px;color:var(--muted);display:block}
+
+/* sections */
+section.task{background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 1px 2px rgba(31,35,40,.04);margin-bottom:22px;overflow:hidden}
+.sh{padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start}
+.num{font-family:var(--mono);font-size:12px;color:#1f2328;background:var(--accent-btn);border-radius:4px;padding:2px 7px;margin-top:4px;font-weight:700}
+.sh h2{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.sh .sub{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:2px}
+.sh .ru{font-size:13.5px;color:var(--muted);margin-top:6px}
+.sh .sc{margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap;padding-top:2px}
+.sc.good{color:var(--ok)} .sc.mid{color:var(--accent)} .sc.bad{color:var(--err)}
+.body{padding:6px 18px 16px}
+.item{padding:12px 0;border-bottom:1px dashed var(--border);display:flex;gap:10px}
+.item:last-child{border-bottom:none}
+.item .n{font-family:var(--mono);font-size:12px;color:var(--dim);min-width:20px;padding-top:3px}
+.item .t{flex:1;min-width:0}
+.hint{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin:0 2px}
+input.g,textarea{font:inherit;color:var(--text);background:#fafbfc;border:1px solid var(--border);border-radius:5px;padding:2px 8px;outline:none;max-width:100%;transition:border-color .15s}
+input.g{font-family:var(--mono);font-size:14px;height:30px;margin:2px 0}
+input.g:focus,textarea:focus{border-color:var(--accent)}
+input.g.ok,textarea.ok{border-color:var(--ok);background:var(--ok-soft)}
+input.g.bad,textarea.bad{border-color:var(--err);background:var(--err-soft)}
+.fix{font-family:var(--mono);font-size:12.5px;color:var(--ok);margin-left:6px}
+textarea{width:100%;min-height:62px;padding:8px 10px;resize:vertical;font-size:15px;margin-top:8px}
+.ru-src{color:var(--muted);font-size:15px}
+.fb{font-size:13.5px;margin-top:6px;color:var(--muted)}
+.fb .e{color:var(--err);display:block}
+.fb .o{color:var(--ok);display:block}
+.fb .m{font-family:var(--mono);font-size:12.5px;color:var(--dim);display:block;margin-top:2px}
+
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.opt{font-family:var(--mono);font-size:13px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:5px 11px;cursor:pointer;transition:all .15s}
+.opt:hover{border-color:var(--dim);color:var(--text)}
+.opt.sel{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.opt.ok{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.opt.bad{border-color:var(--err);color:var(--err);background:var(--err-soft)}
+.opt.right{border-color:var(--ok);color:var(--ok);border-style:dashed}
+
+.box{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px;padding:10px;border:1px dashed var(--border);border-radius:6px}
+.box span{font-family:var(--mono);font-size:13px;color:var(--accent)}
+
+.actions{padding:0 18px 18px;display:flex;gap:8px}
+button.btn{font-family:var(--mono);font-size:13px;font-weight:500;border-radius:6px;padding:9px 16px;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text);transition:all .15s}
+button.btn:hover{border-color:var(--dim)}
+button.btn.pri{background:var(--accent-btn);border-color:var(--accent-btn);color:#1f2328;font-weight:700}
+button.btn.pri:hover{filter:brightness(1.08)}
+
+/* results */
+#results{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 18px;margin-top:8px}
+#results h2{margin:0 0 4px;font-size:20px}
+.big{font-family:var(--mono);font-size:44px;font-weight:700;letter-spacing:-.03em;margin:6px 0}
+.rs{display:grid;gap:8px;margin:16px 0}
+.rl{display:grid;grid-template-columns:1fr 60px;gap:10px;align-items:center;font-size:14px}
+.rl .tr{grid-column:1/-1;height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-top:-4px}
+.rl .tr i{display:block;height:100%}
+.rl .v{font-family:var(--mono);font-size:13px;text-align:right;color:var(--muted)}
+.adv{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
+.adv h3{font-size:14px;margin:0 0 8px;font-family:var(--mono);color:var(--accent);font-weight:500}
+.adv p{font-size:14px;color:var(--muted);margin:0 0 8px}
+.adv p b{color:var(--text)}
+.final-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.toast{font-family:var(--mono);font-size:12px;color:var(--ok);margin-top:8px;min-height:18px}
+footer{text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:32px}
+@media (max-width:520px){h1{font-size:28px}.sh{flex-wrap:wrap}.sh .sc{margin-left:34px;width:100%}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="in"><span>BUILD 8B</span><div class="bar"><i id="pbar"></i></div><span id="ptxt">0%</span></div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">Homework · Vladimir</div>
+    <h1>Murphy's Law: release edition</h1>
+    <p>Conditionals 0–3 and confusing verbs, with animals from 9A.</p>
+    <p style="font-size:14px">Your answers save automatically. Press <b>Check</b> after each task, or check everything at the end.</p>
+    <div class="law"><span>// </span>If anything can go wrong, it will.</div>
+    <div class="chips"><span class="chip">zero conditional</span><span class="chip">first conditional</span><span class="chip">second conditional</span><span class="chip">third conditional</span><span class="chip">confusing verbs</span><span class="chip">animals</span></div>
+  </header>
+
+  <details class="cheat">
+    <summary>Cheat sheet: 4 conditionals</summary>
+    <div class="tbl">
+      <div class="row"><b>0</b><div>Always true, facts, rules<code>if + Present, Present</code><code>If you press Ctrl+S, the file saves.</code></div></div>
+      <div class="row"><b>1</b><div>Real future possibility<code>if + Present, will + V</code><code>If we release on Friday, the server will crash.</code></div></div>
+      <div class="row"><b>2</b><div>Imaginary present / future<code>if + Past, would + V</code><code>If I saw a bear, I would stay calm.</code></div></div>
+      <div class="row"><b>3</b><div>Imaginary past (too late to change)<code>if + had + V3, would have + V3</code><code>If we had tested it, we would have found the bug.</code></div></div>
+      <div class="row"><b>!</b><div>No <i>will</i> / <i>would</i> after <i>if</i>.<code>✗ If I will be late… → ✓ If I am late…</code></div></div>
+    </div>
+  </details>
+
+  <main id="app"></main>
+
+  <div style="display:flex;justify-content:center;margin:8px 0 18px">
+    <button class="btn pri" id="checkAll">Check everything</button>
+  </div>
+
+  <div id="results" hidden></div>
+  <footer>8B Murphy's Law · 9A Animals · English File Pre-Intermediate</footer>
+</div>
+
+<script>
+const SECTIONS = [
+ {id:'types', title:'Which conditional?', sub:'// warm-up', ru:'Определи тип: 0, 1, 2 или 3.', kind:'choice',
+  options:['Zero','First','Second','Third'],
+  advice:'Как отличать: <b>0</b> — факт (Present + Present), <b>1</b> — реальное будущее (Present + will), <b>2</b> — воображаемое (Past + would), <b>3</b> — прошлое, которое уже не изменить (had + V3, would have + V3).',
+  items:[
+   {q:'If you heat ice, it melts.',a:'Zero'},
+   {q:'If the build fails, I\'ll call you.',a:'First'},
+   {q:'If I had more free time, I\'d learn Armenian.',a:'Second'},
+   {q:'If we had tested the game, players wouldn\'t have found so many bugs.',a:'Third'},
+   {q:'If my laptop gets too hot, it switches off.',a:'Zero'},
+   {q:'If I lived in New York, I wouldn\'t have calls late at night.',a:'Second'},
+   {q:'If you take an umbrella, it won\'t rain.',a:'First'},
+   {q:'If I hadn\'t moved to Yerevan, I wouldn\'t have met my new neighbours.',a:'Third'}
+  ]},
+ {id:'zero', title:'Facts & rules', sub:'// zero: if + Present, Present', ru:'Поставь глаголы в нужную форму. Это то, что происходит всегда.', kind:'gaps',
+  advice:'<b>Zero conditional:</b> if + Present Simple, Present Simple. Не забывай окончание -s: it <i>saves</i>, it <i>dies</i>.',
+  items:[
+   'If you [press::press] Ctrl+S, the program [save::saves] the file.',
+   'If a bee [sting::stings] you, it [die::dies].',
+   'If you [not / save::do not save] your work, you [lose::lose] it.',
+   'Snakes [not / attack::do not attack] people if people [leave::leave] them alone.',
+   'If the server [go::goes] down, players [not / can::can not] log in.',
+   'If it [be::is] morning in Yerevan, it [be::is] night in California.'
+  ]},
+ {id:'first', title:'Release day', sub:'// first: if + Present, will + V', ru:'Закон Мёрфи в геймдеве. Поставь глаголы в нужную форму.', kind:'gaps',
+  advice:'<b>First conditional:</b> if + Present Simple, will + V. После <i>if</i> — никакого will.',
+  items:[
+   'If we [release::release] the game on Friday, the server [crash::will crash].',
+   'If I [turn on::turn on] my camera, the internet [stop::will stop] working.',
+   'If you [find::find] a bug at 6 p.m., you [not / go::will not go] home on time.',
+   'If the call [start::starts] at 7 p.m., my neighbour\'s dog [bark::will bark] the whole time.',
+   'If I [not / take::do not take] an umbrella, it [rain::will rain].',
+   'If we [fix::fix] one bug, we [find::will find] three new ones.',
+   'My boss [call::will call] me if I [leave::leave] my phone at home.',
+   'If you [need::need] the designer urgently, he [be::will be] on holiday.'
+  ]},
+ {id:'second', title:'Wild situations', sub:'// second: if + Past, would + V', ru:'Воображаемые ситуации с животными. Поставь глаголы в нужную форму.', kind:'gaps',
+  advice:'<b>Second conditional:</b> if + Past Simple, would + V. If I <i>were/was</i>…, <i>could</i> вместо can.',
+  items:[
+   'If a jellyfish [sting::stung] me, I [go::would go] to a doctor.',
+   'If I [be::was|were] an animal, I [be::would be] a wolf.',
+   'If a mosquito [fly::flew] into my room at night, I [not / sleep::would not sleep].',
+   'If I [see::saw] a bear in the mountains, I [not / run::would not run].',
+   'If our next game [be::was|were] about animals, I [design::would design] a giant spider boss.',
+   'What [you / do::would you do] if a snake [get::got] into your car?',
+   'If I [can::could] have any pet, I [get::would get] a crocodile.',
+   'If sharks [live::lived] in Lake Sevan, nobody [swim::would swim] there.'
+  ]},
+ {id:'third', title:'Post-mortem', sub:'// third: if + had V3, would have V3', ru:'Разбор неудачного релиза: что было бы, если бы… Поставь глаголы в нужную форму.', kind:'gaps',
+  advice:'<b>Third conditional:</b> if + had + V3, would have + V3. Повтори 3-ю форму неправильных глаголов: found, woken, lost, known, flown.',
+  items:[
+   'If we [test::had tested] the game more, we [find::would have found] the bug before the release.',
+   'If I [not / miss::had not missed] the bus, I [not / be::would not have been] late for the call.',
+   'If my alarm [ring::had rung], I [wake up::would have woken up] on time.',
+   'If the designer [not / lose::had not lost] the files, we [finish::would have finished] on time.',
+   'If I [know::had known] about the meeting, I [prepare::would have prepared] a presentation.',
+   'If a wasp [not / fly::had not flown] into the office, Max [not / drop::would not have dropped] his coffee on the keyboard.'
+  ]},
+ {id:'verbs', title:'Confusing verbs', sub:'// choose the right verb', ru:'Выбери правильный глагол.', kind:'pick',
+  advice:'Повтори пары: <b>wear/carry, win/earn, know/meet, hope/wait, watch/look at, look/look like, miss/lose, bring/take, look for/find, say/tell, lend/borrow, hear/listen to</b>.',
+  items:[
+   {q:'I always ___ headphones during calls.',o:['wear','carry'],a:'wear'},
+   {q:'Our team ___ an award for the best indie game.',o:['won','earned'],a:'won'},
+   {q:'Game designers ___ good money in the US.',o:['win','earn'],a:'earn'},
+   {q:'Last year I ___ my American colleagues in person for the first time.',o:['knew','met'],a:'met'},
+   {q:'I ___ the release will go well.',o:['hope','wait'],a:'hope'},
+   {q:'Can you ___ a second? I\'m sharing my screen.',o:['hope','wait'],a:'wait'},
+   {q:'___ this screenshot. Can you see the bug?',o:['Watch','Look at'],a:'Look at'},
+   {q:'Do you ___ streams of other people\'s games?',o:['watch','look at'],a:'watch'},
+   {q:'You ___ tired. Did you work all night?',o:['look','look like'],a:'look'},
+   {q:'This character ___ a real wolf!',o:['looks','looks like'],a:'looks like'},
+   {q:'I ___ the bus and was late for the stand-up.',o:['missed','lost'],a:'missed'},
+   {q:'Our office team ___ the football match against the designers.',o:['missed','lost'],a:'lost'},
+   {q:'Can you ___ some snacks when you come to my place tonight?',o:['bring','take'],a:'bring'},
+   {q:'___ an umbrella with you when you go out.',o:['Bring','Take'],a:'Take'},
+   {q:'I\'m ___ my keys. Have you seen them?',o:['looking for','finding'],a:'looking for'},
+   {q:'Yesterday I finally ___ the bug in the code.',o:['found','looked for'],a:'found'},
+   {q:'He ___ "hi" and joined the call.',o:['said','told'],a:'said'},
+   {q:'Can you ___ me how the new build works?',o:['say','tell'],a:'tell'},
+   {q:'Could you ___ me your charger? Mine is dead.',o:['lend','borrow'],a:'lend'},
+   {q:'Can I ___ your charger for a minute?',o:['lend','borrow'],a:'borrow'},
+   {q:'Sorry, I can\'t ___ you. Your microphone is off.',o:['hear','listen to'],a:'hear'},
+   {q:'I ___ podcasts in English on my way to work.',o:['hear','listen to'],a:'listen to'}
+  ]},
+ {id:'mix', title:'Verbs inside conditionals', sub:'// one verb, the right form', ru:'Вставь глагол из списка в правильной форме. Каждый глагол — один раз. Смотри, какой это conditional.', kind:'gaps',
+  box:['miss','lend','earn','win','wear','tell','say','lose'],
+  advice:'Сначала определи тип conditional, потом форму глагола: Present (wins), Past (earned) или V3 (worn, said).',
+  items:[
+   'If I [::miss] the 9 a.m. bus, I\'ll be late for the call.',
+   'If you [::lend] me 50 dollars, I\'ll give them back on Friday.',
+   'If I [::earned] more money, I would buy a new graphics card.',
+   'If our game [::wins] the award, we\'ll have a party.',
+   'If I had [::worn] a jacket, I wouldn\'t have been cold.',
+   'If you [::tell] lies to a client, they won\'t trust you.',
+   'If he had [::said] sorry, I would have forgiven him.',
+   'If we [::lose] this match, we\'ll be out of the tournament.'
+  ]},
+ {id:'translate', title:'Translate', sub:'// RU → EN, your own words', ru:'Переведи на английский. Можно своими словами, проверяется грамматика и ключевые слова.', kind:'write',
+  advice:'Перевод: сначала определи тип conditional, потом собирай фразу по формуле из шпаргалки.',
+  items:[
+   {ru:'Если я опоздаю на созвон, мой начальник рассердится.',model:'If I am late for the call, my boss will be angry.',
+    need:[[/\bif i am late\b/,'Условие: If I am late… (после if — Present Simple)'],[/\bwill (be|get) angry\b/,'Результат: my boss will be angry'],[/\b(call|meeting)\b/,'созвон — call']],
+    ban:[[/\bif i will\b/,'После if не ставим will']]},
+   {ru:'Если бы я жил в Америке, я бы говорил по-английски каждый день.',model:'If I lived in America, I would speak English every day.',
+    need:[[/\bif i (lived|was living|were living)\b/,'Условие: If I lived… (Past Simple)'],[/\b(america|the us|the usa|the states|us|usa)\b/,'Америка — America / the USA'],[/\bwould speak english\b/,'Результат: I would speak English'],[/\bevery day\b/,'каждый день — every day']],
+    ban:[[/\bif i would\b/,'После if не ставим would']]},
+   {ru:'Если бы мы протестировали игру, мы бы нашли этот баг.',model:'If we had tested the game, we would have found this bug.',
+    need:[[/\bif we had tested\b/,'Условие: If we had tested… (had + V3)'],[/\bwould have found\b/,'Результат: we would have found'],[/\bbug\b/,'баг — bug']],
+    ban:[[/\bif we would\b/,'После if не ставим would']]},
+   {ru:'Если нажать на эту кнопку, игра закрывается.',model:'If you press this button, the game closes.',
+    need:[[/\bif you (press|click|push|tap)\b/,'Условие: If you press…'],[/\b(game|it) (closes|shuts down|quits|turns off|crashes)\b/,'Результат в Present Simple: the game closes']],
+    ban:[[/\bwill\b/,'Это правило «всегда так» — zero conditional, без will']]},
+   {ru:'Если ты одолжишь мне ноутбук, я верну его завтра.',model:'If you lend me your laptop, I will give it back tomorrow.',
+    need:[[/\bif you lend me\b/,'Дать в долг кому-то — lend: If you lend me…'],[/\b(laptop|notebook|computer)\b/,'ноутбук — laptop'],[/\bwill (give|bring) (it|the laptop|your laptop) back\b|\bwill return (it|the laptop|your laptop)\b/,'Результат: I will give it back'],[/\btomorrow\b/,'завтра — tomorrow']],
+    ban:[[/\bborrow\b/,'borrow — брать у кого-то; здесь нужно lend'],[/\bif you will\b/,'После if не ставим will']]},
+   {ru:'Если бы я увидел акулу, я бы поплыл к берегу.',model:'If I saw a shark, I would swim to the shore.',
+    need:[[/\bif i saw a shark\b/,'Условие: If I saw a shark… (Past Simple)'],[/\bwould swim\b/,'Результат: I would swim'],[/\b(shore|beach|coast|land)\b/,'берег — the shore']],
+    ban:[[/\bif i would\b/,'После if не ставим would']]}
+  ]},
+ {id:'own', title:'Your Murphy\'s Laws', sub:'// write 3 laws about your job', ru:'Придумай 3 своих закона Мёрфи про работу, релизы или созвоны. First conditional: If + Present, … will …', kind:'free', count:3,
+  advice:'Свои законы Мёрфи: If + Present Simple, will + V. Проверь, что в части с if нет will.',
+  placeholders:['If I start a call with the US team, …','If the release is on Friday, …','If I …']}
+];
+
+/* ---------- storage ---------- */
+const STORE='vova_hw_8b_v1';
+let state={v:{},checked:{}};
+try{const s=JSON.parse(localStorage.getItem(STORE)); if(s&&s.v) state=s;}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(state))}catch(e){}}
+
+/* ---------- normalising ---------- */
+function base(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");
+  s=s.replace(/\bwon't\b/g,'will not').replace(/\bcan't\b/g,'can not').replace(/\bcannot\b/g,'can not')
+     .replace(/n't\b/g,' not').replace(/'ll\b/g,' will').replace(/'m\b/g,' am').replace(/'re\b/g,' are')
+     .replace(/'ve\b/g,' have').replace(/\b(it|he|she|that|there|what|who|where|here)'s\b/g,'$1 is')
+     .replace(/'d\b/g,' _d_');
+  return s.replace(/[^a-z0-9_]+/g,' ').trim().replace(/\s+/g,' ');
+}
+function variants(s){
+  let out=[base(s)];
+  while(out.some(x=>x.includes('_d_')) && out.length<64){
+    out=out.flatMap(x=>x.includes('_d_')?[x.replace('_d_','had'),x.replace('_d_','would')]:[x]);
+  }
+  return out;
+}
+function matches(inp,answers){const v=variants(inp);return answers.some(a=>v.includes(base(a)));}
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* ---------- render ---------- */
+const app=document.getElementById('app');
+const GAP=/\[([^\]]*?)::([^\]]+)\]/g;
+let totalInputs=0;
+
+SECTIONS.forEach((sec,si)=>{
+  const el=document.createElement('section');el.className='task';el.id='s-'+sec.id;
+  let h=`<div class="sh"><span class="num">${String(si+1).padStart(2,'0')}</span><div><h2>${sec.title}</h2><div class="sub">${sec.sub}</div><div class="ru">${sec.ru}</div></div><span class="sc" id="sc-${sec.id}"></span></div><div class="body">`;
+  if(sec.box) h+=`<div class="box">${sec.box.map(w=>`<span>${w}</span>`).join('')}</div>`;
+  if(sec.kind==='choice'){
+    sec.items.forEach((it,i)=>{const k=sec.id+i;totalInputs++;
+      h+=`<div class="item"><span class="n">${i+1}</span><div class="t">${esc(it.q)}<div class="opts" data-k="${k}">${sec.options.map(o=>`<button class="opt" data-v="${o}">${o}</button>`).join('')}</div></div></div>`;});
+  }
+  if(sec.kind==='pick'){
+    sec.items.forEach((it,i)=>{const k=sec.id+i;totalInputs++;
+      h+=`<div class="item"><span class="n">${i+1}</span><div class="t">${esc(it.q).replace('___','<b style="color:var(--accent)">___</b>')}<div class="opts" data-k="${k}">${it.o.map(o=>`<button class="opt" data-v="${esc(o)}">${esc(o)}</button>`).join('')}</div></div></div>`;});
+  }
+  if(sec.kind==='gaps'){
+    sec.items.forEach((s,i)=>{let g=0;
+      const html=esc(s).replace(GAP,(m,hint,ans)=>{const k=`${sec.id}${i}_${g++}`;totalInputs++;
+        const len=Math.max(6,...ans.split('|').map(a=>a.length))+2;
+        return (hint?`<span class="hint">(${hint})</span>`:'')+`<input class="g" data-k="${k}" data-a="${ans}" style="width:${len}ch" autocomplete="off" autocapitalize="off" spellcheck="false">`;});
+      h+=`<div class="item"><span class="n">${i+1}</span><div class="t">${html}</div></div>`;});
+  }
+  if(sec.kind==='write'){
+    sec.items.forEach((it,i)=>{const k=sec.id+i;totalInputs++;
+      h+=`<div class="item"><span class="n">${i+1}</span><div class="t"><div class="ru-src">${it.ru}</div><textarea data-k="${k}" rows="2" autocapitalize="sentences" spellcheck="false" placeholder="Type in English…"></textarea><div class="fb" id="fb-${k}"></div></div></div>`;});
+  }
+  if(sec.kind==='free'){
+    for(let i=0;i<sec.count;i++){const k=sec.id+i;totalInputs++;
+      h+=`<div class="item"><span class="n">${i+1}</span><div class="t"><textarea data-k="${k}" rows="2" spellcheck="false" placeholder="${esc(sec.placeholders[i])}"></textarea><div class="fb" id="fb-${k}"></div></div></div>`;}
+  }
+  h+=`</div><div class="actions"><button class="btn pri" data-check="${sec.id}">Check</button><button class="btn" data-clear="${sec.id}">Clear</button></div>`;
+  el.innerHTML=h;app.appendChild(el);
+});
+
+/* restore + listeners */
+document.querySelectorAll('input.g,textarea').forEach(inp=>{
+  const k=inp.dataset.k; if(state.v[k]!=null) inp.value=state.v[k];
+  inp.addEventListener('input',()=>{state.v[k]=inp.value;inp.classList.remove('ok','bad');
+    const f=inp.parentElement.querySelector('.fix[data-for="'+k+'"]');if(f)f.remove();
+    save();progress();});
+});
+document.querySelectorAll('.opts').forEach(box=>{
+  const k=box.dataset.k;
+  box.querySelectorAll('.opt').forEach(b=>{
+    if(state.v[k]===b.dataset.v) b.classList.add('sel');
+    b.addEventListener('click',()=>{box.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel','ok','bad','right'));
+      b.classList.add('sel');state.v[k]=b.dataset.v;save();progress();});
+  });
+});
+document.querySelectorAll('[data-check]').forEach(b=>b.addEventListener('click',()=>{checkSection(b.dataset.check);state.checked[b.dataset.check]=true;save();renderResults();}));
+document.querySelectorAll('[data-clear]').forEach(b=>b.addEventListener('click',()=>{
+  const id=b.dataset.clear,root=document.getElementById('s-'+id);
+  root.querySelectorAll('input.g,textarea').forEach(i=>{i.value='';i.classList.remove('ok','bad');delete state.v[i.dataset.k];});
+  root.querySelectorAll('.fix').forEach(f=>f.remove());root.querySelectorAll('.fb').forEach(f=>f.innerHTML='');
+  root.querySelectorAll('.opts').forEach(o=>{delete state.v[o.dataset.k];o.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel','ok','bad','right'));});
+  document.getElementById('sc-'+id).textContent='';document.getElementById('sc-'+id).className='sc';
+  delete state.checked[id];save();progress();renderResults();
+}));
+
+function progress(){
+  const n=Object.values(state.v).filter(v=>v&&String(v).trim()).length;
+  const p=Math.min(100,Math.round(n/totalInputs*100));
+  document.getElementById('pbar').style.width=p+'%';document.getElementById('ptxt').textContent=p+'%';
+}
+
+/* ---------- checking ---------- */
+const scores={};
+function writeCheck(it,val){
+  const vs=variants(val);let best=null;
+  for(const v of vs){
+    const miss=it.need.filter(([re])=>!re.test(v)).map(x=>x[1]);
+    const bad=(it.ban||[]).filter(([re])=>re.test(v)).map(x=>x[1]);
+    const errs=bad.concat(miss);
+    if(!best||errs.length<best.length) best=errs;
+  }
+  return best;
+}
+function freeCheck(val){
+  const errs=[];const raw=(val||'').toLowerCase().replace(/[’‘]/g,"'");const v=base(val);
+  if(v.split(' ').filter(Boolean).length<5) errs.push('Напиши целое предложение (минимум 5 слов)');
+  if(!/\bif\b/.test(v)) errs.push('Нужно условие с if');
+  if(!/\bwill\b/.test(v)) errs.push('В результате нужно will / won\'t');
+  if(raw.includes(',')){const part=raw.split(',').find(p=>/\bif\b/.test(p));if(part&&/\bwill\b|'ll\b|\bwon't\b/.test(part)) errs.push('В части с if не нужен will');}
+  return errs;
+}
+function checkSection(id){
+  const sec=SECTIONS.find(s=>s.id===id),root=document.getElementById('s-'+id);let ok=0,max=0;
+  if(sec.kind==='choice'||sec.kind==='pick'){
+    sec.items.forEach((it,i)=>{const k=sec.id+i;max++;const box=root.querySelector(`.opts[data-k="${k}"]`);
+      box.querySelectorAll('.opt').forEach(b=>{b.classList.remove('ok','bad','right');
+        if(b.dataset.v===state.v[k]) b.classList.add(b.dataset.v===it.a?'ok':'bad');
+        else if(b.dataset.v===it.a && state.v[k]!==it.a) b.classList.add('right');});
+      if(state.v[k]===it.a) ok++;});
+  }
+  if(sec.kind==='gaps'){
+    root.querySelectorAll('input.g').forEach(inp=>{max++;const ans=inp.dataset.a.split('|');
+      const old=root.querySelector('.fix[data-for="'+inp.dataset.k+'"]');if(old)old.remove();
+      if(matches(inp.value,ans)){inp.classList.add('ok');inp.classList.remove('bad');ok++;}
+      else{inp.classList.add('bad');inp.classList.remove('ok');
+        const f=document.createElement('span');f.className='fix';f.dataset.for=inp.dataset.k;f.textContent='→ '+ans[0];inp.after(f);}
+    });
+  }
+  if(sec.kind==='write'){
+    sec.items.forEach((it,i)=>{const k=sec.id+i;max++;const ta=root.querySelector(`textarea[data-k="${k}"]`),fb=document.getElementById('fb-'+k);
+      const val=ta.value||'';
+      if(!val.trim()){ta.classList.add('bad');fb.innerHTML='<span class="e">Пусто</span><span class="m">e.g. '+esc(it.model)+'</span>';return;}
+      const errs=writeCheck(it,val);
+      if(!errs.length){ok++;ta.classList.add('ok');ta.classList.remove('bad');fb.innerHTML='<span class="o">✓ Correct</span>';}
+      else{ta.classList.add('bad');ta.classList.remove('ok');fb.innerHTML=errs.map(e=>'<span class="e">• '+e+'</span>').join('')+'<span class="m">e.g. '+esc(it.model)+'</span>';}
+    });
+  }
+  if(sec.kind==='free'){
+    for(let i=0;i<sec.count;i++){const k=sec.id+i;max++;const ta=root.querySelector(`textarea[data-k="${k}"]`),fb=document.getElementById('fb-'+k);
+      const errs=freeCheck(ta.value);
+      if(!errs.length){ok++;ta.classList.add('ok');ta.classList.remove('bad');fb.innerHTML='<span class="o">✓ Structure OK. Your teacher will read it.</span>';}
+      else{ta.classList.add('bad');ta.classList.remove('ok');fb.innerHTML=errs.map(e=>'<span class="e">• '+e+'</span>').join('');}
+    }
+  }
+  scores[id]={ok,max};
+  const sc=document.getElementById('sc-'+id),p=ok/max;
+  sc.textContent=ok+' / '+max;sc.className='sc '+(p>=.8?'good':p>=.5?'mid':'bad');
+}
+
+/* ---------- results ---------- */
+function renderResults(){
+  const res=document.getElementById('results');
+  const done=SECTIONS.filter(s=>scores[s.id]);
+  if(!done.length){res.hidden=true;return;}
+  let ok=0,max=0;done.forEach(s=>{ok+=scores[s.id].ok;max+=scores[s.id].max;});
+  const pct=Math.round(ok/max*100);
+  const col=p=>p>=80?'var(--ok)':p>=50?'var(--accent)':'var(--err)';
+  const verdict=pct>=90?'Excellent. Ready to ship.':pct>=75?'Good build. A few bugs to fix.':pct>=50?'Playable, but needs a patch.':'Critical bugs. Let\'s fix them in class.';
+  let h=`<div class="kicker">Result${done.length<SECTIONS.length?` · ${done.length}/${SECTIONS.length} tasks checked`:''}</div>
+  <div class="big" style="color:${col(pct)}">${ok}/${max} <span style="font-size:20px;color:var(--muted)">${pct}%</span></div>
+  <div style="color:var(--muted)">${verdict}</div><div class="rs">`;
+  done.forEach(s=>{const p=Math.round(scores[s.id].ok/scores[s.id].max*100);
+    h+=`<div class="rl"><span>${s.title}</span><span class="v">${scores[s.id].ok}/${scores[s.id].max}</span><div class="tr"><i style="width:${p}%;background:${col(p)}"></i></div></div>`;});
+  h+='</div>';
+  const weak=done.filter(s=>scores[s.id].ok/scores[s.id].max<.8);
+  h+=`<div class="adv"><h3>${weak.length?'// what to practise':'// all good'}</h3>`;
+  h+= weak.length? weak.map(s=>`<p>${s.advice}</p>`).join('') : '<p>Всё отлично. На уроке поговорим про твои законы Мёрфи.</p>';
+  h+=`</div><div class="final-actions"><button class="btn pri" id="copyRes">Copy result for teacher</button><button class="btn" id="resetAll">Start again</button></div><div class="toast" id="toast"></div>`;
+  res.innerHTML=h;res.hidden=false;
+  document.getElementById('copyRes').onclick=copyResult;
+  document.getElementById('resetAll').onclick=()=>{if(confirm('Delete all answers and start again?')){state={v:{},checked:{}};save();location.reload();}};
+}
+function copyResult(){
+  let ok=0,max=0;const lines=['Vova · Homework 8B (conditionals + confusing verbs)'];
+  SECTIONS.forEach(s=>{if(scores[s.id]){ok+=scores[s.id].ok;max+=scores[s.id].max;lines.push(`${s.title}: ${scores[s.id].ok}/${scores[s.id].max}`);}else lines.push(`${s.title}: not checked`);});
+  lines.splice(1,0,`TOTAL: ${ok}/${max} (${max?Math.round(ok/max*100):0}%)`,'');
+  const tr=SECTIONS.find(s=>s.id==='translate');lines.push('','Translations:');
+  tr.items.forEach((it,i)=>lines.push(`${i+1}. ${state.v['translate'+i]||'—'}`));
+  lines.push('','My Murphy\'s Laws:');
+  for(let i=0;i<3;i++) lines.push(`${i+1}. ${state.v['own'+i]||'—'}`);
+  const text=lines.join('\n');
+  const done=()=>{document.getElementById('toast').textContent='Copied. Paste it in the chat with your teacher.';};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(done,()=>fallback(text,done));}else fallback(text,done);
+}
+function fallback(text,done){const t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.focus();t.select();try{document.execCommand('copy');done();}catch(e){}t.remove();}
+
+document.getElementById('checkAll').addEventListener('click',()=>{SECTIONS.forEach(s=>{checkSection(s.id);state.checked[s.id]=true;});save();renderResults();document.getElementById('results').scrollIntoView({behavior:'smooth'});});
+
+/* re-check what was checked before */
+Object.keys(state.checked||{}).forEach(id=>{if(SECTIONS.find(s=>s.id===id)) checkSection(id);});
+renderResults();progress();
+</script>
+</body>
+</html>
