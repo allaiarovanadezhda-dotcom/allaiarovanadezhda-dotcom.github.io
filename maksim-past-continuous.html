@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Max: Past Continuous</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@500;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef3ff; --ink:#1d2340; --muted:#5a6285; --card:#ffffff;
+  --red:#ff4d5e; --blue:#2f7bff; --green:#21c06b; --yellow:#ffc928; --orange:#ff8a1f; --purple:#8a4dff; --cyan:#18c5e0;
+  --ok:#17a85a; --bad:#e23b4e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:17px;line-height:1.5;
+  background-image:linear-gradient(rgba(47,123,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(47,123,255,.07) 2px,transparent 2px);
+  background-size:28px 28px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 60px}
+h1,h2{font-family:"Russo One",sans-serif;font-weight:400;margin:0}
+.pix{font-family:"Press Start 2P",monospace;font-size:10px;letter-spacing:1px}
+
+/* XP bar */
+.xp{position:sticky;top:0;z-index:5;background:#1d2340;color:#fff;padding:8px 16px;display:flex;align-items:center;gap:10px}
+.xp .bar{flex:1;height:14px;background:#3a4270;border:2px solid #fff;position:relative}
+.xp .fill{height:100%;width:0;background:repeating-linear-gradient(90deg,var(--green) 0 10px,#2fe07f 10px 20px);transition:width .4s}
+
+/* header */
+.hero{margin:18px 0;border:4px solid var(--ink);background:linear-gradient(135deg,#ff4d5e,#ff8a1f 30%,#ffc928 50%,#21c06b 70%,#2f7bff);
+  box-shadow:6px 6px 0 var(--ink);padding:18px;color:#fff;display:flex;gap:14px;align-items:center}
+.hero h1{font-size:28px;text-shadow:3px 3px 0 var(--ink);line-height:1.15}
+.hero p{margin:6px 0 0;font-weight:800;text-shadow:2px 2px 0 rgba(0,0,0,.35)}
+.hero svg{flex:none;width:86px;height:86px}
+.name{margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.name input{font:inherit;border:3px solid var(--ink);padding:4px 8px;width:150px;color:var(--ink)}
+
+/* sections */
+.sec{margin:26px 0;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+.sec-head{padding:14px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sec-head h2{font-size:21px;text-shadow:2px 2px 0 rgba(0,0,0,.35)}
+.sec-head .pix{background:rgba(0,0,0,.3);padding:6px 8px;white-space:nowrap}
+.sec-body{padding:16px}
+.task{background:var(--card);border:3px solid var(--ink);padding:12px 14px;margin-bottom:12px}
+.task .ins{font-weight:800}
+.task .ins small{display:block;font-weight:600;color:var(--muted)}
+
+.grass .sec-head{background:var(--green);border-bottom:10px solid #8b5a2b}
+.grass .sec-body{background:#fff8e6}
+.blue .sec-head{background:var(--blue)}
+.blue .sec-body{background-color:#dfeaff;background-image:linear-gradient(45deg,rgba(47,123,255,.12) 25%,transparent 25%,transparent 75%,rgba(47,123,255,.12) 75%),linear-gradient(45deg,rgba(47,123,255,.12) 25%,transparent 25%,transparent 75%,rgba(47,123,255,.12) 75%);background-size:30px 30px;background-position:0 0,15px 15px}
+.court .sec-head{background:var(--orange)}
+.court .sec-body{background:#ffd9ad;background-image:radial-gradient(circle at 50% 0,transparent 90px,#fff 90px,#fff 94px,transparent 94px),linear-gradient(90deg,transparent calc(50% - 2px),#fff calc(50% - 2px),#fff calc(50% + 2px),transparent calc(50% + 2px))}
+.stage .sec-head{background:var(--purple)}
+.stage .sec-body{background:#2a1a55;background-image:radial-gradient(#ffe36e 1.5px,transparent 1.5px),radial-gradient(#ff8fd1 1px,transparent 1px);background-size:34px 34px,22px 22px;background-position:0 0,11px 7px}
+.stripes .sec-head{background:#e6a800;color:#1d2340}
+.stripes .sec-head h2{text-shadow:none}
+.stripes .sec-body{background:repeating-linear-gradient(-45deg,#fff3c4 0 18px,#ffe58a 18px 36px)}
+.redz .sec-head{background:var(--red)}
+.redz .sec-body{background:#ffe1e4;background-image:radial-gradient(rgba(255,77,94,.25) 3px,transparent 3px);background-size:20px 20px}
+.cyanz .sec-head{background:var(--cyan)}
+.cyanz .sec-body{background:#d8f7fc;background-image:linear-gradient(rgba(24,197,224,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(24,197,224,.2) 1px,transparent 1px);background-size:14px 14px}
+.final .sec-head{background:var(--ink)}
+.final .sec-body{background:linear-gradient(135deg,#fff8e6,#e7f0ff)}
+
+/* reminder */
+.rule{background:#fff;border:3px solid var(--ink);padding:12px 14px;margin-bottom:12px}
+.rule h3{margin:0 0 6px;font-family:"Russo One";font-weight:400;font-size:17px}
+.formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-weight:800;margin:6px 0}
+.blk{padding:4px 10px;border:3px solid var(--ink);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+.b1{background:var(--blue)}.b2{background:var(--red)}.b3{background:var(--green)}.b4{background:var(--orange)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+td,th{border:2px solid var(--ink);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--yellow)}
+.ex{color:var(--muted);font-style:italic}
+
+/* questions */
+ol.q{margin:0;padding-left:22px}
+ol.q li{margin:10px 0}
+input.ans{font:inherit;font-weight:700;border:none;border-bottom:3px solid var(--blue);background:#f2f6ff;padding:2px 6px;min-width:90px;width:auto;color:var(--ink);border-radius:0}
+input.wide{display:block;width:100%;margin-top:4px;border:3px solid var(--ink);border-bottom-width:3px;padding:6px 8px}
+input.ans:focus{outline:3px solid var(--yellow)}
+input.ok{background:#d6f7e3;border-color:var(--ok)}
+input.bad{background:#ffdfe3;border-color:var(--bad)}
+.fb{display:block;font-size:14px;font-weight:700;margin-top:2px}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.pic{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 4px}
+.pic div{background:#fff;border:3px solid var(--ink);text-align:center;padding:6px 4px;font-size:13px;font-weight:800}
+.pic span{display:block;font-size:30px}
+.ex-cards{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ex-cards span{background:#fff;border:2px dashed var(--purple);padding:2px 8px;font-size:14px}
+
+/* buttons */
+.btn{font-family:"Russo One";font-size:16px;color:#fff;background:var(--green);border:3px solid var(--ink);padding:10px 18px;cursor:pointer;box-shadow:0 5px 0 var(--ink);margin-top:6px;transition:transform .05s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.btn.alt{background:var(--blue)}
+.btn.y{background:var(--yellow);color:var(--ink)}
+.score{display:inline-block;margin-left:10px;font-weight:800;font-size:16px}
+.result{font-size:18px}
+.result .big{font-family:"Russo One";font-size:40px}
+.result ul{padding-left:20px}
+.stars{font-size:34px;letter-spacing:4px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border:3px solid #fff;display:none;z-index:9;font-weight:800}
+@media (max-width:480px){.hero h1{font-size:22px}.hero svg{width:64px;height:64px}.sec-head h2{font-size:18px}.pic{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="xp"><span class="pix">XP</span><div class="bar"><div class="fill" id="xpfill"></div></div><span class="pix" id="xptext">0 / 0</span></div>
+
+<div class="wrap">
+  <header class="hero">
+    <!-- blocky cat Thomas -->
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-label="Кот Томас">
+      <rect x="2" y="1" width="3" height="3" fill="#ff9a3c"/><rect x="11" y="1" width="3" height="3" fill="#ff9a3c"/>
+      <rect x="3" y="2" width="1" height="1" fill="#ffc9a0"/><rect x="12" y="2" width="1" height="1" fill="#ffc9a0"/>
+      <rect x="2" y="4" width="12" height="9" fill="#ff9a3c"/>
+      <rect x="2" y="6" width="2" height="1" fill="#e2701a"/><rect x="12" y="6" width="2" height="1" fill="#e2701a"/>
+      <rect x="4" y="6" width="2" height="2" fill="#1d2340"/><rect x="10" y="6" width="2" height="2" fill="#1d2340"/>
+      <rect x="4" y="6" width="1" height="1" fill="#fff"/><rect x="10" y="6" width="1" height="1" fill="#fff"/>
+      <rect x="7" y="9" width="2" height="1" fill="#ff5e8a"/>
+      <rect x="6" y="10" width="1" height="1" fill="#1d2340"/><rect x="9" y="10" width="1" height="1" fill="#1d2340"/><rect x="7" y="11" width="2" height="1" fill="#1d2340"/>
+      <rect x="0" y="9" width="2" height="1" fill="#1d2340"/><rect x="14" y="9" width="2" height="1" fill="#1d2340"/>
+      <rect x="3" y="13" width="10" height="2" fill="#2f7bff"/>
+    </svg>
+    <div>
+      <h1>MAX'S QUEST:<br>Past Continuous</h1>
+      <p>🎮 🥁 🏀 🐱 Пройди все уровни и собери XP!</p>
+      <div class="name"><span class="pix">PLAYER:</span><input id="player" value="Максим" aria-label="Имя"></div>
+    </div>
+  </header>
+
+  <!-- REMINDER -->
+  <section class="sec grass">
+    <div class="sec-head"><h2>📜 Памятка: Past Continuous</h2><span class="pix">TUTORIAL</span></div>
+    <div class="sec-body">
+      <div class="rule">
+        <h3>Когда используем?</h3>
+        Когда действие <b>длилось</b> (было в процессе) в какой-то момент в прошлом.<br>
+        <span class="ex">At 7 pm yesterday I was playing Roblox. — Вчера в 7 вечера я играл в Roblox (как раз в тот момент).</span>
+      </div>
+      <div class="rule">
+        <h3>Как строим? ✅</h3>
+        <div class="formula"><span class="blk b1">I / he / she / it</span> + <span class="blk b2">was</span> + <span class="blk b3">глагол + ing</span></div>
+        <div class="formula"><span class="blk b1">we / you / they</span> + <span class="blk b2">were</span> + <span class="blk b3">глагол + ing</span></div>
+        <span class="ex">Thomas was sleeping. My friends were playing basketball.</span>
+      </div>
+      <div class="rule">
+        <h3>Отрицание ❌ и вопрос ❓</h3>
+        <table>
+          <tr><th>❌</th><td>I <b>was not (wasn't)</b> playing.<br>They <b>were not (weren't)</b> playing.</td></tr>
+          <tr><th>❓</th><td><b>Was</b> Diana dancing? — Yes, she was. / No, she wasn't.<br><b>Were</b> you playing the drums? — Yes, I was. / No, I wasn't.<br>What <b>were</b> you doing?</td></tr>
+        </table>
+      </div>
+      <div class="rule">
+        <h3>Как правильно добавить -ing ✍️</h3>
+        <table>
+          <tr><th>Обычно</th><td>play → playing, watch → watching</td></tr>
+          <tr><th>-e убираем</th><td>dance → dancing, write → writing</td></tr>
+          <tr><th>Удваиваем</th><td>run → running, swim → swimming, sit → sitting</td></tr>
+        </table>
+      </div>
+      <div class="rule">
+        <h3>Слова-маркеры 🎯</h3>
+        <table>
+          <tr><th>Past Continuous<br>(процесс)</th><td><b>at 5 o'clock yesterday</b> — вчера в 5 часов<br><b>at that moment</b> — в тот момент<br><b>all evening / all day</b> — весь вечер / весь день<br><b>from 3 to 5 yesterday</b> — вчера с 3 до 5<br><b>while</b> — пока, в то время как</td></tr>
+          <tr><th>Past Simple<br>(факт, закончилось)</th><td><b>yesterday, last week, two days ago, in 2020</b><br><span class="ex">Yesterday I played basketball. — Вчера я играл (просто факт).</span></td></tr>
+        </table>
+      </div>
+      <div class="rule">
+        <h3>Past Simple или Past Continuous? 🤔</h3>
+        <b>Past Simple</b> — что случилось (факт): <span class="ex">I <b>bought</b> a new hoodie last week.</span><br>
+        <b>Past Continuous</b> — что происходило в момент: <span class="ex">At 5 pm yesterday I <b>was wearing</b> my new hoodie.</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="levels"></div>
+
+  <section class="sec final">
+    <div class="sec-head"><h2>🏆 Итог</h2><span class="pix">BOSS LEVEL</span></div>
+    <div class="sec-body">
+      <button class="btn y" onclick="checkAll()">Проверить всё и узнать результат</button>
+      <div id="result" class="result"></div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- data ---------- */
+function combos(subjects, preds){const r=[];subjects.forEach(s=>preds.forEach(p=>r.push(s+' '+p)));return r;}
+
+const SECTIONS=[
+ {id:'l1',cls:'blue',title:'🎯 Level 1: найди маркер',ins:'Какое время подсказывает маркер? Напиши <b>PC</b> (Past Continuous) или <b>PS</b> (Past Simple).',small:'Процесс в момент → PC, просто факт → PS.',type:'fill',topic:'слова-маркеры Past Continuous и Past Simple',items:[
+   {q:'at 7 o\'clock yesterday → {}',a:[['pc','past continuous']]},
+   {q:'last week → {}',a:[['ps','past simple']]},
+   {q:'all evening → {}',a:[['pc','past continuous']]},
+   {q:'two days ago → {}',a:[['ps','past simple']]},
+   {q:'at that moment → {}',a:[['pc','past continuous']]}
+ ]},
+ {id:'l2',cls:'stripes',title:'🧩 Level 2: вставь маркер',ins:'Вставь маркер из рамки.',small:'<span class="ex-cards"><span>all evening</span><span>at that moment</span><span>while</span><span>at 6 o\'clock yesterday</span></span>',type:'fill',topic:'слова-маркеры (at … yesterday, all evening, at that moment, while)',items:[
+   {q:'I was playing Roblox {} (весь вечер). 🎮',a:[['all evening']]},
+   {q:'{} (вчера в 6 часов) I was playing basketball. 🏀',a:[['at 6 o\'clock yesterday','at six o\'clock yesterday','at 6 yesterday','at 6 oclock yesterday']]},
+   {q:'Mum called me. {} (в тот момент) I was playing the drums. 🥁',a:[['at that moment']]},
+   {q:'Thomas was sleeping {} (пока) I was doing my homework. 🐱',a:[['while']]}
+ ]},
+ {id:'l3',cls:'redz',title:'🎮 Level 3: was или were?',ins:'Вставь <b>was</b> или <b>were</b>.',small:'I / he / she / it → was; we / you / they → were.',type:'fill',topic:'was / were (кому was, кому were)',items:[
+   {q:'Thomas {} sleeping on my scarf. 🐱',a:[['was']]},
+   {q:'My friends and I {} playing Roblox.',a:[['were']]},
+   {q:'Diana {} wearing a floral dress. 👗',a:[['was']]},
+   {q:'The boys {} wearing baggy shorts and trainers. 🏀',a:[['were']]},
+   {q:'I {} listening to Michael Jackson. 🎤',a:[['was']]}
+ ]},
+ {id:'l4',cls:'court',title:'🏀 Level 4: раскрой скобки',ins:'Поставь глагол в Past Continuous (was/were + -ing).',small:'Put the verbs in brackets into the Past Continuous.',type:'fill',topic:'утвердительные предложения: was/were + глагол-ing',items:[
+   {q:'At 6 pm yesterday I {} (play) basketball.',a:[['was playing']]},
+   {q:'I {} (wear) my favourite hoodie.',a:[['was wearing']]},
+   {q:'Mum and Dad {} (cook) dinner.',a:[['were cooking']]},
+   {q:'Thomas {} (sit) on Diana\'s handbag! 👜',a:[['was sitting']]},
+   {q:'We {} (sing) a song by Kino. 🎸',a:[['were singing']]}
+ ]},
+ {id:'l5',cls:'stage',title:'❌❓ Level 5: отрицания и вопросы',ins:'Раскрой скобки.',small:'Можно писать wasn\'t / weren\'t или was not / were not. В вопросе was/were идёт в начало.',type:'fill',topic:'отрицания (wasn\'t / weren\'t) и вопросы (Was/Were …?)',items:[
+   {q:'I {} (not / sleep) at 11 pm.',a:[['was not sleeping']]},
+   {q:'Diana {} (not / wear) her boots.',a:[['was not wearing']]},
+   {q:'{} you {} (play) Roblox? — Yes, I was.',a:[['were'],['playing']]},
+   {q:'What {} Thomas {} (do)? 🐱',a:[['was'],['doing']]}
+ ]},
+ {id:'l6',cls:'blue',title:'🕔 Level 6: суббота, 5 часов',ins:'Посмотри на картинку и ответь полным предложением.',small:'What were they doing at 5 pm on Saturday? Пример: He was playing the drums.',type:'sentence',mode:'start',topic:'ответы полным предложением (He/She/They + was/were + -ing)',
+  pic:[['🥁','Max: drums'],['📺','Diana: TV'],['😴','Thomas: sleep'],['🏀','Max\'s friends: basketball']],
+  items:[
+   {q:'What was Max doing?',a:combos(['he','max'],['was playing the drums','was playing drums','was drumming'])},
+   {q:'What was Diana doing?',a:combos(['she','diana'],['was watching tv','was watching a film','was watching a movie','was watching television','was watching the tv'])},
+   {q:'What was Thomas doing?',a:combos(['he','it','thomas'],['was sleeping'])},
+   {q:'What were Max\'s friends doing?',a:combos(['they','max\'s friends','his friends'],['were playing basketball'])}
+ ]},
+ {id:'l7',cls:'redz',title:'⚔️ Level 7: Past Simple VS Past Continuous',ins:'Выбери правильный вариант из скобок и напиши его.',small:'Факт (yesterday, last week) → Past Simple. Процесс в момент (at 5 pm yesterday, all evening) → Past Continuous.',type:'fill',topic:'выбор между Past Simple и Past Continuous',items:[
+   {q:'Last week I {} (bought / was buying) a new hoodie.',a:[['bought']]},
+   {q:'At 5 pm yesterday I {} (played / was playing) basketball.',a:[['was playing']]},
+   {q:'Yesterday Diana {} (watched / was watching) a film.',a:[['watched']]},
+   {q:'At that moment Thomas {} (slept / was sleeping) on the sofa.',a:[['was sleeping']]}
+ ]}
+];
+
+/* ---------- helpers ---------- */
+function norm(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");
+  s=s.replace(/\bwasn'?t\b/g,'was not').replace(/\bweren'?t\b/g,'were not').replace(/\bdidn'?t\b/g,'did not')
+     .replace(/\bi'm\b/g,'i am').replace(/\bmom\b/g,'mum');
+  s=s.replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+  return s;
+}
+const $=id=>document.getElementById(id);
+let state={}; // id -> {score,max}
+
+/* ---------- render ---------- */
+function render(){
+  const root=$('levels');let html='';
+  SECTIONS.forEach(sec=>{
+    html+=`<section class="sec ${sec.cls}" id="${sec.id}"><div class="sec-head"><h2>${sec.title}</h2><span class="pix" id="${sec.id}-pts">0 XP</span></div><div class="sec-body"><div class="task"><div class="ins">${sec.ins}<small>${sec.small}</small></div>`;
+    if(sec.pic){html+='<div class="pic">'+sec.pic.map(p=>`<div><span>${p[0]}</span>${p[1]}</div>`).join('')+'</div>';}
+    html+='<ol class="q">';
+    sec.items.forEach((it,i)=>{
+      if(sec.type==='fill'){
+        let n=0;const q=it.q.replace(/\{\}/g,()=>`<input class="ans" data-s="${sec.id}" data-i="${i}" data-b="${n++}" autocomplete="off" autocapitalize="off" spellcheck="false" size="12">`);
+        html+=`<li>${q}<span class="fb" id="fb-${sec.id}-${i}"></span></li>`;
+      }else{
+        html+=`<li>${it.q}<input class="ans wide" data-s="${sec.id}" data-i="${i}" autocomplete="off" autocapitalize="sentences" spellcheck="false"><span class="fb" id="fb-${sec.id}-${i}"></span></li>`;
+      }
+    });
+    html+=`</ol></div><button class="btn alt" onclick="checkSec('${sec.id}',true)">Проверить уровень</button><span class="score" id="${sec.id}-score"></span></div></section>`;
+  });
+  root.innerHTML=html;
+  updateXP();
+}
+
+/* ---------- checking ---------- */
+function checkFree(text,kind){
+  const t=norm(text);
+  if(!t) return [false,'Напиши предложение 🙂'];
+  if(t.split(' ').length<3) return [false,'Предложение слишком короткое — напиши подробнее.'];
+  if(!/\b(was|were)\b/.test(t)) return [false,'Нет was или were.'];
+  if(/\b(i|he|she|it)\s+were\b/.test(t)) return [false,'После I / he / she / it нужно was, а не were.'];
+  if(/\b(we|you|they)\s+was\b/.test(t)) return [false,'После we / you / they нужно were, а не was.'];
+  if(kind==='neg'){
+    if(!/\b(was|were) not \w+ing\b/.test(t)) return [false,'Для отрицания нужно wasn\'t / weren\'t + глагол-ing.'];
+  }else if(kind==='q'){
+    if(!/^((what|where|who|why|how)\s+)?(was|were)\s+\w+(\s+\w+)?\s+\w+ing\b/.test(t)) return [false,'В вопросе was/were ставится в начало (или после What/Where): What was she doing?'];
+    if(!/\b(she|diana|you)\b/.test(t)) return [false,'Спроси про Диану: … she / Diana …'];
+  }else{
+    if(!/\b(was|were) \w+ing\b/.test(t)) return [false,'Нужно was/were + глагол с -ing (was playing).'];
+  }
+  return [true,'Отлично! 👍'];
+}
+
+function checkSec(id,toast){
+  const sec=SECTIONS.find(s=>s.id===id);let score=0,max=0;
+  sec.items.forEach((it,i)=>{
+    const inputs=[...document.querySelectorAll(`input[data-s="${id}"][data-i="${i}"]`)];
+    const fb=$(`fb-${id}-${i}`);let msgs=[];
+    if(sec.type==='fill'){
+      inputs.forEach((inp,b)=>{
+        max++;const acc=it.a[b].map(norm);const ok=acc.includes(norm(inp.value));
+        inp.classList.toggle('ok',ok);inp.classList.toggle('bad',!ok);
+        if(ok)score++;else msgs.push(it.a[b][0]);
+      });
+      fb.className='fb '+(msgs.length?'bad':'ok');
+      fb.textContent=msgs.length?'Правильно: '+msgs.join(' / '):'✔ Верно!';
+    }else if(sec.type==='sentence'){
+      max++;const inp=inputs[0];const v=norm(inp.value);
+      const acc=it.a.map(norm);
+      const ok=v&&(sec.mode==='start'?acc.some(a=>v===a||v.startsWith(a+' ')):acc.includes(v));
+      inp.classList.toggle('ok',!!ok);inp.classList.toggle('bad',!ok);
+      if(ok)score++;
+      fb.className='fb '+(ok?'ok':'bad');
+      const show=it.a[0].replace(/^./,c=>c.toUpperCase());
+      fb.textContent=ok?'✔ Верно!':'Правильно: '+show+(sec.mode==='start'?'.':'?');
+    }else{
+      max++;const inp=inputs[0];const [ok,m]=checkFree(inp.value,it.kind);
+      inp.classList.toggle('ok',ok);inp.classList.toggle('bad',!ok);
+      if(ok)score++;fb.className='fb '+(ok?'ok':'bad');fb.textContent=ok?'✔ '+m:'✘ '+m;
+    }
+  });
+  state[id]={score,max};
+  $(id+'-score').textContent=`${score} / ${max}`;
+  $(id+'-pts').textContent=`${score*10} XP`;
+  updateXP();
+  if(toast){const p=score/max;showToast(p===1?'PERFECT! +'+score*10+' XP 🏆':p>=.7?'Good job! +'+score*10+' XP 🎮':'Попробуй ещё раз — ты сможешь! 💪');}
+  return {score,max};
+}
+
+function totalMax(){return SECTIONS.reduce((s,sec)=>s+(sec.type==='fill'?sec.items.reduce((a,it)=>a+it.a.length,0):sec.items.length),0);}
+function updateXP(){
+  const got=Object.values(state).reduce((a,b)=>a+b.score,0);const mx=totalMax();
+  $('xpfill').style.width=(got/mx*100)+'%';$('xptext').textContent=`${got*10} / ${mx*10}`;
+}
+
+function checkAll(){
+  let s=0,m=0;const weak=[];const lines=[];
+  SECTIONS.forEach(sec=>{
+    const r=checkSec(sec.id,false);s+=r.score;m+=r.max;
+    lines.push(`${sec.title.replace(/^[^A-Za-zА-Яа-я]+/,'')}: ${r.score}/${r.max}`);
+    if(r.score/r.max<0.8) weak.push(sec.topic);
+  });
+  const pct=Math.round(s/m*100);
+  const stars=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':pct>=50?'⭐':'☆';
+  const msg=pct>=90?'LEGENDARY! Ты настоящий мастер Past Continuous! 🏆':pct>=70?'Отличная игра! Ещё чуть-чуть до легенды 🎮':pct>=50?'Неплохо! Повтори памятку и пройди уровни ещё раз 💪':'Respawn! Перечитай памятку сверху и попробуй снова — получится! 🔄';
+  const name=$('player').value.trim()||'Максим';
+  let html=`<p class="stars">${stars}</p><p><span class="big">${pct}%</span><br>${name}, ты набрал <b>${s} из ${m}</b> (${s*10} XP).</p><p><b>${msg}</b></p>`;
+  html+=weak.length?`<p><b>Что повторить:</b></p><ul>${weak.map(w=>'<li>'+w+'</li>').join('')}</ul>`:'<p>Все уровни пройдены отлично — повторять нечего! 🎉</p>';
+  html+=`<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px"><button class="btn" style="background:#229ED9" onclick="sendTg()">✈️ Отправить учителю в Telegram</button><button class="btn y" onclick="copyRes()">📋 Скопировать</button></div>`;
+  $('result').innerHTML=html;
+  window._res=`${name} — Past Continuous\nРезультат: ${s}/${m} (${pct}%)\n`+lines.join('\n')+(weak.length?`\nПовторить: ${weak.join('; ')}`:'');
+  $('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function sendRes(){
+  const t=window._res||'';
+  if(navigator.share){navigator.share({title:'ДЗ Past Continuous',text:t}).catch(()=>{});}
+  else sendTg();
+}
+function sendTg(){window.open('https://t.me/share/url?url='+encodeURIComponent(' ')+'&text='+encodeURIComponent(window._res||''),'_blank');}
+function sendWa(){window.open('https://wa.me/?text='+encodeURIComponent(window._res||''),'_blank');}
+function copyRes(){
+  const t=window._res||'';
+  const done=()=>showToast('Скопировано! Отправь учителю 📨');
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done).catch(fallback);}else fallback();
+  function fallback(){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){showToast('Сделай скриншот результата 📸');}ta.remove();}
+}
+function showToast(t){const el=$('toast');el.textContent=t;el.style.display='block';clearTimeout(el._t);el._t=setTimeout(()=>el.style.display='none',2200);}
+
+render();
+</script>
+</body>
+</html>
