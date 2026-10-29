@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sonya's Homework 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#8e5bd6;--purple-d:#5b2fa0;--pink:#ff6fae;--lilac:#efe3ff;--ink:#3b2560;--ok:#2bb673;--bad:#e8456b;--warn:#f2a531}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:#f6eeff;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='%23d9c2ff' opacity='.55'%3E%3Cellipse cx='30' cy='38' rx='9' ry='8'/%3E%3Ccircle cx='19' cy='26' r='4'/%3E%3Ccircle cx='27' cy='20' r='4'/%3E%3Ccircle cx='36' cy='21' r='4'/%3E%3Ccircle cx='42' cy='28' r='4'/%3E%3C/g%3E%3Cg fill='%23ffc2de' opacity='.6'%3E%3Cellipse cx='70' cy='78' rx='7' ry='6'/%3E%3Ccircle cx='61' cy='69' r='3'/%3E%3Ccircle cx='67' cy='64' r='3'/%3E%3Ccircle cx='74' cy='65' r='3'/%3E%3Ccircle cx='79' cy='71' r='3'/%3E%3C/g%3E%3C/svg%3E")}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+header{text-align:center;padding:24px 16px 20px;border-radius:26px;color:#fff;margin-bottom:12px;
+ background:radial-gradient(circle at 12% 30%,rgba(255,255,255,.9) 0 2px,transparent 3px),radial-gradient(circle at 80% 20%,rgba(255,255,255,.8) 0 1.5px,transparent 3px),radial-gradient(circle at 60% 80%,rgba(255,255,255,.9) 0 2px,transparent 3px),linear-gradient(135deg,#a56ff0,#ff6fae);
+ background-size:90px 90px,120px 120px,70px 70px,100% 100%;box-shadow:0 10px 30px rgba(142,91,214,.35)}
+header h1{font-family:'Pacifico',cursive;font-weight:400;font-size:32px;margin:0 0 6px}
+header p{margin:4px 0;font-weight:700}
+.dogs{font-size:28px;letter-spacing:6px}
+.progress{height:12px;background:rgba(255,255,255,.4);border-radius:999px;margin:10px auto 0;max-width:300px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:#fff;border-radius:999px;transition:width .4s}
+
+/* tabs */
+.tabs{position:sticky;top:8px;z-index:5;display:flex;gap:6px;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px;border-radius:999px;box-shadow:0 4px 14px rgba(91,47,160,.18);margin-bottom:6px}
+.tab{flex:1;border:none;font:inherit;font-weight:900;font-size:15px;padding:10px 6px;border-radius:999px;background:transparent;color:var(--purple-d);cursor:pointer}
+.tab.on{background:linear-gradient(135deg,#b07cff,#ff6fae);color:#fff;box-shadow:inset 0 2px 0 rgba(255,255,255,.4)}
+.page{display:none}.page.on{display:block}
+
+section.task{border-radius:24px;padding:12px;margin:18px 0;box-shadow:0 6px 18px rgba(91,47,160,.15)}
+.inner{background:rgba(255,255,255,.93);border-radius:18px;padding:16px}
+h2{margin:0 0 6px;font-size:21px;font-weight:900;color:var(--purple-d)}
+.instr{margin:0 0 12px;font-size:15px}
+.tag{display:inline-block;font-size:12px;font-weight:900;color:#fff;background:var(--pink);border-radius:999px;padding:2px 10px;margin-bottom:6px}
+.bg-glitter{background:radial-gradient(circle,rgba(255,255,255,.95) 0 1.5px,transparent 2.5px) 0 0/22px 22px,radial-gradient(circle,rgba(255,240,250,.8) 0 1px,transparent 2px) 11px 11px/17px 17px,linear-gradient(135deg,#c79bff,#ff9dcb)}
+.bg-pink{background:#ffc9e3}
+.bg-check{background-color:#fff;background-image:linear-gradient(90deg,rgba(255,111,174,.35) 50%,transparent 50%),linear-gradient(rgba(255,111,174,.35) 50%,transparent 50%);background-size:28px 28px}
+.bg-dots{background:radial-gradient(#fff 28%,transparent 31%) 0 0/24px 24px,#b88cf0}
+.bg-stripes{background:repeating-linear-gradient(45deg,#ffd0e6 0 16px,#e6d4ff 16px 32px)}
+.bg-stars{background-color:#7a48c9;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M15 5l2 6 6 2-6 2-2 6-2-6-6-2 6-2z' fill='%23ffe1f0'/%3E%3Cpath d='M45 35l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z' fill='%23fff'/%3E%3C/svg%3E")}
+.bg-floral{background-color:#f3ecff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='%23ff8fc0'%3E%3Ccircle cx='22' cy='15' r='5'/%3E%3Ccircle cx='29' cy='22' r='5'/%3E%3Ccircle cx='22' cy='29' r='5'/%3E%3Ccircle cx='15' cy='22' r='5'/%3E%3C/g%3E%3Ccircle cx='22' cy='22' r='4' fill='%23ffd34d'/%3E%3C/svg%3E")}
+
+.item{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:14px;margin:6px 0;background:#fbf7ff;border:2px solid transparent}
+.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--purple);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:4px}
+.body{flex:1;min-width:0}
+.line{line-height:2.1;font-size:16px}
+.q{font-weight:700;margin-right:8px}
+.hint{font-size:13px;color:#8a6bb8;font-weight:700}
+input[type=text],select,textarea{font:inherit;font-size:16px;color:var(--ink);border:2px solid #d8c4f7;border-radius:12px;padding:5px 10px;background:#fff;outline:none;max-width:100%}
+input[type=text]{width:170px}
+input[type=text].wide{width:100%}
+input:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,111,174,.2)}
+.msg{font-size:14px;font-weight:700}
+.item.ok{border-color:var(--ok);background:#ecfbf3}.item.ok .msg{color:var(--ok)}
+.item.bad{border-color:var(--bad);background:#fff0f3}.item.bad .msg{color:var(--bad)}
+.item.empty{border-color:var(--warn);background:#fff8ec}.item.empty .msg{color:#b8740c}
+.gaptext{font-size:17px;line-height:2.4}
+.gap{display:inline-flex;flex-direction:column;vertical-align:top;margin:0 2px}
+.gap input{width:118px;padding:3px 8px}
+.gap .msg{font-size:12px;line-height:1.2;max-width:140px}
+.gap.ok input{border-color:var(--ok);background:#ecfbf3}.gap.ok .msg{color:var(--ok)}
+.gap.bad input{border-color:var(--bad);background:#fff0f3}.gap.bad .msg{color:var(--bad)}
+.gap.empty input{border-color:var(--warn);background:#fff8ec}.gap.empty .msg{color:#b8740c}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.chip{border:none;font:inherit;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--lilac);color:var(--purple-d);cursor:pointer}
+.chip.used{opacity:.3;text-decoration:line-through;cursor:default}
+input.target{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,111,174,.25)}
+
+.btn{position:relative;overflow:hidden;border:none;cursor:pointer;font:inherit;font-weight:900;font-size:17px;color:#fff;padding:12px 26px;border-radius:999px;margin-top:12px;
+ background:linear-gradient(135deg,#b07cff,#ff6fae);box-shadow:0 6px 16px rgba(255,111,174,.4),inset 0 2px 0 rgba(255,255,255,.5)}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:shine 2.8s infinite}
+@keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+.btn:active{transform:scale(.97)}
+.btn.small{font-size:14px;padding:8px 16px}
+.btn.ghost{background:#fff;color:var(--purple-d);box-shadow:0 2px 8px rgba(91,47,160,.2)}.btn.ghost::after{display:none}
+.fb{margin-top:12px;font-weight:700;font-size:16px;border-radius:14px}
+.fb:not(:empty){padding:12px 14px;background:var(--lilac)}
+.row-btns{display:flex;flex-wrap:wrap;gap:10px}
+
+/* words page */
+.wgroup{font-weight:900;font-size:18px;margin:16px 0 8px;color:var(--purple-d)}
+.word{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:14px;background:#fbf7ff;margin:5px 0}
+.word .em{font-size:22px;width:30px;text-align:center;flex:none}
+.word .en{font-weight:900;flex:1.1}
+.word .ru{flex:1;color:#6e4fa0}
+.say{flex:none;border:none;background:var(--lilac);border-radius:999px;font-size:17px;padding:4px 10px;cursor:pointer}
+.hide-ru .word .ru,.hide-en .word .en{filter:blur(6px);cursor:pointer}
+.word .shown{filter:none!important}
+
+/* tense table */
+.tense{background:#fff;border-radius:14px;padding:12px 14px;margin:10px 0;border-left:7px solid var(--pink)}
+.tense h3{margin:0 0 4px;font-size:17px;color:var(--purple-d)}
+.tense .f{font-weight:700}
+.tense .m{font-size:14px;color:#8a6bb8;font-weight:700}
+.ex{color:#7a5aa8;font-style:italic}
+.small{font-size:13px}
+pre#report{white-space:pre-wrap;background:#fff;border-radius:14px;padding:14px;font-family:inherit;font-size:15px;border:2px dashed #d8c4f7}
+footer{text-align:center;padding:20px 0 40px;font-size:14px;color:#7a5aa8}
+@media (max-width:480px){header h1{font-size:27px}input[type=text]{width:100%}.q{display:block}.tab{font-size:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="dogs">🐶💜🐩</div>
+  <h1>Sonya's Homework #1</h1>
+  <p>GoGetter 4 · Unit 1 · Clothes + 5 tenses</p>
+  <p class="small">Всё сохраняется само — можно делать по частям 💾</p>
+  <div class="progress"><span id="bar"></span></div>
+  <p class="small" id="barText"></p>
+</header>
+
+<nav class="tabs">
+  <button class="tab on" data-page="pEx">📝 Упражнения</button>
+  <button class="tab" data-page="pWords">📚 Слова</button>
+  <button class="tab" data-page="pGram">⏰ Времена</button>
+</nav>
+
+<!-- ============ EXERCISES ============ -->
+<div class="page on" id="pEx">
+  <div id="tasks"></div>
+  <section class="task bg-glitter">
+    <div class="inner">
+      <h2>🏆 Итог</h2>
+      <p class="instr">Когда всё сделаешь — нажми кнопку и отправь результат учителю.</p>
+      <button class="btn" id="finishBtn">Посмотреть результат 💜</button>
+      <div id="reportBox" style="display:none;margin-top:14px">
+        <pre id="report"></pre>
+        <div class="row-btns">
+          <button class="btn small" id="copyBtn">📋 Скопировать</button>
+          <button class="btn small" id="tgBtn">✈️ Отправить в Telegram</button>
+        </div>
+        <p class="small" id="copyMsg"></p>
+      </div>
+      <hr style="border:none;border-top:2px dashed #e5d6fb;margin:20px 0 10px">
+      <button class="btn small ghost" id="resetBtn">🗑 Начать заново</button>
+    </div>
+  </section>
+</div>
+
+<!-- ============ WORDS ============ -->
+<div class="page" id="pWords">
+  <section class="task bg-floral">
+    <div class="inner">
+      <h2>📚 Слова этого ДЗ</h2>
+      <p class="instr">Забыла слово? Загляни сюда! 🔊 — послушай и повтори вслух.<br>
+      Проверь себя: спрячь перевод или английский и вспоминай. Нажми на размытое слово — оно появится.</p>
+      <div class="row-btns">
+        <button class="btn small ghost" id="hideRu">🙈 Спрятать перевод</button>
+        <button class="btn small ghost" id="hideEn">🙈 Спрятать английский</button>
+      </div>
+      <div id="wordsBox"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ GRAMMAR ============ -->
+<div class="page" id="pGram">
+  <section class="task bg-stripes">
+    <div class="inner">
+      <h2>⏰ 5 времён — шпаргалка</h2>
+      <p class="instr">Ищи <b>слово-подсказку</b> в предложении — оно говорит, какое время нужно!</p>
+      <div class="tense"><h3>🔁 Present Simple — обычно, всегда</h3>
+        <div class="f">I / you / we / they <b>wear</b> · he / she / it <b>wears</b> (+s!)</div>
+        <div class="f">➖ don't / doesn't wear · ❓ Do / Does … wear?</div>
+        <div class="m">usually, always, often, never, every day, on Mondays</div>
+        <div class="ex">Sonya usually wears leggings at gymnastics.</div></div>
+      <div class="tense"><h3>▶️ Present Continuous — прямо сейчас</h3>
+        <div class="f">am / is / are + <b>-ing</b></div>
+        <div class="f">➖ isn't wearing · ❓ Is she wearing…?</div>
+        <div class="m">now, right now, at the moment, Look! Listen! Shh!</div>
+        <div class="ex">Look! Timofey is wearing my pink scarf!</div></div>
+      <div class="tense"><h3>⏪ Past Simple — было и закончилось</h3>
+        <div class="f">глагол + <b>-ed</b> или 2-я форма (wore, bought, went)</div>
+        <div class="f">➖ didn't + глагол · ❓ Did … + глагол?</div>
+        <div class="m">yesterday, last week, last summer, two days ago, in 2024</div>
+        <div class="ex">Last summer we went to China.</div></div>
+      <div class="tense"><h3>✅ Present Perfect — уже / ещё не / когда-нибудь (результат сейчас)</h3>
+        <div class="f">have / has + <b>3-я форма</b> (worn, bought, lost, been)</div>
+        <div class="f">➖ haven't / hasn't · ❓ Have you … ?</div>
+        <div class="m">already, just, yet, ever, never</div>
+        <div class="ex">I have already cooked pancakes! Have you ever been to China?</div></div>
+      <div class="tense"><h3>🔮 Future Simple — будет</h3>
+        <div class="f"><b>will</b> + глагол (для всех!)</div>
+        <div class="f">➖ won't · ❓ Will you … ?</div>
+        <div class="m">tomorrow, next week, next Saturday, soon, I think…</div>
+        <div class="ex">Tomorrow I will wear my floral dress.</div></div>
+      <p class="small">⚠️ Главная ловушка: <b>yesterday / ago / last</b> → Past Simple, а <b>already / just / ever / never</b> → Present Perfect.</p>
+    </div>
+  </section>
+</div>
+
+<footer>🐾 Good luck, Sonya! 🐾</footer>
+</div>
+
+<script>
+/* ===== Слова ДЗ (накопительно: в следующих ДЗ добавляем hw:2, 3…) ===== */
+const VOCAB=[
+ ['Clothes — одежда','belt','ремень','➖'],['Clothes — одежда','boots','ботинки, сапоги','👢'],['Clothes — одежда','bracelet','браслет','📿'],
+ ['Clothes — одежда','cardigan','кардиган','🧶'],['Clothes — одежда','coat','пальто','🧥'],['Clothes — одежда','dress','платье','👗'],
+ ['Clothes — одежда','earrings','серьги','✨'],['Clothes — одежда','handbag','сумочка','👜'],['Clothes — одежда','hat','шапка, шляпа','👒'],
+ ['Clothes — одежда','hoodie','худи, толстовка','🧢'],['Clothes — одежда','jacket','куртка, пиджак','🧥'],['Clothes — одежда','leggings','леггинсы','🤸‍♀️'],
+ ['Clothes — одежда','ring','кольцо','💍'],['Clothes — одежда','sandals','сандалии','👡'],['Clothes — одежда','scarf','шарф','🧣'],
+ ['Clothes — одежда','shirt','рубашка','👔'],['Clothes — одежда','shorts','шорты','🩳'],['Clothes — одежда','skirt','юбка','💃'],
+ ['Clothes — одежда','socks','носки','🧦'],['Clothes — одежда','tie','галстук','👔'],['Clothes — одежда','tights','колготки','🦵'],
+ ['Clothes — одежда','top','топ, кофточка','👚'],['Clothes — одежда','trainers','кроссовки','👟'],['Clothes — одежда','jumper','свитер','🧶'],
+ ['Describing clothes — какая одежда','checked','в клетку','🏁'],['Describing clothes — какая одежда','floral','в цветочек','🌸'],
+ ['Describing clothes — какая одежда','plain','однотонный, без узора','🟪'],['Describing clothes — какая одежда','spotted','в горошек','⚪'],
+ ['Describing clothes — какая одежда','striped','в полоску','〰️'],['Describing clothes — какая одежда','baggy','мешковатый, свободный','🎈'],
+ ['Describing clothes — какая одежда','casual','повседневный','😎'],['Describing clothes — какая одежда','smart','нарядный, строгий','🎀'],
+ ['Describing clothes — какая одежда','tight','обтягивающий, узкий','🤸‍♀️'],
+ ['Verbs — глаголы (1 → 2 → 3 форма)','wear → wore → worn','носить (одежду)','👗'],['Verbs — глаголы (1 → 2 → 3 форма)','put on → put on → put on','надевать','🧥'],
+ ['Verbs — глаголы (1 → 2 → 3 форма)','buy → bought → bought','покупать','🛍'],['Verbs — глаголы (1 → 2 → 3 форма)','lose → lost → lost','терять','😱'],
+ ['Verbs — глаголы (1 → 2 → 3 форма)','find → found → found','находить','🔎'],['Verbs — глаголы (1 → 2 → 3 форма)','go → went → gone','идти, ехать','🚶‍♀️'],
+ ['Verbs — глаголы (1 → 2 → 3 форма)','be → was/were → been','быть','🌏'],['Verbs — глаголы (1 → 2 → 3 форма)','see → saw → seen','видеть','👀'],
+ ['Verbs — глаголы (1 → 2 → 3 форма)','make → made → made','делать, готовить','🎂'],['Verbs — глаголы (1 → 2 → 3 форма)','cook → cooked → cooked','готовить (еду)','🍳'],
+ ['Verbs — глаголы (1 → 2 → 3 форма)','watch → watched → watched','смотреть','📺'],['Verbs — глаголы (1 → 2 → 3 форма)','sleep → slept → slept','спать','😴'],
+ ['Verbs — глаголы (1 → 2 → 3 форма)','like → liked → liked','нравиться','💖'],['Verbs — глаголы (1 → 2 → 3 форма)','come → came → come','приходить','🏃‍♀️'],
+ ['Words in sentences — слова из заданий','gymnastics','гимнастика','🤸‍♀️'],['Words in sentences — слова из заданий','training','тренировка','💪'],
+ ['Words in sentences — слова из заданий','competition','соревнование','🏅'],['Words in sentences — слова из заданий','apron','фартук','🍰'],
+ ['Words in sentences — слова из заданий','make-up','косметика, макияж','💄'],['Words in sentences — слова из заданий','lipstick','помада','💋'],
+ ['Words in sentences — слова из заданий','comfortable','удобный','☁️'],['Words in sentences — слова из заданий','bath','ванна, купание','🛁'],
+ ['Words in sentences — слова из заданий','pancakes','блины, панкейки','🥞'],['Words in sentences — слова из заданий','on my ears','в ушах (на ушах)','👂'],
+ ['Time words — слова-подсказки','usually / every day','обычно / каждый день','🔁'],['Time words — слова-подсказки','now / Look!','сейчас / Смотри!','▶️'],
+ ['Time words — слова-подсказки','yesterday / ago / last','вчера / назад / прошлый','⏪'],['Time words — слова-подсказки','already / just / ever / never','уже / только что / когда-нибудь / никогда','✅'],
+ ['Time words — слова-подсказки','tomorrow / next','завтра / следующий','🔮'],
+ ['Say it!','That\'s gross!','Фу, гадость!','🤢'],['Say it!','This is the worst day of my life!','Это худший день в моей жизни!','😭']
+];
+
+const BG=['bg-stripes','bg-check','bg-dots','bg-pink','bg-stars'];
+const TASKS=[
+ {id:'t1',title:'👗 Clothes: переведи на английский',instr:'Выбери английское слово из рамки: нажми на клетку, потом на слово — оно встанет туда. Можно и написать самой. Ошиблась — сотри слово, и оно снова станет доступно в рамке.',kind:'text',strip:true,vocab:true,
+  bank:['belt','coat','dress','skirt','scarf','ring','tights','trainers','earrings','handbag','checked','spotted'],items:[
+  {q:'ремень',a:['belt']},{q:'пальто',a:['coat']},{q:'платье',a:['dress']},{q:'юбка',a:['skirt']},{q:'шарф',a:['scarf']},
+  {q:'кольцо',a:['ring']},{q:'колготки',a:['tights']},{q:'кроссовки',a:['trainers','sneakers']},{q:'серьги',a:['earrings']},
+  {q:'сумочка',a:['handbag','hand bag']},{q:'в клетку',a:['checked']},{q:'в горошек',a:['spotted']}]},
+ {id:'t2',title:'💜 Sonya\'s clothes',instr:'Вставь слова из рамки: нажми на клетку, потом на слово. Каждое слово — один раз. Ошиблась — сотри слово, и оно снова станет доступно.',kind:'gaps',vocab:true,
+  bank:['hoodie','smart','tight','trainers','earrings','leggings','striped','baggy','bracelet','floral'],
+  text:"Hi! I'm Sonya. I do power gymnastics, so at training I wear a {0} top and black {1}. After training I put on a big, {2} {3} and white {4} — they are very comfortable! My little brother Timofey loves {5} socks with red and white lines. When I cook, I wear an apron with flowers on it — it's {6}. For a party I wear a {7} dress, beautiful {8} on my ears and a {9} on my hand.",
+  items:[{a:['tight']},{a:['leggings']},{a:['baggy']},{a:['hoodie']},{a:['trainers']},{a:['striped']},{a:['floral']},{a:['smart']},{a:['earrings']},{a:['bracelet']}]},
+ {id:'t3',title:'⏰ Раскрой скобки: 5 времён',instr:'Найди слово-подсказку и поставь глагол в нужное время: Present Simple, Present Continuous, Past Simple, Present Perfect или Future Simple. Шпаргалка — во вкладке «⏰ Времена».',kind:'text',items:[
+  {q:'Sonya usually ___ (wear) leggings at gymnastics.',a:['wears'],tn:'Present Simple — usually'},
+  {q:'Look! Timofey ___ (wear) my pink scarf!',a:['is wearing'],tn:'Present Continuous — Look!'},
+  {q:'Yesterday I ___ (buy) a floral dress.',a:['bought'],tn:'Past Simple — yesterday'},
+  {q:'I ___ (already / cook) pancakes for breakfast!',a:['have already cooked','i have already cooked'],tn:'Present Perfect — already'},
+  {q:'It will be cold tomorrow, so I ___ (put on) my coat.',a:['will put on','will put'],show:'will put on',tn:'Future Simple — tomorrow'},
+  {q:'My dog ___ (not / like) baths.',a:['does not like'],show:"doesn't like",tn:'Present Simple — факт'},
+  {q:'___ (you / ever / be) to China?',a:['have you ever been'],tn:'Present Perfect — ever'},
+  {q:'Shh! Mum ___ (cook) dinner now.',a:['is cooking'],tn:'Present Continuous — now'},
+  {q:'Two years ago we ___ (go) to China.',a:['went'],tn:'Past Simple — ago'},
+  {q:'I ___ (never / wear) a tie.',a:['have never worn'],tn:'Present Perfect — never'},
+  {q:'___ (you / come) to my gymnastics competition next Saturday?',a:['will you come'],tn:'Future Simple — next'},
+  {q:'___ (Sonya / wear) earrings every day?',a:['does sonya wear'],show:'Does Sonya wear',tn:'Present Simple — every day'},
+  {q:'I ___ (not / see) your handbag yesterday.',a:['did not see'],show:"didn't see",tn:'Past Simple — yesterday'},
+  {q:'Timofey ___ (just / lose) his trainers!',a:['has just lost'],tn:'Present Perfect — just'}]},
+ {id:'t4',title:'🎯 Выбери правильный вариант',instr:'Выбери, какое время подходит. Подсказка в предложении!',kind:'select',items:[
+  {q:'Shh! Sonya ___ a video about make-up.',o:['watches','is watching','watched'],a:'is watching',tn:'Present Continuous — Shh!'},
+  {q:'I ___ my new trainers last week.',o:['buy','have bought','bought'],a:'bought',tn:'Past Simple — last week'},
+  {q:'Oh no! I ___ my ring! I can\'t find it.',o:['have just lost','am just losing','just lose'],a:'have just lost',tn:'Present Perfect — just'},
+  {q:'Timofey ___ hoodies every day.',o:['wears','is wearing','will wear'],a:'wears',tn:'Present Simple — every day'},
+  {q:'I think it ___ cold tomorrow.',o:['is','was','will be'],a:'will be',tn:'Future Simple — tomorrow'},
+  {q:'___ a checked skirt?',o:['Did you ever wear','Have you ever worn','Do you ever wearing'],a:'Have you ever worn',tn:'Present Perfect — ever'},
+  {q:'Right now my dog ___ on my bed.',o:['sleeps','is sleeping','slept'],a:'is sleeping',tn:'Present Continuous — right now'},
+  {q:'Next weekend I ___ a cake for Mum.',o:['will make','made','have made'],a:'will make',tn:'Future Simple — next weekend'}]},
+ {id:'t5',title:'🌏 Переведи предложения',instr:'Переведи на английский. Сначала подумай: какое это время?',kind:'regex',wide:true,items:[
+  {q:'Я обычно ношу кроссовки.',re:/^i usually wear (trainers|sneakers)$/,show:'I usually wear trainers.',tn:'Present Simple'},
+  {q:'Смотри! Тимофей надевает мою куртку!',re:/^look (timofey|timofei|timofej|timothy|tim) is putting (on my jacket|my jacket on)$/,show:'Look! Timofey is putting on my jacket!',tn:'Present Continuous'},
+  {q:'Вчера я потеряла свой шарф.',re:/^(yesterday i lost my scarf|i lost my scarf yesterday)$/,show:'Yesterday I lost my scarf.',tn:'Past Simple'},
+  {q:'Я уже купила новые серьги.',re:/^(i have already bought (new|some new) earrings|i have bought (new|some new) earrings already)$/,show:'I have already bought new earrings.',tn:'Present Perfect'},
+  {q:'Завтра я надену платье в цветочек.',re:/^(tomorrow i will (wear|put on) (a|my) floral dress|i will (wear|put on) (a|my) floral dress tomorrow)$/,show:'Tomorrow I will wear a floral dress.',tn:'Future Simple'},
+  {q:'Ты когда-нибудь была в Китае?',re:/^have you ever been (to|in) china$/,show:'Have you ever been to China?',tn:'Present Perfect'}]}
+];
+const KEY='sonya_hw1_v2';
+let store={inputs:{},results:{}};
+try{const s=localStorage.getItem(KEY);if(s)store=JSON.parse(s);}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+
+function norm(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");
+  [[/\bcan't\b/g,'can not'],[/\bwon't\b/g,'will not'],[/n't\b/g,' not'],[/\bi'm\b/g,'i am'],[/'re\b/g,' are'],[/'ve\b/g,' have'],
+   [/'ll\b/g,' will'],[/\b(it|that|he|she|what|where|who|there|timofey|sonya|mum)'s\b/g,'$1 is'],[/\bcannot\b/g,'can not']].forEach(r=>{s=s.replace(r[0],r[1]);});
+  return s.replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+function strip(s){return s.replace(/^(a|an|the|some) /,'');}
+function shown(it){return it.show||(Array.isArray(it.a)?it.a[0]:it.a);}
+function isRight(t,it,v){
+  if(t.kind==='select')return v===it.a;
+  let n=norm(v);
+  if(t.kind==='regex')return it.re.test(n);
+  if(t.strip)n=strip(n);
+  return it.a.some(a=>{let x=norm(a);if(t.strip)x=strip(x);return x===n;});
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+const lastFocus={};
+function control(t,it,id){
+  if(t.kind==='select')return `<select id="${id}"><option value="">— choose —</option>${it.o.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select>`;
+  return `<input type="text" id="${id}" class="${t.wide?'wide':''}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">`;
+}
+function renderTasks(){
+  const box=document.getElementById('tasks');
+  TASKS.forEach((t,ti)=>{
+    const sec=document.createElement('section');sec.className='task '+BG[ti%BG.length];sec.id='sec-'+t.id;
+    let h=`<div class="inner"><span class="tag">Упражнение ${ti+1}</span><h2>${t.title}</h2><p class="instr">${t.instr}</p>`;
+    if(t.bank){
+      const bank=[...t.bank].sort(()=>Math.random()-.5);
+      h+=`<div class="bank">${bank.map(w=>`<button class="chip" data-t="${t.id}" data-w="${esc(w)}">${esc(w)}</button>`).join('')}</div>`;
+    }
+    if(t.kind==='gaps'){
+      h+=`<div class="gaptext">`;
+      h+=t.text.replace(/\{(\d+)\}/g,(m,i)=>{const id=`${t.id}-${i}`;return `<span class="gap" id="row-${id}"><input type="text" id="${id}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${+i+1}"><span class="msg"></span></span>`;});
+      h+='</div>';
+    }else{
+      t.items.forEach((it,i)=>{
+        const id=`${t.id}-${i}`,c=control(t,it,id);
+        const line=it.q.includes('___')?esc(it.q).replace('___',c):`<span class="q">${esc(it.q)}</span>${c}`;
+        h+=`<div class="item" id="row-${id}"><span class="num">${i+1}</span><div class="body"><div class="line">${line}</div><div class="msg"></div></div></div>`;
+      });
+    }
+    h+=`<button class="btn" data-check="${t.id}">Check ✨</button><div class="fb" id="fb-${t.id}"></div></div>`;
+    sec.innerHTML=h;box.appendChild(sec);
+  });
+  document.querySelectorAll('#tasks input,#tasks select').forEach(el=>{
+    if(store.inputs[el.id]!==undefined)el.value=store.inputs[el.id];
+    const on=()=>{store.inputs[el.id]=el.value;save();markChips();};
+    el.addEventListener('input',on);el.addEventListener('change',on);
+    const tid=el.id.split('-')[0];
+    el.addEventListener('focus',()=>{lastFocus[tid]=el;markTarget(tid);});
+  });
+  document.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{
+    if(ch.disabled)return;
+    const tid=ch.dataset.t, inputs=[...document.querySelectorAll(`#sec-${tid} input`)];
+    let target=lastFocus[tid];
+    if(!target||target.value.trim())target=inputs.find(i=>!i.value.trim());
+    if(!target)return;
+    target.value=ch.dataset.w;store.inputs[target.id]=target.value;save();
+    lastFocus[tid]=inputs.find(i=>!i.value.trim())||null;
+    markChips();markTarget(tid);
+  }));
+  document.querySelectorAll('[data-check]').forEach(b=>b.addEventListener('click',()=>check(TASKS.find(t=>t.id===b.dataset.check))));
+  markChips();
+}
+/* слово из рамки, которое уже стоит в какой-то клетке, нельзя вставить ещё раз */
+function markChips(){
+  TASKS.filter(t=>t.bank).forEach(t=>{
+    const used=[...document.querySelectorAll(`#sec-${t.id} input`)].map(i=>norm(i.value)).filter(Boolean);
+    document.querySelectorAll(`#sec-${t.id} .chip`).forEach(c=>{
+      const u=used.includes(norm(c.dataset.w));c.classList.toggle('used',u);c.disabled=u;
+    });
+  });
+}
+function markTarget(tid){
+  document.querySelectorAll(`#sec-${tid} input`).forEach(i=>i.classList.toggle('target',i===lastFocus[tid]&&!i.value.trim()));
+}
+
+const PRAISE=[[100,'Perfect! 🐶🏆 Ты супер!'],[85,'Great job! 💜 Почти идеально!'],[65,'Good! 👍 Посмотри на ошибки и повтори их.'],[0,'Keep going! 🐾 Загляни во вкладки «Слова» и «Времена» и попробуй ещё раз.']];
+function check(t){
+  const fb=document.getElementById('fb-'+t.id);
+  let filled=0,ok=0;const wrong=[];
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}-${i}`,el=document.getElementById(id),row=document.getElementById('row-'+id),msg=row.querySelector('.msg');
+    row.classList.remove('ok','bad','empty');
+    const v=el.value.trim();
+    if(!v){row.classList.add('empty');msg.textContent='Попробуй сама ✍️';return;}
+    filled++;
+    if(isRight(t,it,v)){ok++;row.classList.add('ok');msg.textContent='✓'+(it.tn?' '+it.tn:'');}
+    else{
+      row.classList.add('bad');msg.textContent='Правильно: '+shown(it)+(it.tn?` (${it.tn})`:'');
+      wrong.push(t.id==='t1'?`${it.q} — ${shown(it)}`:t.id==='t2'?shown(it):`${shown(it)}${it.tn?' ['+it.tn.split(' —')[0]+']':''}`);
+    }
+  });
+  const total=t.items.length;
+  if(filled===0){fb.textContent='Упражнение пустое 🐶 Выполни его и нажми Check ещё раз.';store.results[t.id]=null;save();updateBar();return;}
+  const pct=Math.round(ok/total*100);
+  let txt=`⭐ ${ok} / ${total}. `+PRAISE.find(p=>pct>=p[0])[1];
+  if(filled<total)txt+=` Есть пустые клетки (${total-filled}) — заполни их и нажми Check ещё раз.`;
+  if(wrong.length)txt+=` Повтори: ${wrong.join(', ')}.`;
+  fb.textContent=txt;
+  store.results[t.id]={ok,total,filled,wrong};save();updateBar();
+}
+function updateBar(){
+  const n=TASKS.filter(t=>store.results[t.id]).length;
+  document.getElementById('bar').style.width=Math.round(n/TASKS.length*100)+'%';
+  document.getElementById('barText').textContent=`Проверено упражнений: ${n} из ${TASKS.length}`;
+}
+
+let reportText='';
+function finish(){
+  TASKS.forEach(check);
+  let ok=0,total=0;const lines=[],allWrong=[];
+  TASKS.forEach((t,i)=>{
+    const r=store.results[t.id],name=t.title.replace(/^\S+\s/,'');
+    total+=t.items.length;
+    if(!r){lines.push(`${i+1}. ${name}: не выполнено`);return;}
+    ok+=r.ok;allWrong.push(...r.wrong);
+    lines.push(`${i+1}. ${name}: ${r.ok}/${r.total}${r.filled<r.total?` (пустых: ${r.total-r.filled})`:''}`);
+  });
+  reportText=`🐶 Sonya — Homework #1 (GoGetter 4, Unit 1: Clothes + 5 tenses)\nИтог: ${ok} / ${total} (${Math.round(ok/total*100)}%)\n\n`+lines.join('\n')+
+    (allWrong.length?`\n\n❗ Ошибки (повторить в следующем ДЗ):\n${allWrong.join('; ')}`:'\n\n✅ Ошибок нет!');
+  document.getElementById('report').textContent=reportText;
+  document.getElementById('reportBox').style.display='block';
+  document.getElementById('reportBox').scrollIntoView({behavior:'smooth'});
+}
+function copyReport(){
+  const m=document.getElementById('copyMsg'),done=()=>{m.textContent='Скопировано! Вставь в сообщение учителю 💜';};
+  const fallback=()=>{const ta=document.createElement('textarea');ta.value=reportText;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');done();}catch(e){m.textContent='Выдели текст выше и скопируй вручную.';}ta.remove();};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(reportText).then(done,fallback);else fallback();
+}
+
+/* ===== words page ===== */
+function speak(text){
+  try{const u=new SpeechSynthesisUtterance(text.replace(/→/g,',').replace(/\//g,','));u.lang='en-GB';u.rate=.85;
+    const vs=speechSynthesis.getVoices(),v=vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang&&v.lang.startsWith('en'));if(v)u.voice=v;
+    speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}
+}
+function renderWords(){
+  const box=document.getElementById('wordsBox');let g0='',h='';
+  VOCAB.forEach((w,i)=>{
+    if(w[0]!==g0){g0=w[0];h+=`<div class="wgroup">${esc(g0)}</div>`;}
+    h+=`<div class="word"><span class="em">${w[3]}</span><span class="en">${esc(w[1])}</span><span class="ru">${esc(w[2])}</span><button class="say" data-i="${i}" aria-label="listen">🔊</button></div>`;
+  });
+  box.innerHTML=h;
+  box.querySelectorAll('.say').forEach(b=>b.onclick=()=>speak(VOCAB[b.dataset.i][1]));
+  box.querySelectorAll('.en,.ru').forEach(s=>s.onclick=()=>s.classList.toggle('shown'));
+}
+function toggleHide(cls,btn,label){
+  const p=document.getElementById('pWords'),on=p.classList.toggle(cls);
+  p.querySelectorAll('.shown').forEach(s=>s.classList.remove('shown'));
+  btn.textContent=on?'👀 Показать '+label:'🙈 Спрятать '+label;
+}
+document.getElementById('hideRu').onclick=e=>toggleHide('hide-ru',e.currentTarget,'перевод');
+document.getElementById('hideEn').onclick=e=>toggleHide('hide-en',e.currentTarget,'английский');
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id===b.dataset.page));
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('finishBtn').onclick=finish;
+document.getElementById('copyBtn').onclick=copyReport;
+document.getElementById('tgBtn').onclick=()=>window.open('https://t.me/share/url?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(reportText),'_blank');
+document.getElementById('resetBtn').onclick=()=>{if(confirm('Стереть все ответы и начать заново?')){store={inputs:{},results:{}};save();location.reload();}};
+if('speechSynthesis' in window)speechSynthesis.getVoices();
+
+renderWords();renderTasks();updateBar();
+</script>
+</body>
+</html>
