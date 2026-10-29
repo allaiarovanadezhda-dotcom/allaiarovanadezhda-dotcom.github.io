@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kristina · Homework 6B</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff5c9a; --pink2:#ff8fb8; --soft:#ffe3ee; --soft2:#fff0f6; --ink:#5a2440; --muted:#a05a7c;
+  --ok:#2fb36d; --bad:#ff4f6d; --gold:#ffcf5c; --white:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background-color:#ffd6e6;
+  background-image:
+   radial-gradient(circle at 12% 18%,rgba(255,255,255,.9) 0 1.5px,transparent 2.5px),
+   radial-gradient(circle at 78% 42%,rgba(255,255,255,.85) 0 1.2px,transparent 2.2px),
+   radial-gradient(circle at 40% 80%,rgba(255,215,120,.9) 0 1.3px,transparent 2.4px),
+   radial-gradient(circle at 90% 90%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+   linear-gradient(160deg,#ffd0e3,#ffe9f2 45%,#ffc6dc);
+  background-size:90px 90px,130px 130px,110px 110px,70px 70px,100% 100%;background-attachment:fixed;}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 60px}
+header{text-align:center;padding:18px 12px 8px;position:relative}
+h1{font-family:Pacifico,cursive;font-weight:400;font-size:2.2rem;margin:4px 0;color:var(--pink);
+  text-shadow:0 2px 0 #fff,0 0 18px rgba(255,92,154,.35)}
+.sub{font-weight:800;color:var(--muted);margin:0 0 10px}
+.hero-cat{width:150px;filter:drop-shadow(0 6px 10px rgba(255,92,154,.3));animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px) rotate(-2deg)}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0 4px}
+.chip{background:#fff;border:2px solid var(--pink2);border-radius:999px;padding:3px 10px;font-size:.85rem;font-weight:800;color:var(--pink)}
+.card{border-radius:24px;padding:18px 16px;margin:18px 0;box-shadow:0 8px 22px rgba(255,92,154,.18);border:3px solid #fff;position:relative;overflow:hidden}
+.glitter{background-color:#fff5f9;background-image:
+   radial-gradient(circle,rgba(255,92,154,.35) 0 1px,transparent 1.8px),
+   radial-gradient(circle,rgba(255,207,92,.6) 0 1px,transparent 1.8px);
+   background-size:22px 22px,34px 34px;background-position:0 0,11px 17px}
+.plain{background:linear-gradient(180deg,#fff,#ffeef5)}
+.gingham{background-color:#fff;background-image:
+   repeating-linear-gradient(0deg,rgba(255,143,184,.18) 0 14px,transparent 14px 28px),
+   repeating-linear-gradient(90deg,rgba(255,143,184,.18) 0 14px,transparent 14px 28px)}
+.stars{background-color:#fff7fb;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ctext x='6' y='20' font-size='12' opacity='.35'%3E%E2%9C%A8%3C/text%3E%3Ctext x='36' y='50' font-size='10' opacity='.3'%3E%E2%AD%90%3C/text%3E%3C/svg%3E")}
+.inner{background:rgba(255,255,255,.88);border-radius:16px;padding:12px}
+h2{margin:0 0 4px;font-size:1.2rem;font-weight:900;color:var(--pink)}
+.hint-ru{margin:0 0 12px;color:var(--muted);font-size:.92rem;font-weight:700}
+.rule{display:grid;gap:8px}
+.rule div{background:#fff;border-radius:14px;padding:9px 12px;border-left:6px solid var(--pink2)}
+.rule b{color:var(--pink)}
+.item{padding:10px 0;border-bottom:2px dashed #ffd0e1;line-height:1.9}
+.item:last-child{border-bottom:0}
+.num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--pink);color:#fff;font-weight:900;font-size:.8rem;margin-right:6px}
+.gap,.line,textarea{font:inherit;color:var(--ink);border:2px solid #ffb3cf;border-radius:12px;padding:4px 8px;background:#fff;outline:none;transition:.2s}
+.gap{width:9.5em;max-width:100%}
+.line,textarea{width:100%;margin-top:6px}
+textarea{min-height:58px;resize:vertical}
+.gap:focus,.line:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,92,154,.15)}
+.is-ok{border-color:var(--ok)!important;background:#effbf4}
+.is-bad{border-color:var(--bad)!important;background:#fff1f3}
+.fix{display:block;font-size:.85rem;font-weight:800;color:var(--bad);line-height:1.3;margin-top:2px}
+.fix.good{color:var(--ok)}
+.fix.neutral{color:var(--muted)}
+.is-empty{border-style:dashed!important;border-color:var(--pink2)!important;background:#fff7fb}
+.choice{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.opt{font:inherit;font-weight:800;border:2px solid #ffb3cf;background:#fff;color:var(--pink);border-radius:999px;padding:4px 12px;cursor:pointer}
+.opt.sel{background:var(--pink);color:#fff;border-color:var(--pink)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#fff}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.bank span{background:var(--soft);border:2px dashed var(--pink2);border-radius:10px;padding:2px 9px;font-weight:800;font-size:.9rem}
+.btn{position:relative;overflow:hidden;font:inherit;font-weight:900;font-size:1rem;color:#fff;border:0;border-radius:999px;padding:11px 22px;margin-top:12px;cursor:pointer;
+  background:linear-gradient(135deg,#ff4f93,#ff8fbd 55%,#ff5c9a);box-shadow:0 5px 0 #d63a78,0 8px 18px rgba(255,92,154,.35);transition:transform .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #d63a78}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);animation:shine 2.8s infinite}
+@keyframes shine{to{left:130%}}
+.btn.alt{background:linear-gradient(135deg,#fff,#ffe6f0);color:var(--pink);box-shadow:0 5px 0 #ffb3cf}
+.res{margin-top:10px;font-weight:800;border-radius:14px;padding:0;transition:.2s}
+.res:not(:empty){padding:10px 12px;background:#fff;border:2px solid #ffd0e1}
+.res .tip{display:block;font-weight:700;color:var(--muted);margin-top:4px}
+.final{text-align:center}
+.score{font-family:Pacifico,cursive;font-size:2.4rem;color:var(--pink);margin:6px 0}
+.mini-cat{width:56px;position:absolute;right:10px;top:8px;opacity:.95}
+.card h2{padding-right:58px}
+.fish{position:fixed;bottom:14px;left:-60px;font-size:30px;cursor:pointer;animation:swim 18s linear infinite;z-index:5}
+@keyframes swim{0%{left:-60px;transform:scaleX(-1)}48%{left:calc(100% + 10px);transform:scaleX(-1)}50%{left:calc(100% + 10px);transform:scaleX(1)}98%{left:-60px;transform:scaleX(1)}100%{left:-60px;transform:scaleX(-1)}}
+.toast{position:fixed;left:50%;bottom:60px;transform:translateX(-50%);background:#fff;border:3px solid var(--pink2);border-radius:16px;padding:8px 14px;font-weight:800;opacity:0;transition:.3s;pointer-events:none;z-index:9}
+.toast.show{opacity:1}
+footer{text-align:center;color:var(--muted);font-weight:700;font-size:.85rem}
+#shareBox{display:none;width:100%;min-height:140px;margin-top:10px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="grisha" viewBox="0 0 120 112">
+    <ellipse cx="60" cy="90" rx="38" ry="20" fill="#fff" stroke="#f2b6cc" stroke-width="2.5"/>
+    <ellipse cx="45" cy="104" rx="10" ry="6" fill="#fff" stroke="#f2b6cc" stroke-width="2"/>
+    <ellipse cx="75" cy="104" rx="10" ry="6" fill="#fff" stroke="#f2b6cc" stroke-width="2"/>
+    <path d="M22 42 L28 10 L50 28 Z" fill="#fff" stroke="#f2b6cc" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M29 35 L32 19 L43 29 Z" fill="#ffd3e2"/>
+    <path d="M98 42 L92 10 L70 28 Z" fill="#fff" stroke="#f2b6cc" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M91 35 L88 19 L77 29 Z" fill="#ffd3e2"/>
+    <ellipse cx="60" cy="54" rx="41" ry="34" fill="#fff" stroke="#f2b6cc" stroke-width="2.5"/>
+    <circle cx="36" cy="66" r="6.5" fill="#ffc2d6" opacity=".75"/>
+    <circle cx="84" cy="66" r="6.5" fill="#ffc2d6" opacity=".75"/>
+    <circle cx="45" cy="51" r="7.5" fill="#f4a742"/><ellipse cx="45" cy="51" rx="2.3" ry="5.5" fill="#3a2a2a"/><circle cx="47.5" cy="48" r="1.8" fill="#fff"/>
+    <circle cx="75" cy="51" r="7.5" fill="#f4a742"/><ellipse cx="75" cy="51" rx="2.3" ry="5.5" fill="#3a2a2a"/><circle cx="77.5" cy="48" r="1.8" fill="#fff"/>
+    <path d="M56 62 h8 l-4 4.5 z" fill="#ff8fb1"/>
+    <path d="M60 66 q-4 5 -8 2 M60 66 q4 5 8 2" stroke="#d98aa6" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+    <g stroke="#e9b9cb" stroke-width="1.4" stroke-linecap="round"><path d="M30 60 L10 56 M30 64 L10 66 M90 60 L110 56 M90 64 L110 66"/></g>
+    <g transform="translate(31 24)"><path d="M0 0 L-11 -7 V7 Z M0 0 L11 -7 V7 Z" fill="#ff5c9a"/><circle r="3.4" fill="#ff9cc2"/></g>
+  </symbol>
+</svg>
+
+<div class="wrap">
+<header>
+  <svg class="hero-cat" viewBox="0 0 120 112"><use href="#grisha"/></svg>
+  <h1>Hi, Kristina!</h1>
+  <p class="sub">Homework 6B · will / won't / shall + verb + back<br>Гриша ждёт твоих ответов 🐾</p>
+  <div class="chips"><span class="chip">🩰 ballet</span><span class="chip">🌴 Thailand</span><span class="chip">🧿 Turkey</span><span class="chip">🛍️ shopping</span><span class="chip">❄️ Chelyabinsk</span></div>
+</header>
+
+<!-- RULE -->
+<section class="card stars">
+  <svg class="mini-cat" viewBox="0 0 120 112"><use href="#grisha"/></svg>
+  <h2>🎀 Grisha's grammar box</h2>
+  <p class="hint-ru">will / won't + глагол (без to) — для решений «прямо сейчас», предложений помощи и обещаний.</p>
+  <div class="rule">
+    <div><b>💡 decision</b> — решаешь прямо сейчас:<br><i>This top is so cute! I'll buy it. · I won't go out tonight.</i></div>
+    <div><b>🤝 offer</b> — предлагаешь помочь:<br><i>I'll carry your bag. · <b>Shall I</b> open the window? · <b>Shall we</b> go to Turkey?</i></div>
+    <div><b>🤞 promise</b> — обещаешь:<br><i>I'll always love you, Grisha. · I won't tell anybody.</i></div>
+    <div>⚠️ НЕ Present Simple: <s>I help you with those bags</s> → <b>I'll help</b> you with those bags.</div>
+  </div>
+</section>
+
+<!-- EX2 -->
+<section class="card plain ex" id="ex2" data-title="1. will / won't + verb" data-tip="will / 'll + глагол без to. Отрицание: won't + глагол. Present Simple тут не подходит: I help ✗ → I'll help ✓">
+  <svg class="mini-cat" viewBox="0 0 120 112"><use href="#grisha"/></svg>
+  <h2>1. Complete with will / won't ✍️</h2>
+  <p class="hint-ru">Поставь глагол в скобках в форму <b>'ll / will</b> или <b>won't</b>.</p>
+  <div class="inner">
+    <div class="item"><span class="num">1</span><b>A</b> Grisha is meowing — I think he's hungry!<br><b>B</b> Don't worry, I <input class="gap" data-ans="'ll feed|will feed"> (feed) him.</div>
+    <div class="item"><span class="num">2</span><b>A</b> The pink dress or the white one?<br><b>B</b> Hmm… I <input class="gap" data-ans="'ll take|will take|'ll have|will have"> (take) the pink one, of course!</div>
+    <div class="item"><span class="num">3</span><b>A</b> Please don't tell anybody my secret!<br><b>B</b> I promise I <input class="gap" data-ans="won't tell|will not tell"> (not tell) anybody.</div>
+    <div class="item"><span class="num">4</span><b>A</b> My suitcase for Turkey is so heavy!<br><b>B</b> I <input class="gap" data-ans="'ll help|will help"> (help) you with it.</div>
+    <div class="item"><span class="num">5</span><b>A</b> It's minus 25 in Chelyabinsk today!<br><b>B</b> Brr! I <input class="gap" data-ans="won't go|will not go"> (not go) out. I <input class="gap" data-ans="'ll stay|will stay"> (stay) at home with Grisha.</div>
+    <div class="item"><span class="num">6</span><b>A</b> Oh no, I forgot my ballet shoes!<br><b>B</b> No problem. I <input class="gap" data-ans="'ll lend|will lend|'ll give|will give"> (lend) you mine.</div>
+    <div class="item"><span class="num">7</span><b>A</b> Our flight to Thailand is at 6 a.m.!<br><b>B</b> OK, I promise I <input class="gap" data-ans="won't be|will not be"> (not be) late!</div>
+  </div>
+  <button class="btn" data-check>Check ✨</button>
+  <div class="res"></div>
+</section>
+
+<!-- EX3 -->
+<section class="card gingham ex" id="ex3" data-title="2. Shall I / Shall we" data-tip="Предложение-вопрос: Shall I…? / Shall we…? + глагол без to.">
+  <h2>2. Make offers with Shall I…? / Shall we…? 🤝</h2>
+  <p class="hint-ru">Составь вопрос-предложение из слов в скобках.</p>
+  <div class="inner">
+    <div class="item"><span class="num">1</span>It's so hot in here! <i>(I / open the window)</i><input class="line" data-ans="Shall I open the window"></div>
+    <div class="item"><span class="num">2</span>I'm bored of winter. <i>(we / go to Turkey in summer)</i><input class="line" data-ans="Shall we go to Turkey in summer|Shall we go to Turkey this summer|Shall we go to Turkey in the summer"></div>
+    <div class="item"><span class="num">3</span>You look amazing in that dress! <i>(I / take a photo of you)</i><input class="line" data-ans="Shall I take a photo of you|Shall I take a picture of you"></div>
+    <div class="item"><span class="num">4</span>I love the Victoria's Secret show! <i>(we / watch it tonight)</i><input class="line" data-ans="Shall we watch it tonight"></div>
+    <div class="item"><span class="num">5</span>Grisha is looking at his bowl… <i>(I / feed him)</i><input class="line" data-ans="Shall I feed him|Shall I feed Grisha"></div>
+  </div>
+  <button class="btn" data-check>Check ✨</button>
+  <div class="res"></div>
+</section>
+
+<!-- EX4 -->
+<section class="card glitter ex" id="ex4" data-title="3. verb + back" data-tip="Глагол + back = вернуть / вернуться. Местоимение стоит между глаголом и back: give it back, call you back.">
+  <svg class="mini-cat" viewBox="0 0 120 112"><use href="#grisha"/></svg>
+  <h2>3. Vocabulary: verb + back 🔙</h2>
+  <p class="hint-ru">Впиши фразу из рамки (можно поменять форму глагола).</p>
+  <div class="bank"><span>call you back</span><span>come back</span><span>give it back</span><span>go back</span><span>pay you back</span><span>send it back</span><span>take them back</span></div>
+  <div class="inner">
+    <div class="item"><span class="num">1</span>I bought a top online but it's too small. I'll <input class="gap" data-ans="send it back"> .</div>
+    <div class="item"><span class="num">2</span><b>A</b> Kristina, can you talk? <b>B</b> Sorry, I'm in the shop. I'll <input class="gap" data-ans="call you back"> in an hour.</div>
+    <div class="item"><span class="num">3</span>We loved Thailand so much! We want to <input class="gap" data-ans="go back"> next year.</div>
+    <div class="item"><span class="num">4</span><b>A</b> Can you lend me 1,000 roubles for a lip gloss? Thanks! I'll <input class="gap" data-ans="pay you back"> on Friday.</div>
+    <div class="item"><span class="num">5</span><b>A</b> Hey, that's my hairbrush! <b>B</b> Oops, sorry! I'll <input class="gap" data-ans="give it back"> right now.</div>
+    <div class="item"><span class="num">6</span>These new boots are really uncomfortable. I'll <input class="gap" data-ans="take them back"> to the shop and change them.</div>
+    <div class="item"><span class="num">7</span>Grisha sometimes runs away into the garden, but he always <input class="gap" data-ans="comes back"> for dinner.</div>
+  </div>
+  <button class="btn" data-check>Check ✨</button>
+  <div class="res"></div>
+</section>
+
+<!-- EX5 -->
+<section class="card stars ex" id="ex5" data-title="4. Correct the mistakes" data-tip="Посмотри ещё раз рамочку с правилом наверху 🎀 и порядок слов: give it back, а не give back it.">
+  <h2>4. Find and correct the mistake 🔍</h2>
+  <p class="hint-ru">В каждом предложении одна ошибка. Напиши правильное предложение целиком.</p>
+  <div class="inner">
+    <div class="item"><span class="num">1</span><s>I help you with your suitcase.</s><input class="line" data-ans="I'll help you with your suitcase"></div>
+    <div class="item"><span class="num">2</span><s>Will I open the window?</s><input class="line" data-ans="Shall I open the window"></div>
+    <div class="item"><span class="num">3</span><s>I promise I don't tell anybody.</s><input class="line" data-ans="I promise I won't tell anybody|I promise I won't tell anyone"></div>
+    <div class="item"><span class="num">4</span><s>I'll give back it tomorrow.</s><input class="line" data-ans="I'll give it back tomorrow"></div>
+  </div>
+  <button class="btn" data-check>Check ✨</button>
+  <div class="res"></div>
+</section>
+
+<!-- EX6 -->
+<section class="card gingham ex" id="ex6" data-title="5. Your sentences: verb + back" data-tip="В каждом ответе нужен глагол из скобок + back. Местоимение — между ними: call you back, give it back.">
+  <svg class="mini-cat" viewBox="0 0 120 112"><use href="#grisha"/></svg>
+  <h2>5. Your turn: verb + back 💬</h2>
+  <p class="hint-ru">Ответь полным предложением, используя глагол + back из скобок. Учитель прочитает ответы в твоём результате 💌</p>
+  <div class="inner">
+    <div class="item"><span class="num">1</span>Your friend calls you, but you're at the shop. What do you say? <i>(call … back)</i><textarea class="free" data-need="back" data-verb="call|calls|called" data-hint="call … back" placeholder="e.g. Sorry, I'm busy. I'll call you back later!"></textarea></div>
+    <div class="item"><span class="num">2</span>You borrowed your friend's dress for a party. What do you promise her? <i>(give … back)</i><textarea class="free" data-need="back" data-verb="give|gives|gave|given" data-hint="give … back"></textarea></div>
+    <div class="item"><span class="num">3</span>Which country do you want to go back to? Why? <i>(go back)</i><textarea class="free" data-need="back" data-verb="go|goes|went|gone" data-hint="go back"></textarea></div>
+    <div class="item"><span class="num">4</span>You bought shoes online, but they're too big. What will you do? <i>(send … back)</i><textarea class="free" data-need="back" data-verb="send|sends|sent" data-hint="send … back"></textarea></div>
+    <div class="item"><span class="num">5</span>Your friend paid for your coffee. What do you say? <i>(pay … back)</i><textarea class="free" data-need="back" data-verb="pay|pays|paid" data-hint="pay … back"></textarea></div>
+    <div class="item"><span class="num">6</span>When you come back from a holiday, do you feel better or worse? Why? <i>(come back)</i><textarea class="free" data-need="back" data-verb="come|comes|came" data-hint="come back"></textarea></div>
+    <div class="item"><span class="num">7</span>If you buy clothes in a shop and then don't like them, do you take them back? <i>(take … back)</i><textarea class="free" data-need="back" data-verb="take|takes|took|taken" data-hint="take … back"></textarea></div>
+    <div class="item"><span class="num">8</span>Grisha ran into the garden. What does he do when he's hungry? <i>(come back)</i><textarea class="free" data-need="back" data-verb="come|comes|came" data-hint="come back"></textarea></div>
+  </div>
+  <button class="btn" data-check>Check ✨</button>
+  <div class="res"></div>
+</section>
+
+<!-- FINAL -->
+<section class="card plain final">
+  <svg class="hero-cat" viewBox="0 0 120 112" style="width:110px"><use href="#grisha"/></svg>
+  <h2>🎀 Your result</h2>
+  <div class="score" id="score">? / ?</div>
+  <div id="finalMsg" class="hint-ru">Нажми кнопку, чтобы проверить всё сразу.</div>
+  <button class="btn" id="checkAll">Check everything 💖</button><br>
+  <button class="btn alt" id="share">Send result to my teacher 💌</button>
+  <textarea id="shareBox" readonly></textarea>
+  <div><button class="btn alt" id="reset" style="font-size:.85rem;padding:8px 16px">Start again 🔄</button></div>
+</section>
+<footer>Ответы сохраняются автоматически 💾 · Made with love for Kristina & Grisha</footer>
+</div>
+
+<div class="fish" id="fish" title="hi!">🐠</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var KEY='kristina-6b-v1', state={};
+try{state=JSON.parse(localStorage.getItem(KEY))||{};}catch(e){state={};}
+state.v=state.v||{}; state.checked=state.checked||{};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(function(){el.classList.remove('show')},2200);}
+
+function norm(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");
+  s=s.replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not').replace(/\bcan't\b/g,'can not').replace(/cannot/g,'can not')
+     .replace(/n't\b/g,' not').replace(/'ll\b/g,' will').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have');
+  s=s.replace(/'/g,'').replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();
+  s=s.replace(/^ll /,'will ').replace(/^wont /,'will not ').replace(/ ill /g,' i will ').replace(/^ill /,'i will ').replace(/ dont /g,' do not ').replace(/ wont /g,' will not ');
+  return s;
+}
+function matches(val,answers){
+  var u=norm(val); if(!u) return false;
+  var cands=[u,u.replace(/^i /,''),u.replace(/^i will /,''),u.replace(/^will /,'')];
+  return answers.some(function(a){var n=norm(a);return cands.indexOf(n)>-1;});
+}
+
+// restore inputs
+var fields=document.querySelectorAll('.gap,.line,.free');
+fields.forEach(function(f,i){
+  var id='f'+i; f.dataset.id=id;
+  if(state.v[id]) f.value=state.v[id];
+  f.addEventListener('input',function(){state.v[id]=f.value;save();f.classList.remove('is-ok','is-bad','is-empty');var fx=f.nextElementSibling;if(fx&&fx.classList.contains('fix'))fx.textContent='';});
+});
+// build choices
+var labels={decision:'💡 decision',offer:'🤝 offer',promise:'🤞 promise'};
+document.querySelectorAll('.choice').forEach(function(c,i){
+  var id='c'+i; c.dataset.id=id;
+  ['decision','offer','promise'].forEach(function(v){
+    var b=document.createElement('button');b.className='opt';b.type='button';b.dataset.v=v;b.textContent=labels[v];
+    if(state.v[id]===v) b.classList.add('sel');
+    b.onclick=function(){c.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel','ok','bad')});b.classList.add('sel');state.v[id]=v;save();};
+    c.appendChild(b);
+  });
+});
+
+function setFix(el,text,good,neutral){
+  var next=el.nextElementSibling;
+  if(!next||!next.classList.contains('fix')){next=document.createElement('span');next.className='fix';el.parentNode.insertBefore(next,el.nextSibling);}
+  next.textContent=text; next.classList.toggle('good',!!good); next.classList.toggle('neutral',!!neutral);
+}
+function checkEx(ex,quiet){
+  var ok=0,total=0,empty=0;
+  ex.querySelectorAll('.gap,.line').forEach(function(g){
+    total++;
+    if(!g.value.trim()){empty++;g.classList.remove('is-ok','is-bad');g.classList.add('is-empty');setFix(g,'✏️ Попробуй сама!',false,true);return;}
+    g.classList.remove('is-empty');
+    var ans=g.dataset.ans.split('|'); var good=matches(g.value,ans);
+    g.classList.toggle('is-ok',good); g.classList.toggle('is-bad',!good);
+    if(good){ok++;setFix(g,'✓ yes!',true);} else setFix(g,'→ '+ans[0],false);
+  });
+  ex.querySelectorAll('.choice').forEach(function(c){
+    total++; var sel=state.v[c.dataset.id];
+    c.querySelectorAll('.opt').forEach(function(o){o.classList.remove('ok','bad');
+      if(o.dataset.v===c.dataset.ans && sel) o.classList.add('ok');
+      else if(o.dataset.v===sel) o.classList.add('bad');});
+    if(sel===c.dataset.ans) ok++;
+  });
+  ex.querySelectorAll('.free').forEach(function(t){
+    total++;
+    if(!t.value.trim()){empty++;t.classList.remove('is-ok','is-bad');t.classList.add('is-empty');setFix(t,'✏️ Напиши своё предложение!',false,true);return;}
+    t.classList.remove('is-empty');
+    var n=norm(t.value), words=n?n.split(' ').length:0;
+    var need=t.dataset.need.split('|'); var has=need.some(function(w){return new RegExp('\\b'+w+'\\b').test(n);});
+    var hasV=!t.dataset.verb||new RegExp('\\b('+t.dataset.verb+')\\b').test(n); var good=words>=4&&has&&hasV;
+    t.classList.toggle('is-ok',good); t.classList.toggle('is-bad',!good);
+    if(good){ok++;setFix(t,'✓ great! Teacher will read it 💌',true);}
+    else if(words>=4&&t.dataset.hint) setFix(t,'Используй '+t.dataset.hint,false);
+    else setFix(t, words<4?'Напиши полное предложение (хотя бы 4 слова)':(need[0]==='back'?'Нужен глагол + back':'Используй will / \'ll / won\'t'+(need.indexOf('shall')>-1?' или Shall I…?':'')),false);
+  });
+  var res=ex.querySelector('.res');
+  if(empty===total){res.innerHTML='✏️ Ты ещё ничего не написала! Выполни задание и нажми Check ещё раз 🐾';state.checked[ex.id]=false;if(!quiet)save();return {ok:0,total:total,title:ex.dataset.title,tip:ex.dataset.tip,empty:empty};}
+  var msg=ok===total?'🎉 Perfect! Grisha is proud of you!':(ok/total>=.7?'💖 Very good! Look at the red ones.':'🐾 Let\'s practise a bit more.');
+  res.innerHTML=ok+' / '+total+' — '+msg+(empty?'<span class="tip">✏️ Пустых ответов: '+empty+' — допиши их и проверь ещё раз!</span>':'')+(ok<total-empty?'<span class="tip">💡 '+ex.dataset.tip+'</span>':'');
+  state.checked[ex.id]=true; if(!quiet) save();
+  return {ok:ok,total:total,title:ex.dataset.title,tip:ex.dataset.tip,empty:empty};
+}
+var exs=document.querySelectorAll('.ex');
+exs.forEach(function(ex){ex.querySelector('[data-check]').onclick=function(){checkEx(ex);};});
+
+var last=null;
+function checkAll(){
+  var ok=0,total=0,weak=[];
+  exs.forEach(function(ex){var r=checkEx(ex,true);ok+=r.ok;total+=r.total;if(r.ok<r.total)weak.push(r);});
+  save();
+  var pct=Math.round(ok/total*100);
+  document.getElementById('score').textContent=ok+' / '+total+' ('+pct+'%)';
+  var m=pct===100?'Wow, Kristina! 100% — Гриша мурчит от счастья 😻':pct>=80?'Отличная работа! 💖':pct>=60?'Хорошо! Чуть-чуть потренируйся 🩰':'Давай ещё раз пройдёмся по правилу 🎀';
+  if(weak.length) m+='<br><br><b>Что повторить:</b><br>'+weak.map(function(w){return '• '+w.title+' — '+w.tip}).join('<br>');
+  document.getElementById('finalMsg').innerHTML=m;
+  last={ok:ok,total:total,pct:pct,weak:weak};
+  return last;
+}
+document.getElementById('checkAll').onclick=function(){checkAll();toast('Checked! ✨');};
+document.getElementById('share').onclick=function(){
+  var r=checkAll();
+  var lines=['Kristina · Homework 6B (will / won\'t / shall, verb + back)','Result: '+r.ok+' / '+r.total+' ('+r.pct+'%)'];
+  exs.forEach(function(ex){var t=ex.querySelector('.res').textContent.split(' — ')[0];if(t.indexOf('✏️')===0)t='not done';lines.push(ex.dataset.title+': '+t);});
+  lines.push('','My sentences:');
+  document.querySelectorAll('.free').forEach(function(t,i){lines.push((i+1)+') '+(t.value.trim()||'—'));});
+  var text=lines.join('\n');
+  if(navigator.share){navigator.share({text:text}).catch(function(){});return;}
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){toast('Скопировано! Отправь учителю 💌');},function(){showBox(text);});}
+  else showBox(text);
+};
+function showBox(text){var b=document.getElementById('shareBox');b.style.display='block';b.value=text;b.select();toast('Скопируй текст и отправь учителю 💌');}
+document.getElementById('reset').onclick=function(){
+  if(!confirm('Start again? All answers will be deleted.'))return;
+  try{localStorage.removeItem(KEY);}catch(e){} location.reload();
+};
+document.getElementById('fish').onclick=function(){toast('Blub-blub! Hi from your fish 🐠');};
+
+// re-show checks after reload
+exs.forEach(function(ex){if(state.checked[ex.id])checkEx(ex,true);});
+</script>
+</body>
+</html>
