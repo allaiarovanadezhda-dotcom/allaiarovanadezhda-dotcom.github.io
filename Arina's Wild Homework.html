@@ -1,0 +1,384 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arina's Wild Homework</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mint:#8fd0ff; --aqua:#bfe3ff; --coral:#ff5fa8; --peach:#ffd1e8; --sun:#ffe0f0;
+  --ink:#24435f; --soft:#5d7891; --ok:#21b07a; --bad:#ef5366; --card:#ffffffee;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);
+  background:linear-gradient(160deg,#ffd6ec 0%,#e3f1ff 50%,#ffe1f1 100%);background-attachment:fixed;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,#fff 1.2px,transparent 2px),radial-gradient(circle,#ff9fd0 1px,transparent 2px),radial-gradient(circle,#9fd3ff 1.4px,transparent 2.4px);
+  background-size:22px 22px,35px 35px,51px 51px;background-position:0 0,19px 27px,40px 11px;opacity:.9;animation:twinkle 5s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.45}to{opacity:1}}
+.wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:20px 16px 60px}
+header{text-align:center;padding:26px 16px 22px;border-radius:30px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--coral),#ffa6d3 40%,var(--mint));color:#fff;box-shadow:0 12px 30px #ff5fa855}
+header::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#ffffffdd 1px,transparent 2px),radial-gradient(circle,#fff8 1.5px,transparent 3px);background-size:24px 24px,41px 41px;animation:twinkle 2.5s infinite alternate}
+header h1{font-family:"Baloo 2",cursive;font-size:clamp(30px,8vw,50px);margin:0;line-height:1;position:relative;text-shadow:0 3px 0 #d6458c}
+header p{margin:10px 0 0;font-weight:800;position:relative}
+.stickers{font-size:28px;position:relative;margin-top:6px;letter-spacing:6px}
+.track{margin:18px 0 6px;background:#ff8cc6;border-radius:16px;height:44px;position:relative;overflow:hidden;box-shadow:inset 0 3px 8px #0004}
+.track::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 13px,#fff8 13px 15px)}
+.track .finish{position:absolute;right:6px;top:7px;font-size:24px}
+.runner{position:absolute;top:4px;font-size:30px;transition:left .6s cubic-bezier(.4,1.6,.5,1);transform:scaleX(-1)}
+.trackLbl{text-align:center;font-weight:800;color:var(--soft);font-size:14px}
+.card{border-radius:26px;padding:22px 18px;margin:22px 0;box-shadow:0 10px 26px #24435f1c;position:relative;border:3px solid #fff}
+.card h2{font-family:"Baloo 2",cursive;margin:0 0 4px;font-size:25px;line-height:1.1}
+.card .num{display:inline-block;background:var(--coral);color:#fff;border-radius:50%;width:34px;height:34px;text-align:center;line-height:34px;margin-right:6px;font-size:19px}
+.instr{margin:6px 0 14px;color:var(--soft);font-weight:700}
+.instr b{color:var(--ink)}
+.cat{position:absolute;right:14px;top:-18px;font-size:34px;filter:drop-shadow(0 3px 2px #0002)}
+.bg-glitter{background:linear-gradient(135deg,#ffeaf5,#e8f4ff);}
+.bg-glitter::before{content:"";position:absolute;inset:0;border-radius:23px;pointer-events:none;
+  background-image:radial-gradient(circle,#ff8fc8 1px,transparent 2.2px),radial-gradient(circle,#fff 1.5px,transparent 2.5px),radial-gradient(circle,#8fd0ff 1px,transparent 2px);
+  background-size:18px 18px,27px 27px,33px 33px;background-position:0 0,9px 13px,4px 20px;opacity:.75;animation:twinkle 3s infinite alternate}
+.bg-glitter2{background:linear-gradient(135deg,#e3f1ff,#ffe6f3)}
+.bg-glitter2::before{content:"";position:absolute;inset:0;border-radius:23px;pointer-events:none;background-image:radial-gradient(circle,#fff 1.6px,transparent 2.6px),radial-gradient(circle,#ff8fc8 1px,transparent 2px),radial-gradient(circle,#5bb8ff 1px,transparent 2px);background-size:16px 16px,25px 25px,31px 31px;background-position:0 0,8px 12px,3px 19px;opacity:.8;animation:twinkle 2.2s infinite alternate}
+body::after{content:"✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧";position:fixed;inset:0;pointer-events:none;z-index:0;color:#ff8fc8;font-size:18px;letter-spacing:38px;line-height:110px;word-break:break-all;opacity:.35;animation:twinkle 1.8s infinite alternate}
+.bg-checks{background-color:#fffdf7;background-image:linear-gradient(#ffb6dc55 1px,transparent 1px),linear-gradient(90deg,#ffb6dc55 1px,transparent 1px);background-size:22px 22px}
+.bg-plain{background:var(--card)}
+.bg-stars{background:linear-gradient(160deg,#e3f1ff,#ffe8f4)}
+.bg-stars::before{content:"✦  ✧   ✦    ✧  ✦   ✧    ✦";position:absolute;inset:0;font-size:22px;color:#ff8fc8;letter-spacing:10px;line-height:70px;overflow:hidden;opacity:.45;pointer-events:none;word-break:break-all;padding:6px}
+.card > *{position:relative}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.tile{background:#fff;border-radius:18px;padding:10px;text-align:center;box-shadow:0 4px 10px #24435f14}
+.tile .emo{font-size:40px;line-height:1.2}
+.tile .ru{font-size:13px;color:var(--soft);font-weight:700;margin-bottom:6px}
+input[type=text],textarea,select{width:100%;font:inherit;font-weight:700;color:var(--ink);border:2.5px solid #f6cfe4;border-radius:14px;padding:9px 11px;background:#fff;outline:none;transition:.2s}
+input[type=text]:focus,textarea:focus,select:focus{border-color:var(--mint);box-shadow:0 0 0 4px #8fd0ff44}
+textarea{min-height:84px;resize:vertical}
+.inl{display:inline-block;width:auto;min-width:110px;max-width:100%;padding:5px 9px;margin:2px 3px}
+.ok{border-color:var(--ok)!important;background:#eafff5!important}
+.bad{border-color:var(--bad)!important;background:#fff0f2!important}
+.fix{display:block;font-size:13px;color:var(--bad);font-weight:800;margin-top:3px}
+.row{background:#fff;border-radius:16px;padding:12px 13px;margin:10px 0;box-shadow:0 3px 9px #24435f12;line-height:2}
+.row .n{font-weight:800;color:var(--coral);margin-right:4px}
+.box{background:var(--sun);border-radius:16px;padding:10px 12px;font-weight:800;margin-bottom:10px;line-height:1.9}
+.box span{display:inline-block;background:#fff;border-radius:10px;padding:0 9px;margin:2px}
+.vrow{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:center;background:#fff;border-radius:16px;padding:9px 12px;margin:8px 0}
+.vrow b{font-size:17px}
+.syl{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.syl button{font:inherit;font-weight:800;font-size:17px;border:2.5px solid #f6cfe4;background:#fff;color:var(--ink);border-radius:12px;padding:6px 12px;cursor:pointer}
+.syl button.sel{background:var(--coral);color:#fff;border-color:var(--coral);transform:scale(1.08)}
+.syl.ok button.sel{background:var(--ok);border-color:var(--ok)}
+.syl.bad button.sel{background:var(--bad);border-color:var(--bad)}
+.btn{font-family:"Baloo 2",cursive;font-weight:800;font-size:19px;border:none;color:#fff;border-radius:999px;padding:11px 26px;cursor:pointer;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--coral),#ff9fd0 50%,#ff8fd6);box-shadow:0 6px 0 #d6458c,0 10px 18px #ff5fa866;transition:transform .1s}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffffcc,transparent);transform:skewX(-20deg);animation:shine 2.8s infinite}
+@keyframes shine{0%{left:-60%}55%,100%{left:130%}}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #d6458c}
+.btn.mint{background:linear-gradient(135deg,#5bb8ff,var(--mint) 50%,#a9c8ff);box-shadow:0 6px 0 #3d8fd6,0 10px 18px #5bb8ff55}
+.btn.mint:active{box-shadow:0 2px 0 #3d8fd6}
+.btn.ghost{background:#fff;color:var(--soft);box-shadow:0 4px 0 #f6cfe4}
+.btn.ghost::after{display:none}
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.res{margin-top:14px;text-align:center;font-weight:800;border-radius:16px;padding:0;max-height:0;overflow:hidden;transition:.3s}
+.res.show{padding:12px;max-height:400px;background:#fff}
+.res .sc{font-family:"Baloo 2",cursive;font-size:26px;color:var(--coral)}
+.tip{font-size:14px;color:var(--soft);margin-top:4px}
+.phr{background:#fff;border:2.5px dashed var(--mint);border-radius:16px;padding:10px 14px;margin-bottom:12px;font-weight:700}
+.q{font-weight:800;margin-bottom:6px}
+.fb{font-size:14px;font-weight:800;margin-top:6px}
+.fb .g{color:var(--ok)} .fb .r{color:var(--bad)}
+#final .big{font-family:"Baloo 2",cursive;font-size:44px;color:var(--coral);line-height:1}
+#final ul{text-align:left;font-weight:700}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:800;padding:12px 20px;border-radius:999px;transition:.3s;z-index:9}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.saved{text-align:center;font-size:13px;color:var(--soft);font-weight:800;margin-top:8px}
+@media (max-width:520px){.vrow{grid-template-columns:1fr;gap:4px}.grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Arina's Wild Homework</h1>
+    <p>English File Pre-Intermediate · 9A Beware of the dog</p>
+    <div class="stickers">🏃‍♀️🐱💖🐍🦈🎬</div>
+  </header>
+
+  <div class="track"><span class="runner" id="runner">🏃‍♀️</span><span class="finish">🏁</span></div>
+  <div class="trackLbl" id="trackLbl">Ready, steady, go! 0%</div>
+  <div class="saved">💾 Ответы сохраняются сами — можно закрыть и вернуться позже</div>
+
+  <div id="sections"></div>
+
+  <div class="card bg-glitter" id="final">
+    <span class="cat">🏅</span>
+    <h2>Finish line! 🏁</h2>
+    <p class="instr">Нажми «Проверить всё», а потом отправь результат учителю.</p>
+    <div id="finalOut"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkAll()">Проверить всё ✨</button>
+      <button class="btn mint" onclick="copyResults()">Скопировать результат 📋</button>
+      <button class="btn mint" onclick="sendTg()">Отправить в Telegram ✈️</button>
+    </div>
+    <div class="actions"><button class="btn ghost" onclick="resetAll()">Начать заново</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY='arina_hw_9A_v3';
+let st={v:{},stress:{},checked:{},tries:{}};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v)st=s}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+
+function norm(s,strip){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'").trim();
+  s=s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/n't\b/g,' not')
+     .replace(/'d\b/g,' would').replace(/'re\b/g,' are').replace(/'m\b/g,' am').replace(/'ll\b/g,' will').replace(/'ve\b/g,' have').replace(/'s\b/g,' is');
+  s=s.replace(/[.,!?;:"«»()\-–—]/g,' ').replace(/\s+/g,' ').trim();
+  if(strip)s=s.replace(/^(a|an|the) /,'');
+  return s;
+}
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- DATA ---------- */
+const ANS={}, META={};
+const SECTIONS=[
+ {id:'s5',bg:'bg-glitter',cat:'🐱',title:'Complete the sentences',type:'rows',
+  box:['bite','stung','step','suck','tied','waved','rub','float','pretended','kept','attack','picked'],
+  instr:'Вставь слово из рамки. Каждое слово — один раз.',
+  tip:'Перечитай квиз на с.71 и выпиши выделенные глаголы с переводом ✍️',
+  items:[['Be careful, that dog can ___ you!',['bite']],['A wasp ___ me on the arm when I was running in the park.',['stung']],["Look down! Don't ___ on that snake!",['step']],['Never try to ___ the poison out of a snake bite.',['suck']],['My friend ___ a scarf around my leg above the bite.',['tied']],['A fly came into the car, so I opened the window and ___ my hand.',['waved']],["Don't ___ a jellyfish sting with a towel – wash it with vinegar.",['rub']],["I'm not a good swimmer, but I can ___ on my back in the sea.",['float']],['My cat ___ to be asleep, but she was watching the mouse.',['pretended']],['A big dog ran towards me during training, so I ___ completely still.',['kept']],["Bears don't usually ___ people, but they can be dangerous.",['attack']],['When the cows came towards us, Kolya ___ up my little dog in his arms.',['picked']]]},
+ {id:'s6',bg:'bg-glitter',cat:'😺',title:'Second conditional',type:'multi',
+  instr:'Раскрой скобки. <b>if + Past Simple, would + глагол</b>. Сокращения (I\'d, wouldn\'t) тоже засчитываются.',
+  tip:'Схема: If I saw a snake, I would run away. После if — Past Simple, НЕ would. Grammar Bank 9A, p.142',
+  items:[['If a dog {} (run) towards me in the park, I {} (keep) completely still.',[['ran'],['would keep']]],
+   ['If I {} (see) a snake on the running track, I {} (not step) on it!',[['saw'],['would not step']]],
+   ['If a wasp {} (fly) into my room, I {} (open) all the windows.',[['flew'],['would open']]],
+   ['If Kolya {} (be) afraid of spiders, I {} (help) him.',[['was','were'],['would help']]],
+   ['If my cat {} (catch) a mouse, I {} (film) a video about it.',[['caught'],['would film']]],
+   ['If a jellyfish {} (sting) me, I {} (wash) the sting with vinegar.',[['stung'],['would wash']]],
+   ['What {} (you / do) if a bear {} (attack) you?',[['would you do'],['attacked']]],
+   ['I {} (not go) swimming there if I {} (know) about the sharks.',[['would not go'],['knew']]],
+   ['If I {} (have) more free time, I {} (get) a second cat.',[['had'],['would get']]],
+   ['If you {} (be) a wild animal, what animal {} (you / be)?',[['were','was'],['would you be']]]]},
+ {id:'s7',bg:'bg-checks',cat:'🕵️‍♀️',title:'Error detective: Kolya\'s messages',type:'rows',wide:true,
+  instr:'Коля написал Арине сообщения, но в каждом есть <b>одна ошибка</b> 🙈 Найди её и напиши всё предложение правильно.',
+  tip:'Ищи: после if — Past Simple (не would/will), во второй части — would + глагол, неправильные глаголы (bit, stung, flew)',
+  items:[['💬 If I would see a shark, I would swim to the shore.',['if i saw a shark i would swim to the shore']],
+   ['💬 If a wasp flew into the car, I will open all the windows.',['if a wasp flew into the car i would open all the windows']],
+   ['💬 What would you do if a snake bited you?',['what would you do if a snake bit you']],
+   ['💬 If a jellyfish stinged me, I would wash the sting with vinegar.',['if a jellyfish stung me i would wash the sting with vinegar']],
+   ['💬 I would pretend to be dead if a bear attack me.',['i would pretend to be dead if a bear attacked me']],
+   ['💬 If your cat saw a mouse, she catch it in a second.',['if your cat saw a mouse she would catch it in a second']],
+   ['💬 If you stepped on a snake, it would bit you.',['if you stepped on a snake it would bite you']],
+   ['💬 If I had a dog, I walk it with you after every training.',['if i had a dog i would walk it with you after every training']]]},
+ {id:'c2',bg:'bg-checks',cat:'🐈',title:'All conditionals: 0, 1, 2, 3',type:'multi',
+  rules:'<b>0</b> If + Present, Present — всегда правда: <i>If you heat ice, it melts.</i><br><b>1</b> If + Present, will + глагол — реально в будущем: <i>If it rains, I\'ll train in the gym.</i><br><b>2</b> If + Past, would + глагол — нереально/воображаемо: <i>If I saw a bear, I\'d run away.</i><br><b>3</b> If + had + V3, would have + V3 — про прошлое, уже не изменить: <i>If I had trained more, I would have won.</i>',
+  instr:'Раскрой скобки. Сначала подумай: это всегда правда (0), реально в будущем (1), воображаемо (2) или про прошлое (3)?',
+  tip:'Повтори формулы в рамке и выпиши по 2 своих примера на каждый тип',
+  items:[["If you {} (not water) plants, they {} (die).",[['do not water'],['die']]],
+   ['Cats {} (sleep) a lot if they {} (be) bored.',[['sleep'],['are']]],
+   ['If it {} (rain) tomorrow, I {} (train) in the gym.',[['rains'],['will train']]],
+   ["If you {} (not hurry), you {} (miss) the start of the race.",[['do not hurry'],['will miss']]],
+   ['My coach {} (be) happy if I {} (run) faster on Saturday.',[['will be'],['run']]],
+   ['If I {} (live) near the sea, I {} (swim) every day.',[['lived'],['would swim']]],
+   ['If my cat {} (can) talk, she {} (ask) for more food.',[['could'],['would ask']]],
+   ['If I {} (sleep) better last night, I {} (run) faster yesterday.',[['had slept'],['would have run']]],
+   ['If Kolya {} (not film) the race last week, we {} (not see) my mistakes.',[['had not filmed'],['would not have seen']]],
+   ['If the dog {} (bite) me yesterday, I {} (go) to hospital.',[['had bitten'],['would have gone']]]]},
+ {id:'p1',bg:'bg-stars',cat:'😸',title:'For or since?',type:'rows',
+  instr:'<b>for</b> + период (for two years, for ages) · <b>since</b> + точка отсчёта (since 2020, since Monday, since I was seven). Вставь for или since.',
+  tip:'for — сколько времени длится, since — с какого момента',
+  items:[['I have had my cat ___ 2020.',['since']],['I have had my cat ___ three years.',['for']],['Arina has been a runner ___ she was seven.',['since']],["I've known Kolya ___ two years.",['for']],["We haven't seen a snake ___ last summer.",['since']],['She has lived in this flat ___ a long time.',['for']],["I've had this phone ___ my birthday.",['since']],['Kolya has filmed videos ___ months.',['for']]]},
+ {id:'p2',bg:'bg-glitter',cat:'🐱',title:'Present Perfect + for / since',type:'multi',
+  instr:'Раскрой скобки в <b>Present Perfect</b> (have/has + V3) и вставь <b>for</b> или <b>since</b>.',
+  tip:'Present Perfect: I have known, she has had, it hasn\'t eaten. Вопрос: How long have you had…?',
+  items:[['I {} (know) Kolya {} two years.',[['have known'],['for']]],
+   ['Arina {} (run) professionally {} she was a child.',[['has run','has been running'],['since']]],
+   ['My cat {} (not eat) anything {} this morning.',[['has not eaten'],['since']]],
+   ['How long {} (you / have) your cat?',[['have you had']]],
+   ['We {} (be) friends {} last September.',[['have been'],['since']]],
+   ['I {} (not see) a dolphin {} ages.',[['have not seen'],['for']]]]},
+ {id:'d1',bg:'bg-glitter2',cat:'😺',title:'Prepositions',type:'rows',
+  instr:'Вставь предлог: <b>of, at, in, about, for</b>.',
+  tip:'Запомни пары: afraid of, scared of, good at, interested in, worried about, wait for',
+  items:[["I'm afraid ___ spiders.",['of']],['Arina is very good ___ running.',['at']],['Kolya is interested ___ animals.',['in']],["I'm worried ___ the race tomorrow.",['about']],['My cat is scared ___ the vacuum cleaner.',['of']],['Wait ___ me after training!',['for']]]},
+ {id:'ph1',bg:'bg-stars',cat:'😻',title:'Phrasal verbs',type:'rows',
+  box:['give up','look after','look forward to','run out of','take up','put off','set off','find out','get on with','turn up'],
+  instr:'Вставь фразовый глагол из рамки в <b>правильной форме</b> (время!). Каждый — один раз. В пропуск пиши глагол + частицу, без to/of/with, если они уже стоят в предложении.',
+  tip:'Повтори значения: give up — бросить, look after — присматривать, look forward to — ждать с нетерпением, run out of — закончиться, take up — начать заниматься, put off — откладывать, set off — отправиться, find out — узнать, get on with — ладить, turn up — появиться, прийти',
+  items:[['My coach says I should never ___, even when the race is really hard.',['give up']],
+   ['Kolya ___ my cat when I was at the competition last weekend.',['looked after']],
+   ["I can't wait! I'm really ___ to the competition next month.",['looking forward']],
+   ['We ___ of water halfway through the training, so we had to stop.',['ran out']],
+   ['I ___ athletics when I was seven, and I still love it.',['took up']],
+   ["Don't ___ your homework until tomorrow – do it today!",['put off']],
+   ['Yesterday we ___ at 6 a.m. to get to the stadium on time.',['set off']],
+   ['I ___ that the race was cancelled only an hour before it started.',['found out']],
+   ['Arina ___ well with everyone on her team.',['gets on']],
+   ["Kolya promised to film my race, but he didn't ___. I was so upset!",['turn up']]]},
+ {id:'s8',bg:'bg-stars',cat:'🎬',title:'Your answers',type:'write',
+  instr:'Ответь на вопросы 1–3 предложениями, используй слова из урока. Подсказка под вопросом — какую конструкцию нужно. Представь, что снимаешь видео-ответ! 🎥',
+  tip:'Отвечай полными предложениями: I\'d definitely… / I\'ll… / I would have…',
+  items:[{q:'What would you do if you saw a large spider in the bath?',need:'would'},
+   {q:'What would you do if a dog started running after you during your training?',need:'would'},
+   {q:"What would you do if your neighbour's dog barked all night?",need:'would'},
+   {q:'If you could have any animal as a pet, what would you choose and why?',need:'would'},
+   {q:'What will you do if you win your next race?',need:'will'},
+   {q:'What would you have done if you had seen a shark last summer?',need:'wh'},
+   {q:'How long have you been a runner? How long have you known Kolya?',need:'pp'},
+   {q:'What are you looking forward to this month? Is there anything you would never give up? Use at least 2 phrasal verbs.',need:'ph'}]}
+];
+
+/* ---------- RENDER ---------- */
+function inp(id,cls){return `<input type="text" class="${cls||''}" data-id="${id}" autocomplete="off" autocapitalize="off" spellcheck="false">`}
+function render(){
+  let h='';
+  SECTIONS.forEach((s,si)=>{
+    h+=`<div class="card ${s.bg}" id="${s.id}"><span class="cat">${s.cat}</span><h2><span class="num">${si+1}</span>${s.title}</h2><p class="instr">${s.instr}</p>`;
+    if(s.rules)h+=`<div class="phr" style="line-height:1.7">${s.rules}</div>`;
+    if(s.box)h+=`<div class="box">${s.box.map(w=>`<span>${w}</span>`).join(' ')}</div>`;
+    if(s.type==='tiles'){
+      h+='<div class="grid">';
+      s.items.forEach((it,i)=>{const id=s.id+'_'+i;ANS[id]=it[2];META[id]={p:it[0]+' '+it[1],strip:1};
+        h+=`<div class="tile"><div class="emo">${it[0]}</div><div class="ru">${it[1]}</div>${inp(id)}<span class="fix" data-fix="${id}"></span></div>`});
+      h+='</div>';
+    }
+    if(s.type==='stress'){
+      h+='<div class="grid">';
+      s.items.forEach((it,i)=>{const id=s.id+'_'+i;
+        h+=`<div class="tile"><div class="syl" data-sid="${id}">${it[0].map((sy,k)=>`<button type="button" data-k="${k}">${sy}</button>`).join('')}</div></div>`});
+      h+='</div>';
+    }
+    if(s.type==='select'){
+      const opts=s.opts||s.items.map(x=>x[1]).sort((a,b)=>a.localeCompare(b,'ru'));
+      s.items.forEach((it,i)=>{const id=s.id+'_'+i;ANS[id]=[it[1]];META[id]={p:it[0],raw:1};
+        h+=`<div class="vrow"${s.opts?' style="grid-template-columns:1fr 130px"':''}><b${s.opts?' style="font-size:15px"':''}>${esc(it[0])}</b><div><select data-id="${id}"><option value="">— выбери —</option>${opts.map(o=>`<option>${o}</option>`).join('')}</select><span class="fix" data-fix="${id}"></span></div></div>`});
+    }
+    if(s.type==='rows'){
+      s.items.forEach((it,i)=>{const id=s.id+'_'+i;ANS[id]=it[1];META[id]={p:it[0]};
+        let txt=esc(it[0]);
+        if(s.wide) h+=`<div class="row"><span class="n">${i+1}</span>${txt}<br>${inp(id)}<span class="fix" data-fix="${id}"></span></div>`;
+        else h+=`<div class="row"><span class="n">${i+1}</span>${txt.replace('___',inp(id,'inl'))}<span class="fix" data-fix="${id}"></span></div>`;
+      });
+    }
+    if(s.type==='multi'){
+      s.items.forEach((it,i)=>{let j=0;
+        const txt=esc(it[0]).replace(/\{\}/g,()=>{const id=s.id+'_'+i+'_'+j;ANS[id]=it[1][j];META[id]={p:it[0]};j++;return inp(id,'inl')});
+        h+=`<div class="row"><span class="n">${i+1}</span>${txt}<span class="fix" data-fixrow="${s.id}_${i}"></span></div>`});
+    }
+    if(s.type==='write'){
+      h+=`<div class="phr">💬 I'd definitely… · I think I'd probably… · I probably wouldn't… · I definitely wouldn't… · I don't think I'd…</div>`;
+      const HINT={would:"I'd… / I wouldn't…",will:"I'll… / I won't…",wh:'I would have… / I wouldn\'t have…',pp:"I've been… for/since… · I've known… for/since…",ph:"I'm looking forward to… · I would never give up…"};
+      s.items.forEach((it,i)=>{const id=s.id+'_'+i;META[id]={p:it.q};
+        h+=`<div class="row" style="line-height:1.5"><div class="q">${i+1}. ${esc(it.q)}</div><div class="tip" style="margin:0 0 6px">💡 ${esc(HINT[it.need])}</div><textarea data-id="${id}" placeholder="I'd…"></textarea><div class="fb" data-fb="${id}"></div></div>`});
+    }
+    h+=`<div class="actions"><button class="btn" onclick="checkSec('${s.id}',true)">Проверить ✨</button></div><div class="res" id="res_${s.id}"></div></div>`;
+  });
+  document.getElementById('sections').innerHTML=h;
+
+  document.querySelectorAll('[data-id]').forEach(el=>{
+    const id=el.dataset.id; if(st.v[id]!=null)el.value=st.v[id];
+    el.addEventListener('input',()=>{st.v[id]=el.value;el.classList.remove('ok','bad');save();progress()});
+    el.addEventListener('change',()=>{st.v[id]=el.value;el.classList.remove('ok','bad');save();progress()});
+  });
+  document.querySelectorAll('.syl').forEach(box=>{
+    const id=box.dataset.sid;
+    const mark=()=>box.querySelectorAll('button').forEach(b=>b.classList.toggle('sel',st.stress[id]==b.dataset.k));
+    mark();
+    box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.stress[id]=+b.dataset.k;box.classList.remove('ok','bad');mark();save();progress()});
+  });
+  SECTIONS.forEach(s=>{if(st.checked[s.id])checkSec(s.id,false)});
+  progress();
+}
+
+/* ---------- CHECK ---------- */
+function match(id,val){const m=META[id]||{};if(m.raw)return ANS[id].includes(val);const v=norm(val,m.strip),v2=v.replace(/^(i|you|he|she|it|we|they) /,'');return ANS[id].some(a=>{const n=norm(a,m.strip);return n===v||n===v2})}
+function checkWrite(t,need){
+  const raw=t||'';const n=norm(raw);const words=n?n.split(' ').length:0;let pts=0;const msg=[];
+  if(!raw.trim())return{pts:0,msg:['<span class="r">Пока нет ответа</span>']};
+  if(/[а-яё]/i.test(raw))return{pts:0,msg:['<span class="r">Пиши по-английски 🙂</span>']};
+  const R={would:[/\bwould\b/,"would / I'd","I would / I'd / I wouldn't"],will:[/\bwill\b/,"will / I'll","I will / I'll / I won't"],
+    wh:[/\bwould (not )?have \w+/,'would have + V3','I would have + V3 (swum, run, shouted…)'],
+    pp:[/\b(have|has) (not )?(been|known|had|run|lived|done|trained)\b/,'Present Perfect','I have been / I have known…'],
+    ph:[/\b(giv|gav|look|run|ran|tak|took|put|set|find|found|get|got|turn)\w* (\w+ )?(up|after|forward|out|off|on)\b/,'фразовый глагол','фразовые глаголы (look forward to, give up…)']}[need||'would'];
+  if(R[0].test(n)){pts++;msg.push(`<span class="g">✓ есть ${R[1]}</span>`)}else msg.push(`<span class="r">✗ добавь ${R[2]}</span>`);
+  if(need==='pp'&&!/\b(for|since)\b/.test(n))msg.push('<span class="r">⚠ добавь for или since</span>');
+  if(words>=7){pts++;msg.push('<span class="g">✓ развёрнутый ответ</span>')}else msg.push('<span class="r">✗ напиши подробнее (хотя бы 7 слов)</span>');
+  if(/\bif (i|you|he|she|it|we|they|a|the|my) ?\w* (will|would)\b/.test(n))msg.push('<span class="r">⚠ после if — Past Simple, не will/would</span>');
+  return{pts,msg};
+}
+function checkSec(sid,user){
+  const s=SECTIONS.find(x=>x.id===sid), card=document.getElementById(sid);let sc=0,max=0;
+  if(user){st.tries[sid]=(st.tries[sid]||0)+1}
+  if(s.type==='stress'){
+    s.items.forEach((it,i)=>{const id=sid+'_'+i;max++;const box=card.querySelector(`[data-sid="${id}"]`);
+      const ok=st.stress[id]===it[1];if(ok)sc++;box.classList.remove('ok','bad');box.classList.add(ok?'ok':'bad')});
+  }else if(s.type==='write'){
+    s.items.forEach((it,i)=>{const id=sid+'_'+i;max+=2;const r=checkWrite(st.v[id],it.need);sc+=r.pts;card.querySelector(`[data-fb="${id}"]`).innerHTML=r.msg.join(' · ')});
+  }else{
+    card.querySelectorAll('[data-id]').forEach(el=>{const id=el.dataset.id;max++;const ok=match(id,el.value);if(ok)sc++;
+      el.classList.remove('ok','bad');el.classList.add(ok?'ok':'bad');
+      const f=card.querySelector(`[data-fix="${id}"]`);if(f)f.textContent=ok?'':'→ '+ANS[id][0]});
+    if(s.type==='multi')s.items.forEach((it,i)=>{const f=card.querySelector(`[data-fixrow="${sid}_${i}"]`);
+      const bad=it[1].map((a,j)=>match(sid+'_'+i+'_'+j,st.v[sid+'_'+i+'_'+j]||'')?null:a[0]).filter(Boolean);
+      f.textContent=bad.length?'→ '+bad.join(' / '):''});
+  }
+  st.checked[sid]={sc,max};save();
+  const p=Math.round(sc/max*100);
+  const msg=p===100?'Perfect! Ты чемпионка 🏆':p>=70?'Очень хорошо! Ещё чуть-чуть 💪':'Есть над чем поработать 🐾';
+  const r=document.getElementById('res_'+sid);
+  r.innerHTML=`<div class="sc">${sc} / ${max}</div><div>${msg}</div>${p<100?`<div class="tip">${s.tip}</div>`:''}`;r.classList.add('show');
+  progress();return{sc,max};
+}
+function checkAll(){
+  let sc=0,max=0;const weak=[];
+  SECTIONS.forEach((s,i)=>{const r=checkSec(s.id,true);sc+=r.sc;max+=r.max;if(r.sc/r.max<.8)weak.push(`<li>${i+1}. ${s.title}: ${s.tip}</li>`)});
+  const p=Math.round(sc/max*100);
+  document.getElementById('finalOut').innerHTML=`<div style="text-align:center"><div class="big">${sc} / ${max}</div><b>${p}% ${p>=90?'🥇':p>=70?'🥈':'🥉'}</b></div>`+
+   (weak.length?`<p class="instr">Что ещё отработать:</p><ul>${weak.join('')}</ul>`:`<p class="instr" style="text-align:center">Всё отлично! Can't wait to see you next lesson 🐱💖</p>`);
+}
+
+/* ---------- PROGRESS ---------- */
+function progress(){
+  let tot=0,done=0;
+  document.querySelectorAll('[data-id]').forEach(el=>{tot++;if(el.value.trim())done++});
+  document.querySelectorAll('.syl').forEach(b=>{tot++;if(st.stress[b.dataset.sid]!=null)done++});
+  const p=tot?Math.round(done/tot*100):0;
+  document.getElementById('runner').style.left=`calc(${p}% * 0.86)`;
+  document.getElementById('trackLbl').textContent=(p===100?'Finish! 🎉 ':p>50?'Keep running! ':'Ready, steady, go! ')+p+'%';
+}
+
+/* ---------- RESULTS ---------- */
+function buildText(){
+  let sc=0,max=0;const lines=['🐾 Arina — HW 9A Beware of the dog',''];
+  const mistakes=[];
+  SECTIONS.forEach((s,i)=>{
+    const c=st.checked[s.id]||checkSec(s.id,false);sc+=c.sc;max+=c.max;
+    lines.push(`${i+1}. ${s.title}: ${c.sc}/${c.max} (проверок: ${st.tries[s.id]||0})`);
+    if(s.type==='stress')s.items.forEach((it,k)=>{const id=s.id+'_'+k;if(st.stress[id]!==it[1])mistakes.push(`${it[0].join('-')}: выбран слог «${st.stress[id]!=null?it[0][st.stress[id]]:'—'}» (правильно «${it[0][it[1]]}»)`)});
+    else if(s.type!=='write')Object.keys(ANS).filter(id=>id.startsWith(s.id+'_')).forEach(id=>{if(!match(id,st.v[id]||''))mistakes.push(`${META[id].p} → «${st.v[id]||'—'}» (правильно: ${ANS[id][0]})`)});
+  });
+  lines.splice(1,0,`Итого: ${sc}/${max} (${Math.round(sc/max*100)}%)`);
+  if(mistakes.length){lines.push('','❌ Ошибки:');mistakes.forEach(m=>lines.push('• '+m))}
+  lines.push('','✍️ Письменные ответы:');
+  SECTIONS.find(s=>s.id==='s8').items.forEach((it,i)=>lines.push(`${i+1}) ${it.q}\n   ${(st.v['s8_'+i]||'—').trim()}`));
+  return lines.join('\n');
+}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2200)}
+function copyResults(){
+  const t=buildText();
+  const fallback=()=>{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Скопировано! Вставь в чат учителю 💌')}catch(e){prompt('Скопируй текст:',t)}a.remove()};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>toast('Скопировано! Вставь в чат учителю 💌'),fallback);else fallback();
+}
+function sendTg(){window.open('https://t.me/share/url?url='+encodeURIComponent(' ')+'&text='+encodeURIComponent(buildText()),'_blank')}
+function resetAll(){if(!confirm('Стереть все ответы и начать заново?'))return;st={v:{},stress:{},checked:{},tries:{}};save();
+  document.getElementById('finalOut').innerHTML='';render();window.scrollTo({top:0,behavior:'smooth'})}
+
+render();
+</script>
+</body>
+</html>
+
+</body></html>
