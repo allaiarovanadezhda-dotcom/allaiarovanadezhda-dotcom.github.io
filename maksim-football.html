@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maksim FC Homework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1b3e;--gold:#ffc83d;--red:#e63946;--ink:#14213d;--ok:#16a34a;--bad:#e63946;--warn:#f08c00}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Nunito,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--navy);font-size:17px}
+.board{position:sticky;top:0;z-index:50;display:flex;justify-content:center;align-items:center;gap:10px;background:#050b1c;color:#fff;padding:8px 12px;font-family:'Bebas Neue',sans-serif;letter-spacing:1px;font-size:22px;box-shadow:0 3px 10px rgba(0,0,0,.4)}
+.board .sc{background:#111;border:2px solid #333;border-radius:8px;padding:0 10px;color:var(--gold);font-size:26px;min-width:84px;text-align:center}
+.hero{color:#fff;text-align:center;padding:30px 16px 46px;background:
+ radial-gradient(circle at 12% 0%,rgba(255,255,210,.6) 0 6%,transparent 24%),
+ radial-gradient(circle at 88% 0%,rgba(255,255,210,.6) 0 6%,transparent 24%),
+ linear-gradient(#0d1b3e 0%,#173a7a 58%,#1f8f3a 58%,#27a844 100%)}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,12vw,78px);margin:6px 0 0;letter-spacing:2px;text-shadow:0 4px 0 rgba(0,0,0,.35)}
+.hero p{margin:8px auto;max-width:560px;font-weight:700}
+.tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:900;border-radius:999px;padding:4px 14px;margin:3px}
+.spin{display:inline-block;font-size:54px;animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sec{padding:24px 14px}
+.b-pitch{background:repeating-linear-gradient(90deg,#1f8f3a 0 44px,#27a844 44px 88px)}
+.b-tactics{background:#123d2a radial-gradient(rgba(255,255,255,.13) 1.5px,transparent 1.7px) 0 0/18px 18px}
+.b-night{background:#0d1b3e radial-gradient(rgba(255,255,255,.45) 1px,transparent 1.6px) 0 0/26px 26px}
+.b-net{background:#e9eef5 repeating-linear-gradient(45deg,transparent 0 14px,rgba(13,27,62,.13) 14px 15px),repeating-linear-gradient(-45deg,transparent 0 14px,rgba(13,27,62,.13) 14px 15px)}
+.b-gold{background:linear-gradient(135deg,#ffd85c,#ffb300 50%,#ffe39a)}
+.b-red{background:#e63946 repeating-linear-gradient(135deg,rgba(255,255,255,.09) 0 12px,transparent 12px 24px)}
+.card{max-width:760px;margin:0 auto;background:rgba(255,255,255,.97);border-radius:20px;padding:18px 16px;box-shadow:0 10px 26px rgba(0,0,0,.28)}
+.chalk{background:rgba(0,0,0,.25);color:#f1f5f9;border:2px dashed rgba(255,255,255,.4)}
+.chalk h2{color:var(--gold)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:31px;letter-spacing:1px;margin:0 0 2px;color:var(--navy)}
+.task{margin:0 0 12px;color:#475569;font-weight:800;font-size:15px}
+.chalk .task{color:#cbd5e1}
+.rule{margin:8px 0;line-height:1.55}
+.rule b{color:var(--gold)}
+ol{padding-left:24px;margin:0}
+li.q{padding:10px 0;border-bottom:1px dashed #d5dbe5;line-height:2.3}
+li.q:last-child{border-bottom:none}
+i{color:#64748b;font-weight:800}
+.ru{display:block;font-weight:800;line-height:1.5}
+.bx{display:inline;white-space:nowrap}
+.bx.long{display:block;white-space:normal}
+input.blank{font:inherit;font-weight:800;color:var(--navy);width:7.6em;max-width:100%;text-align:center;border:none;border-bottom:3px solid #94a3b8;background:#f1f5f9;border-radius:8px 8px 0 0;padding:3px 6px;outline:none}
+.bx.long input.blank{width:100%;text-align:left;margin-top:4px}
+input.blank:focus{border-bottom-color:#2563eb;background:#e8f0ff}
+.bx.ok input.blank{border-bottom-color:var(--ok);background:#e5f7ec}
+.bx.bad input.blank{border-bottom-color:var(--bad);background:#fde8ea}
+.bx.empty input.blank{border-bottom-color:var(--warn);background:#fff3df}
+.fix{font-size:.82em;font-weight:900;margin-left:4px;white-space:normal}
+.bx.long .fix{display:block;margin:4px 0 0}
+.bx.bad .fix{color:var(--ok)}
+.bx.empty .fix{color:var(--warn)}
+.opt{font:inherit;font-weight:900;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:999px;padding:2px 12px;margin:0 2px;cursor:pointer}
+.opt.sel{background:var(--navy);color:#fff}
+.bx.choice.ok .opt.sel{background:var(--ok);border-color:var(--ok)}
+.bx.choice.bad .opt.sel{background:var(--bad);border-color:var(--bad)}
+.bx.choice.empty .opt{border-color:var(--warn)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;padding:10px;background:#0d1b3e;border-radius:14px}
+.chip{font:inherit;font-weight:900;background:#fff;color:var(--navy);border:none;border-radius:999px;padding:6px 14px;cursor:pointer;box-shadow:0 3px 0 #9fb0d0}
+.chip:before{content:"⚽ ";font-size:.8em}
+.chip:disabled{opacity:.3;text-decoration:line-through;box-shadow:none;cursor:default}
+.btn{position:relative;overflow:hidden;font:inherit;font-weight:900;font-size:18px;color:var(--navy);border:none;border-radius:999px;padding:12px 26px;margin-top:14px;cursor:pointer;background:linear-gradient(180deg,#ffe98f,#ffb300);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 5px 0 #c08100}
+.btn:active{transform:translateY(3px);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 2px 0 #c08100}
+.btn:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);transform:skewX(-20deg);animation:shine 2.6s infinite}
+@keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+.btn.big{font-size:22px;padding:16px 30px;width:100%}
+.res{margin-top:12px;font-weight:900;border-radius:12px;padding:0}
+.res.good,.res.mid,.res.warn{padding:10px 12px}
+.res.good{background:#e5f7ec;color:#11692f}
+.res.mid{background:#eef2ff;color:#1e3a8a}
+.res.warn{background:#fff3df;color:#9a5600}
+#final{margin-top:14px;font-weight:800;line-height:1.5}
+#final .big{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--navy)}
+.center{text-align:center}
+
+.top{position:sticky;top:0;z-index:50}
+.board{position:static!important}
+.tabs{display:flex;background:#0d1b3e;padding:6px;gap:6px;box-shadow:0 3px 10px rgba(0,0,0,.4)}
+.tab{flex:1;font:inherit;font-weight:900;font-size:17px;border:none;border-radius:12px;padding:10px 6px;background:#1c2f5e;color:#cbd5e1;cursor:pointer}
+.tab.on{background:linear-gradient(180deg,#ffe98f,#ffb300);color:#0d1b3e;box-shadow:inset 0 2px 0 rgba(255,255,255,.7)}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.w{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #e2e8f0;border-radius:14px;padding:10px;cursor:pointer;text-align:left;font:inherit;color:var(--ink);width:100%}
+.w:active{transform:scale(.97)}
+.w .en{font-weight:900;display:block;color:var(--navy)}
+.w .tr{font-size:14px;color:#64748b;font-weight:700}
+.w .sp{font-size:22px;flex:none}
+.w.playing{border-color:#ffb300;background:#fff8e1}
+table.vb{width:100%;border-collapse:collapse}
+table.vb th{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;text-align:left;color:var(--navy);padding:6px 4px;border-bottom:3px solid var(--navy)}
+table.vb td{padding:6px 4px;border-bottom:1px dashed #d5dbe5;vertical-align:middle}
+.say{font:inherit;font-weight:900;color:var(--navy);background:#eef2ff;border:none;border-radius:10px;padding:5px 9px;cursor:pointer}
+.say:before{content:"🔊 ";font-size:.85em}
+.irr .say{background:#fff1c2}
+.slow{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:900;color:#fff;margin:0 auto 14px}
+.slow input{width:22px;height:22px}
+footer{color:#94a3b8;text-align:center;padding:18px;font-size:14px}
+
+/* ===== GOAL celebration ===== */
+.goal{position:fixed;inset:0;z-index:999;display:none;overflow:hidden;background:radial-gradient(circle at 50% 110%,#1f8f3a 0 30%,transparent 31%),radial-gradient(circle at 15% 0%,rgba(255,255,210,.35) 0 8%,transparent 30%),radial-gradient(circle at 85% 0%,rgba(255,255,210,.35) 0 8%,transparent 30%),rgba(5,12,30,.93)}
+.goal.show{display:block}
+.goal canvas{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
+.player{position:absolute;left:3%;bottom:5%;width:min(42vw,230px);z-index:3}
+.goal.show .player{animation:runin .85s ease-out both}
+@keyframes runin{from{transform:translateX(-130%)}to{transform:none}}
+#kickLeg{transform-box:view-box;transform-origin:108px 152px;transform:rotate(18deg)}
+.goal.kick #kickLeg{animation:kick .28s ease-out forwards}
+@keyframes kick{from{transform:rotate(25deg)}to{transform:rotate(-80deg)}}
+.bubble{position:absolute;z-index:5;left:calc(3% + min(42vw,230px)*.45);bottom:calc(5% + min(42vw,230px)*1.22);background:#fff;color:var(--red);font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;padding:4px 14px;border-radius:16px;transform:scale(0);transform-origin:bottom left}
+.goal.kick .bubble{animation:pop .4s .1s forwards}
+#bigBall{position:absolute;left:0;top:0;width:60px;height:60px;z-index:3;opacity:0}
+#crack{position:absolute;left:50%;top:50%;width:150vmax;height:150vmax;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0}
+#crack path{fill:none;stroke:#fff;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 2px rgba(150,200,255,.9))}
+.goal.hit #crack{opacity:1}
+.goal.hit #crack path{animation:draw .45s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:6}
+.goal.hit .flash{animation:flash .5s}
+@keyframes flash{0%{opacity:0}15%{opacity:.95}100%{opacity:0}}
+.goal.hit{animation:shake .55s}
+@keyframes shake{0%,100%{transform:none}15%{transform:translate(-14px,8px)}30%{transform:translate(12px,-10px)}45%{transform:translate(-9px,-6px)}60%{transform:translate(8px,9px)}75%{transform:translate(-4px,3px)}}
+.gt{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:20px;opacity:0;pointer-events:none}
+.goal.win .gt{opacity:1;pointer-events:auto;animation:pop .6s}
+@keyframes pop{0%{transform:scale(.2);opacity:0}70%{transform:scale(1.12);opacity:1}100%{transform:scale(1);opacity:1}}
+.gt h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(70px,20vw,150px);margin:0;color:var(--gold);letter-spacing:4px;text-shadow:0 6px 0 #b45309,0 0 30px rgba(255,200,61,.8)}
+.gt .sc2{font-family:'Bebas Neue',sans-serif;font-size:42px}
+.gt p{font-weight:900;font-size:20px;max-width:440px;margin:6px 0}
+</style>
+</head>
+<body>
+
+<div class="top">
+<div class="board">MAKSIM <span class="sc"><span id="sMk">0</span> : <span id="sHw">0</span></span> HOMEWORK</div>
+<nav class="tabs"><button class="tab on" data-t="tabEx" onclick="showTab(this)">⚽ Упражнения</button><button class="tab" data-t="tabWords" onclick="showTab(this)">📖 Слова</button></nav>
+</div>
+<main id="tabEx">
+
+<header class="hero">
+  <div class="spin">⚽</div>
+  <h1>MAKSIM FC</h1>
+  <p>Hi, Maksim! Сегодня тренируем <b>should / shouldn't</b> и <b>Past Simple</b>.</p>
+  <span class="tag">Level A1</span><span class="tag">5 tasks</span><span class="tag">🏆 surprise</span>
+  <p>Каждое задание проверяй кнопкой <b>Check</b>. Когда сделаешь всё — жми <b>Финальный свисток</b> в самом конце. Там сюрприз 😉</p>
+</header>
+
+<section class="sec b-tactics">
+  <div class="card chalk">
+    <h2>📋 Tactics board · Правила</h2>
+    <p class="rule"><b>should</b> + глагол = <i style="color:#fde68a">тебе следует</i><br>You <b>should</b> drink water. — Тебе следует пить воду.</p>
+    <p class="rule"><b>shouldn't</b> (should not) + глагол = <i style="color:#fde68a">не следует</i><br>You <b>shouldn't</b> be late. — Тебе не следует опаздывать.<br>❗ Без <b>to</b>: should train, <s>should to train</s></p>
+    <p class="rule"><b>Past Simple ➕</b> play → play<b>ed</b>, score → scor<b>ed</b><br>Неправильные: go → <b>went</b>, win → <b>won</b>, run → <b>ran</b>, see → <b>saw</b></p>
+    <p class="rule"><b>Past Simple ➖</b> I <b>didn't</b> play. (после didn't — обычная форма!)<br><b>❓</b> <b>Did</b> you play? — Yes, I <b>did</b>. / No, I <b>didn't</b>.</p>
+  </div>
+</section>
+
+<section class="sec b-pitch" id="ex1">
+  <div class="card">
+    <h2>1 · Warm-up</h2>
+    <p class="task">Напиши глагол в Past Simple.</p>
+    <ol id="l1"></ol>
+    <button class="btn" onclick="check('ex1')">✅ Check</button>
+    <div class="res" id="res-ex1"></div>
+  </div>
+</section>
+
+<section class="sec b-night" id="ex2">
+  <div class="card">
+    <h2>2 · Match day</h2>
+    <p class="task">Поставь глагол в скобках в Past Simple (➕ ➖ ❓).</p>
+    <ol id="l2"></ol>
+    <button class="btn" onclick="check('ex2')">✅ Check</button>
+    <div class="res" id="res-ex2"></div>
+  </div>
+</section>
+
+<section class="sec b-net" id="ex3">
+  <div class="card">
+    <h2>3 · Coach's rules</h2>
+    <p class="task">Правила тренера: выбери <b>should</b> или <b>shouldn't</b>.</p>
+    <ol id="l3"></ol>
+    <button class="btn" onclick="check('ex3')">✅ Check</button>
+    <div class="res" id="res-ex3"></div>
+  </div>
+</section>
+
+<section class="sec b-pitch" id="ex4">
+  <div class="card">
+    <h2>4 · Maksim's big match</h2>
+    <p class="task">Нажми на слово — оно встанет в пустую клетку (или в ту, где стоит курсор). Каждое слово — один раз.</p>
+    <div class="bank" id="bank"></div>
+    <ol id="l4"></ol>
+    <button class="btn" onclick="check('ex4')">✅ Check</button>
+    <div class="res" id="res-ex4"></div>
+  </div>
+</section>
+
+<section class="sec b-gold" id="ex5">
+  <div class="card">
+    <h2>5 · Translate</h2>
+    <p class="task">Переведи на английский. Используй should или shouldn't.</p>
+    <ol id="l5"></ol>
+    <button class="btn" onclick="check('ex5')">✅ Check</button>
+    <div class="res" id="res-ex5"></div>
+  </div>
+</section>
+
+<section class="sec b-red">
+  <div class="card center">
+    <h2>🏁 Full time!</h2>
+    <p class="task">Сделал все 5 заданий? Тогда жми!</p>
+    <button class="btn big" onclick="finish()">📣 Финальный свисток!</button>
+    <div id="final"></div>
+  </div>
+</section>
+
+</main>
+
+<main id="tabWords" hidden>
+<section class="sec b-night">
+  <div class="card center" style="background:transparent;box-shadow:none;color:#fff;padding:6px">
+    <h2 style="color:var(--gold);font-size:40px">📖 Words · Слова</h2>
+    <p style="font-weight:800;margin:4px 0 12px">Нажми на слово — и послушай, как оно звучит 🔊</p>
+    <label class="slow"><input type="checkbox" id="slowChk"> 🐢 Медленно</label>
+  </div>
+</section>
+<section class="sec b-pitch">
+  <div class="card">
+    <h2>⚽ Football</h2>
+    <div class="wgrid" id="w1"></div>
+  </div>
+</section>
+<section class="sec b-net">
+  <div class="card">
+    <h2>🏃 Verbs · Past Simple</h2>
+    <p class="task">⭐ — неправильный глагол, форму надо запомнить. Нажми, чтобы послушать.</p>
+    <table class="vb"><thead><tr><th>Verb</th><th>Past</th><th>Перевод</th></tr></thead><tbody id="vb"></tbody></table>
+  </div>
+</section>
+<section class="sec b-gold">
+  <div class="card">
+    <h2>💬 Other words & phrases</h2>
+    <div class="wgrid" id="w2"></div>
+  </div>
+</section>
+</main>
+
+<footer>Maksim FC · Homework ⚽</footer>
+
+<!-- GOAL overlay -->
+<div class="goal" id="goal">
+  <svg id="crack" viewBox="0 0 400 400"><path pathLength="1" id="crackPath"/></svg>
+  <svg id="bigBall" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="#fff" stroke="#111" stroke-width="3"/><polygon points="50,33 66,45 60,63 40,63 34,45" fill="#111"/><path d="M50 33V8M66 45l22-7M60 63l14 20M40 63l-14 20M34 45l-22-7" stroke="#111" stroke-width="3"/><path d="M38 5l12 4 12-4A47 47 0 0 0 38 5zM88 34l2 13 9 4a47 47 0 0 0-11-17zM79 86l-7-10-12 2 3 18a47 47 0 0 0 16-10zM21 86l7-10 12 2-3 18a47 47 0 0 1-16-10zM12 34l-2 13-9 4a47 47 0 0 1 11-17z" fill="#111"/></svg>
+  <div class="player">
+    <svg viewBox="0 0 200 260">
+      <ellipse cx="100" cy="250" rx="60" ry="7" fill="rgba(0,0,0,.35)"/>
+      <line x1="92" y1="152" x2="80" y2="228" stroke="#f1c27d" stroke-width="13" stroke-linecap="round"/>
+      <line x1="83" y1="205" x2="80" y2="228" stroke="#fff" stroke-width="14"/>
+      <ellipse cx="74" cy="236" rx="15" ry="8" fill="#111"/>
+      <g id="kickLeg">
+        <line x1="108" y1="152" x2="112" y2="228" stroke="#f1c27d" stroke-width="13" stroke-linecap="round"/>
+        <line x1="111" y1="205" x2="112" y2="228" stroke="#fff" stroke-width="14"/>
+        <ellipse id="boot" cx="120" cy="236" rx="15" ry="8" fill="#111"/>
+      </g>
+      <rect x="78" y="128" width="44" height="30" rx="6" fill="#0d1b3e"/>
+      <path d="M72 70h56l6 64H66z" fill="#e63946"/>
+      <path d="M72 70l-26 40" stroke="#e63946" stroke-width="14" stroke-linecap="round"/>
+      <path d="M128 70l26 -34" stroke="#e63946" stroke-width="14" stroke-linecap="round"/>
+      <circle cx="44" cy="114" r="7" fill="#f1c27d"/><circle cx="157" cy="31" r="7" fill="#f1c27d"/>
+      <text x="100" y="118" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="36" fill="#fff">M</text>
+      <circle cx="100" cy="44" r="24" fill="#f1c27d"/>
+      <path d="M76 40c0-18 12-27 24-27s24 9 24 25c-8-8-20-10-30-6-8 3-14 5-18 8z" fill="#3b2314"/>
+      <circle cx="109" cy="45" r="2.6" fill="#111"/><path d="M104 56q6 5 12 0" stroke="#111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="bubble">GOAL TIME!</div>
+  <canvas id="fx"></canvas>
+  <div class="flash"></div>
+  <div class="gt">
+    <h1>GOOOAL!</h1>
+    <div class="sc2" id="goalScore"></div>
+    <p id="goalMsg"></p>
+    <p style="font-size:16px;opacity:.85">Сделай скриншот результата и отправь учителю 📸</p>
+    <button class="btn" onclick="closeGoal()">⚽ Back to the pitch</button>
+  </div>
+</div>
+
+<script>
+/* ---------- normalize: регистр, точки, запятые, сокращения не важны ---------- */
+const CONTR={shouldnt:'should not',didnt:'did not',wasnt:'was not',werent:'were not',dont:'do not',doesnt:'does not',isnt:'is not',arent:'are not',cant:'can not',cannot:'can not'};
+function N(s){s=(s||'').toLowerCase().replace(/[’‘`´']/g,'').replace(/[^a-z0-9]+/g,' ').trim();return s.split(' ').map(w=>CONTR[w]||w).join(' ');}
+const strCheck=ans=>{const l=ans.map(N);return v=>l.includes(N(v));};
+const reCheck=res=>v=>res.some(r=>r.test(N(v)));
+
+const B={};const ST={};
+function mkBox(ex,check,model,long){
+  const bx=document.createElement('span');bx.className='bx'+(long?' long':'');
+  const inp=document.createElement('input');inp.type='text';inp.className='blank';
+  ['autocomplete','autocorrect','autocapitalize'].forEach(a=>inp.setAttribute(a,'off'));inp.spellcheck=false;
+  const fx=document.createElement('span');fx.className='fix';bx.append(inp,fx);
+  const b={bx,inp,fx,get:()=>inp.value.trim(),check,model};(B[ex]=B[ex]||[]).push(b);
+  inp.addEventListener('input',()=>{bx.classList.remove('ok','bad','empty');fx.textContent='';});
+  return b;}
+function seg(ex,html,el){html.split(/\{([^}]*)\}/).forEach((p,i)=>{if(i%2){const a=p.split('|');el.appendChild(mkBox(ex,strCheck(a),a[0]).bx);}else{const s=document.createElement('span');s.innerHTML=p;el.appendChild(s);}});}
+function li(id){const l=document.createElement('li');l.className='q';document.getElementById(id).appendChild(l);return l;}
+
+/* ---------- 1. forms ---------- */
+[['play','played'],['score','scored'],['kick','kicked'],['watch','watched'],['win','won'],['go','went'],['run','ran'],['see','saw'],['have','had'],['be (he)','was']]
+.forEach(([v,a])=>seg('ex1',`<b>${v}</b> → {${a}}`,li('l1')));
+
+/* ---------- 2. brackets ---------- */
+['Last Sunday Maksim {played} <i>(play)</i> football with his friends.',
+ 'Messi {won} <i>(win)</i> the World Cup in 2022.',
+ 'Ronaldo {played} <i>(play)</i> for Manchester United and Real Madrid.',
+ 'Maksim {scored} <i>(score)</i> a goal in the last match.',
+ 'We {went} <i>(go)</i> to the stadium last Saturday.',
+ 'The goalkeeper {didn\'t catch} <i>(not / catch)</i> the ball.',
+ 'I {didn\'t watch} <i>(not / watch)</i> the match on TV yesterday.',
+ '{Did} you {see} <i>(see)</i> the goal?',
+ 'The match {was} <i>(be)</i> very exciting!',
+ '{Did} Messi {play} <i>(play)</i> for Barcelona? — Yes, he did.'
+].forEach(s=>seg('ex2',s,li('l2')));
+
+/* ---------- 3. should / shouldn't ---------- */
+function mkChoice(ex,ans,el){
+  const bx=document.createElement('span');bx.className='bx choice';let val='';
+  const fx=document.createElement('span');fx.className='fix';
+  const opts=['should',"shouldn't"].map(o=>{const b=document.createElement('button');b.type='button';b.className='opt';b.textContent=o;
+    b.onclick=()=>{val=o;opts.forEach(x=>x.classList.toggle('sel',x===b));bx.classList.remove('ok','bad','empty');fx.textContent='';};return b;});
+  bx.append(...opts,fx);el.appendChild(bx);
+  (B[ex]=B[ex]||[]).push({bx,fx,get:()=>val,check:v=>v===ans,model:ans});}
+[['drink water during training.','should'],['eat chips and drink cola before a match.',"shouldn't"],['sleep 9 hours before a game.','should'],['be late for training.',"shouldn't"],['shout at the referee.',"shouldn't"],['warm up before the game.','should'],['play computer games all night.',"shouldn't"],['listen to your coach.','should']]
+.forEach(([t,a])=>{const l=li('l3');l.append('You ');mkChoice('ex3',a,l);l.append(' '+t);});
+
+/* ---------- 4. word bank ---------- */
+['Last Saturday Maksim {went} to the stadium with his team.',
+ 'They {played} against a team from St Petersburg.',
+ 'The weather {was} cold, but sunny.',
+ 'Maksim {ran} very fast.',
+ 'He {kicked} the ball to his friend.',
+ 'In the 80th minute Maksim {scored} a great goal!',
+ 'His team {won} 2 – 1!',
+ 'His mum {saw} the goal and shouted "Bravo!"',
+ 'All the players {were} very happy.'
+].forEach(s=>seg('ex4',s,li('l4')));
+let lastBank=null;const chips=[];
+const words=['went','played','was','ran','kicked','scored','won','saw','were'].sort(()=>Math.random()-.5);
+words.forEach(w=>{const c=document.createElement('button');c.type='button';c.className='chip';c.textContent=w;c.dataset.w=w;
+  c.onclick=()=>{const ins=B.ex4.map(b=>b.inp);let t=(lastBank&&!lastBank.value.trim())?lastBank:ins.find(i=>!i.value.trim());
+    if(!t)return;t.value=w;t.dispatchEvent(new Event('input'));lastBank=null;updChips();};
+  chips.push(c);document.getElementById('bank').appendChild(c);});
+function updChips(){const used=new Set(B.ex4.map(b=>N(b.inp.value)).filter(Boolean));chips.forEach(c=>c.disabled=used.has(N(c.dataset.w)));}
+B.ex4.forEach(b=>{b.inp.addEventListener('focus',()=>lastBank=b.inp);b.inp.addEventListener('input',updChips);});
+
+/* ---------- 5. translate ---------- */
+[['Тебе следует пить много воды.',[/^you should drink (a lot of |lots of |much |more |plenty of )?water$/],'You should drink a lot of water.'],
+ ['Тебе не следует есть фастфуд перед матчем.',[/^you should not eat (fast food|fastfood|junk food) before (a |the )?(match|game)$/],"You shouldn't eat fast food before a match."],
+ ['Ему следует тренироваться каждый день.',[/^he should (train|practice|practise|play football) every day$/],'He should train every day.'],
+ ['Нам не следует опаздывать на тренировку.',[/^we should not be late (for|to) (the )?(training|practice|practise)$/],"We shouldn't be late for training."],
+ ['Им следует слушать тренера.',[/^they should listen to (the |their )?(coach|trainer)$/],'They should listen to the coach.']
+].forEach(([ru,re,m])=>{const l=li('l5');const s=document.createElement('span');s.className='ru';s.textContent=ru;l.appendChild(s);l.appendChild(mkBox('ex5',reCheck(re),m,true).bx);});
+
+/* ---------- check ---------- */
+function check(ex){
+  const arr=B[ex];let f=0,c=0;
+  arr.forEach(b=>{b.bx.classList.remove('ok','bad','empty');b.fx.textContent='';const v=b.get();
+    if(!v){b.bx.classList.add('empty');b.fx.textContent=' Попробуй сам ✍️';return;}
+    f++;if(b.check(v)){c++;b.bx.classList.add('ok');b.fx.textContent=' ✅';}else{b.bx.classList.add('bad');b.fx.textContent=' ✔ '+b.model;}});
+  const r=document.getElementById('res-'+ex);
+  if(!f){arr.forEach(b=>{b.bx.classList.remove('empty');b.fx.textContent='';});
+    r.className='res warn';r.textContent='Здесь пока пусто 🙂 Выполни задание сам и нажми «Check» ещё раз.';ST[ex]=null;updBoard();return null;}
+  const t=arr.length;ST[ex]={c,f,t};
+  let msg=`⚽ ${c} / ${t}`;
+  if(f<t)msg+=' — есть пустые клетки. Попробуй сам и проверь ещё раз!';
+  else if(c===t)msg+=' — чистая победа! 🏆';
+  else msg+=' — посмотри на исправления и попробуй ещё раз 💪';
+  r.className='res '+(c===t&&f===t?'good':f<t?'warn':'mid');r.textContent=msg;updBoard();return ST[ex];}
+function updBoard(){let mk=0,hw=0;Object.values(ST).forEach(s=>{if(s){mk+=s.c;hw+=s.f-s.c;}});document.getElementById('sMk').textContent=mk;document.getElementById('sHw').textContent=hw;}
+
+const TIPS={ex1:'Формы глаголов в Past Simple: +ed и неправильные (went, won, ran, saw, had, was)',
+ ex2:"Past Simple: ➖ didn't + глагол, ❓ Did … + глагол, was / were",
+ ex3:"Когда should (полезно), а когда shouldn't (вредно)",
+ ex4:'Past Simple в рассказе — неправильные глаголы',
+ ex5:"Фразы с should / shouldn't: should + глагол без to"};
+const EXS=['ex1','ex2','ex3','ex4','ex5'];
+function finish(){
+  const inc=[];EXS.forEach(e=>{const s=check(e);if(!s||s.f<s.t)inc.push(e);});
+  const fr=document.getElementById('final');
+  if(inc.length){fr.innerHTML=`<b>Матч ещё не закончен! 😉</b><br>Заполни до конца: задание ${inc.map(e=>e.slice(2)).join(', ')}. Попробуй сам — и снова жми свисток.`;
+    document.getElementById(inc[0]).scrollIntoView({behavior:'smooth'});return;}
+  let C=0,T=0;const weak=[];EXS.forEach(e=>{C+=ST[e].c;T+=ST[e].t;if(ST[e].c/ST[e].t<.8)weak.push(e);});
+  const pct=Math.round(C/T*100);
+  fr.innerHTML=`<div class="big">${C} / ${T} · ${pct}%</div>`+(weak.length?'<p>Что потренировать:</p><ul style="text-align:left">'+weak.map(e=>`<li>${TIPS[e]}</li>`).join('')+'</ul>':'<p>Все темы на отлично — ты готов к следующему матчу! 🏆</p>');
+  celebrate(C,T,pct);}
+
+/* ---------- GOAL show ---------- */
+const g=document.getElementById('goal'),ball=document.getElementById('bigBall'),cv=document.getElementById('fx'),ctx=cv.getContext('2d');
+let parts=[],raf=null,running=false,timers=[],W,H;
+function makeCrack(){let d='';const cx=200,cy=200;
+  for(let i=0;i<15;i++){let a=i/15*Math.PI*2+Math.random()*.3,r=0;d+=`M${cx} ${cy}`;
+    while(r<210){r+=12+Math.random()*24;a+=(Math.random()-.5)*.4;d+=` L${(cx+Math.cos(a)*r).toFixed(1)} ${(cy+Math.sin(a)*r).toFixed(1)}`;}}
+  [30,60,100,150].forEach(R=>{let first=true;for(let k=0;k<=28;k++){if(Math.random()<.3){first=true;continue;}const a=k/28*Math.PI*2,rr=R+(Math.random()-.5)*10;
+    d+=(first?' M':' L')+(cx+Math.cos(a)*rr).toFixed(1)+' '+(cy+Math.sin(a)*rr).toFixed(1);first=false;}});
+  document.getElementById('crackPath').setAttribute('d',d);}
+function size(){const dpr=window.devicePixelRatio||1;W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+function burst(x,y){const h=Math.random()*360;for(let i=0;i<70;i++){const a=Math.random()*Math.PI*2,s=1.5+Math.random()*5;
+  parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:70+Math.random()*30,max:100,c:`hsl(${h+Math.random()*50},100%,62%)`,r:1.8+Math.random()*2});}}
+function confetti(){for(let i=0;i<3;i++)parts.push({x:Math.random()*W,y:-12,vx:(Math.random()-.5)*2,vy:1.5+Math.random()*2.5,life:400,max:400,c:`hsl(${Math.random()*360},95%,60%)`,r:5,conf:true,rot:Math.random()*6,vr:(Math.random()-.5)*.3});}
+function loop(){ctx.clearRect(0,0,W,H);confetti();
+  parts=parts.filter(p=>p.life>0&&p.y<H+30);
+  parts.forEach(p=>{p.life--;p.x+=p.vx;p.y+=p.vy;
+    if(p.conf){p.rot+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.c;ctx.fillRect(-5,-3,10,6);ctx.restore();}
+    else{p.vy+=.06;p.vx*=.985;ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fill();ctx.globalAlpha=1;}});
+  if(running)raf=requestAnimationFrame(loop);}
+function later(fn,ms){timers.push(setTimeout(fn,ms));}
+function celebrate(C,T,pct){
+  closeGoal(true);makeCrack();size();
+  document.getElementById('goalScore').textContent=`${C} / ${T} · ${pct}%`;
+  document.getElementById('goalMsg').textContent=pct>=90?'Ты как настоящий профи! 🏆':pct>=70?'Отличная игра! Ещё чуть-чуть — и будет 100% 💪':'Хорошая игра! Повтори темы из списка — и снова в атаку ⚽';
+  g.className='goal show';
+  later(()=>g.classList.add('kick'),900);
+  later(()=>{const f=document.getElementById('boot').getBoundingClientRect();
+    const x0=f.right-10,y0=f.top-24,cx=W/2-30,cy=H/2-30,mx=(x0+W/2)/2,my=Math.min(y0,H/2)-H*.25;
+    ball.style.opacity=1;
+    const a=ball.animate([
+      {transform:`translate(${x0-30}px,${y0-30}px) scale(.55) rotate(0deg)`},
+      {transform:`translate(${mx-30}px,${my-30}px) scale(2.2) rotate(500deg)`,offset:.5},
+      {transform:`translate(${cx}px,${cy}px) scale(7) rotate(1080deg)`}],{duration:850,easing:'ease-in',fill:'forwards'});
+    a.onfinish=()=>{if(!g.classList.contains('show'))return;
+      g.classList.add('hit');if(navigator.vibrate)navigator.vibrate(200);
+      ball.animate([{transform:`translate(${cx}px,${cy}px) scale(7) rotate(1080deg)`},{transform:`translate(${cx}px,${H+500}px) scale(5) rotate(1300deg)`}],{duration:900,delay:600,easing:'ease-in',fill:'forwards'});
+      later(()=>{running=true;loop();for(let i=0;i<4;i++)later(()=>burst(W*(.15+Math.random()*.7),H*(.1+Math.random()*.4)),i*180);},250);
+      later(()=>g.classList.add('win'),900);
+      const iv=setInterval(()=>{if(!running){clearInterval(iv);return;}burst(W*(.1+Math.random()*.8),H*(.08+Math.random()*.42));},650);timers.push(iv);};
+  },1180);}
+function closeGoal(silent){timers.forEach(t=>{clearTimeout(t);clearInterval(t);});timers=[];running=false;if(raf)cancelAnimationFrame(raf);parts=[];
+  ctx.clearRect(0,0,cv.width,cv.height);ball.getAnimations().forEach(a=>a.cancel());ball.style.opacity=0;g.className='goal';
+  if(!silent)document.getElementById('final').scrollIntoView({behavior:'smooth'});}
+
+/* ---------- tabs ---------- */
+function showTab(b){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t===b));
+  ['tabEx','tabWords'].forEach(id=>document.getElementById(id).hidden=(id!==b.dataset.t));scrollTo(0,0);}
+
+/* ---------- speech ---------- */
+let voice=null;
+function pickVoice(){const vs=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));
+  voice=vs.find(v=>/en.GB/i.test(v.lang)&&/(daniel|serena|kate|google uk)/i.test(v.name))||vs.find(v=>/en.GB/i.test(v.lang))||vs.find(v=>/en.US/i.test(v.lang))||vs[0]||null;}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function say(text,el){if(!('speechSynthesis' in window)){alert('Озвучка не поддерживается в этом браузере');return;}
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=voice?voice.lang:'en-GB';if(voice)u.voice=voice;
+  u.rate=document.getElementById('slowChk').checked?0.6:0.9;
+  if(el){el.classList.add('playing');u.onend=u.onerror=()=>el.classList.remove('playing');}
+  speechSynthesis.speak(u);}
+function card(box,en,tr){const b=document.createElement('button');b.type='button';b.className='w';
+  b.innerHTML=`<span class="sp">🔊</span><span><span class="en">${en}</span><span class="tr">${tr}</span></span>`;
+  b.onclick=()=>say(en.replace(/\(.*?\)/g,''),b);document.getElementById(box).appendChild(b);}
+[['football','футбол'],['match','матч'],['game','игра'],['goal','гол; ворота'],['goalkeeper','вратарь'],['player','игрок'],['team','команда'],['coach','тренер'],['referee','судья'],['stadium','стадион'],['ball','мяч'],['training','тренировка'],['World Cup','чемпионат мира'],['minute','минута'],['warm up','разминаться'],['be late for','опаздывать на']]
+.forEach(([e,r])=>card('w1',e,r));
+[['play','played','играть'],['score','scored','забивать (гол)'],['kick','kicked','бить (по мячу)'],['watch','watched','смотреть'],['train','trained','тренироваться'],['shout','shouted','кричать'],['listen','listened','слушать'],['win','won','побеждать, выигрывать',1],['go','went','идти, ехать',1],['run','ran','бежать',1],['see','saw','видеть',1],['have','had','иметь',1],['be','was / were','быть',1],['catch','caught','ловить',1],['eat','ate','есть, кушать',1],['drink','drank','пить',1],['sleep','slept','спать',1]]
+.forEach(([v,p,r,irr])=>{const tr=document.createElement('tr');if(irr)tr.className='irr';
+  tr.innerHTML=`<td><button class="say">${v}</button></td><td><button class="say">${irr?'⭐ ':''}${p}</button></td><td>${r}</td>`;
+  const [b1,b2]=tr.querySelectorAll('.say');b1.onclick=()=>say(v);b2.onclick=()=>say(p.replace(' / ',', '));
+  document.getElementById('vb').appendChild(tr);});
+[['should','следует'],["shouldn't",'не следует'],['Did you…?','Ты …? (вопрос в прошлом)'],["didn't",'не (в прошлом)'],['yesterday','вчера'],['last Saturday','в прошлую субботу'],['every day','каждый день'],['all night','всю ночь'],['before','перед, до'],['after','после'],['water','вода'],['fast food','фастфуд'],['chips','чипсы'],['exciting','захватывающий'],['tired','уставший'],['happy','счастливый'],['cold','холодный'],['sunny','солнечный'],['fast','быстро'],['beautiful','красивый']]
+.forEach(([e,r])=>card('w2',e,r));
+addEventListener('resize',()=>{if(running)size();});
+</script>
+</body>
+</html>
