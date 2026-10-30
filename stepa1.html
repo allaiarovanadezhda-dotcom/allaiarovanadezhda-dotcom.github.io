@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stepa's Homework 🏝️</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--sea:#14b8c4;--sea2:#0e8fa3;--deep:#0b5d6e;--sand:#f6e7c1;--coral:#ff7a6b;--ok:#1f9d55;--bad:#e0434b;--ink:#173a40}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:linear-gradient(180deg,#c9f3f5 0%,#e8fbfb 40%,var(--sand) 100%);min-height:100vh}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 60px}
+header{position:relative;border-radius:26px;padding:22px 18px 18px;color:#fff;overflow:hidden;
+background:linear-gradient(160deg,#23d0d9,#0e8fa3 60%,#0b5d6e);box-shadow:0 8px 24px rgba(11,93,110,.25)}
+header:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:38px;
+background:radial-gradient(circle at 20px -6px,transparent 22px,var(--sand) 23px) 0 0/40px 38px repeat-x;opacity:.9}
+header h1{margin:0;font-size:28px;font-weight:900;text-shadow:0 2px 0 rgba(0,0,0,.15)}
+header p{margin:6px 0 30px;font-size:15px;opacity:.95}
+.capy{position:absolute;right:10px;top:12px;width:96px}
+.pets{font-size:22px;letter-spacing:4px;margin-top:-18px;position:relative;z-index:2}
+.tabs{display:flex;gap:10px;margin:18px 0 6px;position:sticky;top:0;z-index:5;padding:8px 0;background:linear-gradient(#d6f6f7ee,#d6f6f700)}
+.tab{flex:1;border:0;border-radius:999px;padding:12px;font:900 16px 'Nunito';cursor:pointer;color:var(--deep);background:#fff;box-shadow:0 3px 0 #9fd9de}
+.tab.on{color:#fff;background:linear-gradient(135deg,#ff9a8b,#ff6a88);box-shadow:0 3px 0 #c94f66}
+.card{border-radius:22px;padding:18px 16px;margin:18px 0;box-shadow:0 6px 18px rgba(11,93,110,.12);position:relative}
+.card h2{margin:0 0 4px;font-size:20px;font-weight:900}
+.task{margin:0 0 12px;font-size:14.5px;opacity:.85}
+.c1{background:#e3fbfd url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='20'%3E%3Cpath d='M0 10 Q15 0 30 10 T60 10' fill='none' stroke='%23b5eef2' stroke-width='3'/%3E%3C/svg%3E")}
+.c2{background:#fff6e0 radial-gradient(#f1d9a4 1.5px,transparent 1.6px) 0 0/16px 16px}
+.c3{background:#fff;border:8px solid transparent;border-image:repeating-linear-gradient(45deg,#d7263d 0 8px,#fff 8px 12px,#2e7d32 12px 20px,#fff 20px 24px) 8}
+.c4{background:linear-gradient(160deg,#5b1a2e,#7a2440);color:#fff7e6}
+.c4 .task{color:#ffe8b3;opacity:1}
+.c6{background:#fff0f5 radial-gradient(#ffd3e2 2px,transparent 2.2px) 0 0/22px 22px}
+.c7{background-color:#f3eefe;background-image:linear-gradient(#e2d8fb 1px,transparent 1px),linear-gradient(90deg,#e2d8fb 1px,transparent 1px);background-size:24px 24px}
+.c5{background:#eafbe9 radial-gradient(circle at 90% 10%,#c9f2c6 0 40px,transparent 41px)}
+.rule{background:rgba(255,255,255,.7);border-left:5px solid var(--coral);border-radius:12px;padding:10px 12px;font-size:14px;margin-bottom:12px;color:var(--ink)}
+.c4 .rule{background:rgba(255,236,190,.95);border-color:#e8b33a}
+ol{padding-left:22px;margin:0}
+li{margin:12px 0;line-height:1.9;font-size:16px}
+input.b{font:700 16px 'Nunito';border:0;border-bottom:2.5px dashed var(--sea2);background:rgba(255,255,255,.85);border-radius:8px 8px 0 0;padding:2px 6px;color:var(--deep);outline:none;max-width:100%}
+.c4 input.b{border-bottom-color:#e8b33a}
+input.b:focus{background:#fff;box-shadow:0 0 0 2px #7fe0e6}
+input.ok{border-bottom:2.5px solid var(--ok);background:#e1f7e8}
+input.bad{border-bottom:2.5px solid var(--bad);background:#fde3e4}
+input.empty,textarea.empty{background:#fff4cc}
+.corr{display:inline-block;font-size:13px;font-weight:700;color:var(--bad);background:#fff;border-radius:8px;padding:0 6px;margin-left:4px;line-height:1.6}
+.hint{display:inline-block;font-size:12.5px;font-weight:700;color:#9a6b00;margin-left:4px}
+.bank{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:16px;background:rgba(255,255,255,.75);margin-bottom:10px;position:sticky;top:62px;z-index:3}
+.chip{border:0;border-radius:999px;padding:7px 13px;font:800 15px 'Nunito';cursor:pointer;color:#fff;background:linear-gradient(135deg,#2bd3dc,#0e8fa3);box-shadow:0 3px 0 #0b6f7e}
+.c2 .chip{background:linear-gradient(135deg,#ffb36b,#ff7a6b);box-shadow:0 3px 0 #c95a4e}
+.chip.used{opacity:.3;cursor:default;box-shadow:none;text-decoration:line-through}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.opt{border:2px solid #cfe9ec;background:#fff;border-radius:12px;padding:5px 12px;font:800 15px 'Nunito';color:var(--deep);cursor:pointer}
+.opt.sel{border-color:var(--sea2);background:#d5f5f7}
+.opt.ok{border-color:var(--ok);background:#e1f7e8}
+.opt.bad{border-color:var(--bad);background:#fde3e4}
+textarea{width:100%;min-height:62px;font:600 16px 'Nunito';border:2px solid #bfe7c1;border-radius:14px;padding:8px 10px;resize:vertical;margin-top:6px}
+textarea.ok{border-color:var(--ok);background:#f2fcf4}textarea.bad{border-color:var(--bad);background:#fff3f3}
+.check{display:block;width:100%;margin-top:14px;border:0;border-radius:16px;padding:13px;font:900 17px 'Nunito';color:#fff;cursor:pointer;
+background:linear-gradient(135deg,#ff9a8b,#ff6a88 50%,#ffb36b);background-size:200% 200%;box-shadow:0 4px 0 #c94f66;animation:shine 4s ease infinite}
+@keyframes shine{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.res{margin-top:10px;font-weight:800;font-size:15.5px;padding:10px 12px;border-radius:12px;display:none}
+.res.show{display:block;background:#fff;color:var(--ink)}
+.total{text-align:center;font-weight:900;font-size:17px;background:#fff;border-radius:18px;padding:14px;box-shadow:0 4px 0 #9fd9de}
+.words section{background:#fff;border-radius:20px;padding:14px 16px;margin:14px 0;box-shadow:0 4px 14px rgba(11,93,110,.1)}
+.words h3{margin:0 0 8px;color:var(--sea2)}
+.words table{width:100%;border-collapse:collapse;font-size:15px}
+.words td{padding:6px 4px;border-bottom:1px dashed #d4eef0;vertical-align:top}
+.words td:first-child{font-weight:800;color:var(--deep);width:52%}
+.hidden{display:none}
+footer{text-align:center;font-size:13px;opacity:.7;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <svg class="capy" viewBox="0 0 120 90" aria-hidden="true">
+    <ellipse cx="62" cy="58" rx="46" ry="26" fill="#a8774b"/>
+    <rect x="18" y="26" width="46" height="38" rx="18" fill="#b98657"/>
+    <ellipse cx="30" cy="27" rx="6" ry="5" fill="#8a5f38"/>
+    <ellipse cx="52" cy="25" rx="6" ry="5" fill="#8a5f38"/>
+    <circle cx="33" cy="40" r="3.4" fill="#2b1a0e"/><circle cx="50" cy="40" r="3.4" fill="#2b1a0e"/>
+    <rect x="30" y="49" width="22" height="12" rx="6" fill="#8a5f38"/>
+    <circle cx="36" cy="54" r="1.6" fill="#2b1a0e"/><circle cx="46" cy="54" r="1.6" fill="#2b1a0e"/>
+    <circle cx="28" cy="49" r="3.5" fill="#ff9a8b" opacity=".6"/><circle cx="55" cy="49" r="3.5" fill="#ff9a8b" opacity=".6"/>
+    <rect x="34" y="78" width="9" height="10" rx="4" fill="#8a5f38"/><rect x="86" y="78" width="9" height="10" rx="4" fill="#8a5f38"/>
+    <text x="70" y="22" font-size="20">🍊</text>
+  </svg>
+  <h1>Stepa's Homework</h1>
+  <p>Jobs · Clothes · should / shouldn't · Past Continuous</p>
+  <div class="pets">🐀🐀🐀🐀 🐈 🐕🐕 🐢 🐷 🏝️</div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-t="ex">Упражнения</button>
+  <button class="tab" data-t="words">Слова</button>
+</div>
+
+<!-- ================= EXERCISES ================= -->
+<div id="ex">
+
+<!-- 1 -->
+<div class="card c1 ex" id="e1" data-kind="blank">
+  <h2>1. Jobs 🌊</h2>
+  <p class="task">Нажми на слово — оно встанет в клеточку. Каждое слово — один раз.</p>
+  <div class="bank">
+    <button class="chip">hairdresser</button><button class="chip">tour guide</button><button class="chip">dentist</button>
+    <button class="chip">computer programmer</button><button class="chip">journalist</button><button class="chip">firefighter</button>
+    <button class="chip">dangerous</button><button class="chip">cleaner</button><button class="chip">boring</button><button class="chip">well-paid</button>
+  </div>
+  <ol>
+    <li>Before the folk dance concert I always go to the <input class="b" data-a="hairdresser"> to cut my hair. 💇‍♂️</li>
+    <li>In the Maldives a <input class="b" data-a="tour guide"> shows tourists the islands and the beaches. 🏝️</li>
+    <li>A <input class="b" data-a="dentist"> looks after your teeth. Capybaras have got very big teeth!</li>
+    <li>A <input class="b" data-a="computer programmer"> writes programmes for computers.</li>
+    <li>A <input class="b" data-a="journalist"> writes articles for newspapers and magazines.</li>
+    <li>A <input class="b" data-a="firefighter"> helps people when there is a fire. It's a <input class="b" data-a="dangerous"> job!</li>
+    <li>A <input class="b" data-a="cleaner"> cleans offices and schools.</li>
+    <li>Folk dancing is never <input class="b" data-a="boring"> — it's exciting! 💃</li>
+    <li>Famous actors from Turkish TV series are very <input class="b" data-a="well-paid">. They earn a lot of money.</li>
+  </ol>
+  <button class="check">✨ Check ✨</button><div class="res"></div>
+</div>
+
+<!-- 2 -->
+<div class="card c2 ex" id="e2" data-kind="blank">
+  <h2>2. Clothes: concert &amp; the Maldives 👕🩴</h2>
+  <p class="task">Стёпа рассказывает, что он надевает. Нажми на слово — оно встанет в клеточку.</p>
+  <div class="bank">
+    <button class="chip">shirt</button><button class="chip">baggy</button><button class="chip">belt</button>
+    <button class="chip">boots</button><button class="chip">coat</button><button class="chip">shorts</button>
+    <button class="chip">striped</button><button class="chip">sandals</button><button class="chip">hat</button>
+  </div>
+  <ol>
+    <li>Today I've got a folk dance concert! I'm wearing a red <input class="b" data-a="shirt">.</li>
+    <li>It isn't tight, it's <input class="b" data-a="baggy"> — so I can dance easily.</li>
+    <li>I've got a long <input class="b" data-a="belt"> round my shirt.</li>
+    <li>On my feet I'm wearing black <input class="b" data-a="boots">.</li>
+    <li>It's cold outside, so I'm taking my warm <input class="b" data-a="coat">. 🧥</li>
+    <li>But in the Maldives it's hot! I usually wear <input class="b" data-a="shorts"> and a blue and white <input class="b" data-a="striped"> T-shirt.</li>
+    <li>On my feet I wear <input class="b" data-a="sandals">, and on my head — a big <input class="b" data-a="hat">, because the sun is very hot! ☀️</li>
+  </ol>
+  <button class="check">✨ Check ✨</button><div class="res"></div>
+</div>
+
+<!-- NEW: describing clothes & jobs -->
+<div class="card c6 ex" id="e6" data-kind="blank">
+  <h2>3. What are they like? 🎨⭐</h2>
+  <p class="task">Какая одежда? Какая работа? Нажми на слово — оно встанет в клеточку.</p>
+  <div class="bank">
+    <button class="chip">smart</button><button class="chip">casual</button><button class="chip">tight</button>
+    <button class="chip">floral</button><button class="chip">spotted</button><button class="chip">plain</button>
+    <button class="chip">checked</button><button class="chip">easy</button><button class="chip">safe</button>
+    <button class="chip">badly paid</button><button class="chip">challenging</button><button class="chip">exciting</button>
+  </div>
+  <p class="task"><b>👕 Clothes</b></p>
+  <ol>
+    <li>It's Adam's first day at work. He should look <input class="b" data-a="smart">: a white shirt, black trousers and a tie.</li>
+    <li>At home Stepa wears <input class="b" data-a="casual"> clothes: a hoodie and jeans.</li>
+    <li>These jeans are too <input class="b" data-a="tight"> — I can't dance in them!</li>
+    <li>Grandma's dress has got lots of flowers on it. It's <input class="b" data-a="floral">. 🌸</li>
+    <li>My white T-shirt has got small black dots. It's <input class="b" data-a="spotted">.</li>
+    <li>My shirt for the concert isn't striped and it hasn't got any pictures. It's <input class="b" data-a="plain"> red.</li>
+    <li>Josh is wearing a blue and white <input class="b" data-a="checked"> shirt with little squares.</li>
+  </ol>
+  <p class="task" style="margin-top:12px"><b>⭐ Jobs</b></p>
+  <ol start="8">
+    <li>Feeding my four rats every day isn't difficult. It's <input class="b" data-a="easy">! 🐀</li>
+    <li>A firefighter's job is dangerous, but a secretary's job is <input class="b" data-a="safe">.</li>
+    <li>A cleaner works very hard but doesn't earn much money. It's a <input class="b" data-a="badly paid"> job.</li>
+    <li>Building roads and bridges is difficult. An engineer's job is <input class="b" data-a="challenging">.</li>
+    <li>Dancing on stage in front of hundreds of people is so <input class="b" data-a="exciting">! 💃</li>
+  </ol>
+  <button class="check">✨ Check ✨</button><div class="res"></div>
+</div>
+
+<!-- 3 -->
+<div class="card c3 ex" id="e3" data-kind="choice">
+  <h2>4. should, must, have to 🐷</h2>
+  <p class="task">Выбери правильный вариант.</p>
+  <div class="rule">
+    <b>should</b> = совет (стоит) · <b>shouldn't</b> = не стоит<br>
+    <b>must</b> = обязательно · <b>mustn't</b> = нельзя!<br>
+    <b>don't / doesn't have to</b> = не обязательно
+  </div>
+  <ol>
+    <li data-a="should">My mini-pig is very hungry. — You ___ give him some vegetables.
+      <div class="opts"><button class="opt">should</button><button class="opt">shouldn't</button></div></li>
+    <li data-a="shouldn't">My rats are scared of the cat. — You ___ put the cat near their cage.
+      <div class="opts"><button class="opt">should</button><button class="opt">shouldn't</button></div></li>
+    <li data-a="mustn't">You ___ give chocolate to dogs. It's very bad for them! 🐕
+      <div class="opts"><button class="opt">must</button><button class="opt">mustn't</button></div></li>
+    <li data-a="doesn't have to">It's Sunday! Stepa ___ go to school today.
+      <div class="opts"><button class="opt">mustn't</button><button class="opt">doesn't have to</button></div></li>
+    <li data-a="has to">My dog ___ go for a walk every day.
+      <div class="opts"><button class="opt">has to</button><button class="opt">have to</button></div></li>
+    <li data-a="should">I want to see a real capybara! — You ___ go to the zoo. 🦫
+      <div class="opts"><button class="opt">should</button><button class="opt">mustn't</button></div></li>
+    <li data-a="make">Mum, I always ___ my bed in the morning!
+      <div class="opts"><button class="opt">make</button><button class="opt">do</button></div></li>
+    <li data-a="do">Can I help? — Yes, you can ___ the shopping.
+      <div class="opts"><button class="opt">make</button><button class="opt">do</button></div></li>
+    <li data-a="shouldn't">Oh no, the mini-pig is in the kitchen! He ___ make a mess!
+      <div class="opts"><button class="opt">should</button><button class="opt">shouldn't</button></div></li>
+  </ol>
+  <button class="check">✨ Check ✨</button><div class="res"></div>
+</div>
+
+<!-- 4 -->
+<div class="card c4 ex" id="e4" data-kind="blank">
+  <h2>5. Past Continuous 🌙👑</h2>
+  <p class="task">Поставь глагол в скобках в правильную форму.</p>
+  <div class="rule">
+    <b>Past Continuous</b> = что происходило в какой-то момент в прошлом<br>
+    I / he / she / it <b>was</b> + глагол<b>-ing</b> · we / you / they <b>were</b> + глагол<b>-ing</b><br>
+    ❗ Короткое действие, которое «врезалось» — в <b>Past Simple</b>:<br>
+    <i>I <b>was watching</b> TV when my cat <b>jumped</b> on the sofa.</i>
+  </div>
+  <ol>
+    <li>Yesterday at 6 pm I <i>(dance)</i> <input class="b" data-a="was dancing"> at my folk dance class.</li>
+    <li>My rats <i>(sleep)</i> <input class="b" data-a="were sleeping"> when the cat came into the room. 🐀</li>
+    <li>What <i>(you / do)</i> <input class="b" data-a="were you doing"> at 9 o'clock last night? — I <i>(watch)</i> <input class="b" data-a="was watching"> "The Magnificent Century".</li>
+    <li>Mum <i>(make)</i> <input class="b" data-a="was making"> dinner when the mini-pig ran into the kitchen.</li>
+    <li>The turtle <i>(not / swim)</i> <input class="b" data-a="wasn't swimming"> — it <i>(eat)</i> <input class="b" data-a="was eating"> a salad. 🐢</li>
+    <li>While we were lying on the beach in the Maldives, we <i>(see)</i> <input class="b" data-a="saw"> a big sea turtle!</li>
+    <li>My dogs <i>(bark)</i> <input class="b" data-a="were barking"> all night, so I <i>(not / sleep)</i> <input class="b" data-a="didn't sleep"> well.</li>
+  </ol>
+  <button class="check">✨ Check ✨</button><div class="res"></div>
+</div>
+
+<!-- NEW: past continuous textbook verbs -->
+<div class="card c7 ex" id="e7" data-kind="blank">
+  <h2>6. Past Continuous: practice ☕</h2>
+  <p class="task">Поставь глагол в скобках в Past Continuous (was / were + -ing). Если стоит <b>not</b> — сделай отрицание, если вопрос — поставь was / were вперёд.</p>
+  <ol>
+    <li>At 8 o'clock yesterday morning Bella's mum <i>(make)</i> <input class="b" data-a="was making"> cakes in the café.</li>
+    <li>Zadie <i>(help)</i> <input class="b" data-a="was helping"> Bella when the customer asked for some water.</li>
+    <li>What <i>(Adam / wear)</i> <input class="b" data-a="was Adam wearing"> when Josh saw him? — He <i>(wear)</i> <input class="b" data-a="was wearing"> a white shirt and a tie.</li>
+    <li>Adam <i>(clean)</i> <input class="b" data-a="was cleaning"> the cages while Josh <i>(play)</i> <input class="b" data-a="was playing"> computer games.</li>
+    <li>The customer <i>(not / eat)</i> <input class="b" data-a="wasn't eating"> his sandwich. He <i>(drink)</i> <input class="b" data-a="was drinking"> water because it was very spicy!</li>
+    <li><i>(you / do)</i> <input class="b" data-a="were you doing"> your homework at 7 pm yesterday? — No, I wasn't. I <i>(do)</i> <input class="b" data-a="was doing"> the dishes.</li>
+    <li>While Mum <i>(serve)</i> <input class="b" data-a="was serving"> the customers, the girls <i>(wash)</i> <input class="b" data-a="were washing"> their hands.</li>
+  </ol>
+  <button class="check">✨ Check ✨</button><div class="res"></div>
+</div>
+
+<!-- 5 -->
+<div class="card c5 ex" id="e5" data-kind="write">
+  <h2>7. Give advice! 🌴</h2>
+  <p class="task">Дай совет своими словами. Используй <b>You should… / You shouldn't… / Why don't you…?</b></p>
+  <div class="item"><p>1. My friend wants a pet rat. What should he do? 🐀</p><textarea placeholder="You should..."></textarea></div>
+  <div class="item"><p>2. I'm going to the Maldives, but it's very hot there. What should I wear?</p><textarea placeholder="You should wear..."></textarea></div>
+  <div class="item"><p>3. I've got a dance concert tomorrow, but I'm very tired.</p><textarea placeholder="You shouldn't..."></textarea></div>
+  <div class="item"><p>4. Help! My mini-pig ate my homework! 🐷📄</p><textarea placeholder="Why don't you...?"></textarea></div>
+  <button class="check">✨ Check ✨</button><div class="res"></div>
+</div>
+
+<div class="total" id="total">Проверь задания — здесь появится общий результат 🏆</div>
+</div>
+
+<!-- ================= WORDS ================= -->
+<div id="words" class="words hidden">
+<section><h3>👷 Jobs — профессии</h3><table>
+<tr><td>architect</td><td>архитектор</td></tr>
+<tr><td>cleaner</td><td>уборщик</td></tr>
+<tr><td>computer programmer</td><td>программист</td></tr>
+<tr><td>dentist</td><td>стоматолог</td></tr>
+<tr><td>engineer</td><td>инженер</td></tr>
+<tr><td>firefighter</td><td>пожарный</td></tr>
+<tr><td>hairdresser</td><td>парикмахер</td></tr>
+<tr><td>journalist</td><td>журналист</td></tr>
+<tr><td>tour guide</td><td>экскурсовод, гид</td></tr>
+</table></section>
+
+<section><h3>⭐ Describing jobs — какая работа</h3><table>
+<tr><td>exciting ≠ boring</td><td>увлекательная ≠ скучная</td></tr>
+<tr><td>easy ≠ challenging</td><td>лёгкая ≠ трудная (требует усилий)</td></tr>
+<tr><td>well-paid ≠ badly paid</td><td>хорошо оплачиваемая ≠ плохо оплачиваемая</td></tr>
+<tr><td>safe ≠ dangerous</td><td>безопасная ≠ опасная</td></tr>
+</table></section>
+
+<section><h3>👕 Clothes — одежда</h3><table>
+<tr><td>shirt</td><td>рубашка</td></tr>
+<tr><td>T-shirt</td><td>футболка</td></tr>
+<tr><td>belt</td><td>ремень, пояс</td></tr>
+<tr><td>boots</td><td>сапоги, ботинки</td></tr>
+<tr><td>coat</td><td>пальто</td></tr>
+<tr><td>shorts</td><td>шорты</td></tr>
+<tr><td>sandals</td><td>сандалии</td></tr>
+<tr><td>hat</td><td>шляпа, шапка</td></tr>
+<tr><td>trainers</td><td>кроссовки</td></tr>
+<tr><td>tie</td><td>галстук</td></tr>
+</table></section>
+
+<section><h3>🎨 Describing clothes — какая одежда</h3><table>
+<tr><td>striped</td><td>в полоску</td></tr>
+<tr><td>checked</td><td>в клетку</td></tr>
+<tr><td>floral</td><td>в цветочек</td></tr>
+<tr><td>spotted</td><td>в горошек</td></tr>
+<tr><td>plain</td><td>однотонный</td></tr>
+<tr><td>baggy ≠ tight</td><td>свободный, мешковатый ≠ облегающий</td></tr>
+<tr><td>smart ≠ casual</td><td>нарядный ≠ повседневный</td></tr>
+</table></section>
+
+<section><h3>🧹 make &amp; do</h3><table>
+<tr><td>make a mess</td><td>устроить беспорядок</td></tr>
+<tr><td>make your bed</td><td>заправить кровать</td></tr>
+<tr><td>make breakfast / dinner</td><td>готовить завтрак / ужин</td></tr>
+<tr><td>do the shopping</td><td>делать покупки</td></tr>
+<tr><td>do the dishes</td><td>мыть посуду</td></tr>
+<tr><td>do my homework</td><td>делать домашку</td></tr>
+</table></section>
+
+<section><h3>💬 Advice &amp; rules — советы и правила</h3><table>
+<tr><td>You should…</td><td>Тебе стоит…</td></tr>
+<tr><td>You shouldn't…</td><td>Тебе не стоит…</td></tr>
+<tr><td>Why don't you…?</td><td>Почему бы тебе не…?</td></tr>
+<tr><td>What should I do?</td><td>Что мне делать?</td></tr>
+<tr><td>must / mustn't</td><td>обязательно / нельзя</td></tr>
+<tr><td>have to / don't have to</td><td>приходится / не обязательно</td></tr>
+</table></section>
+
+<section><h3>🏃 Verbs — глаголы (+ Past Continuous)</h3><table>
+<tr><td>dance — was dancing</td><td>танцевать</td></tr>
+<tr><td>sleep — was sleeping</td><td>спать</td></tr>
+<tr><td>watch — was watching</td><td>смотреть</td></tr>
+<tr><td>make — was making</td><td>делать, готовить</td></tr>
+<tr><td>swim — was swimming</td><td>плавать</td></tr>
+<tr><td>eat — was eating</td><td>есть</td></tr>
+<tr><td>lie — was lying</td><td>лежать</td></tr>
+<tr><td>bark — was barking</td><td>лаять</td></tr>
+<tr><td>help — was helping</td><td>помогать</td></tr>
+<tr><td>wear — was wearing</td><td>носить (одежду)</td></tr>
+<tr><td>clean — was cleaning</td><td>убирать, чистить</td></tr>
+<tr><td>play — was playing</td><td>играть</td></tr>
+<tr><td>drink — was drinking</td><td>пить</td></tr>
+<tr><td>do — was doing</td><td>делать</td></tr>
+<tr><td>serve — was serving</td><td>обслуживать</td></tr>
+<tr><td>wash — was washing</td><td>мыть</td></tr>
+<tr><td>see — saw</td><td>видеть — увидел</td></tr>
+<tr><td>earn</td><td>зарабатывать</td></tr>
+<tr><td>look after</td><td>заботиться, ухаживать</td></tr>
+</table></section>
+</div>
+
+<footer>Good luck, Stepa! 🐀🐷🐢🦫</footer>
+</div>
+
+<script>
+function norm(s){
+  s=(s||"").toLowerCase().replace(/[’‘`´]/g,"'");
+  s=s.replace(/won't/g,"will not").replace(/can't/g,"can not").replace(/cannot/g,"can not")
+     .replace(/n't/g," not").replace(/'m\b/g," am").replace(/'re\b/g," are").replace(/'ll\b/g," will").replace(/'ve\b/g," have");
+  s=s.replace(/[-–—]/g," ").replace(/[^a-zа-яё0-9' ]/g," ").replace(/'/g,"").replace(/\s+/g," ").trim();
+  return s;
+}
+const results={};
+function showTotal(){
+  let c=0,t=0,n=0;for(const k in results){c+=results[k].c;t+=results[k].t;n++}
+  const el=document.getElementById('total');
+  if(!n){el.textContent='Проверь задания — здесь появится общий результат 🏆';return}
+  el.textContent='Итого: '+c+' из '+t+' ('+Math.round(c/t*100)+'%) · проверено заданий: '+n+' из 7 🏆';
+}
+function feedback(c,t){
+  const p=c/t;
+  if(p===1)return '🌟 Perfect! Всё правильно, Стёпа! Капибара гордится тобой 🦫';
+  if(p>=.75)return '👍 Отлично! Посмотри на ошибки и запомни правильные ответы.';
+  if(p>=.5)return '🙂 Неплохо! Повтори правило и исправь ошибки.';
+  return '💪 Давай ещё раз повторим тему и попробуем снова!';
+}
+function clearMarks(card){
+  card.querySelectorAll('.corr,.hint').forEach(e=>e.remove());
+  card.querySelectorAll('.ok,.bad,.empty').forEach(e=>e.classList.remove('ok','bad','empty'));
+}
+function addAfter(el,cls,txt){const s=document.createElement('span');s.className=cls;s.textContent=txt;el.after(s);return s}
+
+// tabs
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+  document.getElementById('ex').classList.toggle('hidden',b.dataset.t!=='ex');
+  document.getElementById('words').classList.toggle('hidden',b.dataset.t!=='words');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+// blanks: sizes + word bank
+document.querySelectorAll('.ex[data-kind=blank]').forEach(card=>{
+  const ins=[...card.querySelectorAll('input.b')];
+  let last=null;
+  ins.forEach(i=>{
+    const longest=Math.max(...i.dataset.a.split('|').map(x=>x.length));
+    i.size=Math.max(longest+2,7);
+    i.autocomplete='off';i.autocapitalize='off';i.spellcheck=false;
+    i.addEventListener('focus',()=>last=i);
+    i.addEventListener('input',()=>updateBank(card));
+  });
+  card.querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{
+    if(ch.classList.contains('used'))return;
+    let target=(last&&!last.value.trim())?last:ins.find(i=>!i.value.trim());
+    if(!target)return;
+    target.value=ch.textContent;target.classList.remove('ok','bad','empty');
+    const nx=target.nextElementSibling;if(nx&&(nx.classList.contains('corr')||nx.classList.contains('hint')))nx.remove();
+    const nextEmpty=ins.find(i=>!i.value.trim());last=nextEmpty||target;
+    updateBank(card);
+  });
+});
+function updateBank(card){
+  const vals=[...card.querySelectorAll('input.b')].map(i=>norm(i.value));
+  card.querySelectorAll('.chip').forEach(ch=>ch.classList.toggle('used',vals.includes(norm(ch.textContent))));
+}
+
+// choice
+document.querySelectorAll('.ex[data-kind=choice] li').forEach(li=>{
+  li.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{
+    li.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel','ok','bad'));
+    o.classList.add('sel');
+    li.querySelectorAll('.corr,.hint').forEach(e=>e.remove());
+  });
+});
+
+// check
+document.querySelectorAll('.ex').forEach(card=>{
+  const res=card.querySelector('.res');
+  card.querySelector('.check').onclick=()=>{
+    clearMarks(card);
+    const kind=card.dataset.kind;let c=0,t=0,filled=0;
+    if(kind==='blank'){
+      const ins=[...card.querySelectorAll('input.b')];t=ins.length;
+      filled=ins.filter(i=>i.value.trim()).length;
+      if(filled){ins.forEach(i=>{
+        const v=norm(i.value);const ans=i.dataset.a.split('|');
+        if(!v){i.classList.add('empty');addAfter(i,'hint','✍️ Попробуй сам!')}
+        else if(ans.some(a=>norm(a)===v)){i.classList.add('ok');c++}
+        else{i.classList.add('bad');addAfter(i,'corr','→ '+ans[0])}
+      })}
+    }else if(kind==='choice'){
+      const lis=[...card.querySelectorAll('li')];t=lis.length;
+      lis.forEach(li=>{
+        const sel=li.querySelector('.opt.sel');const opts=li.querySelector('.opts');
+        if(!sel){return}
+        filled++;
+        if(norm(sel.textContent)===norm(li.dataset.a)){sel.classList.add('ok');c++}
+        else{sel.classList.add('bad');addAfter(opts,'corr','→ '+li.dataset.a)}
+      });
+      if(filled)lis.forEach(li=>{if(!li.querySelector('.opt.sel'))addAfter(li.querySelector('.opts'),'hint','✍️ Попробуй сам!')});
+    }else{
+      const tas=[...card.querySelectorAll('textarea')];t=tas.length;
+      filled=tas.filter(x=>x.value.trim()).length;
+      if(filled)tas.forEach(ta=>{
+        const v=norm(ta.value);
+        if(!v){ta.classList.add('empty');addAfter(ta,'hint','✍️ Попробуй сам!');return}
+        const good=(v.includes('should')||v.includes('why do not you')||v.includes('what about'))&&v.split(' ').length>=4;
+        if(good){ta.classList.add('ok');c++}
+        else{ta.classList.add('bad');addAfter(ta,'corr','Нужен совет: You should… / You shouldn\'t… / Why don\'t you…? (минимум 4 слова)')}
+      });
+    }
+    res.classList.add('show');
+    if(!filled){
+      res.textContent='🙈 Задание пока пустое. Выполни его и попробуй ещё раз!';
+      delete results[card.id];showTotal();return;
+    }
+    let msg='Результат: '+c+' из '+t+'. '+feedback(c,t);
+    if(filled<t)msg+=' Остались пустые места — заполни их и проверь снова ✍️';
+    if(kind==='write'&&c)msg+=' (Учитель ещё посмотрит твои ответы 😉)';
+    res.textContent=msg;results[card.id]={c,t};showTotal();
+  };
+});
+</script>
+</body>
+</html>
