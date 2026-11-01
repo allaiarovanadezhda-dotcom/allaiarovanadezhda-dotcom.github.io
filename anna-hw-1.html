@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anna · Homework 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#faf6ef; --linen:#f3ebdf; --beige:#e9dcc8; --sand:#d8c2a0;
+  --ochre:#c58f3d; --gold:#c9a14a; --gold2:#e8cf8a; --brown:#7a5638; --espresso:#3e2b1f;
+  --text:#4a3628; --muted:#8c7461; --ok:#7c8b4f; --okbg:#eef0e0; --bad:#b5653f; --badbg:#f8e9df;
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--cream);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+
+/* ---------- HERO (gold glitter) ---------- */
+.hero{position:relative;overflow:hidden;padding:46px 20px 40px;text-align:center;color:#fff8ea;
+  background:
+   radial-gradient(1px 1px at 12% 20%,#fff3c4 50%,transparent 51%),
+   radial-gradient(1.5px 1.5px at 30% 70%,#f6dc94 50%,transparent 51%),
+   radial-gradient(1px 1px at 55% 35%,#fff 50%,transparent 51%),
+   radial-gradient(2px 2px at 78% 60%,#e9c46a 50%,transparent 51%),
+   radial-gradient(1px 1px at 88% 18%,#fff3c4 50%,transparent 51%),
+   radial-gradient(1.5px 1.5px at 66% 85%,#fff 50%,transparent 51%),
+   radial-gradient(120% 90% at 50% 0%,#a8783f 0%,#7a5432 45%,#4b3221 100%);
+  background-size:90px 90px,130px 130px,70px 70px,160px 160px,110px 110px,140px 140px,100% 100%;
+}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,230,160,.18) 45%,transparent 60%);
+  background-size:250% 100%;animation:sheen 6s ease-in-out infinite}
+@keyframes sheen{0%{background-position:120% 0}100%{background-position:-120% 0}}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#f3d58a 40%,transparent 70%);animation:tw 2.4s ease-in-out infinite;opacity:0}
+.spark.star{width:12px;height:12px;background:none}
+.spark.star::before{content:"✦";position:absolute;inset:0;font-size:12px;line-height:12px;color:#f7dd96;text-shadow:0 0 6px #ffe7a8}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+.hero .kicker{position:relative;z-index:1;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#f1d9a0}
+.hero h1{position:relative;z-index:1;margin:10px 0 6px;font-size:46px;line-height:1.02;font-weight:600;font-style:italic;
+  background:linear-gradient(180deg,#fff6dc,#e9c776 55%,#c99a45);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{position:relative;z-index:1;margin:0 auto;max-width:440px;color:#f5e8cf;font-size:15px}
+.chips{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.chip{border:1px solid rgba(240,214,150,.55);border-radius:999px;padding:5px 12px;font-size:12.5px;color:#fbefd3;background:rgba(255,255,255,.06);backdrop-filter:blur(4px)}
+
+/* ---------- TABS ---------- */
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:6px;justify-content:center;padding:10px 16px;background:rgba(250,246,239,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige)}
+.tab{flex:1;max-width:170px;border:1px solid var(--sand);background:#fff;color:var(--brown);border-radius:999px;padding:9px 6px;font:500 14px Inter,sans-serif;cursor:pointer}
+.tab.active{background:linear-gradient(180deg,#d9b26a,#b9873e);color:#fff;border-color:#b9873e;box-shadow:0 4px 14px rgba(185,135,62,.35)}
+.panel{display:none;max-width:720px;margin:0 auto;padding:22px 16px 60px}
+.panel.active{display:block}
+
+/* ---------- CARDS ---------- */
+.card{border-radius:var(--radius);padding:22px 18px;margin:0 0 22px;border:1px solid var(--beige);box-shadow:0 10px 30px rgba(122,86,56,.07)}
+.bg-cream{background:#fffdf9}
+.bg-linen{background:repeating-linear-gradient(0deg,rgba(201,161,74,.06) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(201,161,74,.05) 0 1px,transparent 1px 4px),var(--linen)}
+.bg-grid{background:linear-gradient(rgba(197,143,61,.09) 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,rgba(197,143,61,.09) 1px,transparent 1px) 0 0/22px 22px,#fffaf2}
+.bg-dust{background:radial-gradient(1.2px 1.2px at 20% 30%,rgba(201,161,74,.55) 50%,transparent 51%) 0 0/46px 46px,radial-gradient(1px 1px at 70% 70%,rgba(201,161,74,.45) 50%,transparent 51%) 0 0/34px 34px,linear-gradient(180deg,#f6eee2,#efe3d1)}
+.ex-head{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.ex-num{font-family:"Cormorant Garamond",serif;font-size:34px;font-style:italic;color:var(--gold);line-height:1}
+.ex-title{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:600;color:var(--espresso);margin:0;line-height:1.15}
+.ex-task{color:var(--muted);font-size:14.5px;margin:6px 0 16px}
+.sub{font-family:"Cormorant Garamond",serif;font-size:20px;font-style:italic;color:var(--brown);margin:18px 0 10px}
+.example{background:rgba(255,255,255,.7);border:1px dashed var(--sand);border-radius:14px;padding:10px 12px;font-size:14px;margin-bottom:14px}
+.example b{color:var(--brown)}
+
+/* items */
+.item{padding:12px 0;border-bottom:1px solid rgba(216,194,160,.45)}
+.item:last-child{border-bottom:0}
+.q{font-size:15.5px;margin-bottom:8px}
+.q .n{display:inline-block;min-width:22px;color:var(--gold);font-weight:600}
+.q .hint{color:var(--ochre);font-weight:500}
+.q .ru{display:block;color:var(--muted);font-size:13px;margin-left:22px}
+.gap{display:inline-block;min-width:60px;border-bottom:1.5px solid var(--sand);height:1em;vertical-align:-2px}
+input.ans{width:100%;font:16px Inter,sans-serif;color:var(--espresso);background:#fff;border:1.5px solid var(--beige);border-radius:12px;padding:10px 12px;outline:none;transition:.2s}
+input.ans:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,161,74,.18)}
+input.ans.ok{border-color:var(--ok);background:var(--okbg)}
+input.ans.bad{border-color:var(--bad);background:var(--badbg)}
+input.ans.empty{border-color:var(--gold2);border-style:dashed}
+.note{font-size:13.5px;margin-top:6px}
+.note.ok{color:var(--ok)}.note.bad{color:var(--bad)}.note.empty{color:var(--ochre)}
+
+.verbs{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.verb{background:rgba(255,255,255,.75);border:1px solid var(--beige);border-radius:14px;padding:10px}
+.verb .v{font-weight:600;color:var(--brown);font-size:15px;margin-bottom:6px}
+.verb .v small{font-weight:400;color:var(--muted)}
+.verb input.ans{padding:8px 10px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 22px;font:600 15px Inter,sans-serif;cursor:pointer;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#dcb877 0%,#c39348 55%,#a9773a 100%);box-shadow:0 6px 18px rgba(169,119,58,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.2s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.btn.light{background:#fff;color:var(--brown);border:1px solid var(--sand);box-shadow:none}
+.btn.light::after{display:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.result{margin-top:14px;border-radius:16px;padding:14px;display:none;font-size:14.5px}
+.result.show{display:block}
+.result.r-ok{background:var(--okbg);border:1px solid #cfd5b0}
+.result.r-mid{background:#fbf1de;border:1px solid var(--gold2)}
+.result.r-empty{background:#fff;border:1px dashed var(--gold)}
+.result .score{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:600;color:var(--espresso)}
+.result ul{margin:6px 0 0;padding-left:18px}
+
+/* summary */
+.summary{text-align:center}
+.summary h2{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:30px;margin:0 0 6px;color:var(--espresso)}
+.prog{height:10px;background:var(--beige);border-radius:999px;overflow:hidden;margin:14px 0 8px}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e8cf8a,#c58f3d);transition:width .6s}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);opacity:0;background:var(--espresso);color:#fff6e3;padding:10px 18px;border-radius:999px;font-size:14px;transition:.3s;z-index:60;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---------- WORDS / RULES ---------- */
+table.t{width:100%;border-collapse:collapse;font-size:14.5px}
+table.t th{text-align:left;font-weight:600;color:var(--brown);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:8px 6px;border-bottom:1.5px solid var(--sand)}
+table.t td{padding:8px 6px;border-bottom:1px solid rgba(216,194,160,.45);vertical-align:top}
+table.t td:nth-child(2){color:var(--ochre);font-weight:600}
+table.t td:last-child{color:var(--muted)}
+.search{width:100%;font:16px Inter,sans-serif;border:1.5px solid var(--beige);border-radius:999px;padding:10px 16px;margin-bottom:12px;background:#fff;outline:none}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:#fff;border:1px solid var(--beige);border-radius:999px;padding:6px 12px;font-size:14px}
+.pill span{color:var(--muted)}
+.tense{border-left:3px solid var(--gold);padding:4px 0 4px 14px;margin:14px 0}
+.tense h3{margin:0 0 4px;font-family:"Cormorant Garamond",serif;font-size:23px;color:var(--espresso)}
+.tense .when{color:var(--muted);font-size:14px;margin-bottom:8px}
+.form{display:grid;grid-template-columns:28px 1fr;gap:4px 6px;font-size:14.5px}
+.form b{color:var(--gold);text-align:center}
+.markers{margin-top:8px;font-size:13.5px;color:var(--brown)}
+.markers em{font-style:normal;background:#fff;border:1px solid var(--beige);border-radius:999px;padding:2px 9px;margin:3px 3px 0 0;display:inline-block}
+.rule{background:#fff;border:1px solid var(--beige);border-radius:16px;padding:12px 14px;margin:10px 0}
+.rule .r{font-weight:600;color:var(--brown)}
+.rule .e{color:var(--ochre);font-weight:600}
+.compare{overflow-x:auto}
+.compare table{min-width:420px}
+
+/* ---------- CELEBRATION ---------- */
+#celebrate{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;overflow:hidden;
+  background:radial-gradient(60% 45% at 50% 38%,rgba(255,236,190,.35),transparent 70%),radial-gradient(120% 100% at 50% 0%,#5b3e28,#2a1c13 70%)}
+#celebrate.show{display:flex;animation:fadeIn .6s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+#confetti{position:absolute;inset:0;width:100%;height:100%}
+.beam{position:absolute;top:-10%;width:30%;height:120%;background:linear-gradient(180deg,rgba(255,240,200,.28),transparent 80%);filter:blur(8px);transform-origin:top center}
+.beam.l{left:5%;transform:rotate(18deg);animation:beamL 5s ease-in-out infinite}
+.beam.r{right:5%;transform:rotate(-18deg);animation:beamR 5s ease-in-out infinite}
+@keyframes beamL{50%{transform:rotate(8deg)}}
+@keyframes beamR{50%{transform:rotate(-8deg)}}
+.stage{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:520px}
+.wings{width:min(92vw,440px);height:auto;display:block;margin:0 auto -18px;filter:drop-shadow(0 0 22px rgba(255,226,160,.55))}
+.wing-l{transform-origin:200px 120px;animation:flapL 2.2s ease-in-out infinite}
+.wing-r{transform-origin:200px 120px;animation:flapR 2.2s ease-in-out infinite}
+@keyframes flapL{0%,100%{transform:rotate(0)}50%{transform:rotate(7deg)}}
+@keyframes flapR{0%,100%{transform:rotate(0)}50%{transform:rotate(-7deg)}}
+.bravo{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:clamp(48px,14vw,76px);line-height:1;margin:0;
+  background:linear-gradient(180deg,#fff7df,#ecc978 55%,#c08d3e);-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .9s cubic-bezier(.2,.8,.2,1) both .3s}
+.stage p{color:#f4e3c3;margin:10px 0 0;animation:rise .9s cubic-bezier(.2,.8,.2,1) both .55s}
+.stage .row{justify-content:center;animation:rise .9s cubic-bezier(.2,.8,.2,1) both .8s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 16px 30px}
+@media (min-width:600px){.verbs{grid-template-columns:repeat(4,1fr)}.hero h1{font-size:58px}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="hero">
+  <div class="kicker">Homework · English File Elementary</div>
+  <h1 class="serif">Hello, Anna</h1>
+  <p>Неправильные глаголы, притяжательный падеж и три времени. Прогресс сохраняется сам — можно вернуться и доделать ✨</p>
+  <div class="chips"><span class="chip">Past Simple</span><span class="chip">Irregular verbs</span><span class="chip">mum's bag</span><span class="chip">3 tenses</span></div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="tasks">Задания</button>
+  <button class="tab" data-tab="words">Слова</button>
+  <button class="tab" data-tab="rules">Подсказки</button>
+</nav>
+
+<!-- ================= TASKS ================= -->
+<main class="panel active" id="tasks">
+
+  <section class="card bg-cream" id="card-ex1">
+    <div class="ex-head"><span class="ex-num">01</span><h2 class="ex-title">Irregular verbs</h2></div>
+    <p class="ex-task">A. Напиши форму Past Simple. Если забыла — загляни во вкладку «Слова», а потом попробуй по памяти 🤍</p>
+    <div class="verbs" id="ex1a"></div>
+
+    <div class="sub">B. Past Simple в предложениях</div>
+    <p class="ex-task" style="margin-top:0">Поставь глагол в скобках в Past Simple. Обрати внимание на <b>not</b> и вопросы.</p>
+    <div class="example">Пример: I ____ (see) a film last night. → <b>saw</b></div>
+    <div id="ex1b"></div>
+    <div class="row"><button class="btn" data-check="ex1">Проверить ✦</button></div>
+    <div class="result" id="res-ex1"></div>
+  </section>
+
+  <section class="card bg-linen" id="card-ex2">
+    <div class="ex-head"><span class="ex-num">02</span><h2 class="ex-title">Possessive ’s</h2></div>
+    <p class="ex-task">Напиши по-английски, кому что принадлежит. Смотри внимательно: один человек или несколько? Правило — во вкладке «Подсказки».</p>
+    <div class="example">Пример: мамина сумка (my mum / bag) → <b>my mum's bag</b></div>
+    <div id="ex2"></div>
+    <div class="row"><button class="btn" data-check="ex2">Проверить ✦</button></div>
+    <div class="result" id="res-ex2"></div>
+  </section>
+
+  <section class="card bg-grid" id="card-ex3">
+    <div class="ex-head"><span class="ex-num">03</span><h2 class="ex-title">Present Simple, Present Continuous or Past Simple?</h2></div>
+    <p class="ex-task">Поставь глагол в нужное время. Ищи подсказки: <i>usually, now, Look!, yesterday, ago</i>…</p>
+    <div class="example">Пример: She ____ (cook) dinner now. → <b>is cooking</b></div>
+    <div id="ex3"></div>
+    <div class="row"><button class="btn" data-check="ex3">Проверить ✦</button></div>
+    <div class="result" id="res-ex3"></div>
+  </section>
+
+  <section class="card bg-dust summary">
+    <h2>Your result</h2>
+    <div id="sumText" style="color:var(--muted);font-size:14.5px">Проверь все три задания — здесь появится общий балл.</div>
+    <div class="prog"><i id="sumBar"></i></div>
+    <div class="row" style="justify-content:center">
+      <button class="btn" id="sendBtn">Отправить результат 💌</button>
+      <button class="btn light" id="checkAll">Проверить всё</button>
+    </div>
+  </section>
+</main>
+
+<!-- ================= WORDS ================= -->
+<section class="panel" id="words">
+  <div class="card bg-cream">
+    <div class="ex-head"><h2 class="ex-title">Irregular verbs</h2></div>
+    <p class="ex-task">Учи по 5–6 глаголов в день: закрой вторую колонку и проверь себя.</p>
+    <input class="search" id="verbSearch" placeholder="Найти глагол… (go, купить)" autocomplete="off">
+    <table class="t" id="verbTable"><thead><tr><th>Verb</th><th>Past</th><th>Перевод</th></tr></thead><tbody></tbody></table>
+  </div>
+
+  <div class="card bg-linen">
+    <div class="ex-head"><h2 class="ex-title">Regular verbs: + ed</h2></div>
+    <div class="pills">
+      <span class="pill">work → worked</span><span class="pill">watch → watched</span><span class="pill">play → played</span>
+      <span class="pill">visit → visited</span><span class="pill">like → liked</span><span class="pill">live → lived</span>
+      <span class="pill">study → studied</span><span class="pill">stop → stopped</span><span class="pill">want → wanted</span>
+    </div>
+  </div>
+
+  <div class="card bg-grid">
+    <div class="ex-head"><h2 class="ex-title">Time words</h2></div>
+    <div class="sub" style="margin-top:4px">Past Simple</div>
+    <div class="pills">
+      <span class="pill">yesterday <span>вчера</span></span><span class="pill">last night <span>вчера вечером</span></span>
+      <span class="pill">last week <span>на прошлой неделе</span></span><span class="pill">last Sunday <span>в прошлое воскресенье</span></span>
+      <span class="pill">two days ago <span>два дня назад</span></span><span class="pill">in 2020 <span>в 2020 году</span></span>
+    </div>
+    <div class="sub">Present Continuous</div>
+    <div class="pills">
+      <span class="pill">now <span>сейчас</span></span><span class="pill">right now <span>прямо сейчас</span></span>
+      <span class="pill">at the moment <span>в данный момент</span></span><span class="pill">Look! <span>Смотри!</span></span><span class="pill">Listen! <span>Слушай!</span></span>
+    </div>
+    <div class="sub">Present Simple</div>
+    <div class="pills">
+      <span class="pill">always <span>всегда</span></span><span class="pill">usually <span>обычно</span></span><span class="pill">often <span>часто</span></span>
+      <span class="pill">sometimes <span>иногда</span></span><span class="pill">never <span>никогда</span></span>
+      <span class="pill">every day <span>каждый день</span></span><span class="pill">on Mondays <span>по понедельникам</span></span>
+    </div>
+  </div>
+
+  <div class="card bg-dust">
+    <div class="ex-head"><h2 class="ex-title">Family &amp; people</h2></div>
+    <div class="pills">
+      <span class="pill">mum <span>мама</span></span><span class="pill">dad <span>папа</span></span><span class="pill">parents <span>родители</span></span>
+      <span class="pill">brother <span>брат</span></span><span class="pill">sister <span>сестра</span></span><span class="pill">grandma <span>бабушка</span></span>
+      <span class="pill">grandpa <span>дедушка</span></span><span class="pill">aunt <span>тётя</span></span><span class="pill">uncle <span>дядя</span></span>
+      <span class="pill">cousin <span>двоюродный брат/сестра</span></span><span class="pill">friend <span>друг</span></span>
+      <span class="pill">child → children <span>ребёнок → дети</span></span><span class="pill">man → men <span>мужчина → мужчины</span></span>
+      <span class="pill">woman → women <span>женщина → женщины</span></span><span class="pill">person → people <span>человек → люди</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RULES ================= -->
+<section class="panel" id="rules">
+  <div class="card bg-cream">
+    <div class="ex-head"><h2 class="ex-title">Три времени</h2></div>
+
+    <div class="tense">
+      <h3>Present Simple</h3>
+      <div class="when">Обычно, регулярно, всегда. Факты и привычки.</div>
+      <div class="form">
+        <b>+</b><span>I / you / we / they <b style="color:var(--ochre)">work</b> · he / she / it <b style="color:var(--ochre)">works</b></span>
+        <b>−</b><span>I <b style="color:var(--ochre)">don't work</b> · she <b style="color:var(--ochre)">doesn't work</b></span>
+        <b>?</b><span><b style="color:var(--ochre)">Do</b> you work? · <b style="color:var(--ochre)">Does</b> she work?</span>
+      </div>
+      <div class="markers"><em>always</em><em>usually</em><em>often</em><em>every day</em><em>on Mondays</em></div>
+    </div>
+
+    <div class="tense">
+      <h3>Present Continuous</h3>
+      <div class="when">Происходит прямо сейчас, в момент речи.</div>
+      <div class="form">
+        <b>+</b><span>I <b style="color:var(--ochre)">am working</b> · she <b style="color:var(--ochre)">is working</b> · they <b style="color:var(--ochre)">are working</b></span>
+        <b>−</b><span>I'm <b style="color:var(--ochre)">not working</b> · she <b style="color:var(--ochre)">isn't working</b></span>
+        <b>?</b><span><b style="color:var(--ochre)">Is</b> she working? · <b style="color:var(--ochre)">Are</b> you working?</span>
+      </div>
+      <div class="markers"><em>now</em><em>right now</em><em>at the moment</em><em>Look!</em><em>Listen!</em></div>
+    </div>
+
+    <div class="tense">
+      <h3>Past Simple</h3>
+      <div class="when">Было и закончилось в прошлом.</div>
+      <div class="form">
+        <b>+</b><span>I <b style="color:var(--ochre)">worked</b> · I <b style="color:var(--ochre)">went</b> (неправильный глагол — 2-я форма)</span>
+        <b>−</b><span>I <b style="color:var(--ochre)">didn't work</b> · I <b style="color:var(--ochre)">didn't go</b> (после didn't — обычная форма!)</span>
+        <b>?</b><span><b style="color:var(--ochre)">Did</b> you work? · <b style="color:var(--ochre)">Did</b> you go?</span>
+      </div>
+      <div class="markers"><em>yesterday</em><em>last night</em><em>last week</em><em>two days ago</em><em>in 2020</em></div>
+    </div>
+  </div>
+
+  <div class="card bg-grid compare">
+    <div class="ex-head"><h2 class="ex-title">Сравни</h2></div>
+    <table class="t">
+      <thead><tr><th></th><th>Present Simple</th><th>Present Cont.</th><th>Past Simple</th></tr></thead>
+      <tbody>
+        <tr><td><b>+</b></td><td>She plays</td><td>She is playing</td><td>She played</td></tr>
+        <tr><td><b>−</b></td><td>She doesn't play</td><td>She isn't playing</td><td>She didn't play</td></tr>
+        <tr><td><b>?</b></td><td>Does she play?</td><td>Is she playing?</td><td>Did she play?</td></tr>
+      </tbody>
+    </table>
+    <div class="example" style="margin-top:14px">⚠️ Частая ошибка: <b>didn't went</b> ✗ → <b>didn't go</b> ✓ · <b>Did you saw?</b> ✗ → <b>Did you see?</b> ✓</div>
+  </div>
+
+  <div class="card bg-linen">
+    <div class="ex-head"><h2 class="ex-title">Possessive ’s — чьё?</h2></div>
+    <p class="ex-task">Сначала владелец, потом ’s, потом вещь: <b>мамина сумка = my mum's bag</b>.</p>
+    <div class="rule"><div class="r">1. Один человек → <span class="e">'s</span></div>my mum's bag · Anna's phone · my sister's room</div>
+    <div class="rule"><div class="r">2. Несколько (слово на -s) → только <span class="e">'</span></div>my parents' car · the girls' room · my brothers' bikes (у меня 2 брата)</div>
+    <div class="rule"><div class="r">3. Множественное без -s → <span class="e">'s</span></div>the children's toys · the women's bags · the men's shoes · people's names</div>
+    <div class="rule"><div class="r">4. Имя на -s → <span class="e">'s</span> (можно и просто ')</div>James's dog = James' dog · Chris's car</div>
+    <div class="rule"><div class="r">5. Два владельца одной вещи → <span class="e">'s</span> только у последнего</div>Tom and Kate's house (один дом на двоих)</div>
+    <div class="rule"><div class="r">⚠️ Не путай</div>Anna<b>'s</b> = Анны (чья?) · Anna<b>'s</b> tired = Anna <b>is</b> tired · my sister<b>s</b> = мои сёстры</div>
+  </div>
+</section>
+
+<footer>Made with love for Anna ✦</footer>
+
+<div id="celebrate" aria-hidden="true">
+  <div class="beam l"></div><div class="beam r"></div>
+  <canvas id="confetti"></canvas>
+  <div class="stage">
+    <svg class="wings" viewBox="0 0 400 230" id="wingsSvg">
+      <defs>
+        <linearGradient id="fg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#fffdf6"/><stop offset=".6" stop-color="#f6e7c4"/><stop offset="1" stop-color="#d9b46a"/>
+        </linearGradient>
+      </defs>
+      <g class="wing-l" id="wingL"></g>
+      <g class="wing-r" id="wingR"></g>
+    </svg>
+    <h2 class="bravo">Bravo, Anna!</h2>
+    <p>Всё правильно — ты сияешь на этом подиуме ✨<br>Отправь результат учителю.</p>
+    <div class="row">
+      <button class="btn" id="sendBtn2">Отправить результат 💌</button>
+      <button class="btn light" id="closeCel">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+var KEY = "anna-hw-1";
+
+/* ---------------- DATA ---------------- */
+var VERBS = [
+  ["be","was / were","быть"],["go","went","идти, ехать"],["have","had","иметь"],["get","got","получать; добираться"],
+  ["buy","bought","покупать"],["see","saw","видеть"],["do","did","делать"],["make","made","делать, готовить"],
+  ["come","came","приходить"],["eat","ate","есть"],["drink","drank","пить"],["take","took","брать"],
+  ["write","wrote","писать"],["meet","met","встречать"],["give","gave","давать"],["think","thought","думать"],
+  ["know","knew","знать"],["say","said","сказать"],["leave","left","уходить, уезжать"],["find","found","находить"],
+  ["sleep","slept","спать"],["read","read","читать"],["wear","wore","носить (одежду)"],["swim","swam","плавать"],
+  ["sing","sang","петь"],["lose","lost","терять"],["sit","sat","сидеть"],["can","could","мочь"]
+];
+
+var EX = {
+  ex1a: {mode:"tense", items:[
+    {v:"go",a:["went"]},{v:"have",a:["had"]},{v:"buy",a:["bought"]},{v:"see",a:["saw"]},
+    {v:"get",a:["got"]},{v:"make",a:["made"]},{v:"come",a:["came"]},{v:"eat",a:["ate"]},
+    {v:"take",a:["took"]},{v:"write",a:["wrote"]},{v:"meet",a:["met"]},{v:"think",a:["thought"]},
+    {v:"give",a:["gave"]},{v:"know",a:["knew"]},{v:"drink",a:["drank"]},{v:"be",ru:"2 формы",a:["was were","were was"],show:"was / were"}
+  ], tag:"неправильные глаголы (2-я форма)"},
+  ex1b: {mode:"tense", items:[
+    {q:"I ____ to the cinema with my friends yesterday.",h:"go",a:["went"],tag:"неправильные глаголы в Past Simple"},
+    {q:"We ____ breakfast this morning.",h:"not / have",a:["didn't have"],tag:"отрицание: didn't + обычная форма"},
+    {q:"____ Mark last weekend?",h:"you / see",a:["did you see"],tag:"вопрос: Did + обычная форма"},
+    {q:"She ____ a new dress last Saturday.",h:"buy",a:["bought"],tag:"неправильные глаголы в Past Simple"},
+    {q:"My parents ____ to the party.",h:"not / come",a:["didn't come"],tag:"отрицание: didn't + обычная форма"},
+    {q:"What ____ for dinner last night?",h:"you / eat",a:["did you eat"],tag:"вопрос: Did + обычная форма"},
+    {q:"I ____ my homework two hours ago.",h:"do",a:["did"],tag:"неправильные глаголы в Past Simple"},
+    {q:"We ____ my grandma last Sunday.",h:"visit",a:["visited"],tag:"правильные глаголы: + ed"}
+  ]},
+  ex2: {mode:"poss", items:[
+    {ru:"мамина сумка",h:"my mum / bag",a:["my mum's bag"],tag:"один человек → 's"},
+    {ru:"телефон Анны",h:"Anna / phone",a:["anna's phone"],tag:"один человек → 's"},
+    {ru:"машина моих родителей",h:"my parents / car",a:["my parents' car"],tag:"несколько (на -s) → только '"},
+    {ru:"игрушки детей",h:"the children / toys",a:["the children's toys"],tag:"children, women, men → 's"},
+    {ru:"друзья моей сестры",h:"my sister / friends",a:["my sister's friends"],tag:"один человек → 's"},
+    {ru:"комната девочек",h:"the girls / room",a:["the girls' room"],tag:"несколько (на -s) → только '"},
+    {ru:"собака Джеймса",h:"James / dog",a:["james's dog","james' dog"],tag:"имя на -s → 's или '"},
+    {ru:"дом Тома и Кейт (один на двоих)",h:"Tom and Kate / house",a:["tom and kate's house"],tag:"два владельца → 's у последнего"},
+    {ru:"сумки женщин",h:"the women / bags",a:["the women's bags"],tag:"children, women, men → 's"},
+    {ru:"велосипеды моих братьев (у меня 2 брата)",h:"my brothers / bikes",a:["my brothers' bikes"],tag:"несколько (на -s) → только '"}
+  ]},
+  ex3: {mode:"tense", items:[
+    {q:"My dad ____ in a bank.",h:"work",a:["works"],tag:"Present Simple: he/she/it + s"},
+    {q:"Look! It ____ .",h:"rain",a:["is raining"],tag:"Present Continuous: am/is/are + -ing"},
+    {q:"We ____ a great film last night.",h:"watch",a:["watched"],tag:"Past Simple"},
+    {q:"I ____ TV right now. I'm doing my homework.",h:"not / watch",a:["am not watching"],tag:"Present Continuous: am/is/are + -ing"},
+    {q:"Anna usually ____ at 7 o'clock.",h:"get up",a:["gets up"],tag:"Present Simple: he/she/it + s"},
+    {q:"____ coffee?",h:"you / like",a:["do you like"],tag:"Present Simple: вопрос с do/does"},
+    {q:"They ____ to school yesterday.",h:"not / go",a:["did not go"],tag:"Past Simple: didn't + обычная форма"},
+    {q:"What ____ at the moment?",h:"she / do",a:["is she doing"],tag:"Present Continuous: вопрос is/are + -ing"},
+    {q:"I ____ a message to my friend an hour ago.",h:"write",a:["wrote"],tag:"Past Simple"},
+    {q:"My brother ____ football on Mondays.",h:"not / play",a:["does not play"],tag:"Present Simple: don't / doesn't"},
+    {q:"____ the new film last week?",h:"you / see",a:["did you see"],tag:"Past Simple: вопрос с Did"},
+    {q:"Shh! The baby ____ .",h:"sleep",a:["is sleeping"],tag:"Present Continuous: am/is/are + -ing"}
+  ]}
+};
+var GROUPS = {ex1:["ex1a","ex1b"], ex2:["ex2"], ex3:["ex3"]};
+var TITLES = {ex1:"Irregular verbs / Past Simple", ex2:"Possessive 's", ex3:"3 tenses"};
+
+/* ---------------- NORMALIZE ---------------- */
+function base(s){
+  return String(s||"").toLowerCase().replace(/[\u2019\u2018\u02bc`´]/g,"'");
+}
+function normTense(s){
+  s = base(s);
+  s = s.replace(/can't/g,"cannot").replace(/won't/g,"will not")
+       .replace(/n't/g," not").replace(/'m/g," am").replace(/'re/g," are").replace(/'s/g," is").replace(/'ve/g," have");
+  s = s.replace(/[^a-z\s]/g," ").replace(/\s+/g," ").trim();
+  return s;
+}
+function normPoss(s){
+  s = base(s);
+  s = s.replace(/[.,!?;:"«»()]/g," ").replace(/\s+/g," ").trim();
+  s = s.replace(/^(this is|these are|it is|it's|they are|they're) /,"");
+  s = s.replace(/\s*'\s*/g,"'"); // "mum ' s" -> "mum's"
+  return s;
+}
+function norm(mode,s){ return mode==="poss" ? normPoss(s) : normTense(s); }
+function isRight(mode,val,answers){
+  var v = norm(mode,val);
+  for (var i=0;i<answers.length;i++){ if (norm(mode,answers[i])===v) return true; }
+  return false;
+}
+
+/* ---------------- STORAGE ---------------- */
+var state = {vals:{}};
+try { var raw = localStorage.getItem(KEY); if (raw) state = JSON.parse(raw) || {vals:{}}; } catch(e){}
+if (!state.vals) state.vals = {};
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+/* ---------------- RENDER ---------------- */
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function gapify(q){ return esc(q).replace("____",'<span class="gap"></span>'); }
+
+function inputHtml(id){
+  return '<input class="ans" id="'+id+'" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="твой ответ">'+
+         '<div class="note" id="'+id+'-n"></div>';
+}
+(function renderAll(){
+  var h = "";
+  EX.ex1a.items.forEach(function(it,i){
+    h += '<div class="verb"><div class="v">'+esc(it.v)+(it.ru?' <small>('+it.ru+')</small>':'')+'</div>'+inputHtml("ex1a-"+i)+'</div>';
+  });
+  document.getElementById("ex1a").innerHTML = h;
+
+  ["ex1b","ex3"].forEach(function(ex){
+    var h2="";
+    EX[ex].items.forEach(function(it,i){
+      h2 += '<div class="item"><div class="q"><span class="n">'+(i+1)+'.</span>'+gapify(it.q)+' <span class="hint">('+esc(it.h)+')</span></div>'+inputHtml(ex+"-"+i)+'</div>';
+    });
+    document.getElementById(ex).innerHTML = h2;
+  });
+
+  var h3="";
+  EX.ex2.items.forEach(function(it,i){
+    h3 += '<div class="item"><div class="q"><span class="n">'+(i+1)+'.</span>'+esc(it.ru)+' <span class="hint">('+esc(it.h)+')</span></div>'+inputHtml("ex2-"+i)+'</div>';
+  });
+  document.getElementById("ex2").innerHTML = h3;
+
+  var tb = "";
+  VERBS.forEach(function(v){ tb += "<tr><td>"+v[0]+"</td><td>"+v[1]+"</td><td>"+v[2]+"</td></tr>"; });
+  document.querySelector("#verbTable tbody").innerHTML = tb;
+})();
+
+// restore + autosave
+Array.prototype.forEach.call(document.querySelectorAll("input.ans"), function(inp){
+  if (state.vals[inp.id] != null) inp.value = state.vals[inp.id];
+  inp.addEventListener("input", function(){
+    state.vals[inp.id] = inp.value; save();
+    inp.classList.remove("ok","bad","empty");
+    var n = document.getElementById(inp.id+"-n"); n.className="note"; n.textContent="";
+  });
+});
+
+/* ---------------- CHECK ---------------- */
+var results = {};
+function checkGroup(g, silent){
+  var parts = GROUPS[g], total=0, right=0, filled=0, emptyCount=0, tags={};
+  parts.forEach(function(ex){ EX[ex].items.forEach(function(it,i){
+    total++;
+    if (document.getElementById(ex+"-"+i).value.trim()!=="") filled++;
+  });});
+  var box = document.getElementById("res-"+g);
+
+  if (filled===0){
+    parts.forEach(function(ex){ EX[ex].items.forEach(function(it,i){ clearMark(ex+"-"+i); });});
+    box.className = "result show r-empty";
+    box.innerHTML = "🤍 Задание пока пустое. Выполни его и нажми «Проверить» ещё раз — ответы не подсмотреть 😉";
+    results[g] = null; updateSummary(); return;
+  }
+
+  parts.forEach(function(ex){
+    var mode = EX[ex].mode;
+    EX[ex].items.forEach(function(it,i){
+      var id = ex+"-"+i, inp = document.getElementById(id), n = document.getElementById(id+"-n");
+      inp.classList.remove("ok","bad","empty");
+      if (inp.value.trim()===""){
+        emptyCount++; inp.classList.add("empty"); n.className="note empty"; n.textContent="Попробуй сама ✨";
+      } else if (isRight(mode, inp.value, it.a)){
+        right++; inp.classList.add("ok"); n.className="note ok"; n.textContent="✓ Perfect";
+      } else {
+        inp.classList.add("bad"); n.className="note bad";
+        n.textContent = "✗ Правильно: " + (it.show || it.a[0]);
+        var t = it.tag || EX[ex].tag; tags[t]=(tags[t]||0)+1;
+      }
+    });
+  });
+
+  var pct = Math.round(right/total*100);
+  var html = '<div class="score">'+right+' / '+total+'</div>';
+  if (right===total){ html += "Безупречно! ✨"; box.className="result show r-ok"; }
+  else {
+    box.className = "result show " + (pct>=70 ? "r-ok" : "r-mid");
+    if (emptyCount) html += "<div>Не заполнено: <b>"+emptyCount+"</b> — допиши и проверь ещё раз 🤍</div>";
+    var tk = Object.keys(tags);
+    if (tk.length){
+      html += "<div style='margin-top:6px'>Что повторить:</div><ul>";
+      tk.forEach(function(t){ html += "<li>"+esc(t)+" <span style='color:var(--muted)'>("+tags[t]+")</span></li>"; });
+      html += "</ul><div style='margin-top:6px;color:var(--muted)'>Подсказки — во вкладках «Слова» и «Подсказки».</div>";
+    }
+  }
+  box.innerHTML = html;
+  results[g] = {right:right,total:total,empty:emptyCount,tags:tags};
+  state.results = results; save();
+  updateSummary();
+  if (!silent) maybeCelebrate();
+}
+function clearMark(id){
+  var inp=document.getElementById(id), n=document.getElementById(id+"-n");
+  inp.classList.remove("ok","bad","empty"); n.className="note"; n.textContent="";
+}
+
+function updateSummary(){
+  var r=0,t=0,done=0;
+  Object.keys(GROUPS).forEach(function(g){ if(results[g]){ r+=results[g].right; t+=results[g].total; done++; } });
+  var all = 0; Object.keys(GROUPS).forEach(function(g){ GROUPS[g].forEach(function(ex){ all+=EX[ex].items.length; }); });
+  document.getElementById("sumBar").style.width = Math.round(r/all*100)+"%";
+  document.getElementById("sumText").innerHTML = done
+    ? "Проверено заданий: <b>"+done+" из 3</b> · правильно <b>"+r+" из "+all+"</b>"
+    : "Проверь все три задания — здесь появится общий балл.";
+}
+function allPerfect(){
+  return Object.keys(GROUPS).every(function(g){ return results[g] && results[g].right===results[g].total; });
+}
+function maybeCelebrate(){ if (allPerfect()) setTimeout(celebrate, 450); }
+
+Array.prototype.forEach.call(document.querySelectorAll("[data-check]"), function(b){
+  b.addEventListener("click", function(){ checkGroup(b.getAttribute("data-check")); });
+});
+document.getElementById("checkAll").addEventListener("click", function(){
+  Object.keys(GROUPS).forEach(function(g){ checkGroup(g,true); });
+  maybeCelebrate();
+});
+
+/* ---------------- SEND ---------------- */
+function reportText(){
+  var lines = ["Anna — Homework 1 (Past Simple, irregular verbs, possessive 's, 3 tenses)"];
+  var r=0,t=0;
+  Object.keys(GROUPS).forEach(function(g,k){
+    var x = results[g];
+    if (!x){ lines.push((k+1)+". "+TITLES[g]+": не проверено"); return; }
+    r+=x.right; t+=x.total;
+    var s = (k+1)+". "+TITLES[g]+": "+x.right+"/"+x.total;
+    if (x.empty) s += " (пустых: "+x.empty+")";
+    lines.push(s);
+    Object.keys(x.tags).forEach(function(tag){ lines.push("   – ошибки: "+tag+" ×"+x.tags[tag]); });
+  });
+  if (t) lines.push("Итого: "+r+"/"+t + (allPerfect()?" ✨ всё правильно!":""));
+  return lines.join("\n");
+}
+function send(){
+  var txt = reportText();
+  if (navigator.share){ navigator.share({text:txt}).catch(function(){}); return; }
+  copy(txt);
+}
+function copy(txt){
+  function ok(){ toast("Результат скопирован — вставь его в Telegram 💌"); }
+  if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, function(){ fallback(txt); ok(); }); }
+  else { fallback(txt); ok(); }
+}
+function fallback(txt){
+  var ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} document.body.removeChild(ta);
+}
+function toast(m){ var t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); setTimeout(function(){t.classList.remove("show");},2600); }
+document.getElementById("sendBtn").addEventListener("click", send);
+document.getElementById("sendBtn2").addEventListener("click", send);
+
+/* ---------------- TABS ---------------- */
+Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(t){
+  t.addEventListener("click", function(){
+    document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("active");});
+    document.querySelectorAll(".panel").forEach(function(x){x.classList.remove("active");});
+    t.classList.add("active"); document.getElementById(t.getAttribute("data-tab")).classList.add("active");
+    window.scrollTo({top:document.getElementById("hero").offsetHeight, behavior:"smooth"});
+  });
+});
+document.getElementById("verbSearch").addEventListener("input", function(e){
+  var q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll("#verbTable tbody tr").forEach(function(tr){
+    tr.style.display = !q || tr.textContent.toLowerCase().indexOf(q)>-1 ? "" : "none";
+  });
+});
+
+/* ---------------- HERO SPARKLES ---------------- */
+(function(){
+  var hero=document.getElementById("hero");
+  for (var i=0;i<34;i++){
+    var s=document.createElement("span"); s.className="spark"+(i%3===0?" star":"");
+    s.style.left=(Math.random()*100)+"%"; s.style.top=(Math.random()*100)+"%";
+    s.style.animationDelay=(Math.random()*2.4)+"s"; s.style.animationDuration=(1.8+Math.random()*1.8)+"s";
+    hero.appendChild(s);
+  }
+})();
+
+/* ---------------- WINGS ---------------- */
+(function(){
+  var ns="http://www.w3.org/2000/svg";
+  function build(g, dir){
+    // layered feathers fanning out from the shoulder (200,120)
+    var rows=[{n:9,len:150,w:26,spread:[-62,30],op:.95},{n:8,len:112,w:24,spread:[-55,22],op:1},{n:7,len:72,w:20,spread:[-45,15],op:1}];
+    rows.forEach(function(r){
+      for (var i=0;i<r.n;i++){
+        var a = r.spread[0] + (r.spread[1]-r.spread[0])*i/(r.n-1);
+        var e=document.createElementNS(ns,"ellipse");
+        e.setAttribute("cx", 200 + dir*(r.len/2+8)); e.setAttribute("cy", 120);
+        e.setAttribute("rx", r.len/2); e.setAttribute("ry", r.w/2);
+        e.setAttribute("fill","url(#fg)"); e.setAttribute("stroke","rgba(201,161,74,.55)"); e.setAttribute("stroke-width","1");
+        e.setAttribute("opacity", r.op);
+        e.setAttribute("transform","rotate("+(dir*a)+" 200 120)");
+        g.appendChild(e);
+      }
+    });
+  }
+  build(document.getElementById("wingL"),-1);
+  build(document.getElementById("wingR"),1);
+})();
+
+/* ---------------- CELEBRATION ---------------- */
+var raf=null;
+function celebrate(){
+  var c=document.getElementById("celebrate"); c.classList.add("show"); c.setAttribute("aria-hidden","false");
+  var cv=document.getElementById("confetti"), ctx=cv.getContext("2d"), dpr=window.devicePixelRatio||1;
+  function size(){ cv.width=innerWidth*dpr; cv.height=innerHeight*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+  size(); window.addEventListener("resize", size);
+  var cols=["#f7dd96","#e9c46a","#fff6dc","#c99a45","#ffffff","#efd9b0"], P=[];
+  function burst(x,y,n){
+    for (var i=0;i<n;i++){
+      var a=Math.random()*Math.PI*2, sp=2+Math.random()*6, feather=Math.random()<.18;
+      P.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,r:feather?10:2+Math.random()*3,rot:Math.random()*6,vr:(Math.random()-.5)*.2,
+        c:cols[(Math.random()*cols.length)|0],life:0,max:feather?260:140+Math.random()*80,f:feather});
+    }
+  }
+  var t=0;
+  function loop(){
+    t++;
+    if (t%45===1 && t<400) burst(innerWidth*(.15+Math.random()*.7), innerHeight*(.12+Math.random()*.35), 70);
+    if (t%3===0) P.push({x:Math.random()*innerWidth,y:-10,vx:0,vy:1+Math.random(),r:1.5+Math.random()*2,rot:0,vr:0,c:cols[(Math.random()*cols.length)|0],life:0,max:400,f:false});
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    for (var i=P.length-1;i>=0;i--){
+      var p=P[i]; p.life++; p.vy+=p.f?.02:.06; p.vx*=.985; p.x+=p.vx+(p.f?Math.sin(p.life/18)*.8:0); p.y+=p.vy; p.rot+=p.vr;
+      var a=1-p.life/p.max; if (a<=0||p.y>innerHeight+20){P.splice(i,1);continue;}
+      ctx.globalAlpha=a; ctx.fillStyle=p.c;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      if (p.f){ ctx.beginPath(); ctx.ellipse(0,0,p.r,p.r/3.2,0,0,Math.PI*2); ctx.fill(); ctx.strokeStyle="rgba(201,161,74,.6)"; ctx.beginPath(); ctx.moveTo(-p.r,0); ctx.lineTo(p.r,0); ctx.stroke(); }
+      else { ctx.shadowColor="#ffe7a8"; ctx.shadowBlur=8; ctx.beginPath(); ctx.arc(0,0,p.r,0,Math.PI*2); ctx.fill(); }
+      ctx.restore();
+    }
+    ctx.globalAlpha=1;
+    raf=requestAnimationFrame(loop);
+  }
+  cancelAnimationFrame(raf); loop();
+}
+document.getElementById("closeCel").addEventListener("click", function(){
+  var c=document.getElementById("celebrate"); c.classList.remove("show"); c.setAttribute("aria-hidden","true"); cancelAnimationFrame(raf);
+});
+
+// restore previous results silently (no fireworks on reload)
+if (state.results){
+  Object.keys(GROUPS).forEach(function(g){ if (state.results[g]) checkGroup(g,true); });
+}
+})();
+</script>
+</body>
+</html>
