@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arina's Sport Homework</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff5fa8; --pink2:#ff9fd0; --blue:#5bb8ff; --blue2:#8fd0ff; --sun:#ffe0f0;
+  --ink:#2b3a5c; --soft:#6a7896; --ok:#21b07a; --bad:#ef5366; --card:#ffffffee; --line:#f6cfe4;
+}
+*{box-sizing:border-box}
+html,body{background:#ffe1f1}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);
+  background:linear-gradient(160deg,#ffd6ec 0%,#e3f1ff 50%,#ffe1f1 100%);background-attachment:fixed;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,#fff 1.2px,transparent 2px),radial-gradient(circle,#ff9fd0 1px,transparent 2px),radial-gradient(circle,#9fd3ff 1.4px,transparent 2.4px);
+  background-size:22px 22px,35px 35px,51px 51px;background-position:0 0,11px 17px,25px 7px;animation:twinkle 4s ease-in-out infinite alternate}
+body::after{content:"✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧";position:fixed;inset:0;pointer-events:none;z-index:0;color:#ff8fc8;font-size:18px;letter-spacing:38px;line-height:110px;word-break:break-all;opacity:.35;animation:twinkle 1.8s infinite alternate}
+@keyframes twinkle{from{opacity:.4}to{opacity:1}}
+.wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:20px 16px 90px}
+header{text-align:center;padding:26px 16px 22px;border-radius:30px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--pink),#ffa6d3 45%,var(--blue2));color:#fff;box-shadow:0 12px 30px #ff5fa855}
+header::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#ffffffdd 1px,transparent 2px),radial-gradient(circle,#fff8 1.5px,transparent 3px);background-size:20px 20px,37px 37px;animation:twinkle 2.2s infinite alternate}
+header h1{font-family:"Baloo 2",cursive;font-size:clamp(30px,8vw,50px);margin:0;line-height:1;position:relative;text-shadow:0 3px 0 #d6458c}
+header p{margin:10px 0 0;font-weight:800;position:relative}
+.stickers{font-size:28px;position:relative;margin-top:6px;letter-spacing:6px}
+.track{margin:18px 0 6px;background:#ff8cc6;border-radius:16px;height:44px;position:relative;overflow:hidden;box-shadow:inset 0 3px 8px #0003}
+.track::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 13px,#fff8 13px 15px)}
+.track .finish{position:absolute;right:6px;top:7px;font-size:24px}
+.runner{position:absolute;top:4px;left:0;font-size:30px;transition:left .6s cubic-bezier(.4,1.6,.5,1);transform:scaleX(-1)}
+.trackLbl{text-align:center;font-weight:800;color:var(--soft);font-size:14px}
+.saved{text-align:center;font-size:13px;color:var(--soft);font-weight:800;margin-top:6px}
+.card{border-radius:26px;padding:22px 18px;margin:24px 0;box-shadow:0 10px 26px #2b3a5c1c;position:relative;border:3px solid #fff}
+.card > *{position:relative}
+.card h2{font-family:"Baloo 2",cursive;margin:0 0 4px;font-size:25px;line-height:1.1;padding-right:40px}
+.card .num{display:inline-block;background:var(--pink);color:#fff;border-radius:50%;width:34px;height:34px;text-align:center;line-height:34px;margin-right:6px;font-size:19px}
+.src{display:inline-block;font-size:12px;font-weight:800;background:#fff;color:var(--blue);border:2px solid var(--blue2);border-radius:999px;padding:1px 9px;margin-left:4px;vertical-align:middle}
+.instr{margin:8px 0 14px;color:var(--soft);font-weight:700}
+.instr b{color:var(--ink)}
+.cat{position:absolute;right:14px;top:-18px;font-size:34px;filter:drop-shadow(0 3px 2px #0002)}
+.bg-glitter{background:linear-gradient(135deg,#ffeaf5,#e8f4ff)}
+.bg-glitter::before{content:"";position:absolute;inset:0;border-radius:23px;pointer-events:none;
+  background-image:radial-gradient(circle,#ff8fc8 1px,transparent 2.2px),radial-gradient(circle,#fff 1.5px,transparent 2.5px),radial-gradient(circle,#8fd0ff 1px,transparent 2px);
+  background-size:18px 18px,27px 27px,33px 33px;background-position:0 0,9px 13px,4px 20px;opacity:.8;animation:twinkle 3s infinite alternate}
+.bg-glitter2{background:linear-gradient(135deg,#e3f1ff,#ffe6f3)}
+.bg-glitter2::before{content:"";position:absolute;inset:0;border-radius:23px;pointer-events:none;background-image:radial-gradient(circle,#fff 1.6px,transparent 2.6px),radial-gradient(circle,#ff8fc8 1px,transparent 2px),radial-gradient(circle,#5bb8ff 1px,transparent 2px);background-size:16px 16px,25px 25px,31px 31px;background-position:0 0,8px 12px,3px 19px;opacity:.8;animation:twinkle 2.2s infinite alternate}
+.bg-checks{background-color:#fffdfe;background-image:linear-gradient(#ffb6dc55 1px,transparent 1px),linear-gradient(90deg,#ffb6dc55 1px,transparent 1px);background-size:22px 22px}
+.bg-stars{background:linear-gradient(160deg,#e3f1ff,#ffe8f4);overflow:hidden}
+.bg-stars::before{content:"✦  ✧   ✦    ✧  ✦   ✧    ✦  ✧   ✦    ✧  ✦   ✧    ✦  ✧   ✦    ✧  ✦   ✧    ✦  ✧   ✦    ✧  ✦   ✧";position:absolute;inset:0;font-size:22px;color:#ff8fc8;letter-spacing:10px;line-height:70px;overflow:hidden;opacity:.45;pointer-events:none;word-break:break-all;padding:6px}
+.bg-plain{background:var(--card)}
+input[type=text],textarea,select{width:100%;font:inherit;font-weight:700;color:var(--ink);border:2.5px solid var(--line);border-radius:14px;padding:9px 11px;background:#fff;outline:none;transition:.2s;-webkit-appearance:none;appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--pink) 50%),linear-gradient(135deg,var(--pink) 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:28px}
+input[type=text]:focus,textarea:focus,select:focus{border-color:var(--blue2);box-shadow:0 0 0 4px #8fd0ff44}
+textarea{min-height:96px;resize:vertical}
+input.inl{display:inline-block;width:auto;min-width:104px;width:130px;max-width:100%;padding:5px 9px;margin:2px 3px}
+.ok{border-color:var(--ok)!important;background:#eafff5!important}
+.bad{border-color:var(--bad)!important;background:#fff0f2!important}
+.empty{border-color:#ffc86b!important;background:#fffaf0!important}
+.fix{display:block;font-size:13px;color:var(--bad);font-weight:800;margin-top:3px;line-height:1.4}
+.fix.try{color:#d08a00}
+.row{background:#fff;border-radius:16px;padding:12px 13px;margin:10px 0;box-shadow:0 3px 9px #2b3a5c12;line-height:2.1}
+.row .n{font-weight:800;color:var(--pink);margin-right:4px}
+.row .emo{font-size:22px;margin-right:4px;vertical-align:-3px}
+.ex{color:var(--soft);font-style:italic}
+.ex u{color:var(--blue);text-decoration-thickness:2px}
+.bank{display:flex;flex-wrap:wrap;gap:8px;background:var(--sun);border-radius:18px;padding:12px;margin-bottom:12px;border:2px dashed var(--pink2)}
+.chip{font:inherit;font-weight:800;font-size:15px;border:none;background:#fff;color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer;box-shadow:0 3px 0 var(--pink2);transition:.15s}
+.chip:active{transform:translateY(2px);box-shadow:0 1px 0 var(--pink2)}
+.chip.used{opacity:.35;text-decoration:line-through;box-shadow:none;cursor:default}
+.bankTip{font-size:13px;color:var(--soft);font-weight:700;margin:-4px 0 10px}
+.vrow{display:grid;grid-template-columns:1fr 160px;gap:10px;align-items:center;background:#fff;border-radius:16px;padding:9px 12px;margin:8px 0}
+.vrow b{font-size:16px}
+.vrow.wide{grid-template-columns:1fr 1fr}
+.rule{background:#fff;border:2.5px dashed var(--blue2);border-radius:16px;padding:10px 14px;margin-bottom:12px;font-weight:700;line-height:1.6}
+.rule i{color:var(--pink)}
+.q{font-weight:800;margin-bottom:4px;line-height:1.4}
+.hint{font-size:14px;color:var(--soft);font-weight:700;margin:0 0 6px;line-height:1.4}
+.fb{font-size:14px;font-weight:800;margin-top:6px;line-height:1.5}
+.fb .g{color:var(--ok)} .fb .r{color:var(--bad)} .fb .y{color:#d08a00}
+.btn{font-family:"Baloo 2",cursive;font-weight:800;font-size:19px;border:none;color:#fff;border-radius:999px;padding:11px 26px;cursor:pointer;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--pink),#ff9fd0 50%,#ff8fd6);box-shadow:0 6px 0 #d6458c,0 10px 18px #ff5fa866;transition:transform .1s}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffffcc,transparent);transform:skewX(-20deg);animation:shine 2.8s infinite}
+@keyframes shine{0%{left:-60%}55%,100%{left:130%}}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #d6458c}
+.btn.blue{background:linear-gradient(135deg,#5bb8ff,var(--blue2) 50%,#a9c8ff);box-shadow:0 6px 0 #3d8fd6,0 10px 18px #5bb8ff55}
+.btn.blue:active{box-shadow:0 2px 0 #3d8fd6}
+.btn.ghost{background:#fff;color:var(--soft);box-shadow:0 4px 0 var(--line)}
+.btn.ghost::after{display:none}
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.res{margin-top:14px;text-align:center;font-weight:800;border-radius:16px;padding:0;max-height:0;overflow:hidden;transition:.3s}
+.res.show{padding:12px;max-height:600px;background:#fff}
+.res .sc{font-family:"Baloo 2",cursive;font-size:26px;color:var(--pink)}
+.tip{font-size:14px;color:var(--soft);margin-top:4px;line-height:1.45}
+#final .big{font-family:"Baloo 2",cursive;font-size:44px;color:var(--pink);line-height:1}
+#final ul{text-align:left;font-weight:700;line-height:1.5}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 20px;border-radius:999px;transition:.3s;z-index:9;text-align:center;max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.forum{background:#fff;border-radius:20px;padding:14px;margin-bottom:14px;border:3px solid var(--pink2);box-shadow:0 4px 12px #ff5fa822}
+.forum h3{font-family:"Baloo 2",cursive;font-size:22px;margin:0;line-height:1.15;color:var(--pink)}
+.forum .sub{margin:2px 0 10px;font-weight:800;color:var(--blue);font-size:14px}
+.post{display:grid;grid-template-columns:30px 1fr;gap:4px 10px;background:linear-gradient(135deg,#fff5fa,#f0f8ff);border-radius:14px;padding:10px 12px;margin:8px 0}
+.post b{grid-row:span 2;background:var(--pink);color:#fff;border-radius:50%;width:28px;height:28px;text-align:center;line-height:28px}
+.post p{margin:0;line-height:1.55;font-weight:600}
+.post span{font-size:12px;color:var(--blue);font-weight:800}
+.post mark{background:#ffe0f0;color:var(--ink);border-radius:4px;padding:0 3px;font-weight:800}
+#win{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;background:#2b3a5c88;padding:16px}
+#win.show{display:flex}
+#fw{position:fixed;inset:0;z-index:21;pointer-events:none}
+.winBox{position:relative;z-index:22;background:linear-gradient(160deg,#fff,#ffeaf5 55%,#e3f1ff);border-radius:30px;padding:18px 16px 20px;max-width:380px;width:100%;text-align:center;border:4px solid #fff;box-shadow:0 20px 50px #0004;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.winBox h2{font-family:"Baloo 2",cursive;font-size:32px;margin:4px 0 0;color:var(--pink);line-height:1.05}
+.winBox p{font-weight:800;margin:6px 0;color:var(--ink)}
+.winBox svg{width:100%;max-width:300px;height:auto;display:block;margin:0 auto}
+.winScore{font-family:"Baloo 2",cursive;font-size:22px;color:var(--blue)}
+#glBtn{position:fixed;right:14px;bottom:18px;z-index:15;font-family:"Baloo 2",cursive;font-weight:800;font-size:17px;color:#fff;border:3px solid #fff;border-radius:999px;padding:9px 16px;background:linear-gradient(135deg,#5bb8ff,#ff5fa8);box-shadow:0 6px 16px #ff5fa866;cursor:pointer}
+#glo{position:fixed;inset:0;z-index:16;background:#2b3a5c66;display:none;justify-content:flex-end}
+#glo.show{display:flex}
+#glPanel{width:min(400px,100%);height:100%;overflow-y:auto;background:linear-gradient(180deg,#fff,#ffeaf5 60%,#e3f1ff);padding:0 14px 30px;box-shadow:-10px 0 30px #0003;animation:slide .3s ease}
+@keyframes slide{from{transform:translateX(100%)}to{transform:none}}
+.glHead{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:14px 0 10px;background:#fff;z-index:1;font-family:"Baloo 2",cursive;font-size:22px;color:var(--pink)}
+.glHead button{border:none;background:#ffe0f0;color:var(--pink);font-size:18px;font-weight:800;width:36px;height:36px;border-radius:50%;cursor:pointer}
+#glPanel h4{font-family:"Baloo 2",cursive;font-size:19px;margin:16px 0 6px;color:var(--ink)}
+.gl{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 3px 10px #2b3a5c14}
+.gl div{display:grid;grid-template-columns:44% 1fr;gap:8px;padding:8px 12px;border-bottom:1.5px solid #ffe0f0;font-size:15px}
+.gl div:last-child{border-bottom:none}
+.gl b{color:var(--pink)}
+.gl span{color:var(--ink);font-weight:600}
+@media (max-width:560px){.vrow,.vrow.wide{grid-template-columns:1fr;gap:5px}.card{padding:20px 14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Arina's Sport Homework</h1>
+    <p>English File Pre-Intermediate · 10A · Sports &amp; expressing movement</p>
+    <div class="stickers">🏃‍♀️💖🏅🐱🎬</div>
+  </header>
+
+  <div class="track"><span class="runner" id="runner">🏃‍♀️</span><span class="finish">🏁</span></div>
+  <div class="trackLbl" id="trackLbl">On your marks… 0%</div>
+  <div class="saved">💾 Ответы сохраняются сами: можно закрыть страницу и вернуться позже</div>
+
+  <div id="sections"></div>
+
+  <div class="card bg-glitter" id="final">
+    <span class="cat">🏅</span>
+    <h2>Finish line! 🏁</h2>
+    <p class="instr">Нажми «Проверить всё», а потом отправь результат учителю.</p>
+    <div id="finalOut"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkAll()">Проверить всё ✨</button>
+      <button class="btn blue" onclick="copyResults()">Скопировать результат 📋</button>
+      <button class="btn blue" onclick="sendTg()">Отправить в Telegram ✈️</button>
+    </div>
+    <div class="actions"><button class="btn ghost" onclick="resetAll()">Начать заново</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<button id="glBtn" onclick="toggleGl(true)">📚 Слова</button>
+<div id="glo" onclick="if(event.target.id==='glo')toggleGl(false)"><div id="glPanel"><div class="glHead"><b>📚 Слова-подсказки</b><button onclick="toggleGl(false)" aria-label="Закрыть">✕</button></div><input type="text" id="glSearch" placeholder="🔍 Найти слово…" oninput="filterGl(this.value)" autocomplete="off"><h4>🧭 Предлоги движения</h4><div class="gl"><div><b>up</b><span>вверх (по)</span></div><div><b>down</b><span>вниз (по)</span></div><div><b>along</b><span>вдоль, по</span></div><div><b>across</b><span>через, поперёк (по поверхности)</span></div><div><b>through</b><span>сквозь, через (внутри)</span></div><div><b>over</b><span>над, через (поверх)</span></div><div><b>under</b><span>под</span></div><div><b>round / around</b><span>вокруг</span></div><div><b>past</b><span>мимо</span></div><div><b>towards</b><span>по направлению к</span></div><div><b>into</b><span>в, внутрь</span></div><div><b>out of</b><span>из, наружу</span></div><div><b>away</b><span>прочь</span></div><div><b>back</b><span>обратно</span></div></div><h4>🏃‍♀️ Глаголы движения</h4><div class="gl"><div><b>climb</b><span>карабкаться, лезть</span></div><div><b>crawl</b><span>ползти</span></div><div><b>dive</b><span>нырять</span></div><div><b>rush</b><span>мчаться, торопиться</span></div><div><b>jog</b><span>бегать трусцой</span></div><div><b>slip</b><span>поскользнуться</span></div><div><b>chase</b><span>гнаться</span></div><div><b>sprint</b><span>бежать изо всех сил</span></div><div><b>roll</b><span>катиться</span></div><div><b>jump</b><span>прыгать</span></div><div><b>throw</b><span>бросать</span></div><div><b>kick</b><span>бить ногой</span></div><div><b>hit</b><span>бить, ударять</span></div></div><h4>💪 Тренировка</h4><div class="gl"><div><b>push-ups</b><span>отжимания</span></div><div><b>pull-ups</b><span>подтягивания</span></div><div><b>squats</b><span>приседания</span></div><div><b>lunges</b><span>выпады</span></div><div><b>plank</b><span>планка</span></div><div><b>abs</b><span>пресс (мышцы)</span></div><div><b>crunches / sit-ups</b><span>упражнения на пресс</span></div><div><b>biceps</b><span>бицепсы</span></div><div><b>muscles</b><span>мышцы</span></div><div><b>warm up</b><span>разминаться</span></div><div><b>cool down</b><span>делать заминку</span></div><div><b>stretch</b><span>растягиваться</span></div><div><b>lift weights</b><span>поднимать вес</span></div><div><b>be out of breath</b><span>задыхаться</span></div><div><b>sweat</b><span>потеть</span></div><div><b>sprain your ankle</b><span>подвернуть лодыжку</span></div><div><b>personal best</b><span>личный рекорд</span></div><div><b>coach</b><span>тренер</span></div></div><h4>🎾 Спорт и соревнования</h4><div class="gl"><div><b>serve</b><span>подавать мяч</span></div><div><b>return the ball</b><span>отбить мяч</span></div><div><b>opponent</b><span>соперник</span></div><div><b>rally</b><span>розыгрыш (обмен ударами)</span></div><div><b>athletes</b><span>спортсмены</span></div><div><b>team sports</b><span>командные виды спорта</span></div><div><b>individual sports</b><span>индивидуальные виды спорта</span></div><div><b>figure skating</b><span>фигурное катание</span></div><div><b>fans</b><span>болельщики</span></div><div><b>pretend</b><span>притворяться</span></div><div><b>the Olympics</b><span>Олимпийские игры</span></div><div><b>compete</b><span>соревноваться</span></div></div></div></div>
+<canvas id="fw"></canvas>
+<div id="win" onclick="if(event.target.id==='win')closeWin()"><div class="winBox">
+<svg viewBox="0 0 300 330" aria-label="Arina on the podium">
+ <defs><linearGradient id="gold" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff4a8"/><stop offset=".5" stop-color="#ffc928"/><stop offset="1" stop-color="#e09b00"/></linearGradient>
+ <pattern id="str" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><rect width="6" height="6" fill="#1f5f9e"/><rect width="2" height="6" fill="#3f8ee0"/></pattern></defs>
+ <g fill="#fff" opacity=".9"><text x="30" y="40" font-size="22">✨</text><text x="250" y="60" font-size="22">✨</text><text x="40" y="150" font-size="16">⭐</text><text x="248" y="160" font-size="16">⭐</text></g>
+ <!-- podium -->
+ <rect x="20" y="250" width="80" height="60" rx="6" fill="#bfe3ff"/><text x="60" y="292" text-anchor="middle" font-size="30" font-weight="800" fill="#5bb8ff" font-family="Nunito,sans-serif">2</text>
+ <rect x="200" y="265" width="80" height="45" rx="6" fill="#ffd1e8"/><text x="240" y="298" text-anchor="middle" font-size="28" font-weight="800" fill="#ff8fc8" font-family="Nunito,sans-serif">3</text>
+ <rect x="100" y="222" width="100" height="88" rx="6" fill="url(#gold)"/><text x="150" y="282" text-anchor="middle" font-size="46" font-weight="800" fill="#fff" font-family="Nunito,sans-serif">1</text>
+ <!-- legs -->
+ <rect x="133" y="182" width="13" height="42" rx="6" fill="#f5c9a8"/><rect x="154" y="182" width="13" height="42" rx="6" fill="#f5c9a8"/>
+ <path d="M128 216h22v8h-24z M152 216h22v8h-22z" fill="#ff5fa8"/>
+ <!-- shorts -->
+ <path d="M128 160h44l4 26h-22l-4-8-4 8h-22z" fill="url(#str)"/><rect x="128" y="158" width="44" height="6" fill="#222"/>
+ <!-- body -->
+ <rect x="134" y="134" width="32" height="26" rx="6" fill="#f5c9a8"/>
+ <path d="M130 98q20-10 40 0l2 38h-44z" fill="url(#str)"/><rect x="128" y="132" width="44" height="6" rx="2" fill="#222"/>
+ <rect x="136" y="106" width="28" height="22" rx="3" fill="#fff" stroke="#5b8be0" stroke-width="1.5"/><text x="150" y="123" text-anchor="middle" font-size="12" font-weight="800" fill="#222" font-family="Nunito,sans-serif">765</text>
+ <!-- arms up -->
+ <path d="M131 102 L112 68" stroke="#f5c9a8" stroke-width="10" stroke-linecap="round"/><path d="M169 102 L188 68" stroke="#f5c9a8" stroke-width="10" stroke-linecap="round"/>
+ <circle cx="110" cy="63" r="6" fill="#f5c9a8"/><circle cx="190" cy="63" r="6" fill="#f5c9a8"/>
+ <!-- medal -->
+ <path d="M141 98 L150 118 L159 98" stroke="#ff5fa8" stroke-width="4" fill="none"/><circle cx="150" cy="124" r="9" fill="url(#gold)" stroke="#e09b00" stroke-width="1.5"/><text x="150" y="128" text-anchor="middle" font-size="9" font-weight="800" fill="#a86f00" font-family="Nunito,sans-serif">1</text>
+ <!-- head -->
+ <rect x="144" y="84" width="12" height="14" fill="#f5c9a8"/>
+ <circle cx="150" cy="70" r="20" fill="#f9d3b4"/>
+ <path d="M130 68q2-24 22-23q18 1 19 22q-6-12-21-12q-14 0-20 13z" fill="#f2c46d"/><circle cx="150" cy="44" r="9" fill="#e9b65a"/>
+ <circle cx="143" cy="71" r="2.3" fill="#3a6fb0"/><circle cx="157" cy="71" r="2.3" fill="#3a6fb0"/>
+ <path d="M144 79q6 5 12 0" stroke="#d6458c" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+ <circle cx="138" cy="77" r="3" fill="#ffb3cf" opacity=".7"/><circle cx="162" cy="77" r="3" fill="#ffb3cf" opacity=".7"/>
+ <!-- trophy cat -->
+ <text x="218" y="258" font-size="30">🐱</text><text x="44" y="244" font-size="28">🏆</text>
+</svg>
+<h2>Arina — champion! 🥇</h2>
+<p>Домашка выполнена полностью! Ты на первом месте в английском 💖</p>
+<div class="winScore" id="winScore"></div>
+<div class="actions"><button class="btn" onclick="sendTg()">Отправить учителю ✈️</button><button class="btn ghost" onclick="closeWin()">Закрыть</button></div>
+</div></div>
+
+<script>
+const KEY='arina_hw_10A_v2';
+let st={v:{},checked:{},tries:{}};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v)st=s}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+
+function norm(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'").trim();
+  s=s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/n't\b/g,' not')
+     .replace(/'d\b/g,' would').replace(/'re\b/g,' are').replace(/'m\b/g,' am').replace(/'ll\b/g,' will').replace(/'ve\b/g,' have').replace(/'s\b/g,' is');
+  return s.replace(/[.,!?;:"«»()\-–—]/g,' ').replace(/\s+/g,' ').trim();
+}
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ================= DATA ================= */
+const SECTIONS=[
+ {id:'a5',bg:'bg-glitter',cat:'🐈',title:'Arina and her cat go for a run',src:'Vocabulary Bank p.162',type:'rows',
+  bank:['down','across','over','into','out of','under','past','through','towards','round','along','up'],
+  instr:'Арина с котом вышли на пробежку 🏃‍♀️🐱 Вставь предлог движения. Каждый — один раз. Подсказка — эмодзи в начале.',
+  tip:'Повтори Vocabulary Bank p.162 и закрой слова: глядя на картинки, расскажи, куда пошли девушка с собакой',
+  items:[['⬇️🪜 We ran ___ the steps of my house.',['down']],
+   ['🚸 Then we ran ___ the road.',['across']],
+   ['🌉 We ran ___ the bridge – the river was below us.',['over']],
+   ['🛒 I went ___ the shop to buy some water.',['into']],
+   ['🚪 A minute later I came ___ the shop with a bottle.',['out of']],
+   ['🌉⬇️ We ran ___ the bridge – there was a train above us!',['under']],
+   ['⛪ We ran ___ the church and didn\'t stop.',['past']],
+   ['🚇 It was dark when we ran ___ the tunnel.',['through']],
+   ['➡️🏞️ We ran ___ the lake. It was getting closer and closer.',['towards']],
+   ['🔄 We ran ___ the lake three times.',['round','around']],
+   ['🛣️ We ran ___ the street to Kolya\'s house.',['along']],
+   ['⬆️🪜 At the end, we ran ___ the steps back home. So tired!',['up']]]},
+
+ {id:'a6',bg:'bg-checks',cat:'🧭',title:'Across or through? Away or back?',src:'Vocabulary Bank',type:'rows',
+  bank:['across','through','away','back'],
+  rule:'<b>across</b> — с одной стороны на другую по поверхности: <i>across the road / river / square</i><br><b>through</b> — с одной стороны на другую <u>внутри</u> чего-то: <i>through the forest / tunnel / crowd</i><br><b>away</b> — прочь, в другое место · <b>back</b> — обратно, туда, где был раньше',
+  instr:'Прочитай правило и вставь слово. Здесь слова повторяются, поэтому пиши сама.',
+  multiUse:true,
+  tip:'across — по поверхности (дорога, река, площадь), through — сквозь (лес, туннель, толпа)',
+  items:[['I swam ___ the river in 3 minutes.',['across']],
+   ['We ran ___ the forest and saw a deer.',['through']],
+   ['It\'s hard to walk ___ the crowd after a race.',['through']],
+   ['Look left and right before you go ___ the street.',['across']],
+   ['A big dog ran towards me, so I ran ___!',['away']],
+   ['I forgot my phone, so I went ___ to the stadium.',['back']],
+   ['My cat ran ___ in the morning and came ___ in the evening.',['away'],['back']],
+   ['The wind was so strong that I couldn\'t cycle ___ the square.',['across']]]},
+
+ {id:'a7',bg:'bg-glitter2',cat:'🎬',title:'More movement verbs',type:'rows',
+  bank:['climbed','crawled','dived','rushed','jogged','slipped','chased','sprinted','rolled','jumped'],
+  instr:'Другие глаголы движения. Вставь глагол в <b>Past Simple</b>. Каждый — один раз.<br><span class="ex">climb — карабкаться, crawl — ползти, dive — нырять, rush — мчаться, jog — бегать трусцой, slip — поскользнуться, chase — гнаться, sprint — бежать изо всех сил, roll — катиться, jump — прыгать</span>',
+  tip:'Выпиши новые глаголы движения в словарик и придумай с каждым своё предложение',
+  items:[['My cat ___ up the tree and couldn\'t get down.',['climbed']],
+   ['The baby ___ across the floor towards the toys.',['crawled']],
+   ['Kolya ___ into the pool and swam to the other side.',['dived']],
+   ['I was late, so I ___ out of the house without breakfast.',['rushed']],
+   ['On Sunday I ___ slowly round the park – it was an easy day.',['jogged']],
+   ['The track was wet and I ___ and fell.',['slipped']],
+   ['A dog ___ me along the street, but I was faster!',['chased']],
+   ['In the last 100 metres I ___ past two girls and won!',['sprinted']],
+   ['The ball ___ down the hill into the lake.',['rolled']],
+   ['Kolya filmed me while I ___ over the hurdles.',['jumped']]]},
+
+ {id:'f1',bg:'bg-glitter',cat:'💪',title:'Gym words',type:'rows',
+  instr:'Напиши по-английски. В скобках — первая буква. Сначала попробуй вспомнить сама 💪',
+  tip:'Повтори: push-ups, pull-ups, squats, lunges, plank, abs, biceps, muscles, warm up, cool down, stretch, lift weights, out of breath, sprain, personal best',
+  items:[['отжимания (p…) → ___',['push-ups','push ups','pushups','push-up','push up']],
+   ['подтягивания (p…) → ___',['pull-ups','pull ups','pullups','pull-up','pull up','chin-ups','chin ups']],
+   ['приседания (s…) → ___',['squats','squat']],
+   ['выпады (l…) → ___',['lunges','lunge']],
+   ['планка (p…) → ___',['plank']],
+   ['пресс, мышцы живота (a…) → ___',['abs','abdominals']],
+   ['упражнения на пресс (c… / s…) → ___',['crunches','sit-ups','sit ups','situps']],
+   ['бицепсы (b…) → ___',['biceps','bicep']],
+   ['мышцы (m…) → ___',['muscles','muscle']],
+   ['разминаться (w… u…) → ___',['warm up']],
+   ['делать заминку (c… d…) → ___',['cool down']],
+   ['растягиваться (s…) → ___',['stretch']],
+   ['поднимать штангу, вес (l… w…) → ___',['lift weights']],
+   ['задыхаться, сбить дыхание (be o… of b…) → ___',['be out of breath','out of breath']],
+   ['подвернуть лодыжку (s… your a…) → ___',['sprain your ankle','sprain my ankle','sprain an ankle','sprain ankle','twist your ankle','twist my ankle']],
+   ['личный рекорд (p… b…) → ___',['personal best','pb','personal record']]]},
+
+ {id:'f2',bg:'bg-stars',cat:'🏋️‍♀️',title:'My training day',type:'rows',
+  bank:['warm up','push-ups','pull-ups','squats','abs','plank','stretch','coach','out of breath','personal best','sprained','sweat'],
+  instr:'Вставь слово из рамки. Каждое — один раз.',
+  tip:'Повтори слова из задания «Gym words» и расскажи свою тренировку вслух по-английски',
+  items:[['Before running I always ___ for 15 minutes.',['warm up']],
+   ['My ___ says I need stronger arms, so I do 30 ___ every day.',['coach'],['push-ups']],
+   ['I can\'t do many ___ yet – pulling my body up to the bar is really hard!',['pull-ups']],
+   ['___ are great for strong legs: I do them with my back straight.',['squats']],
+   ['To get strong ___, I do crunches and hold a ___ for one minute.',['abs'],['plank']],
+   ['After the 400-metre sprint I was completely ___.',['out of breath']],
+   ['It was so hot that I started to ___ after five minutes.',['sweat']],
+   ['After training it\'s important to ___ your muscles.',['stretch']],
+   ['Last week I ___ my ankle and couldn\'t run for 4 days.',['sprained']],
+   ['Yesterday I ran 100 metres in 12.9 seconds – a new ___!',['personal best']]]},
+
+ {id:'r1',bg:'bg-glitter2',cat:'📖',title:'Reading: women\'s sports',src:'по теме SB 4, p.79',type:'select',
+  opts:['A','B','C','D','E','F'],
+  text:`<h3>Why aren't women's sports as popular as men's? 🤔</h3><p class="sub">Forum · Send us your thoughts</p>
+<div class="post"><b>A</b><p>To be honest, I prefer watching women's tennis. Male players <mark>serve</mark> so fast that their <mark>opponent</mark> often can't even <mark>return</mark> the ball, so the points are really short. In women's matches the rallies are longer and much more exciting.</p><span>TennisFan_Max · 10:14</span></div>
+<div class="post"><b>B</b><p>Why do we always have separate teams for men and women? I'd love to see mixed football and volleyball teams. Then the best players could play together, man or woman, and we could see who is really the best.</p><span>Sasha_K · 11:02</span></div>
+<div class="post"><b>C</b><p>Let's be honest: women's football and basketball will never have as many fans as men's, because men are faster and stronger. But people love watching women in gymnastics, <mark>figure skating</mark> and tennis. It's interesting that these are all individual sports, not <mark>team sports</mark>.</p><span>Polina99 · 13:40</span></div>
+<div class="post"><b>D</b><p>Polina, I agree with you about individual sports. When I watch athletics at the <mark>Olympics</mark>, I enjoy the women's races as much as the men's. The women run a little slower, but you can't really see the difference on TV, and it's just as exciting!</p><span>RunnerGirl · 15:27</span></div>
+<div class="post"><b>E</b><p>People want to see the best of the best. If you compare the top male and female <mark>athletes</mark>, men are always stronger and faster. Sorry, that's just biology.</p><span>BigMike · 18:05</span></div>
+<div class="post"><b>F</b><p>Have you noticed how often male footballers fall over and <mark>pretend</mark> to be hurt? Women players hardly ever do that. And when a woman is really hurt, she usually gets up much faster than a man.</p><span>Kate_footie · 21:33</span></div>`,
+  instr:'Прочитай комментарии на форуме и выбери, кто какую мысль высказывает.',
+  tip:'Перечитай комментарии и подчеркни в каждом главную мысль',
+  items:[['Men and women should play together in the same teams.','B'],
+   ['Women footballers don\'t pretend to be hurt as often as men.','F'],
+   ['Top male athletes are always physically better than female athletes.','E'],
+   ['Men\'s tennis is less exciting because men hit the ball too hard.','A'],
+   ['Watching women\'s individual events is as exciting as watching men\'s.','D'],
+   ['Women\'s team sports will never be as popular as men\'s.','C'],
+   ['Who replies to another person on the forum?','D'],
+   ['Who clearly prefers watching women\'s sport?','A']]},
+
+ {id:'r2',bg:'bg-checks',cat:'🎾',title:'Find the word in the text',type:'rows',
+  instr:'Найди в тексте форума (задание выше) слово, которое подходит к определению. Выделенные слова помогут 😉',
+  tip:'Перечитай текст и посмотри на выделенные слова: serve, opponent, return, athletes, Olympics, pretend…',
+  items:[['the person you play against in a match → ___',['opponent','opponents']],
+   ['to hit the ball back to the other player → ___',['return']],
+   ['to hit the ball to start a point in tennis → ___',['serve']],
+   ['people who are good at sport and compete in it → ___',['athletes','athlete']],
+   ['sports where you play in a group with other people → ___',['team sports','team sport','team']],
+   ['a sport on ice with jumps and spins → ___',['figure skating','skating']],
+   ['people who love and support a team or a sport → ___',['fans','fan']],
+   ['to act as if something is true when it isn\'t → ___',['pretend']],
+   ['the biggest sports competition, every four years → ___ (the …)',['olympics','the olympics','olympic games','the olympic games']],
+   ['a series of hits of the ball between two tennis players → ___',['rallies','rally']]]}
+];
+
+
+/* ================ RENDER ================ */
+const ANS={},META={},SECT={};
+function inp(id,cls){return `<input type="text" class="${cls||''}" data-id="${id}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`}
+function render(){
+  let h='';
+  SECTIONS.forEach((s,si)=>{
+    SECT[s.id]=s;
+    h+=`<div class="card ${s.bg}" id="${s.id}"><span class="cat">${s.cat}</span><h2><span class="num">${si+1}</span>${s.title}${s.src?` <span class="src">${s.src}</span>`:''}</h2><p class="instr">${s.instr}</p>`;
+    if(s.text)h+=`<div class="forum">${s.text}</div>`;
+    if(s.rule)h+=`<div class="rule">${s.rule}</div>`;
+    if(s.bank&&!s.multiUse)h+=`<div class="bank" data-bank="${s.id}">${s.bank.map(w=>`<button type="button" class="chip" data-w="${esc(w)}">${esc(w)}</button>`).join('')}</div><div class="bankTip">👆 Нажми на пропуск, потом на слово. Чтобы вернуть слово, сотри его из пропуска.</div>`;
+    if(s.bank&&s.multiUse)h+=`<div class="bank">${s.bank.map(w=>`<span class="chip" style="cursor:default">${esc(w)}</span>`).join('')}</div>`;
+    if(s.type==='select'){
+      const opts=s.opts||s.items.map(x=>x[1]).slice().sort((a,b)=>a.localeCompare(b,'ru'));
+      s.items.forEach((it,i)=>{const id=s.id+'_'+i;ANS[id]=[it[1]];META[id]={p:it[0],raw:1,sec:s.id};
+        h+=`<div class="vrow${s.opts&&s.opts.length>3?' wide':''}"><b>${esc(it[0])}</b><div><select data-id="${id}"><option value="">— выбери —</option>${opts.map(o=>`<option>${esc(o)}</option>`).join('')}</select><span class="fix" data-fix="${id}"></span></div></div>`});
+    }
+    if(s.type==='rows'){
+      s.items.forEach((it,i)=>{let j=0;
+        const txt=esc(it[0]).replace(/___/g,()=>{const id=s.id+'_'+i+'_'+j;ANS[id]=it[1+j];META[id]={p:it[0],sec:s.id};j++;return inp(id,'inl')});
+        h+=`<div class="row"><span class="n">${i+1}</span>${txt}<span class="fix" data-fixrow="${s.id}_${i}"></span></div>`});
+    }
+    if(s.type==='multi'){
+      s.items.forEach((it,i)=>{let j=0;
+        const txt=esc(it[0]).replace(/\{\}/g,()=>{const id=s.id+'_'+i+'_'+j;ANS[id]=it[1][j];META[id]={p:it[0],sec:s.id};j++;return inp(id,'inl')});
+        h+=`<div class="row"><span class="n">${i+2}</span>${txt}<span class="fix" data-fixrow="${s.id}_${i}"></span></div>`});
+    }
+    if(s.type==='write'){
+      s.items.forEach((it,i)=>{const id=s.id+'_'+i;META[id]={p:it.q,sec:s.id};
+        h+=`<div class="row" style="line-height:1.5"><div class="q">${i+1}. ${esc(it.q)}</div><div class="hint">💡 ${esc(it.hint)}</div><textarea data-id="${id}" placeholder="Write here…"></textarea><div class="fb" data-fb="${id}"></div></div>`});
+    }
+    h+=`<div class="actions"><button class="btn" onclick="checkSec('${s.id}',true)">Проверить ✨</button></div><div class="res" id="res_${s.id}"></div></div>`;
+  });
+  document.getElementById('sections').innerHTML=h;
+
+  document.querySelectorAll('[data-id]').forEach(el=>{
+    const id=el.dataset.id; if(st.v[id]!=null)el.value=st.v[id];
+    const upd=()=>{st.v[id]=el.value;el.classList.remove('ok','bad','empty');save();progress();refreshBank(META[id].sec)};
+    el.addEventListener('input',upd);el.addEventListener('change',upd);
+    el.addEventListener('focus',()=>{lastFocus[META[id].sec]=el});
+  });
+  document.querySelectorAll('[data-bank]').forEach(b=>{
+    const sid=b.dataset.bank;
+    b.addEventListener('mousedown',e=>e.preventDefault());
+    b.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c||c.classList.contains('used'))return;
+      const card=document.getElementById(sid);let t=lastFocus[sid];
+      if(!t||t.value.trim()){t=[...card.querySelectorAll('input[data-id]')].find(x=>!x.value.trim())}
+      if(!t){toast('Все пропуски заполнены. Сотри слово, чтобы заменить его');return}
+      t.value=c.dataset.w;t.dispatchEvent(new Event('input'));
+      const next=[...card.querySelectorAll('input[data-id]')].find(x=>!x.value.trim());lastFocus[sid]=next||null;if(next)next.focus({preventScroll:true});
+    });
+    refreshBank(sid);
+  });
+  SECTIONS.forEach(s=>{if(st.checked[s.id])checkSec(s.id,false)});
+  progress();
+}
+const lastFocus={};
+function refreshBank(sid){
+  const b=document.querySelector(`[data-bank="${sid}"]`);if(!b)return;
+  const vals=[...document.getElementById(sid).querySelectorAll('input[data-id]')].map(x=>norm(x.value));
+  b.querySelectorAll('.chip').forEach(c=>c.classList.toggle('used',vals.includes(norm(c.dataset.w))));
+}
+
+/* ================ CHECK ================ */
+const strip=s=>s.replace(/^(to|a|an|the) /,'');
+function match(id,val){const m=META[id];if(m.raw)return ANS[id].includes(val);const v=strip(norm(val));return ANS[id].some(a=>strip(norm(a))===v)}
+const MOVE=/\b(along|across|past|through|round|around|up|down|into|out of|over|under|towards|away|back)\b/g;
+const FIT=/\b(warm(ing)? up|cool(ing)? down|push ?ups?|pull ?ups?|sit ?ups?|crunches|squats?|lunges?|planks?|abs|biceps|muscles?|stretch\w*|lift\w* weights|weights|sprint\w*|jog\w*|coach|personal best|out of breath|sweat\w*|gym|exercises?)\b/g;
+function checkWrite(t,need){
+  const raw=(t||'').trim();
+  if(!raw)return{pts:0,empty:1,msg:['<span class="y">✍️ Попробуй сама: напиши ответ</span>']};
+  if(/[а-яё]/i.test(raw))return{pts:0,msg:['<span class="r">Пиши по-английски 🙂</span>']};
+  const n=norm(raw),words=n.split(' ').length;let pts=0;const msg=[];
+  if(need==='route'){const f=[...new Set(n.match(MOVE)||[])];if(f.length>=4){pts++;msg.push(`<span class="g">✓ предлоги движения: ${f.join(', ')}</span>`)}else msg.push(`<span class="r">✗ предлогов движения ${f.length} из 4${f.length?' ('+f.join(', ')+')':''}</span>`)}
+  else if(need==='fit'){const f=[...new Set(n.match(FIT)||[])];if(f.length>=4){pts++;msg.push(`<span class="g">✓ слова тренировки: ${f.join(', ')}</span>`)}else msg.push(`<span class="r">✗ слов из «Gym words» ${f.length} из 4${f.length?' ('+f.join(', ')+')':''}</span>`)}
+  else{if(/\bbecause\b/.test(n)){pts++;msg.push('<span class="g">✓ есть объяснение (because)</span>')}else msg.push('<span class="r">✗ объясни почему: because…</span>')}
+  if(words>=30){pts++;msg.push(`<span class="g">✓ развёрнутый ответ (${words} слов)</span>`)}else msg.push(`<span class="r">✗ напиши подробнее: ${words} слов, нужно хотя бы 30</span>`);
+  return{pts,msg};
+}
+function checkSec(sid,user){
+  const s=SECT[sid],card=document.getElementById(sid);let sc=0,max=0,filled=0;
+  if(s.type==='write'){
+    s.items.forEach((it,i)=>{const id=sid+'_'+i;max+=2;const r=checkWrite(st.v[id],it.need);if(!r.empty)filled++;sc+=r.pts;card.querySelector(`[data-fb="${id}"]`).innerHTML=r.msg.join(' · ')});
+  }else{
+    const els=[...card.querySelectorAll('[data-id]')];
+    els.forEach(el=>{const id=el.dataset.id;max++;el.classList.remove('ok','bad','empty');
+      if(!el.value.trim()){el.classList.add('empty');return}
+      filled++;const ok=match(id,el.value);if(ok)sc++;el.classList.add(ok?'ok':'bad')});
+    // feedback per field / row
+    if(s.type==='select')els.forEach(el=>{const id=el.dataset.id,f=card.querySelector(`[data-fix="${id}"]`);f.className='fix';
+      if(!el.value)f.textContent=filled?'':'';else f.textContent=match(id,el.value)?'':'→ '+ANS[id][0]});
+    else s.items.forEach((it,i)=>{const f=card.querySelector(`[data-fixrow="${sid}_${i}"]`);
+      const ids=els.filter(e=>e.dataset.id.startsWith(`${sid}_${i}_`)).map(e=>e.dataset.id);
+      const empty=ids.some(id=>!(st.v[id]||'').trim());
+      const wrong=ids.filter(id=>(st.v[id]||'').trim()&&!match(id,st.v[id])).map(id=>ANS[id][0]);
+      if(wrong.length){f.className='fix';f.textContent='→ '+wrong.join(' / ')}
+      else if(empty&&filled){f.className='fix try';f.textContent='✍️ Заполни пропуск и проверь ещё раз'}
+      else f.textContent='';});
+  }
+  if(user)st.tries[sid]=(st.tries[sid]||0)+1;
+  const r=document.getElementById('res_'+sid);
+  if(!filled){delete st.checked[sid];save();
+    r.innerHTML=`<div class="sc">✍️</div><div>Задание пока пустое. Выполни его и попробуй ещё раз!</div>`;r.classList.add('show');progress();return{sc:0,max,empty:1}}
+  st.checked[sid]={sc,max};save();
+  const p=Math.round(sc/max*100);
+  const msg=p===100?'Perfect! Ты чемпионка 🏆':p>=70?'Очень хорошо! Ещё чуть-чуть 💪':'Есть над чем поработать, ты справишься 🐾';
+  const left=max-(s.type==='write'?filled*2:filled);
+  r.innerHTML=`<div class="sc">${sc} / ${max}</div><div>${msg}</div>${left>0?'<div class="tip">✍️ Есть незаполненные пропуски: выполни их и проверь ещё раз</div>':''}${p<100?`<div class="tip">💡 ${s.tip}</div>`:''}`;r.classList.add('show');
+  progress();return{sc,max};
+}
+function checkAll(){
+  let sc=0,max=0;const weak=[],empty=[];
+  SECTIONS.forEach((s,i)=>{const r=checkSec(s.id,true);if(r.empty){empty.push(`${i+1}. ${s.title}`);return}sc+=r.sc;max+=r.max;if(r.sc/r.max<.8)weak.push(`<li>${i+1}. ${s.title}: ${s.tip}</li>`)});
+  const out=document.getElementById('finalOut');
+  if(!max){out.innerHTML='<p class="instr" style="text-align:center">Пока ничего не выполнено. Начни с первого задания! 💪</p>';return}
+  const p=Math.round(sc/max*100);
+  if(allDone())setTimeout(()=>showWin(sc,max),300);
+  out.innerHTML=`<div style="text-align:center"><div class="big">${sc} / ${max}</div><b>${p}% ${p>=90?'🥇':p>=70?'🥈':'🥉'}</b></div>`+
+   (empty.length?`<p class="instr">✍️ Ещё не выполнены: ${empty.join(', ')}</p>`:'')+
+   (weak.length?`<p class="instr">Что ещё отработать:</p><ul>${weak.join('')}</ul>`:(!empty.length?`<p class="instr" style="text-align:center">Всё отлично! Great job, champion 🏃‍♀️💖</p>`:''));
+}
+
+function toggleGl(o){document.getElementById('glo').classList.toggle('show',o);document.body.style.overflow=o?'hidden':''}
+function filterGl(q){q=q.toLowerCase().trim();document.querySelectorAll('#glPanel .gl').forEach(g=>{let any=0;g.querySelectorAll('div').forEach(d=>{const s=!q||d.textContent.toLowerCase().includes(q);d.style.display=s?'':'none';if(s)any=1});g.style.display=any?'':'none';g.previousElementSibling.style.display=any?'':'none'})}
+/* ================ FIREWORKS ================ */
+let fwRun=0;
+function fireworks(){
+  const c=document.getElementById('fw'),x=c.getContext('2d');c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;x.scale(devicePixelRatio,devicePixelRatio);
+  const W=innerWidth,H=innerHeight,cols=['#ff5fa8','#ff9fd0','#5bb8ff','#8fd0ff','#ffd84d','#ffffff','#b48cff'];let P=[],t=0;const id=++fwRun;
+  const boom=(bx,by)=>{for(let i=0;i<70;i++){const a=Math.random()*6.283,s=1.5+Math.random()*4.5;P.push({x:bx,y:by,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:60+Math.random()*40,c:cols[i%cols.length],r:1.6+Math.random()*2})}};
+  const conf=()=>{for(let i=0;i<6;i++)P.push({x:Math.random()*W,y:-10,vx:(Math.random()-.5)*2,vy:2+Math.random()*2,l:220,c:cols[i],r:3+Math.random()*3,q:1,a:Math.random()*6})};
+  (function f(){if(id!==fwRun)return;t++;x.clearRect(0,0,W,H);
+    if(t<260&&t%22===1)boom(W*(.15+Math.random()*.7),H*(.12+Math.random()*.35));if(t<300)conf();
+    P=P.filter(p=>p.l>0);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.l--;if(p.q){p.a+=.15;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r,-p.r/2,p.r*2,p.r);x.restore()}else{p.vy+=.06;p.vx*=.985;x.globalAlpha=Math.min(1,p.l/40);x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fill();x.globalAlpha=1}});
+    if(t<420||P.length)requestAnimationFrame(f);else x.clearRect(0,0,W,H)})();
+}
+function allDone(){return [...document.querySelectorAll('[data-id]')].every(el=>el.value.trim())}
+function showWin(sc,max){document.getElementById('winScore').textContent=`${sc} / ${max} · ${Math.round(sc/max*100)}%`;document.getElementById('win').classList.add('show');fireworks()}
+function closeWin(){document.getElementById('win').classList.remove('show');fwRun++;const c=document.getElementById('fw');c.getContext('2d').clearRect(0,0,c.width,c.height)}
+
+/* ================ PROGRESS ================ */
+function progress(){
+  let tot=0,done=0;
+  document.querySelectorAll('[data-id]').forEach(el=>{tot++;if(el.value.trim())done++});
+  const p=tot?Math.round(done/tot*100):0;
+  document.getElementById('runner').style.left=`calc(${p}% * 0.86)`;
+  document.getElementById('trackLbl').textContent=(p===100?'Finish! 🎉 ':p>50?'Keep running! ':p>0?'Get set… go! ':'On your marks… ')+p+'%';
+}
+
+/* ================ RESULTS ================ */
+function buildText(){
+  let sc=0,max=0;const lines=['🏃‍♀️ Arina — HW 10A Sports & movement',''],mistakes=[];
+  SECTIONS.forEach((s,i)=>{
+    const c=st.checked[s.id];
+    if(!c){lines.push(`${i+1}. ${s.title}: не проверено`);return}
+    sc+=c.sc;max+=c.max;lines.push(`${i+1}. ${s.title}: ${c.sc}/${c.max} (проверок: ${st.tries[s.id]||0})`);
+    if(s.type!=='write')Object.keys(ANS).filter(id=>META[id].sec===s.id).forEach(id=>{const v=(st.v[id]||'').trim();
+      if(!v)mistakes.push(`${s.title}: ${META[id].p} → (пусто)`);else if(!match(id,v))mistakes.push(`${s.title}: ${META[id].p} → «${v}» (правильно: ${ANS[id][0]})`)});
+  });
+  lines.splice(1,0,max?`Итого: ${sc}/${max} (${Math.round(sc/max*100)}%)`:'Итого: пока не проверено');
+  if(mistakes.length){lines.push('','❌ Ошибки и пропуски:');mistakes.forEach(m=>lines.push('• '+m))}
+  return lines.join('\n');
+}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2400)}
+function copyResults(){
+  const t=buildText();
+  const fallback=()=>{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Скопировано! Вставь в чат учителю 💌')}catch(e){prompt('Скопируй текст:',t)}a.remove()};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>toast('Скопировано! Вставь в чат учителю 💌'),fallback);else fallback();
+}
+function sendTg(){window.open('https://t.me/share/url?url='+encodeURIComponent(' ')+'&text='+encodeURIComponent(buildText()),'_blank')}
+function resetAll(){if(!confirm('Стереть все ответы и начать заново?'))return;st={v:{},checked:{},tries:{}};save();
+  document.getElementById('finalOut').innerHTML='';render();window.scrollTo({top:0,behavior:'smooth'})}
+
+render();
+</script>
+</body>
+</html>
