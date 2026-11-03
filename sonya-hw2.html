@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sonya's Homework 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#8e5bd6;--purple-d:#5b2fa0;--pink:#ff6fae;--lilac:#efe3ff;--ink:#3b2560;--ok:#2bb673;--bad:#e8456b;--warn:#f2a531}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:#f6eeff;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='%23d9c2ff' opacity='.55'%3E%3Cellipse cx='30' cy='38' rx='9' ry='8'/%3E%3Ccircle cx='19' cy='26' r='4'/%3E%3Ccircle cx='27' cy='20' r='4'/%3E%3Ccircle cx='36' cy='21' r='4'/%3E%3Ccircle cx='42' cy='28' r='4'/%3E%3C/g%3E%3Cg fill='%23ffc2de' opacity='.6'%3E%3Cellipse cx='70' cy='78' rx='7' ry='6'/%3E%3Ccircle cx='61' cy='69' r='3'/%3E%3Ccircle cx='67' cy='64' r='3'/%3E%3Ccircle cx='74' cy='65' r='3'/%3E%3Ccircle cx='79' cy='71' r='3'/%3E%3C/g%3E%3C/svg%3E")}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+header{text-align:center;padding:24px 16px 20px;border-radius:26px;color:#fff;margin-bottom:12px;
+ background:radial-gradient(circle at 12% 30%,rgba(255,255,255,.9) 0 2px,transparent 3px),radial-gradient(circle at 80% 20%,rgba(255,255,255,.8) 0 1.5px,transparent 3px),radial-gradient(circle at 60% 80%,rgba(255,255,255,.9) 0 2px,transparent 3px),linear-gradient(135deg,#a56ff0,#ff6fae);
+ background-size:90px 90px,120px 120px,70px 70px,100% 100%;box-shadow:0 10px 30px rgba(142,91,214,.35)}
+header h1{font-family:'Pacifico',cursive;font-weight:400;font-size:32px;margin:0 0 6px}
+header p{margin:4px 0;font-weight:700}
+.dogs{font-size:28px;letter-spacing:6px}
+.progress{height:12px;background:rgba(255,255,255,.4);border-radius:999px;margin:10px auto 0;max-width:300px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:#fff;border-radius:999px;transition:width .4s}
+.tabs{position:sticky;top:8px;z-index:5;display:flex;gap:6px;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px;border-radius:999px;box-shadow:0 4px 14px rgba(91,47,160,.18);margin-bottom:6px}
+.tab{flex:1;border:none;font:inherit;font-weight:900;font-size:15px;padding:10px 6px;border-radius:999px;background:transparent;color:var(--purple-d);cursor:pointer}
+.tab.on{background:linear-gradient(135deg,#b07cff,#ff6fae);color:#fff;box-shadow:inset 0 2px 0 rgba(255,255,255,.4)}
+.page{display:none}.page.on{display:block}
+section.task{border-radius:24px;padding:12px;margin:18px 0;box-shadow:0 6px 18px rgba(91,47,160,.15)}
+.inner{background:rgba(255,255,255,.93);border-radius:18px;padding:16px}
+h2{margin:0 0 6px;font-size:21px;font-weight:900;color:var(--purple-d)}
+.instr{margin:0 0 12px;font-size:15px}
+.tag{display:inline-block;font-size:12px;font-weight:900;color:#fff;background:var(--pink);border-radius:999px;padding:2px 10px;margin-bottom:6px}
+.bg-glitter{background:radial-gradient(circle,rgba(255,255,255,.95) 0 1.5px,transparent 2.5px) 0 0/22px 22px,radial-gradient(circle,rgba(255,240,250,.8) 0 1px,transparent 2px) 11px 11px/17px 17px,linear-gradient(135deg,#c79bff,#ff9dcb)}
+.bg-pink{background:#ffc9e3}
+.bg-check{background-color:#fff;background-image:linear-gradient(90deg,rgba(255,111,174,.35) 50%,transparent 50%),linear-gradient(rgba(255,111,174,.35) 50%,transparent 50%);background-size:28px 28px}
+.bg-dots{background:radial-gradient(#fff 28%,transparent 31%) 0 0/24px 24px,#b88cf0}
+.bg-stripes{background:repeating-linear-gradient(45deg,#ffd0e6 0 16px,#e6d4ff 16px 32px)}
+.bg-stars{background-color:#7a48c9;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M15 5l2 6 6 2-6 2-2 6-2-6-6-2 6-2z' fill='%23ffe1f0'/%3E%3Cpath d='M45 35l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z' fill='%23fff'/%3E%3C/svg%3E")}
+.bg-floral{background-color:#f3ecff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='%23ff8fc0'%3E%3Ccircle cx='22' cy='15' r='5'/%3E%3Ccircle cx='29' cy='22' r='5'/%3E%3Ccircle cx='22' cy='29' r='5'/%3E%3Ccircle cx='15' cy='22' r='5'/%3E%3C/g%3E%3Ccircle cx='22' cy='22' r='4' fill='%23ffd34d'/%3E%3C/svg%3E")}
+.item{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:14px;margin:6px 0;background:#fbf7ff;border:2px solid transparent}
+.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--purple);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:4px}
+.body{flex:1;min-width:0}
+.line{line-height:2.1;font-size:16px}
+.q{font-weight:700;margin-right:8px}
+.rev{font-size:11px;font-weight:900;color:#fff;background:#b07cff;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+.hint{font-size:13px;color:#8a6bb8;font-weight:700;line-height:1.4;margin-bottom:4px}
+input[type=text],select{font:inherit;font-size:16px;color:var(--ink);border:2px solid #d8c4f7;border-radius:12px;padding:5px 10px;background:#fff;outline:none;max-width:100%}
+input[type=text]{width:190px}
+input[type=text].wide{width:100%}
+input:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,111,174,.2)}
+input.target{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,111,174,.25)}
+.msg{font-size:14px;font-weight:700}
+.item.ok{border-color:var(--ok);background:#ecfbf3}.item.ok .msg{color:var(--ok)}
+.item.bad{border-color:var(--bad);background:#fff0f3}.item.bad .msg{color:var(--bad)}
+.item.empty{border-color:var(--warn);background:#fff8ec}.item.empty .msg{color:#b8740c}
+.gaptext{font-size:17px;line-height:2.4}
+.gap{display:inline-flex;flex-direction:column;vertical-align:top;margin:0 2px}
+.gap input{width:140px;padding:3px 8px}
+.gap .msg{font-size:12px;line-height:1.2;max-width:150px}
+.gap.ok input{border-color:var(--ok);background:#ecfbf3}.gap.ok .msg{color:var(--ok)}
+.gap.bad input{border-color:var(--bad);background:#fff0f3}.gap.bad .msg{color:var(--bad)}
+.gap.empty input{border-color:var(--warn);background:#fff8ec}.gap.empty .msg{color:#b8740c}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px;padding:10px;border-radius:14px;background:#fff;border:2px dashed #e0cdfb}
+.chip{border:none;font:inherit;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--lilac);color:var(--purple-d);cursor:pointer}
+.chip.used{opacity:.3;text-decoration:line-through;cursor:default}
+.btn{position:relative;overflow:hidden;border:none;cursor:pointer;font:inherit;font-weight:900;font-size:17px;color:#fff;padding:12px 26px;border-radius:999px;margin-top:12px;
+ background:linear-gradient(135deg,#b07cff,#ff6fae);box-shadow:0 6px 16px rgba(255,111,174,.4),inset 0 2px 0 rgba(255,255,255,.5)}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:shine 2.8s infinite}
+@keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+.btn:active{transform:scale(.97)}
+.btn.small{font-size:14px;padding:8px 16px}
+.btn.ghost{background:#fff;color:var(--purple-d);box-shadow:0 2px 8px rgba(91,47,160,.2)}.btn.ghost::after{display:none}
+.fb{margin-top:12px;font-weight:700;font-size:16px;border-radius:14px}
+.fb:not(:empty){padding:12px 14px;background:var(--lilac)}
+.row-btns{display:flex;flex-wrap:wrap;gap:10px}
+.wgroup{font-weight:900;font-size:18px;margin:16px 0 8px;color:var(--purple-d)}
+.word{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:14px;background:#fbf7ff;margin:5px 0}
+.word .em{font-size:22px;width:30px;text-align:center;flex:none}
+.word .en{font-weight:900;flex:1.1}
+.word .ru{flex:1;color:#6e4fa0}
+.say{flex:none;border:none;background:var(--lilac);border-radius:999px;font-size:17px;padding:4px 10px;cursor:pointer}
+.hide-ru .word .ru,.hide-en .word .en{filter:blur(6px);cursor:pointer}
+.word .shown{filter:none!important}
+.tense{background:#fff;border-radius:14px;padding:12px 14px;margin:10px 0;border-left:7px solid var(--pink)}
+.tense h3{margin:0 0 4px;font-size:17px;color:var(--purple-d)}
+.tense .f{font-weight:700}
+.tense .m{font-size:14px;color:#8a6bb8;font-weight:700}
+.ex{color:#7a5aa8;font-style:italic}
+.small{font-size:13px}
+pre#report{white-space:pre-wrap;background:#fff;border-radius:14px;padding:14px;font-family:inherit;font-size:15px;border:2px dashed #d8c4f7}
+.remind{background:#fff3c4;border-radius:14px;padding:10px 14px;font-weight:700;margin-top:10px}
+footer{text-align:center;padding:20px 0 40px;font-size:14px;color:#7a5aa8}
+@media (max-width:480px){header h1{font-size:27px}input[type=text]{width:100%}.q{display:block}.tab{font-size:13px}.gap input{width:128px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="dogs">🐶💜🛹</div>
+  <h1>Sonya's Homework #2</h1>
+  <p>Hobbies · Personality · must / have to</p>
+  <p class="small">Всё сохраняется само — можно делать по частям 💾</p>
+  <div class="progress"><span id="bar"></span></div>
+  <p class="small" id="barText"></p>
+</header>
+
+<nav class="tabs">
+  <button class="tab on" data-page="pEx">📝 Упражнения</button>
+  <button class="tab" data-page="pWords">📚 Слова</button>
+  <button class="tab" data-page="pGram">📌 Грамматика</button>
+</nav>
+
+<div class="page on" id="pEx">
+  <div id="tasks"></div>
+  <section class="task bg-glitter">
+    <div class="inner">
+      <h2>🏆 Итог</h2>
+      <p class="instr">Когда всё сделаешь — нажми кнопку и отправь результат учителю.</p>
+      <button class="btn" id="finishBtn">Посмотреть результат 💜</button>
+      <div id="reportBox" style="display:none;margin-top:14px">
+        <pre id="report"></pre>
+        <div class="row-btns">
+          <button class="btn small" id="copyBtn">📋 Скопировать</button>
+          <button class="btn small" id="tgBtn">✈️ Отправить в Telegram</button>
+        </div>
+        <p class="small" id="copyMsg"></p>
+        <div class="remind">📩 Не забудь: скопируй результат и отправь его своему учителю в Telegram!</div>
+      </div>
+      <hr style="border:none;border-top:2px dashed #e5d6fb;margin:20px 0 10px">
+      <button class="btn small ghost" id="resetBtn">🗑 Начать заново</button>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="pWords">
+  <section class="task bg-floral">
+    <div class="inner">
+      <h2>📚 Слова этого ДЗ</h2>
+      <p class="instr">Забыла слово? Загляни сюда! 🔊 — послушай и повтори вслух.<br>
+      Проверь себя: спрячь перевод или английский и вспоминай. Нажми на размытое слово — оно появится.</p>
+      <div class="row-btns">
+        <button class="btn small ghost" id="hideRu">🙈 Спрятать перевод</button>
+        <button class="btn small ghost" id="hideEn">🙈 Спрятать английский</button>
+      </div>
+      <div id="wordsBox"></div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="pGram">
+  <section class="task bg-stripes">
+    <div class="inner">
+      <h2>📌 must / have to — шпаргалка</h2>
+      <div class="tense"><h3>✅ must — должна (я сама так считаю, правило)</h3>
+        <div class="f">I / you / he / she <b>must</b> + глагол (без to!)</div>
+        <div class="ex">I must practise more. You must wear a helmet when you skateboard.</div></div>
+      <div class="tense"><h3>📋 have to / has to — приходится, так надо (обязанность)</h3>
+        <div class="f">I / you / we / they <b>have to</b> · he / she / it <b>has to</b></div>
+        <div class="f">❓ <b>Do</b> you have to…? · <b>Does</b> she have to…?</div>
+        <div class="ex">Dan has to travel a lot. Do you have to train every day?</div></div>
+      <div class="tense"><h3>⛔ mustn't — НЕЛЬЗЯ!</h3>
+        <div class="ex">You mustn't touch the hot oven! Dogs mustn't eat chocolate.</div></div>
+      <div class="tense"><h3>😌 don't have to / doesn't have to — НЕ ОБЯЗАТЕЛЬНО (можно, но не нужно)</h3>
+        <div class="ex">It's Saturday — I don't have to go to school. Megan doesn't have to have special training.</div></div>
+      <div class="tense"><h3>⏪ had to — пришлось (в прошлом, для всех)</h3>
+        <div class="ex">Last year Megan had to visit the dentist six times.</div></div>
+      <p class="small">⚠️ Главная ловушка: <b>mustn't</b> = нельзя, а <b>don't have to</b> = не обязательно. Это разные вещи!</p>
+    </div>
+  </section>
+  <section class="task bg-pink">
+    <div class="inner">
+      <h2>💬 Как сказать «…, поэтому я …»</h2>
+      <div class="tense"><h3>I love + хобби, so I'm + качество</h3>
+        <div class="ex">I love doing gymnastics, so I'm fit and determined.<br>Timofey likes playing chess, so he's patient.<br>I enjoy cooking, so I'm creative.</div>
+        <div class="m">После love / like / enjoy глагол с -ing: cooking, painting, skateboarding</div></div>
+    </div>
+  </section>
+</div>
+
+<footer>🐾 Good luck, Sonya! 🐾</footer>
+</div>
+
+<script>
+const VOCAB=[
+ ['Hobbies — хобби','sewing','шитьё','🧵'],['Hobbies — хобби','writing stories','сочинять истории','📝'],
+ ['Hobbies — хобби','skateboarding','катание на скейте','🛹'],['Hobbies — хобби','ice-skating','катание на коньках','⛸️'],
+ ['Hobbies — хобби','knitting','вязание','🧶'],['Hobbies — хобби','collecting stamps','коллекционировать марки','📮'],
+ ['Hobbies — хобби','playing chess','играть в шахматы','♟️'],['Hobbies — хобби','boxing','бокс','🥊'],
+ ['Hobbies — хобби','fencing','фехтование','🤺'],['Hobbies — хобби','football','футбол','⚽'],
+ ['Hobbies — хобби','painting','рисование (красками)','🎨'],['Hobbies — хобби','songwriting','сочинять песни','🎵'],
+ ['Personality — какой человек','artistic','художественный, хорошо рисует','🖌️'],['Personality — какой человек','creative','творческий','💡'],
+ ['Personality — какой человек','daring','смелый, рисковый','🔥'],['Personality — какой человек','fit','в хорошей форме','💪'],
+ ['Personality — какой человек','patient','терпеливый','⏳'],['Personality — какой человек','athletic','спортивный','🏃‍♀️'],
+ ['Personality — какой человек','sociable','общительный','🗣️'],['Personality — какой человек','curious','любопытный, любознательный','🔍'],
+ ['Personality — какой человек','determined','целеустремлённый, упорный','🎯'],['Personality — какой человек','imaginative','с богатой фантазией','🦄'],
+ ['Unusual jobs — из текста','circus performer','артист цирка','🎪'],['Unusual jobs — из текста','chocolate taster','дегустатор шоколада','🍫'],
+ ['Unusual jobs — из текста','games tester','тестировщик игр','🎮'],['Unusual jobs — из текста','practise','тренироваться, практиковаться','🔁'],
+ ['Unusual jobs — из текста','juggle','жонглировать','🤹‍♀️'],['Unusual jobs — из текста','taste','пробовать на вкус; вкус','👅'],
+ ['Unusual jobs — из текста','score (out of ten)','оценка (из десяти)','🔟'],['Unusual jobs — из текста','sweet / creamy / bitter','сладкий / сливочный / горький','🍬'],
+ ['Unusual jobs — из текста','dangerous','опасный','⚠️'],['Unusual jobs — из текста','dentist','зубной врач','🦷'],
+ ['Unusual jobs — из текста','expert','эксперт, специалист','🧠'],['Unusual jobs — из текста','programmer','программист','💻'],
+ ['Unusual jobs — из текста','write down','записывать','✍️'],['Unusual jobs — из текста','grow up','вырасти','🌱'],
+ ['must / have to','must','должна (важно, правило)','✅'],['must / have to','have to / has to','приходится, надо','📋'],
+ ['must / have to','mustn\'t','нельзя','⛔'],['must / have to','don\'t have to / doesn\'t have to','не обязательно','😌'],
+ ['must / have to','had to','пришлось (в прошлом)','⏪'],
+ ['🔁 Повтор из ДЗ №1','striped / checked / spotted / floral / plain','в полоску / в клетку / в горошек / в цветочек / однотонный','🎨'],
+ ['🔁 Повтор из ДЗ №1','trainers','кроссовки','👟'],['🔁 Повтор из ДЗ №1','earrings','серьги','✨'],['🔁 Повтор из ДЗ №1','bracelet','браслет','📿'],
+ ['🔁 Повтор из ДЗ №1','scarf','шарф','🧣'],['🔁 Повтор из ДЗ №1','leggings','леггинсы','🤸‍♀️'],['🔁 Повтор из ДЗ №1','tie','галстук','👔'],
+ ['🔁 Повтор из ДЗ №1','hoodie','худи, толстовка','🧢'],['🔁 Повтор из ДЗ №1','tight / baggy','обтягивающий / мешковатый','👖'],
+ ['🔁 Повтор из ДЗ №1','wear → wore → worn','носить (одежду)','👗']
+];
+
+const ADJ=['artistic','creative','daring','fit','patient','athletic','sociable','curious','determined','imaginative'];
+const BG=['bg-stripes','bg-check','bg-dots','bg-pink','bg-stars'];
+const TASKS=[
+ {id:'t1',title:'🛹 Hobbies: переведи на английский',instr:'Нажми на клетку, потом на слово в рамке — оно встанет туда. Можно и написать самой. Ошиблась — сотри слово, и оно снова станет доступно. 🔁 — слова из прошлого ДЗ.',kind:'text',
+  bank:['sewing','writing stories','skateboarding','ice-skating','knitting','collecting stamps','playing chess','boxing','fencing','football','painting','songwriting','striped','trainers','earrings'],items:[
+  {q:'шитьё',a:['sewing']},{q:'сочинять истории',a:['writing stories']},{q:'катание на скейте',a:['skateboarding']},
+  {q:'катание на коньках',a:['ice-skating','ice skating']},{q:'вязание',a:['knitting']},{q:'коллекционировать марки',a:['collecting stamps']},
+  {q:'играть в шахматы',a:['playing chess']},{q:'бокс',a:['boxing']},{q:'фехтование',a:['fencing']},{q:'футбол',a:['football']},
+  {q:'рисование красками',a:['painting']},{q:'сочинять песни',a:['songwriting','song writing']},
+  {q:'в полоску',a:['striped'],rev:1},{q:'кроссовки',a:['trainers','sneakers'],rev:1},{q:'серьги',a:['earrings'],rev:1}]},
+ {id:'t2',title:'💜 What are they like?',instr:'Какой это человек? Выбери слово из рамки. Каждое слово — один раз.',kind:'text',
+  bank:ADJ,items:[
+  {q:'Sonya does power gymnastics every day. She is strong and ___ .',a:['fit','athletic'],show:'fit'},
+  {q:'Knitting a scarf takes a long time. You have to be ___ .',a:['patient']},
+  {q:'Timofey talks to everybody and has lots of friends. He is very ___ .',a:['sociable']},
+  {q:'Megan paints beautiful pictures. She is very ___ .',a:['artistic','creative'],show:'artistic'},
+  {q:'Skateboarding and boxing can be dangerous — you have to be ___ !',a:['daring']},
+  {q:'My dog wants to see and smell everything. She is so ___ !',a:['curious']},
+  {q:'Dan practised juggling every day for years and never stopped. He is ___ .',a:['determined','patient'],show:'determined'},
+  {q:'People who write stories have lots of ideas in their head. They are ___ .',a:['imaginative','creative'],show:'imaginative'},
+  {q:'Football players run a lot and are good at sport. They are ___ .',a:['athletic','fit'],show:'athletic'},
+  {q:'I invent new recipes when I cook. I\'m ___ !',a:['creative','imaginative'],show:'creative'}]},
+ {id:'t3',title:'✍️ I love…, so I\'m…',instr:'Напиши предложение по образцу: <b>I love doing gymnastics, so I\'m fit.</b> Используй love / like / enjoy, слово <b>so</b> и качество из списка: artistic, creative, daring, fit, patient, athletic, sociable, curious, determined, imaginative.',kind:'pattern',wide:true,items:[
+  {q:'Про себя и гимнастику 🤸‍♀️',ex:"I love doing gymnastics, so I'm fit and determined."},
+  {q:'Про себя и готовку 🍰',ex:"I enjoy cooking, so I'm creative."},
+  {q:'Про Тимофея 👦 (he / he\'s)',ex:"Timofey likes playing football, so he's athletic."},
+  {q:'Про хобби из списка, которое тебе нравится 🛹',ex:"I like painting, so I'm artistic."},
+  {q:'Про свою собачку или подругу 🐶',ex:"My friend loves skateboarding, so she's daring."}]},
+ {id:'t4',title:'⛔ must / have to: выбери',instr:'Выбери правильный вариант. Помни: mustn\'t = нельзя, don\'t have to = не обязательно. Шпаргалка — во вкладке «📌 Грамматика».',kind:'select',items:[
+  {q:'Dan ___ travel a lot.',o:['has to','have to','don\'t have to'],a:'has to'},
+  {q:'Megan ___ have special training to do her job.',o:['doesn\'t have to','mustn\'t','have to'],a:'doesn\'t have to'},
+  {q:'You ___ touch the hot oven! It\'s dangerous!',o:['mustn\'t','don\'t have to','has to'],a:'mustn\'t'},
+  {q:'Robbie ___ write down any problems in the game.',o:['has to','have to','doesn\'t have to'],a:'has to'},
+  {q:'It\'s Saturday! I ___ go to school today. Hooray!',o:['don\'t have to','mustn\'t','has to'],a:'don\'t have to'},
+  {q:'Dogs ___ eat chocolate — it\'s bad for them!',o:['mustn\'t','don\'t have to','has to'],a:'mustn\'t'},
+  {q:'Timofey ___ wear a tie at school — he can wear a hoodie.',o:['doesn\'t have to','mustn\'t','have to'],a:'doesn\'t have to'},
+  {q:'At gymnastics you ___ wear earrings or a bracelet — it\'s dangerous!',o:['mustn\'t','don\'t have to','has to'],a:'mustn\'t'},
+  {q:'Last year Megan ___ visit the dentist six times.',o:['had to','has to','must'],a:'had to'},
+  {q:'___ you have to practise every day?',o:['Do','Does','Must'],a:'Do'}]},
+ {id:'t5',title:'🍫 Unusual jobs: вспомни текст',instr:'Вставь слова из рамки в текст про необычные профессии (стр. с Dan, Megan и Robbie). Каждое слово — один раз.',kind:'gaps',
+  bank:['has to','have to','doesn\'t have to','had to','practise','juggle','dangerous','taster','score','bitter','dentist','tester','expert','programmer'],
+  text:"Dan is a circus performer. He {0} travel a lot and {1} hard. He could {2} when he was six. Juggling with knives can be {3}! Megan is a chocolate {4}. She gives each chocolate a {5} out of ten and writes down the taste: sweet, creamy or {6}. She {7} have any special training. Last year she {8} visit the {9} six times! Robbie is a games {10}. You don't have to be an {11}, but you {12} be good at computer games. He'd like to become a {13}.",
+  items:[{a:['has to']},{a:['practise','practice']},{a:['juggle']},{a:['dangerous']},{a:['taster']},{a:['score']},{a:['bitter']},
+   {a:["doesn't have to"]},{a:['had to']},{a:['dentist']},{a:['tester']},{a:['expert']},{a:['have to']},{a:['programmer']}]}
+];
+const KEY='sonya_hw2_v1';
+let store={inputs:{},results:{},checks:{}};
+try{const s=localStorage.getItem(KEY);if(s)store=Object.assign(store,JSON.parse(s));}catch(e){}
+store.checks=store.checks||{};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+
+function norm(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");
+  [[/\bcan't\b/g,'can not'],[/\bwon't\b/g,'will not'],[/\bmustn't\b/g,'must not'],[/n't\b/g,' not'],[/\bi'm\b/g,'i am'],[/'re\b/g,' are'],[/'ve\b/g,' have'],
+   [/'ll\b/g,' will'],[/'d\b/g,' would'],[/\b(it|that|he|she|what|where|who|there|timofey|sonya|mum)'s\b/g,'$1 is'],[/\bcannot\b/g,'can not']].forEach(r=>{s=s.replace(r[0],r[1]);});
+  return s.replace(/-/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+function shown(it){return it.show||it.ex||(Array.isArray(it.a)?it.a[0]:it.a);}
+/* проверка предложения по образцу: love/like/enjoy + so + качество */
+function patternCheck(v){
+  const n=' '+norm(v)+' ';
+  const miss=[];
+  if(!/ (love|loves|like|likes|enjoy|enjoys) /.test(n))miss.push('love / like / enjoy');
+  if(!/ so /.test(n))miss.push('слово so');
+  if(!ADJ.some(a=>n.includes(' '+a+' ')))miss.push('качество из списка');
+  if(!miss.length&&!/ (am|is|are) /.test(n))miss.push("I'm / he's / she's после so");
+  return miss;
+}
+function isRight(t,it,v){
+  if(t.kind==='select')return v===it.a;
+  if(t.kind==='pattern')return patternCheck(v).length===0;
+  const n=norm(v);
+  return it.a.some(a=>norm(a)===n);
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+const lastFocus={};
+function control(t,it,id){
+  if(t.kind==='select')return `<select id="${id}"><option value="">— choose —</option>${it.o.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select>`;
+  return `<input type="text" id="${id}" class="${t.wide?'wide':''}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">`;
+}
+function renderTasks(){
+  const box=document.getElementById('tasks');
+  TASKS.forEach((t,ti)=>{
+    const sec=document.createElement('section');sec.className='task '+BG[ti%BG.length];sec.id='sec-'+t.id;
+    let h=`<div class="inner"><span class="tag">Упражнение ${ti+1}</span><h2>${t.title}</h2><p class="instr">${t.instr}</p>`;
+    if(t.bank){
+      const bank=[...t.bank].sort(()=>Math.random()-.5);
+      h+=`<div class="bank">${bank.map(w=>`<button class="chip" data-t="${t.id}" data-w="${esc(w)}">${esc(w)}</button>`).join('')}</div>`;
+    }
+    if(t.kind==='gaps'){
+      h+=`<div class="gaptext">`+t.text.replace(/\{(\d+)\}/g,(m,i)=>{const id=`${t.id}-${i}`;return `<span class="gap" id="row-${id}"><input type="text" id="${id}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${+i+1}"><span class="msg"></span></span>`;})+'</div>';
+    }else{
+      t.items.forEach((it,i)=>{
+        const id=`${t.id}-${i}`,c=control(t,it,id);
+        const rev=it.rev?'<span class="rev">🔁 повтор</span>':'';
+        let line;
+        if(t.kind==='pattern')line=`<div class="q">${esc(it.q)}</div>${c}`;
+        else if(it.q.includes('___'))line=esc(it.q).replace('___',c)+rev;
+        else line=`<span class="q">${esc(it.q)}${rev}</span>${c}`;
+        h+=`<div class="item" id="row-${id}"><span class="num">${i+1}</span><div class="body"><div class="line">${line}</div><div class="msg"></div></div></div>`;
+      });
+    }
+    h+=`<button class="btn" data-check="${t.id}">Check ✨</button><div class="fb" id="fb-${t.id}"></div></div>`;
+    sec.innerHTML=h;box.appendChild(sec);
+  });
+  document.querySelectorAll('#tasks input,#tasks select').forEach(el=>{
+    if(store.inputs[el.id]!==undefined)el.value=store.inputs[el.id];
+    const on=()=>{store.inputs[el.id]=el.value;save();markChips();};
+    el.addEventListener('input',on);el.addEventListener('change',on);
+    const tid=el.id.split('-')[0];
+    el.addEventListener('focus',()=>{lastFocus[tid]=el;markTarget(tid);});
+  });
+  document.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{
+    if(ch.disabled)return;
+    const tid=ch.dataset.t,inputs=[...document.querySelectorAll(`#sec-${tid} input`)];
+    let target=lastFocus[tid];
+    if(!target||target.value.trim())target=inputs.find(i=>!i.value.trim());
+    if(!target)return;
+    target.value=ch.dataset.w;store.inputs[target.id]=target.value;save();
+    lastFocus[tid]=inputs.find(i=>!i.value.trim())||null;
+    markChips();markTarget(tid);
+  }));
+  document.querySelectorAll('[data-check]').forEach(b=>b.addEventListener('click',()=>{
+    const t=TASKS.find(t=>t.id===b.dataset.check);
+    store.checks[t.id]=(store.checks[t.id]||0)+1;check(t);
+  }));
+  markChips();
+}
+/* слово из рамки, которое уже стоит в клетке, второй раз не вставляется */
+function markChips(){
+  TASKS.filter(t=>t.bank).forEach(t=>{
+    const used=[...document.querySelectorAll(`#sec-${t.id} input`)].map(i=>norm(i.value)).filter(Boolean);
+    document.querySelectorAll(`#sec-${t.id} .chip`).forEach(c=>{
+      const u=used.includes(norm(c.dataset.w));c.classList.toggle('used',u);c.disabled=u;
+    });
+  });
+}
+function markTarget(tid){
+  document.querySelectorAll(`#sec-${tid} input`).forEach(i=>i.classList.toggle('target',i===lastFocus[tid]&&!i.value.trim()));
+}
+
+const PRAISE=[[100,'Perfect! 🐶🏆 Ты супер!'],[85,'Great job! 💜 Почти идеально!'],[65,'Good! 👍 Посмотри на ошибки и повтори их.'],[0,'Keep going! 🐾 Загляни во вкладки «Слова» и «Грамматика» и попробуй ещё раз.']];
+function qLabel(t,it,i){
+  if(t.kind==='gaps')return `пропуск ${i+1}`;
+  return it.q;
+}
+function check(t){
+  const fb=document.getElementById('fb-'+t.id);
+  let filled=0,ok=0;const wrong=[],empty=[];
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}-${i}`,el=document.getElementById(id),row=document.getElementById('row-'+id),msg=row.querySelector('.msg');
+    row.classList.remove('ok','bad','empty');
+    const v=el.value.trim();
+    if(!v){row.classList.add('empty');msg.textContent='Попробуй сама ✍️';empty.push(qLabel(t,it,i));return;}
+    filled++;
+    if(isRight(t,it,v)){ok++;row.classList.add('ok');msg.textContent=t.kind==='pattern'?'✓ Отлично! Учитель тоже посмотрит 💜':'✓';}
+    else{
+      row.classList.add('bad');
+      if(t.kind==='pattern'){msg.textContent='Не хватает: '+patternCheck(v).join(', ')+'. Пример: '+it.ex;}
+      else msg.textContent='Правильно: '+shown(it);
+      wrong.push({q:qLabel(t,it,i),your:v,right:shown(it)});
+    }
+  });
+  const total=t.items.length;
+  if(filled===0){fb.textContent='Упражнение пустое 🐶 Выполни его и нажми Check ещё раз.';store.results[t.id]=null;save();updateBar();return;}
+  const pct=Math.round(ok/total*100);
+  let txt=`⭐ ${ok} / ${total}. `+PRAISE.find(p=>pct>=p[0])[1];
+  if(filled<total)txt+=` Есть пустые клетки (${total-filled}) — заполни их и нажми Check ещё раз.`;
+  fb.textContent=txt;
+  store.results[t.id]={ok,total,filled,wrong,empty};save();updateBar();
+}
+function updateBar(){
+  const n=TASKS.filter(t=>store.results[t.id]).length;
+  document.getElementById('bar').style.width=Math.round(n/TASKS.length*100)+'%';
+  document.getElementById('barText').textContent=`Проверено упражнений: ${n} из ${TASKS.length}`;
+}
+
+let reportText='';
+function finish(){
+  TASKS.forEach(check);
+  let ok=0,total=0;const lines=[],errs=[];
+  TASKS.forEach((t,i)=>{
+    const r=store.results[t.id],name=t.title.replace(/^\S+\s/,'');
+    total+=t.items.length;
+    if(!r){lines.push(`${i+1}. ${name}: не выполнено (проверок: ${store.checks[t.id]||0})`);return;}
+    ok+=r.ok;
+    lines.push(`${i+1}. ${name}: ${r.ok}/${r.total} (проверок: ${store.checks[t.id]||0})`);
+    r.wrong.forEach(w=>errs.push(`[${i+1}] ${w.q} → ${w.your} → правильно: ${w.right}`));
+    r.empty.forEach(q=>errs.push(`[${i+1}] ${q} → (пусто)`));
+  });
+  const writing=TASKS.find(t=>t.id==='t3').items.map((it,i)=>`${i+1}) ${(document.getElementById('t3-'+i).value.trim())||'—'}`).join('\n');
+  reportText=`🐶 Sonya — HW #2 Hobbies, personality, must / have to\nИтого: ${ok}/${total} (${Math.round(ok/total*100)}%)\n\n`+lines.join('\n')+
+    (errs.length?`\n\n❌ Ошибки и пропуски:\n${errs.join('\n')}`:'\n\n✅ Ошибок нет!')+
+    `\n\n✍️ Предложения (упр. 3):\n${writing}`;
+  document.getElementById('report').textContent=reportText;
+  document.getElementById('reportBox').style.display='block';
+  document.getElementById('reportBox').scrollIntoView({behavior:'smooth'});
+}
+function copyReport(){
+  const m=document.getElementById('copyMsg'),done=()=>{m.textContent='Скопировано! Вставь в сообщение учителю 💜';};
+  const fallback=()=>{const ta=document.createElement('textarea');ta.value=reportText;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');done();}catch(e){m.textContent='Выдели текст выше и скопируй вручную.';}ta.remove();};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(reportText).then(done,fallback);else fallback();
+}
+
+function speak(text){
+  try{const u=new SpeechSynthesisUtterance(text.replace(/→/g,',').replace(/\//g,','));u.lang='en-GB';u.rate=.85;
+    const vs=speechSynthesis.getVoices(),v=vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang&&v.lang.startsWith('en'));if(v)u.voice=v;
+    speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}
+}
+function renderWords(){
+  const box=document.getElementById('wordsBox');let g0='',h='';
+  VOCAB.forEach((w,i)=>{
+    if(w[0]!==g0){g0=w[0];h+=`<div class="wgroup">${esc(g0)}</div>`;}
+    h+=`<div class="word"><span class="em">${w[3]}</span><span class="en">${esc(w[1])}</span><span class="ru">${esc(w[2])}</span><button class="say" data-i="${i}" aria-label="listen">🔊</button></div>`;
+  });
+  box.innerHTML=h;
+  box.querySelectorAll('.say').forEach(b=>b.onclick=()=>speak(VOCAB[b.dataset.i][1]));
+  box.querySelectorAll('.en,.ru').forEach(s=>s.onclick=()=>s.classList.toggle('shown'));
+}
+function toggleHide(cls,btn,label){
+  const p=document.getElementById('pWords'),on=p.classList.toggle(cls);
+  p.querySelectorAll('.shown').forEach(s=>s.classList.remove('shown'));
+  btn.textContent=on?'👀 Показать '+label:'🙈 Спрятать '+label;
+}
+document.getElementById('hideRu').onclick=e=>toggleHide('hide-ru',e.currentTarget,'перевод');
+document.getElementById('hideEn').onclick=e=>toggleHide('hide-en',e.currentTarget,'английский');
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id===b.dataset.page));
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('finishBtn').onclick=finish;
+document.getElementById('copyBtn').onclick=copyReport;
+document.getElementById('tgBtn').onclick=()=>window.open('https://t.me/share/url?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(reportText),'_blank');
+document.getElementById('resetBtn').onclick=()=>{if(confirm('Стереть все ответы и начать заново?')){store={inputs:{},results:{},checks:{}};save();location.reload();}};
+if('speechSynthesis' in window)speechSynthesis.getVoices();
+renderWords();renderTasks();updateBar();
+</script>
+</body>
+</html>
