@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vasilisa · HW 1 · Conditionals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111; --paper:#fff; --bg:#f3f3f1; --grey:#6b6b6b; --line:#d9d9d6;
+  --ok:#1f7a3a; --okbg:#e9f5ec; --bad:#b3261e; --badbg:#fbeceb; --warn:#8a6d00; --warnbg:#fff7da;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+.cn{font-family:"Noto Serif SC","PingFang SC","Songti SC",serif}
+
+/* header */
+header{background:var(--ink);color:#fff;position:relative;overflow:hidden;padding:26px 16px 0}
+.hwrap{max-width:780px;margin:0 auto;position:relative;z-index:2;padding-right:70px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+h1{font-size:30px;line-height:1.1;margin:6px 0 4px;font-weight:800}
+.sub{opacity:.8;font-size:14px;margin:0}
+.hcn{position:absolute;right:0;top:0;font-size:46px;opacity:.9;line-height:1}
+.hcn small{display:block;font-size:11px;font-family:Manrope;text-align:right;opacity:.6;letter-spacing:.05em;margin-top:4px}
+.mount{display:block;width:100%;height:70px;margin-top:14px}
+.flake{position:absolute;top:-10px;color:#fff;opacity:.7;animation:fall linear infinite;z-index:1;pointer-events:none}
+@keyframes fall{to{transform:translateY(190px) rotate(180deg)}}
+
+/* tabs */
+nav{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1.5px solid var(--ink)}
+.tabs{max-width:780px;margin:0 auto;display:flex}
+.tab{flex:1;border:0;background:none;font:inherit;font-weight:700;font-size:15px;padding:13px 6px;cursor:pointer;color:var(--grey);border-bottom:3px solid transparent}
+.tab.on{color:var(--ink);border-bottom-color:var(--ink)}
+main{max-width:780px;margin:0 auto;padding:18px 16px 60px}
+.page{display:none}.page.on{display:block}
+
+/* cards */
+.card{background:var(--paper);border:1.5px solid var(--ink);border-radius:14px;padding:18px 16px;margin:0 0 18px;position:relative}
+.card.alt{background-image:radial-gradient(#00000014 1px,transparent 1px);background-size:14px 14px}
+.exhead{display:flex;gap:12px;align-items:flex-start;margin-bottom:6px}
+.num{flex:none;width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:19px;font-weight:800;line-height:1}
+.num small{font-size:9px;font-weight:600;opacity:.75;margin-top:2px}
+h2{font-size:19px;margin:2px 0 0;line-height:1.25}
+.instr{color:#333;font-size:14.5px;margin:4px 0 12px}
+.instr b{color:var(--ink)}
+.item{padding:9px 0;border-top:1px dashed var(--line)}
+.item:first-of-type{border-top:0}
+.q{line-height:2.1}
+.n{font-weight:700;margin-right:4px}
+input.gap{font:inherit;font-size:16px;border:0;border-bottom:2px solid var(--ink);background:#fafafa;padding:2px 6px;width:8ch;max-width:100%;border-radius:4px 4px 0 0;color:var(--ink)}
+input.gap:focus{outline:2px solid #000;outline-offset:1px;background:#fff}
+input.gap.ok,textarea.ok{background:var(--okbg);border-color:var(--ok)}
+input.gap.bad,textarea.bad{background:var(--badbg);border-color:var(--bad)}
+input.gap.empty,textarea.empty{background:var(--warnbg);border-color:var(--warn)}
+.fix{display:inline-block;font-size:13.5px;color:var(--bad);font-weight:700;margin:0 4px}
+.fix.e{color:var(--warn)}
+.fix.g{color:var(--ok)}
+.caps{float:right;font-weight:800;letter-spacing:.04em;font-size:14px;background:var(--ink);color:#fff;padding:1px 8px;border-radius:6px;margin-left:8px}
+.ru{font-weight:600}
+.hint{font-size:13.5px;color:var(--grey)}
+textarea{width:100%;font:inherit;font-size:16px;border:1.5px solid var(--ink);border-radius:10px;padding:9px 10px;margin-top:6px;resize:vertical;min-height:48px;background:#fafafa}
+.bank{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1.5px dashed var(--ink);border-radius:12px;margin-bottom:10px;background:#fff;position:sticky;top:52px;z-index:5}
+.chip{font:inherit;font-size:14.5px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.chip:active{transform:scale(.96)}
+.chip.used{opacity:.28;text-decoration:line-through;cursor:default}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.opt{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:10px;padding:6px 12px;cursor:pointer;color:var(--ink)}
+.opt.sel{background:var(--ink);color:#fff}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#fff}
+.why{font-size:13.5px;margin-top:5px}
+.btnrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.btn{font:inherit;font-weight:800;font-size:15px;background:var(--ink);color:#fff;border:1.5px solid var(--ink);border-radius:12px;padding:11px 20px;cursor:pointer;box-shadow:3px 3px 0 #0003}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #0003}
+.btn.ghost{background:#fff;color:var(--ink)}
+.res{font-weight:700;font-size:15px}
+.res.good{color:var(--ok)}.res.mid{color:var(--warn)}.res.low{color:var(--bad)}
+.msg{font-size:14px;margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--warnbg);display:none}
+
+/* memo */
+.rule{border:1.5px solid var(--ink);border-radius:14px;padding:14px;margin-bottom:12px;background:#fff}
+.rule h3{margin:0 0 4px;font-size:17px}
+.formula{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:var(--ink);color:#fff;border-radius:8px;padding:6px 10px;display:inline-block;margin:4px 0}
+.ex{margin:4px 0 0;font-size:15px}
+.ex i{color:var(--grey);font-style:normal;display:block;font-size:14px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:8px 0 8px 40px;border-top:1px dashed var(--line)}
+.steps li:first-child{border-top:0}
+.steps li:before{content:counter(s);position:absolute;left:0;top:8px;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:14px}
+.tree{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.tree>div{border:1.5px solid var(--ink);border-radius:12px;padding:10px}
+.tree .dark{background:var(--ink);color:#fff}
+.tree h4{margin:0 0 4px;font-size:15px}
+.tree p{margin:3px 0;font-size:14px}
+.trap{border-left:4px solid var(--ink);padding:4px 0 4px 12px;margin:8px 0}
+mark{background:#000;color:#fff;padding:0 4px;border-radius:4px}
+
+/* words */
+.wtools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.wgroup h3{font-size:16px;margin:18px 0 8px;display:flex;gap:8px;align-items:center}
+.wgroup h3 span{font-size:12px;font-weight:600;color:var(--grey)}
+.w{display:grid;grid-template-columns:auto 1fr auto;gap:2px 12px;align-items:center;background:#fff;border:1.5px solid var(--ink);border-radius:12px;padding:9px 12px;margin-bottom:7px}
+.w .en{font-weight:800}
+.w .tr{color:var(--grey);font-size:13.5px}
+.w .rus{grid-column:1/3;font-size:14.5px}
+.w .say{grid-row:1/3;grid-column:3;border:1.5px solid var(--ink);background:#fff;border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:16px}
+.hide-ru .w .rus{filter:blur(6px);cursor:pointer}
+.hide-ru .w .rus.show{filter:none}
+
+/* report */
+#report{white-space:pre-wrap;font-size:13px;background:#fafafa;border:1.5px dashed var(--ink);border-radius:10px;padding:10px;max-height:260px;overflow:auto;display:none;margin-top:10px}
+.total{font-size:22px;font-weight:800}
+
+/* celebration */
+#party{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:#000a;padding:16px}
+#party.on{display:flex}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:101}
+.pcard{background:#fff;border:2px solid #000;border-radius:20px;max-width:380px;width:100%;padding:20px;text-align:center;position:relative;z-index:102}
+.pcard .big{font-size:44px;line-height:1.1}
+.pcard p{margin:6px 0}
+footer{text-align:center;color:var(--grey);font-size:13px;padding:10px 16px 30px}
+@media (max-width:520px){h1{font-size:25px}.hcn{font-size:34px}.tree{grid-template-columns:1fr}.caps{float:none;display:inline-block;margin:0 0 4px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <div class="kicker">Homework 1 · English File Pre-Int · 3A–3B</div>
+    <h1>Vasilisa ✈ Conditionals</h1>
+    <p class="sub">Airport words · if-sentences 0 · 1 · 2 · 3 · verbs + prepositions</p>
+    <div class="hcn cn">加油<small>jiāyóu — давай!</small></div>
+  </div>
+  <svg class="mount" viewBox="0 0 800 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 L0 48 L70 22 L120 40 L190 8 L260 38 L320 20 L390 44 L460 12 L540 40 L600 26 L670 46 L740 16 L800 36 L800 70Z" fill="#fff"/>
+    <path d="M190 8 L172 16 L182 18 L190 13 L198 19 L208 17Z M460 12 L444 20 L454 21 L460 17 L468 22 L478 20Z M740 16 L724 24 L734 25 L740 21 L748 26 L756 24Z" fill="#111"/>
+  </svg>
+</header>
+
+<nav><div class="tabs">
+  <button class="tab on" data-tab="ex">Упражнения</button>
+  <button class="tab" data-tab="memo">Памятка</button>
+  <button class="tab" data-tab="words">Слова</button>
+</div></nav>
+
+<main>
+  <section class="page on" id="p-ex">
+    <div id="exercises"></div>
+
+    <div class="card">
+      <div class="exhead"><div class="num cn">完</div><div><h2>Отчёт для учителя</h2>
+      <div class="instr">Когда всё сделаешь — нажми кнопку и отправь отчёт <b>своему учителю</b> в Telegram.</div></div></div>
+      <div class="total" id="totalLine">—</div>
+      <div class="btnrow">
+        <button class="btn" id="tgBtn">Отправить в Telegram</button>
+        <button class="btn ghost" id="copyBtn">Скопировать отчёт</button>
+      </div>
+      <div class="msg" id="repMsg"></div>
+      <div id="report"></div>
+    </div>
+  </section>
+
+  <section class="page" id="p-memo"></section>
+  <section class="page" id="p-words"></section>
+</main>
+
+<footer><span class="cn">雪</span> · Magadan · keep going, Vasilisa · <span class="cn">太棒了</span></footer>
+
+<div id="party"><div class="pcard">
+  <div id="dogArt"></div>
+  <div class="big cn">太棒了！</div>
+  <p class="hint">tài bàng le — «просто супер!»</p>
+  <p><b>Василиса, все задания выполнены!</b></p>
+  <p id="partyScore"></p>
+  <p class="hint">Не забудь отправить отчёт учителю ↓</p>
+  <div class="btnrow" style="justify-content:center"><button class="btn" id="partyClose">谢谢 · Спасибо!</button></div>
+</div></div>
+<canvas id="fx"></canvas>
+
+<script>
+/* ================= DATA ================= */
+const KEY='vasilisa-hw1-v1';
+const CN=['一','二','三','四','五','六','七','八'];
+
+const EX=[
+{
+ id:'e1',type:'bank',title:'Airport words',
+ instr:'Нажми на слово — оно встанет в выбранную (или первую пустую) клетку. Одно слово — один раз. Ошиблась — сотри и вставь другое. <b>Два слова лишние.</b>',
+ bank:['trolley','check-in','baggage reclaim','passport control','security check','gate','arrivals','delayed','hand luggage','stopover','duty-free shop','land','customs','departures'],
+ items:[
+  {q:'My suitcase is really heavy. Let\'s put it on a ___ .',a:['trolley']},
+  {q:'Go to ___ first — they will take your big suitcase and give you a boarding pass.',a:['check-in']},
+  {q:'After the flight we waited forty minutes at ___ for our suitcases.',a:['baggage reclaim']},
+  {q:'At ___ an officer looked at my passport and my visa.',a:['passport control']},
+  {q:'At the ___ you put your phone, your belt and your jacket in a grey box.',a:['security check']},
+  {q:'Our flight to Beijing is boarding now at ___ 12. Hurry up!',a:['gate']},
+  {q:'Grandma\'s plane lands at six. Let\'s meet her in the ___ hall.',a:['arrivals']},
+  {q:'There is a big snowstorm in Magadan, so our flight is ___ for three hours.',a:['delayed']},
+  {q:'You can\'t take a big bottle of water in your ___ on the plane.',a:['hand luggage']},
+  {q:'We had a long ___ in Moscow — eight hours between flights!',a:['stopover']},
+  {q:'I bought chocolate and perfume for my mum in the ___ .',a:['duty-free shop']},
+  {q:'Fasten your seatbelts, please. We are going to ___ in ten minutes.',a:['land']}
+ ]
+},
+{
+ id:'e2',type:'gaps',title:'Verbs + prepositions',
+ instr:'Впиши <b>предлог</b>: in, at, for, on, with, to, about, of. Подсказка — Vocabulary Bank, стр. 153.',
+ items:[
+  {q:'We arrived ___ Magadan late at night.',a:[['in']]},
+  {q:'We arrived ___ the airport two hours before the flight.',a:[['at']]},
+  {q:'I hate waiting ___ my bag at baggage reclaim.',a:[['for']]},
+  {q:'"Are we going to fly tomorrow?" — "I don\'t know. It depends ___ the weather."',a:[['on']]},
+  {q:'I don\'t agree ___ you — Beijing is more beautiful than Shanghai!',a:[['with']]},
+  {q:'On the plane I asked ___ a cup of green tea.',a:[['for']]},
+  {q:'On long flights I always listen ___ Chinese podcasts.',a:[['to']]},
+  {q:'Who is going to pay ___ the taxi to the airport?',a:[['for']]},
+  {q:'Don\'t worry ___ the flight — everything is going to be OK.',a:[['about']]},
+  {q:'How much money did you spend ___ souvenirs?',a:[['on']]},
+  {q:'Excuse me, who does this trolley belong ___ ?',a:[['to']]},
+  {q:'What do you think ___ my new suitcase? Do you like it?',a:[['of','about']]}
+ ]
+},
+{
+ id:'e3',type:'choice',title:'Есть «бы» или нет?',
+ instr:'Прочитай предложение по-русски и выбери тип conditional. <b>Нет «бы»</b> → Zero или First. <b>Есть «бы»</b> → Second (сейчас / вообще) или Third (прошлое). Смотри «Памятку».',
+ options:['Zero','First','Second','Third'],
+ items:[
+  {q:'Если нагреть снег, он тает.',a:'Zero',why:'Нет «бы», это факт / закон природы → Zero: If + Present, Present.'},
+  {q:'Если завтра будет метель, наш рейс задержат.',a:'First',why:'Нет «бы», реальная ситуация в будущем → First: If + Present, will.'},
+  {q:'Если бы у меня было много денег, я бы купила билет в Пекин.',a:'Second',why:'Есть «бы», речь о сейчас / мечта → Second: If + Past, would.'},
+  {q:'Если бы мы вчера вышли из дома раньше, мы бы не опоздали на самолёт.',a:'Third',why:'Есть «бы», и это уже случилось вчера (прошлое) → Third: If + had V3, would have V3.'},
+  {q:'Если ты опоздаешь на регистрацию, тебя не пустят в самолёт.',a:'First',why:'Нет «бы», конкретная возможная ситуация → First.'},
+  {q:'Если бы я жила в Китае, я бы говорила по-китайски каждый день.',a:'Second',why:'Есть «бы», но про сейчас (я не живу в Китае) → Second.'},
+  {q:'Если бы я взяла тёплую куртку, я бы не замёрзла в аэропорту в прошлый раз.',a:'Third',why:'Есть «бы» + «в прошлый раз» (прошлое) → Third.'},
+  {q:'Если собака долго сидит дома, ей скучно.',a:'Zero',why:'Нет «бы», так бывает всегда → Zero.'}
+ ]
+},
+{
+ id:'e4',type:'gaps',title:'Open the brackets',
+ instr:'Поставь глагол в скобках в правильную форму. Сначала определи тип: есть ли в переводе «бы»? Можно писать сокращения (I\'ll, wouldn\'t, hadn\'t).',
+ items:[
+  {q:'If you heat snow, it ___ (melt).',a:[['melts']]},
+  {q:'If my dog ___ (not go) for a walk, it gets bored.',a:[['does not go']]},
+  {q:'If our flight ___ (be) delayed, I ___ (call) you.',a:[['is'],['will call']]},
+  {q:'We ___ (miss) our connecting flight if we ___ (not hurry)!',a:[['will miss'],['do not hurry']]},
+  {q:'If I ___ (have) more free time, I ___ (learn) Japanese too.',a:[['had'],['would learn']]},
+  {q:'If it ___ (not be) so cold in Magadan, we ___ (walk) by the sea every evening.',a:[['was not','were not'],['would walk']]},
+  {q:'If I ___ (be) you, I ___ (take) a warm jacket on the plane.',a:[['were','was'],['would take']]},
+  {q:'If we ___ (leave) home earlier yesterday, we ___ (not miss) the flight.',a:[['had left'],['would not have missed']]},
+  {q:'She ___ (not lose) her passport last week if she ___ (be) more careful.',a:[['would not have lost'],['had been']]},
+  {q:'If you ___ (not have) a boarding pass, you can\'t go through to the gate.',a:[['do not have']]},
+  {q:'I didn\'t know it was your birthday! I ___ (buy) you a present in the duty-free shop if you ___ (tell) me!',a:[['would have bought'],['had told']]}
+ ]
+},
+{
+ id:'e5',type:'gaps',caps:true,title:'ЕГЭ-формат: My trip to China',
+ instr:'Как в ЕГЭ: преобразуй слово в рамочке так, чтобы оно подходило по смыслу и грамматике. Тут повторяем всё: going to, Present Continuous для планов, Past Simple, Present Perfect, Passive и conditionals.',
+ items:[
+  {w:'FLY',q:'Next month I ___ to Beijing with my mum. We have already bought the tickets!',a:[['am flying','am going to fly']]},
+  {w:'CANCEL',q:'Last winter our flight ___ because of a terrible snowstorm.',a:[['was cancelled','was canceled']]},
+  {w:'NEVER / BE',q:'I ___ to China before, so I am really excited.',a:[['have never been']]},
+  {w:'SPEAK',q:'If I ___ Chinese better, I would talk to everyone in the street!',a:[['spoke','could speak']]},
+  {w:'STAY',q:'While I am away, my dog ___ with my grandmother. It\'s all arranged.',a:[['is staying','is going to stay']]},
+  {w:'PACK',q:'Yesterday I ___ my suitcase and checked my passport twice.',a:[['packed']]},
+  {w:'NOT / FORGET',q:'Last time I forgot my phone charger. If I ___ it, I would have taken lots of photos!',a:[['had not forgotten']]},
+  {w:'BE',q:'Look at the sky — there are no clouds! It ___ a perfect day for flying.',a:[['is going to be']]}
+ ]
+},
+{
+ id:'e6',type:'translate',title:'Переведи на английский',
+ instr:'Переведи предложения. Сначала найди «бы» → выбери тип → потом пиши. Под предложением — подсказки.',
+ items:[
+  {ru:'Если я опоздаю на самолёт, я куплю новый билет.',hint:'miss the plane, buy, ticket',model:'If I miss the plane, I\'ll buy a new ticket.',
+   re:['^if i miss (the|my) (plane|flight) i will buy (a )?new ticket$','^i will buy (a )?new ticket if i miss (the|my) (plane|flight)$']},
+  {ru:'Если бы я жила в Пекине, я бы говорила по-китайски каждый день.',hint:'live in Beijing, speak Chinese, every day',model:'If I lived in Beijing, I would speak Chinese every day.',
+   re:['^if i (lived|was living|were living) in beijing i would speak chinese every day$','^if i (lived|was living|were living) in beijing i would speak chinese$','^i would speak chinese every day if i (lived|was living|were living) in beijing$','^if i (lived|was living|were living) in beijing every day i would speak chinese$']},
+  {ru:'Если бы мы приехали в аэропорт раньше, мы бы успели на самолёт.',hint:'arrive at the airport, earlier, catch the plane',model:'If we had arrived at the airport earlier, we would have caught the plane.',
+   re:['^if we had (arrived at|got to|gotten to|come to) the airport earlier we would have caught (the|our) (plane|flight)$','^we would have caught (the|our) (plane|flight) if we had (arrived at|got to|gotten to|come to) the airport earlier$','^if we had (arrived at|got to|gotten to|come to) the airport earlier we would not have missed (the|our) (plane|flight)$']},
+  {ru:'Если идёт снег, самолёты часто задерживаются.',hint:'snow, planes, be delayed, often',model:'If it snows, planes are often delayed.',
+   re:['^(if|when) it snows (planes|flights|the planes|the flights) (are often|often are|are usually) delayed$','^(planes|flights) are often delayed (if|when) it snows$','^(if|when) it is snowing (planes|flights) (are often|often are) delayed$']},
+  {ru:'Если ты будешь ждать меня у выхода на посадку, я тебя найду.',hint:'wait for, at the gate, find',model:'If you wait for me at the gate, I\'ll find you.',
+   re:['^if you wait for me (at|near|by) the gate i will find you$','^i will find you if you wait for me (at|near|by) the gate$']}
+ ]
+},
+{
+ id:'e7',type:'write',title:'Про себя',
+ instr:'Напиши 3 своих предложения (минимум 6 слов). Сайт проверит только <b>схему</b> (if + нужные формы), а смысл посмотрит учитель.',
+ items:[
+  {q:'What will you do if your flight is delayed for five hours?',f:'First: If + Present, … will + V',t:'first'},
+  {q:'What would you do if you had a free ticket to any country?',f:'Second: If + Past Simple, … would + V',t:'second'},
+  {q:'Think about something in the past. What would have happened if…? (например, если бы ты не начала учить китайский)',f:'Third: If + had + V3, … would have + V3',t:'third'}
+ ]
+}
+];
+
+const WORDS=[
+ {g:'Airport · 3A (стр. 22)',l:[
+  ['arrivals','/əˈraɪvlz/','прилёт (зона прилёта)'],
+  ['departures','/dɪˈpɑːtʃəz/','вылет (зона вылета)'],
+  ['bag drop','/ˈbæɡ drɒp/','сдача багажа'],
+  ['baggage reclaim','/ˈbæɡɪdʒ rɪˈkleɪm/','выдача багажа'],
+  ['check-in','/ˈtʃek ɪn/','регистрация'],
+  ['customs','/ˈkʌstəmz/','таможня'],
+  ['gate','/ɡeɪt/','выход на посадку'],
+  ['lift','/lɪft/','лифт'],
+  ['passport control','/ˈpɑːspɔːt kənˈtrəʊl/','паспортный контроль'],
+  ['security check','/sɪˈkjʊərəti tʃek/','досмотр (контроль безопасности)'],
+  ['terminal','/ˈtɜːmɪnl/','терминал'],
+  ['trolley','/ˈtrɒli/','тележка'],
+  ['pick somebody up','/pɪk ˈʌp/','встретить, забрать кого-то'],
+  ['drop somebody off','/drɒp ˈɒf/','подвезти, высадить кого-то']
+ ]},
+ {g:'Air travel · 3A (стр. 23)',l:[
+  ['stopover','/ˈstɒpəʊvə/','пересадка, остановка между рейсами (AmE: layover)'],
+  ['connecting flight','/kəˈnektɪŋ flaɪt/','стыковочный рейс'],
+  ['departure lounge','/dɪˈpɑːtʃə laʊndʒ/','зал ожидания вылета'],
+  ['duty-free shop','/ˌdjuːti ˈfriː ʃɒp/','магазин дьюти-фри'],
+  ['air traveller','/eə ˈtrævələ/','авиапассажир'],
+  ['miss a flight','/mɪs ə flaɪt/','опоздать на рейс'],
+  ['catch a plane','/kætʃ ə pleɪn/','успеть на самолёт']
+ ]},
+ {g:'Ещё слова про аэропорт',l:[
+  ['boarding pass','/ˈbɔːdɪŋ pɑːs/','посадочный талон'],
+  ['board','/bɔːd/','садиться (на самолёт)'],
+  ['hand luggage','/ˈhænd ˌlʌɡɪdʒ/','ручная кладь'],
+  ['delayed','/dɪˈleɪd/','задержан (рейс)'],
+  ['cancelled','/ˈkænsld/','отменён'],
+  ['take off','/teɪk ˈɒf/','взлетать'],
+  ['land','/lænd/','приземляться'],
+  ['flight attendant','/ˈflaɪt əˌtendənt/','бортпроводник'],
+  ['window seat','/ˈwɪndəʊ siːt/','место у окна'],
+  ['aisle seat','/ˈaɪl siːt/','место у прохода'],
+  ['seatbelt','/ˈsiːtbelt/','ремень безопасности']
+ ]},
+ {g:'Verbs + prepositions · 3B (стр. 153)',l:[
+  ['arrive in (a city / country)','/əˈraɪv ɪn/','прибыть в (город, страну)'],
+  ['arrive at (a building)','/əˈraɪv æt/','прибыть в (здание, аэропорт)'],
+  ['wait for','/weɪt fɔː/','ждать кого-то / что-то'],
+  ['depend on','/dɪˈpend ɒn/','зависеть от'],
+  ['agree with','/əˈɡriː wɪð/','соглашаться с'],
+  ['ask for','/ɑːsk fɔː/','просить что-то'],
+  ['listen to','/ˈlɪsn tuː/','слушать'],
+  ['pay for','/peɪ fɔː/','платить за'],
+  ['speak to somebody about something','/spiːk tə … əˈbaʊt/','говорить с кем-то о чём-то'],
+  ['spend (money) on','/spend ɒn/','тратить (деньги) на'],
+  ['worry about','/ˈwʌri əˈbaʊt/','волноваться о'],
+  ['believe in','/bɪˈliːv ɪn/','верить в'],
+  ['think about','/θɪŋk əˈbaʊt/','думать о'],
+  ['think of','/θɪŋk ɒv/','думать о (мнение: What do you think of…?)'],
+  ['belong to','/bɪˈlɒŋ tuː/','принадлежать']
+ ]},
+ {g:'Grammar words · будущее и conditionals',l:[
+  ['be going to + V','/ˈɡəʊɪŋ tə/','собираться (план) / явно будет (прогноз)'],
+  ['I\'m meeting… (Present Continuous)','','договорённость на будущее: I\'m flying to Beijing on Friday.'],
+  ['if','/ɪf/','если'],
+  ['unless','/ənˈles/','если не'],
+  ['would','/wʊd/','«бы» (Second / Third conditional)'],
+  ['would have + V3','/ˈwʊd əv/','«бы» про прошлое (Third)']
+ ]}
+];
+
+/* ================= STATE ================= */
+let S={tab:'ex',v:{},checks:{},checked:{},partyShown:false};
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s) S=Object.assign(S,s);}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ================= NORMALIZE ================= */
+function clean(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'").replace(/[.,!?;:"«»()\-–—\/]/g,' ');
+  s=s.replace(/\bwon't\b/g,'will not').replace(/\bcan't\b/g,'can not').replace(/\bcannot\b/g,'can not')
+     .replace(/n't\b/g,' not').replace(/'ll\b/g,' will').replace(/'re\b/g,' are').replace(/'m\b/g,' am').replace(/'ve\b/g,' have');
+  return s.replace(/\s+/g,' ').trim();
+}
+function variants(s){
+  // each 'd can be would/had and each 's can be is/has — try every combination
+  let list=[clean(s)];
+  const rules=[[/'d\b/,['would','had']],[/'s\b/,['is','has']]];
+  for(const [re,opts] of rules){
+    let guard=0;
+    while(list.some(x=>re.test(x)) && guard++<5){
+      list=list.flatMap(x=>re.test(x)?opts.map(o=>x.replace(re,' '+o)):[x]);
+    }
+  }
+  return [...new Set(list.map(x=>x.replace(/\s+/g,' ').trim()))];
+}
+function match(user,answers){const v=variants(user);return answers.some(a=>v.includes(clean(a)));}
+
+/* ================= RENDER EXERCISES ================= */
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function gapsHTML(ex,i,q){
+  let g=0;
+  return esc(q).split('___').map((part,k,arr)=>{
+    if(k===arr.length-1) return part;
+    const id=`${ex.id}-${i}-${g++}`;
+    return part+`<input class="gap" id="${id}" data-ex="${ex.id}" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(S.v[id]||'')}"><span class="fix" id="f-${id}"></span>`;
+  }).join('');
+}
+function render(){
+  const box=document.getElementById('exercises'); let h='';
+  EX.forEach((ex,k)=>{
+    h+=`<div class="card ${k%2?'alt':''}" id="c-${ex.id}"><div class="exhead"><div class="num">${k+1}<small class="cn">${CN[k]}</small></div><div><h2>${ex.title}</h2><div class="instr">${ex.instr}</div></div></div>`;
+    if(ex.type==='bank') h+=`<div class="bank" id="bank-${ex.id}">${ex.bank.map(w=>`<button class="chip" data-w="${esc(w)}">${esc(w)}</button>`).join('')}</div>`;
+    ex.items.forEach((it,i)=>{
+      h+=`<div class="item">`;
+      if(ex.type==='bank'||ex.type==='gaps'){
+        h+=`<div class="q">${it.w?`<span class="caps">${esc(it.w)}</span>`:''}<span class="n">${i+1}.</span> ${gapsHTML(ex,i,it.q)}</div>`;
+      }else if(ex.type==='choice'){
+        const id=`${ex.id}-${i}`;
+        h+=`<div><span class="n">${i+1}.</span> <span class="ru">${esc(it.q)}</span></div><div class="opts" data-id="${id}">${ex.options.map(o=>`<button class="opt ${S.v[id]===o?'sel':''}" data-o="${o}">${o}</button>`).join('')}</div><div class="why" id="f-${id}"></div>`;
+      }else if(ex.type==='translate'){
+        const id=`${ex.id}-${i}`;
+        h+=`<div><span class="n">${i+1}.</span> <span class="ru">${esc(it.ru)}</span></div><div class="hint">💡 ${esc(it.hint)}</div><textarea id="${id}" data-ex="${ex.id}" rows="2" autocapitalize="sentences">${esc(S.v[id]||'')}</textarea><div class="why" id="f-${id}"></div>`;
+      }else if(ex.type==='write'){
+        const id=`${ex.id}-${i}`;
+        h+=`<div><span class="n">${i+1}.</span> <b>${esc(it.q)}</b></div><div class="hint">Схема: ${esc(it.f)}</div><textarea id="${id}" data-ex="${ex.id}" rows="2">${esc(S.v[id]||'')}</textarea><div class="why" id="f-${id}"></div>`;
+      }
+      h+=`</div>`;
+    });
+    h+=`<div class="btnrow"><button class="btn" data-check="${ex.id}">Check ✓</button><span class="res" id="r-${ex.id}"></span></div><div class="msg" id="m-${ex.id}"></div></div>`;
+  });
+  box.innerHTML=h;
+  box.querySelectorAll('input.gap').forEach(grow);
+  EX.forEach(ex=>{ if(ex.type==='bank') refreshBank(ex); });
+}
+
+/* ================= BANK ================= */
+let lastFocus={};
+function refreshBank(ex){
+  const used=new Set();
+  ex.items.forEach((it,i)=>{const v=clean(S.v[`${ex.id}-${i}-0`]); if(v) used.add(v);});
+  document.querySelectorAll(`#bank-${ex.id} .chip`).forEach(c=>c.classList.toggle('used',used.has(clean(c.dataset.w))));
+}
+function bankClick(ex,word){
+  const used=[...document.querySelectorAll(`#bank-${ex.id} .chip.used`)].some(c=>c.dataset.w===word);
+  if(used) return;
+  let target=null; const lf=lastFocus[ex.id];
+  if(lf){const el=document.getElementById(lf); if(el&&!el.value.trim()) target=el;}
+  if(!target){ for(let i=0;i<ex.items.length;i++){const el=document.getElementById(`${ex.id}-${i}-0`); if(!el.value.trim()){target=el;break;}} }
+  if(!target) return;
+  target.value=word; onInput(target); lastFocus[ex.id]=null;
+  const next=[...document.querySelectorAll(`#c-${ex.id} input.gap`)].find(e=>!e.value.trim());
+  if(next) lastFocus[ex.id]=next.id;
+}
+
+/* ================= EVENTS ================= */
+function onInput(el){
+  S.v[el.id]=el.value; save(); grow(el);
+  el.classList.remove('ok','bad','empty');
+  const f=document.getElementById('f-'+el.id); if(f){f.textContent='';f.className=f.tagName==='SPAN'?'fix':'why';}
+  const ex=EX.find(e=>e.id===el.dataset.ex); if(ex&&ex.type==='bank') refreshBank(ex);
+}
+document.addEventListener('input',e=>{ if(e.target.matches('input.gap,textarea')) onInput(e.target); });
+document.addEventListener('focusin',e=>{ if(e.target.matches('input.gap')) lastFocus[e.target.dataset.ex]=e.target.id; });
+document.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.matches('.chip')){const ex=EX.find(x=>t.closest('.bank').id==='bank-'+x.id); bankClick(ex,t.dataset.w);}
+  else if(t.matches('.opt')){
+    const box=t.parentElement, id=box.dataset.id; S.v[id]=t.dataset.o; save();
+    box.querySelectorAll('.opt').forEach(b=>{b.classList.remove('sel','ok','bad'); if(b===t) b.classList.add('sel');});
+    const f=document.getElementById('f-'+id); f.textContent='';
+  }
+  else if(t.dataset.check) check(t.dataset.check);
+  else if(t.matches('.tab')) setTab(t.dataset.tab);
+  else if(t.matches('.say')) say(t.dataset.say);
+  else if(t.matches('.rus')) t.classList.toggle('show');
+});
+
+/* ================= GRADING ================= */
+function units(ex){ // returns [{id,label,user,empty,ok,right}]
+  const out=[];
+  ex.items.forEach((it,i)=>{
+    if(ex.type==='bank'||ex.type==='gaps'){
+      it.a.forEach((ans,g)=>{
+        const id=`${ex.id}-${i}-${g}`, user=(S.v[id]||'').trim(), list=ex.type==='bank'?it.a:ans;
+        out.push({id,kind:'gap',label:`${i+1}. ${it.w?'['+it.w+'] ':''}${it.q}`,user,empty:!user,ok:!!user&&match(user,list),right:list[0]});
+      });
+    }else if(ex.type==='choice'){
+      const id=`${ex.id}-${i}`,user=S.v[id]||'';
+      out.push({id,kind:'choice',label:`${i+1}. ${it.q}`,user,empty:!user,ok:user===it.a,right:it.a,why:it.why});
+    }else if(ex.type==='translate'){
+      const id=`${ex.id}-${i}`,user=(S.v[id]||'').trim(),v=variants(user);
+      const ok=!!user&&it.re.some(r=>v.some(x=>new RegExp(r).test(x)));
+      out.push({id,kind:'text',label:`${i+1}. ${it.ru}`,user,empty:!user,ok,right:it.model});
+    }else if(ex.type==='write'){
+      const id=`${ex.id}-${i}`,user=(S.v[id]||'').trim(),v=variants(user);
+      const words=clean(user).split(' ').filter(Boolean).length;
+      const hasIf=v.some(x=>/\bif\b/.test(x));
+      let ok=false;
+      if(it.t==='first') ok=v.some(x=>/\bwill\b/.test(x)) && !v.every(x=>/\bwould\b/.test(x));
+      if(it.t==='second') ok=v.some(x=>/\bwould\b|\bcould\b|\bmight\b/.test(x)&&!/\bwould( not)? have\b/.test(x));
+      if(it.t==='third') ok=v.some(x=>/\bhad\b/.test(x)&&/\b(would|could|might)( not)? have\b/.test(x));
+      ok=ok&&hasIf&&words>=6;
+      out.push({id,kind:'text',label:`${i+1}. ${it.q}`,user,empty:!user,ok,right:'схема '+it.f,write:true,short:words<6});
+    }
+  });
+  return out;
+}
+function check(exId){
+  const ex=EX.find(e=>e.id===exId), U=units(ex), msg=document.getElementById('m-'+exId), res=document.getElementById('r-'+exId);
+  if(U.every(u=>u.empty)){
+    msg.style.display='block'; msg.textContent='Задание пока пустое 🙂 Выполни его и нажми Check ещё раз. 加油!';
+    res.textContent=''; return;
+  }
+  msg.style.display='none';
+  U.forEach(u=>{
+    const f=document.getElementById('f-'+u.id);
+    if(u.kind==='choice'){
+      const box=document.querySelector(`.opts[data-id="${u.id}"]`);
+      box.querySelectorAll('.opt').forEach(b=>{b.classList.remove('ok','bad'); if(b.dataset.o===u.user) b.classList.add(u.ok?'ok':'bad');});
+      if(u.empty){f.innerHTML='<span class="fix e">Попробуй сама — выбери вариант</span>';}
+      else if(u.ok){f.innerHTML=`<span class="fix g">✓</span> ${esc(u.why)}`;}
+      else{f.innerHTML=`<span class="fix">→ ${esc(u.right)}.</span> ${esc(u.why)}`;}
+      return;
+    }
+    const el=document.getElementById(u.id); el.classList.remove('ok','bad','empty');
+    if(u.empty){el.classList.add('empty'); f.innerHTML=u.kind==='gap'?'':'<span class="fix e">Попробуй сама ✍️</span>'; if(u.kind==='gap'){f.className='fix e';f.textContent='попробуй сама';}}
+    else if(u.ok){el.classList.add('ok'); if(u.kind==='gap'){f.className='fix g';f.textContent='✓';} else f.innerHTML='<span class="fix g">✓ Отлично!</span>';}
+    else{
+      el.classList.add('bad');
+      if(u.kind==='gap'){f.className='fix';f.textContent='→ '+u.right;}
+      else if(u.write){f.innerHTML=`<span class="fix">Проверь схему:</span> ${esc(ex.items[+u.id.split('-')[1]].f)}${u.short?' · напиши минимум 6 слов':''}`;}
+      else f.innerHTML=`<span class="fix">Правильно:</span> ${esc(u.right)}`;
+    }
+  });
+  const ok=U.filter(u=>u.ok).length, total=U.length, empty=U.filter(u=>u.empty).length;
+  S.checks[exId]=(S.checks[exId]||0)+1; S.checked[exId]=true; save();
+  const p=ok/total;
+  res.className='res '+(p>=.85?'good':p>=.6?'mid':'low');
+  res.textContent=`${ok}/${total}`+(p===1?' · 太棒了!':'')+(empty?` · пустых: ${empty}`:'');
+  updateReport();
+  maybeParty();
+}
+
+/* ================= REPORT ================= */
+function buildReport(){
+  let tot=0,ok=0,lines=[],errs=[],written=[];
+  EX.forEach((ex,k)=>{
+    const U=units(ex),o=U.filter(u=>u.ok).length; tot+=U.length; ok+=o;
+    lines.push(`${k+1}. ${ex.title}: ${o}/${U.length} (проверок: ${S.checks[ex.id]||0})`);
+    U.forEach(u=>{ if(!u.ok && !u.write) errs.push(`• [${k+1}] ${u.label.replace(/\s+/g,' ')}\n   → ${u.empty?'(пусто)':'«'+u.user+'»'} → правильно: ${u.right}`); });
+    if(ex.type==='translate'||ex.type==='write') U.forEach(u=>written.push(`[${k+1}] ${u.label}\n   ${u.user||'(пусто)'}${u.write&&u.user?(u.ok?'  ✓ схема':'  ✗ схема'):''}`));
+  });
+  const pct=Math.round(ok/tot*100);
+  const txt=`Василиса — HW 1: Conditionals 0–3 + Airport\nИтого: ${ok}/${tot} (${pct}%)\n\n${lines.join('\n')}\n\n❌ Ошибки и пропуски:\n${errs.length?errs.join('\n'):'нет 🎉'}\n\n✍️ Письменные ответы:\n${written.join('\n')}`;
+  return {txt,ok,tot,pct};
+}
+function updateReport(){const r=buildReport(); document.getElementById('totalLine').textContent=`Итого: ${r.ok}/${r.tot} (${r.pct}%)`; return r;}
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText) return navigator.clipboard.writeText(t).catch(()=>fallbackCopy(t));
+  fallbackCopy(t); return Promise.resolve();
+}
+function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();}
+function showRep(m){const r=updateReport();const box=document.getElementById('report');box.style.display='block';box.textContent=r.txt;const msg=document.getElementById('repMsg');msg.style.display='block';msg.textContent=m;return r;}
+document.getElementById('copyBtn').onclick=()=>{const r=showRep('Отчёт скопирован ✓ Вставь его в чат с учителем в Telegram.');copyText(r.txt);};
+document.getElementById('tgBtn').onclick=()=>{
+  const r=showRep('Отчёт скопирован. Откроется Telegram — выбери чат со своим учителем и отправь. Если текст не вставился — просто вставь его (он уже скопирован).');
+  copyText(r.txt);
+  setTimeout(()=>{location.href='https://t.me/share/url?url='+encodeURIComponent(' ')+'&text='+encodeURIComponent(r.txt);},350);
+};
+
+/* ================= CELEBRATION ================= */
+const DOG=`<svg viewBox="0 0 200 130" width="200" height="130" aria-hidden="true">
+ <g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M10 118 Q60 108 100 116 T190 114"/>
+  <path d="M70 112 Q66 80 84 70 Q104 62 120 74 Q132 86 128 112"/>
+  <path d="M128 100 Q150 92 146 70" />
+  <circle cx="86" cy="52" r="22" fill="#fff"/>
+  <path d="M68 40 Q58 50 64 66 Q72 60 72 46Z" fill="#111"/>
+  <path d="M104 40 Q114 50 108 66 Q100 60 100 46Z" fill="#111"/>
+  <circle cx="79" cy="50" r="2.5" fill="#111"/><circle cx="93" cy="50" r="2.5" fill="#111"/>
+  <ellipse cx="86" cy="60" rx="5" ry="3.5" fill="#111"/>
+  <path d="M82 66 Q86 70 90 66"/>
+  <path d="M80 112 L80 98 M110 112 L112 98"/>
+  <path d="M74 80 Q86 88 100 80" stroke-width="5"/>
+ </g>
+ <g fill="#111" font-family="serif" font-size="14"><text x="20" y="30">❄</text><text x="160" y="24">❄</text><text x="140" y="58">❄</text><text x="30" y="80">❄</text></g>
+ <text x="150" y="104" font-size="22" font-family="'Noto Serif SC',serif" fill="#111">雪</text>
+</svg>`;
+document.getElementById('dogArt').innerHTML=DOG;
+function allDone(){return EX.every(ex=>S.checked[ex.id] && units(ex).every(u=>!u.empty));}
+function maybeParty(){
+  if(!allDone()||S.partyShown) return;
+  S.partyShown=true; save();
+  const r=buildReport();
+  document.getElementById('partyScore').textContent=`Итог: ${r.ok}/${r.tot} (${r.pct}%)`;
+  document.getElementById('party').classList.add('on'); fireworks();
+}
+document.getElementById('partyClose').onclick=()=>{document.getElementById('party').classList.remove('on');document.getElementById('tgBtn').scrollIntoView({behavior:'smooth',block:'center'});};
+function fireworks(){
+  const c=document.getElementById('fx'),x=c.getContext('2d');let W=c.width=innerWidth,H=c.height=innerHeight;const P=[];
+  function burst(){const cx=Math.random()*W,cy=Math.random()*H*.5+20;for(let i=0;i<70;i++){const a=Math.random()*6.28,s=Math.random()*5+1.5;P.push({x:cx,y:cy,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:80+Math.random()*30,c:Math.random()<.5?'#ffffff':(Math.random()<.5?'#bdbdbd':'#e53935')});}}
+  let n=0;const iv=setInterval(()=>{burst();if(++n>7)clearInterval(iv);},350);
+  (function loop(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.l--;x.globalAlpha=Math.max(p.l/100,0);x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,2.4,0,6.28);x.fill();});
+    for(let i=P.length-1;i>=0;i--)if(P[i].l<=0)P.splice(i,1);
+    if(P.length||n<=7)requestAnimationFrame(loop);else x.clearRect(0,0,W,H);})();
+}
+
+/* ================= MEMO ================= */
+document.getElementById('p-memo').innerHTML=`
+<div class="card">
+ <div class="exhead"><div class="num cn">记</div><div><h2>Как узнать conditional через перевод</h2><div class="instr">Главный вопрос: <mark>есть «бы»?</mark></div></div></div>
+ <ol class="steps">
+  <li><b>Переведи предложение на русский</b> (в голове).</li>
+  <li><b>Нет «бы»</b> → ситуация <b>реальная</b>. Это <b>Zero</b> (так бывает всегда, факт) или <b>First</b> (конкретная ситуация, может случиться в будущем).</li>
+  <li><b>Есть «бы»</b> → ситуация <b>нереальная</b>. Смотри на время: про <b>сейчас / будущее / мечту</b> → <b>Second</b>. Про <b>прошлое</b> (уже случилось, ничего не изменить) → <b>Third</b>.</li>
+ </ol>
+ <div class="tree">
+  <div><h4>Нет «бы» → реально</h4><p><b>0</b> — всегда / факт</p><p><b>1</b> — может случиться</p></div>
+  <div class="dark"><h4>Есть «бы» → нереально</h4><p><b>2</b> — сейчас / мечта</p><p><b>3</b> — прошлое, жалею</p></div>
+ </div>
+</div>
+
+<div class="rule"><h3>0 · Zero conditional — всегда так</h3>
+ <div class="formula">If + Present Simple, Present Simple</div>
+ <p class="ex">If you heat ice, it melts.<i>Если нагреть лёд, он тает. (нет «бы», это факт)</i></p></div>
+
+<div class="rule"><h3>1 · First conditional — реально, в будущем</h3>
+ <div class="formula">If + Present Simple, will + V</div>
+ <p class="ex">If it snows tomorrow, our flight will be delayed.<i>Если завтра пойдёт снег, наш рейс задержат. (нет «бы»)</i></p></div>
+
+<div class="rule"><h3>2 · Second conditional — нереально сейчас</h3>
+ <div class="formula">If + Past Simple, would + V</div>
+ <p class="ex">If I lived in China, I would speak Chinese every day.<i>Если <b>бы</b> я жила в Китае, я <b>бы</b> говорила по-китайски каждый день. (но я не живу там)</i></p>
+ <p class="hint">Past Simple тут не про прошлое — это «нереальность». Для всех лиц можно <b>were</b>: If I were you…</p></div>
+
+<div class="rule"><h3>3 · Third conditional — нереально в прошлом</h3>
+ <div class="formula">If + had + V3, would have + V3</div>
+ <p class="ex">If we had left earlier, we wouldn't have missed the plane.<i>Если <b>бы</b> мы вышли раньше, мы <b>бы</b> не опоздали на самолёт. (но мы опоздали — это прошлое)</i></p></div>
+
+<div class="card alt">
+ <div class="exhead"><div class="num cn">!</div><div><h2>Ловушки</h2></div></div>
+ <div class="trap">После <b>if</b> никогда не ставим <b>will</b> и <b>would</b>: <br>✗ If it will snow… → ✓ If it <b>snows</b>, …</div>
+ <div class="trap">Русское будущее «если <u>будет</u> снег» → в английском <b>Present</b>: If it <b>snows</b>.</div>
+ <div class="trap"><b>I'd</b> может быть <b>I would</b> или <b>I had</b>: If I<b>'d</b> known (had), I<b>'d</b> have come (would).</div>
+ <div class="trap">Части можно менять местами. Если <b>if</b> в начале — ставим запятую: <br>If I miss the plane, I'll buy a new ticket. = I'll buy a new ticket if I miss the plane.</div>
+ <div class="trap">Формулы ЕГЭ запомни так: <b>0</b> — Present+Present · <b>1</b> — Present+will · <b>2</b> — Past+would · <b>3</b> — had V3 + would have V3. Каждый следующий — «на шаг назад» во времени.</div>
+</div>`;
+
+/* ================= WORDS ================= */
+function renderWords(){
+  let h=`<div class="card"><div class="exhead"><div class="num cn">词</div><div><h2>Мои слова</h2><div class="instr">Все слова из уроков. Нажми 🔊, чтобы послушать. Эти слова будут повторяться в каждой следующей домашке — возвращайся сюда, если забыла.</div></div></div>
+  <div class="wtools"><button class="btn ghost" id="hideRu">Скрыть перевод (проверь себя)</button></div></div><div id="wlist">`;
+  WORDS.forEach(g=>{
+    h+=`<div class="wgroup"><h3>${esc(g.g)} <span>${g.l.length} слов</span></h3>`;
+    g.l.forEach(([en,tr,ru])=>{h+=`<div class="w"><span class="en">${esc(en)}</span><span class="tr">${esc(tr)}</span><span class="rus">${esc(ru)}</span><button class="say" data-say="${esc(en.replace(/\(.*?\)/g,'').replace(/somebody/g,'somebody').replace(/…/g,''))}" aria-label="Послушать">🔊</button></div>`;});
+    h+=`</div>`;
+  });
+  h+='</div>';
+  document.getElementById('p-words').innerHTML=h;
+  document.getElementById('hideRu').onclick=e=>{const l=document.getElementById('wlist');l.classList.toggle('hide-ru');l.querySelectorAll('.rus.show').forEach(r=>r.classList.remove('show'));e.target.textContent=l.classList.contains('hide-ru')?'Показать перевод':'Скрыть перевод (проверь себя)';};
+}
+function say(t){
+  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=.85;
+    const v=speechSynthesis.getVoices().find(v=>/en-GB/i.test(v.lang))||speechSynthesis.getVoices().find(v=>/^en/i.test(v.lang)); if(v)u.voice=v;
+    speechSynthesis.speak(u);}catch(e){}
+}
+
+/* ================= TABS ================= */
+function setTab(t){
+  S.tab=t; save();
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id==='p-'+t));
+  window.scrollTo({top:document.querySelector('nav').offsetTop,behavior:'instant'});
+}
+
+/* ================= SNOW ================= */
+(function(){const hd=document.querySelector('header');for(let i=0;i<18;i++){const f=document.createElement('span');f.className='flake';f.textContent=Math.random()<.2?'雪':'❄';
+ f.style.left=Math.random()*100+'%';f.style.fontSize=(8+Math.random()*10)+'px';f.style.animationDuration=(5+Math.random()*7)+'s';f.style.animationDelay=(-Math.random()*10)+'s';hd.appendChild(f);}})();
+
+function grow(el){if(el.matches&&el.matches('input.gap'))el.style.width=Math.max(8,el.value.length+2)+'ch';}
+render(); renderWords(); updateReport();
+if(S.tab!=='ex') setTab(S.tab);
+</script>
+</body>
+</html>
