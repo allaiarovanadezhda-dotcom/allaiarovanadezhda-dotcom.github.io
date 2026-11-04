@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nikita FC · HW 1B</title>
+<style>
+:root{--p1:#2f8f40;--p2:#287d37;--card:#ffffff;--ink:#12301a;--muted:#5b6f5f;--ok:#1f9d55;--bad:#d63636;--gold:#ffd23f;--empty:#e69500;--dark:#0f2416}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:repeating-linear-gradient(90deg,var(--p1) 0 70px,var(--p2) 70px 140px);min-height:100vh;padding-bottom:60px}
+.wrap{max-width:760px;margin:0 auto;padding:0 14px}
+header{background:var(--dark);color:#fff;padding:18px 14px 14px;text-align:center;border-bottom:4px solid var(--gold);position:sticky;top:0;z-index:5}
+.board{display:inline-flex;align-items:center;gap:12px;background:#000;border:3px solid #333;border-radius:10px;padding:8px 14px;font-family:"Courier New",monospace}
+.team{font-weight:800;letter-spacing:1px;font-size:14px}
+.digits{color:var(--gold);font-size:26px;font-weight:800;min-width:90px}
+.sub{font-size:12px;color:#b9d8c0;margin-top:6px}
+.tabs{display:flex;gap:8px;justify-content:center;margin:16px 0}
+.tab{border:0;border-radius:999px;padding:10px 18px;font-weight:700;font-size:15px;background:rgba(255,255,255,.25);color:#fff;cursor:pointer}
+.tab.on{background:#fff;color:var(--dark)}
+.card{background:var(--card);border-radius:18px;padding:18px 16px;margin:16px 0;box-shadow:0 6px 0 rgba(0,0,0,.18);border:3px solid #fff;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;right:-40px;top:-40px;width:110px;height:110px;border:3px solid #e3efe5;border-radius:50%}
+.tag{display:inline-block;background:var(--dark);color:var(--gold);font-size:12px;font-weight:800;padding:4px 10px;border-radius:6px;letter-spacing:1px}
+.tag.oge{background:#1d4ed8;color:#fff}
+h2{margin:8px 0 4px;font-size:19px}
+.instr{margin:0 0 12px;color:var(--muted);font-size:14px;line-height:1.4}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;padding:10px;background:#f1f8f2;border-radius:12px;border:2px dashed #b8d9bf}
+.chip{border:0;background:var(--gold);color:var(--dark);font-weight:700;padding:8px 12px;border-radius:999px;font-size:14px;cursor:pointer;box-shadow:0 2px 0 #c9a21d}
+.chip:disabled{opacity:.3;cursor:default;box-shadow:none;text-decoration:line-through}
+ol.items{margin:0;padding-left:22px}
+ol.items li{margin:10px 0;line-height:1.9;font-size:15.5px}
+input[type=text],select{font-size:16px;border:2px solid #b8cbbc;border-radius:8px;padding:3px 8px;min-width:110px;max-width:100%;background:#fbfdfb;color:var(--ink)}
+input.wide{width:100%;margin-top:4px}
+select{min-width:80px}
+input:focus,select:focus{outline:none;border-color:var(--p1);box-shadow:0 0 0 3px rgba(47,143,64,.2)}
+.ok{border-color:var(--ok)!important;background:#e9f8ef!important}
+.bad{border-color:var(--bad)!important;background:#fdecec!important}
+.empty{border-color:var(--empty)!important;background:#fff6e3!important}
+.fb{display:block;font-size:13px;line-height:1.3}
+.fb.ok,.fb.bad,.fb.empty{background:none!important;border:0}
+.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}.fb.empty{color:var(--empty)}
+.key{float:right;font-weight:800;color:#1d4ed8;font-size:13px;background:#e8efff;padding:1px 8px;border-radius:6px;margin-left:8px}
+.oge li{background:#f7f9ff;border-radius:10px;padding:6px 10px;list-style-position:outside}
+.check{margin-top:14px;border:0;background:var(--dark);color:#fff;font-weight:800;font-size:15px;padding:12px 18px;border-radius:12px;cursor:pointer;width:100%}
+.res{margin-top:10px;font-weight:700;font-size:15px;text-align:center}
+.tip{background:#fffbe6;border:2px solid #ffe58a;border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.5;margin:16px 0}
+.tip b{color:#7a5800}
+textarea{width:100%;min-height:140px;font-size:16px;border:2px solid #b8cbbc;border-radius:10px;padding:10px;font-family:inherit}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btns button{flex:1;min-width:140px;border:0;border-radius:12px;padding:12px;font-weight:800;font-size:15px;cursor:pointer}
+.tg{background:#229ED9;color:#fff}.cp{background:var(--gold);color:var(--dark)}
+.report{white-space:pre-wrap;font-family:"Courier New",monospace;font-size:12.5px;background:#f3f5f3;border-radius:10px;padding:10px;margin-top:10px;max-height:260px;overflow:auto;display:none}
+.vgroup h3{margin:6px 0 8px;font-size:16px}
+.vrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #edf2ee}
+.vrow .w{font-weight:800;min-width:120px}
+.vrow .t{color:var(--muted);flex:1;font-size:14px}
+.say{border:0;background:#e9f5ec;border-radius:50%;width:36px;height:36px;font-size:17px;cursor:pointer}
+.hidden{display:none}
+#party{position:fixed;inset:0;z-index:50;display:none;background:rgba(5,20,10,.75)}
+#party canvas{position:absolute;inset:0;width:100%;height:100%}
+#ball{position:absolute;left:50%;top:50%;font-size:40px;transform:translate(-50%,-50%) scale(.1);animation:fly 1.4s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes fly{0%{transform:translate(-50%,-50%) scale(.05) rotate(0)}70%{transform:translate(-50%,-50%) scale(6) rotate(720deg)}85%{transform:translate(-50%,-50%) scale(5.4) rotate(760deg)}100%{transform:translate(-50%,-50%) scale(5.8) rotate(780deg)}}
+#goal{position:absolute;left:0;right:0;top:12%;text-align:center;color:#fff;opacity:0;animation:show .6s 1.3s forwards}
+#goal h1{font-size:48px;margin:0;color:var(--gold);text-shadow:0 4px 0 #000;letter-spacing:3px}
+#goal p{font-size:18px;margin:8px 16px;font-weight:700}
+#close{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);border:0;background:#fff;color:var(--dark);font-weight:800;padding:12px 24px;border-radius:999px;font-size:16px;opacity:0;animation:show .5s 2s forwards}
+@keyframes show{to{opacity:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="board"><span class="team">NIKITA FC</span><span class="digits" id="score">0 : 75</span><span class="team">HW 1B</span></div>
+  <div class="sub">English File Pre-Intermediate · 1B · Appearance &amp; Personality · Present Simple</div>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab on" data-tab="tasks">⚽ Задания</button>
+    <button class="tab" data-tab="words">📖 Слова</button>
+  </div>
+
+  <div id="words" class="hidden"></div>
+
+  <div id="tasks"></div>
+
+  <section class="card" id="final">
+    <div class="tag">FULL TIME</div>
+    <h2>Финальный свисток 🏁</h2>
+    <p class="instr">Когда всё проверишь, нажми кнопку — отчёт скопируется. Отправь его мне в Telegram.</p>
+    <div class="btns">
+      <button class="tg" id="send">Отправить в Telegram</button>
+      <button class="cp" id="copy">Скопировать отчёт</button>
+    </div>
+    <div class="report" id="report"></div>
+  </section>
+</div>
+
+<div id="party"><canvas id="fw"></canvas><div id="ball">⚽</div>
+  <div id="goal"><h1>GOOOAL!</h1><p>Никита, всё правильно — ты чемпион! 🏆</p></div>
+  <button id="close">Ура! Закрыть</button>
+</div>
+
+<script>
+const STUDENT='Никита', TOPIC='1B Appearance & Personality';
+
+const WORDS=[
+ {g:'👀 Appearance — What does he look like?',w:[
+  ['tall','высокий'],['short','невысокий; короткие (волосы)'],['slim','стройный'],['thin','худой'],['overweight','полноватый, с лишним весом'],['bald','лысый'],['a beard','борода'],['a moustache','усы'],['curly','кудрявые (волосы)'],['straight','прямые (волосы)'],['blond / blonde','светлые волосы (blond — о мужчинах, blonde — о женщинах)'],['good-looking','привлекательный'],['handsome','красивый (о мужчине)']]},
+ {g:'🙂 Personality — What is he like?',w:[
+  ['funny','смешной, с юмором'],['fun','с ним весело'],['kind','добрый'],['unkind','недобрый'],['friendly','дружелюбный'],['unfriendly','недружелюбный'],['shy','застенчивый'],['extrovert','экстраверт, открытый'],['lazy','ленивый'],['hard-working','трудолюбивый'],['clever','умный'],['stupid','глупый'],['talkative','разговорчивый'],['quiet','тихий, молчаливый'],['generous','щедрый'],['mean','жадный'],['serious','серьёзный']]}
+];
+
+const TASKS=[
+ {id:1,tag:'MATCH 1',title:'Meet the team! Appearance',instr:'Нажми на слово, чтобы вставить его в пропуск (или напиши сам).',bank:['tall','bald','beard','moustache','blond','curly','overweight','slim'],items:[
+  {q:'Our goalkeeper is two metres! He\'s very ___ .',a:['tall']},
+  {q:'The coach has no hair at all. He\'s ___ .',a:['bald']},
+  {q:'Our captain has a lot of hair on his chin. He has a ___ .',a:['beard']},
+  {q:'Our number 9 has hair above his lip — a ___ .',a:['moustache']},
+  {q:'The new defender has light yellow hair. He\'s ___ .',a:['blond','blonde']},
+  {q:'Our physio\'s hair is like a spring. He has ___ hair.',a:['curly']},
+  {q:'The old manager eats a lot of burgers. He\'s a bit ___ .',a:['overweight']},
+  {q:'Our winger is thin in an attractive way. He\'s ___ .',a:['slim']}]},
+ {tip:'<b>Порядок прилагательных:</b> размер (size) → форма / стиль (style) → цвет (colour) + существительное.<br>long + straight + blonde <b>hair</b> → She has <b>long straight blonde</b> hair.<br>big + brown <b>eyes</b> → He has <b>big brown</b> eyes.<br>📏 long, short, big, small → 〰️ curly, straight → 🎨 dark, brown, blond, grey, red'},
+ {id:2,tag:'MATCH 2',title:'Adjective order',instr:'Напиши прилагательные в правильном порядке: size → style → colour.',items:[
+  {q:'The referee has ___ hair. (brown · long · straight)',a:['long straight brown','long straight brown hair']},
+  {q:'The striker has ___ eyes. (green · small)',a:['small green','small green eyes']},
+  {q:'My grandad has ___ hair. (grey · short · curly)',a:['short curly grey','short curly grey hair']},
+  {q:'Our captain has ___ eyes. (dark · big)',a:['big dark','big dark eyes']},
+  {q:'The new player has ___ hair. (blond · short · straight)',a:['short straight blond','short straight blond hair','short straight blonde']}]},
+ {id:3,tag:'MATCH 3',title:'What are they like? Personality',instr:'Какой он? Нажми на слово или напиши сам.',bank:['generous','funny','lazy','friendly','shy','talkative','kind','clever'],items:[
+  {q:'Max always buys pizza for the whole team. He\'s ___ .',a:['generous']},
+  {q:'Leo tells jokes in the changing room and everybody laughs. He\'s ___ .',a:['funny']},
+  {q:'Tom never trains — he sleeps all day. He\'s ___ .',a:['lazy']},
+  {q:'Sam says hello to every new player and smiles. He\'s ___ .',a:['friendly']},
+  {q:'Ben goes red when journalists ask him questions. He\'s ___ .',a:['shy']},
+  {q:'Dan talks and talks on the team bus. He\'s ___ .',a:['talkative']},
+  {q:'Our coach helps everybody with their problems. He\'s ___ .',a:['kind']},
+  {q:'Alex understands new tactics very quickly. He\'s ___ .',a:['clever']}]},
+ {id:4,tag:'MATCH 4',title:'Opposites',instr:'Найди противоположное слово. ⚠️ Два слова лишние.',bank:['mean','quiet','hard-working','stupid','unkind','unfriendly','serious','extrovert'],items:[
+  {q:'generous ↔ ___',a:['mean']},
+  {q:'talkative ↔ ___',a:['quiet']},
+  {q:'lazy ↔ ___',a:['hard-working','hardworking']},
+  {q:'clever ↔ ___',a:['stupid']},
+  {q:'friendly ↔ ___',a:['unfriendly']},
+  {q:'funny ↔ ___',a:['serious']}]},
+ {id:5,tag:'MATCH 5',title:'Look like or like?',instr:'К какому вопросу подходит ответ? Выбери в списке.',type:'select',options:['What does he look like?','What\'s he like?'],items:[
+  {q:'___ — He has short blond hair and blue eyes.',a:['What does he look like?']},
+  {q:'___ — He\'s really talkative.',a:['What\'s he like?']},
+  {q:'___ — He\'s bald and quite short.',a:['What does he look like?']},
+  {q:'___ — He\'s generous and friendly.',a:['What\'s he like?']},
+  {q:'___ — He has a moustache.',a:['What does he look like?']},
+  {q:'___ — He\'s quite clever, but a bit lazy.',a:['What\'s he like?']}]},
+ {tip:'<b>Present Simple:</b> he / she / it → глагол + <b>-s</b>: he play<b>s</b>, she watch<b>es</b>, he go<b>es</b>, she stud<b>ies</b>, he <b>has</b>.<br><b>Отрицание и вопрос:</b> he <b>doesn\'t</b> play (без -s!), <b>Does</b> he play? (без -s!)'},
+ {id:6,tag:'MATCH 6',title:'Present Simple: don\'t forget -s!',instr:'Раскрой скобки. Помни про he / she / it.',items:[
+  {q:'Nikita ___ (play) football every day.',a:['plays']},
+  {q:'My dad ___ (watch) every match on TV.',a:['watches']},
+  {q:'The coach ___ (go) to the stadium by bus.',a:['goes']},
+  {q:'Our goalkeeper ___ (have) a big beard.',a:['has']},
+  {q:'My brother ___ (study) in the 11th form.',a:['studies']},
+  {q:'The team ___ (fly) to Spain every summer.',a:['flies']},
+  {q:'Our striker ___ (wash) his boots after every match.',a:['washes']},
+  {q:'My friends ___ (live) near the stadium.',a:['live']},
+  {q:'She ___ (not / like) football.',a:['doesn\'t like','does not like']},
+  {q:'___ (he / train) on Sundays?',a:['does he train']}]},
+ {tip:'<b>am / is / are</b> — когда нет другого глагола: I <b>am</b> tired. He <b>is</b> tall. <b>Are</b> you shy?<br><b>do / does</b> — когда есть глагол: <b>Do</b> you play? He <b>doesn\'t</b> eat. <b>Does</b> she like…?<br>❌ I am eat → ✅ I eat &nbsp; ❌ I looking → ✅ I am looking (прямо сейчас)'},
+ {id:7,tag:'MATCH 7',title:'am / is / are or do / does?',instr:'Выбери правильное слово.',type:'select',options:['am','is','are','do','does'],items:[
+  {q:'___ you like football?',a:['do']},
+  {q:'___ you tired after training?',a:['are']},
+  {q:'___ your brother play football?',a:['does']},
+  {q:'___ your coach strict?',a:['is']},
+  {q:'I ___ not lazy!',a:['am']},
+  {q:'He ___ not eat fast food.',a:['does']},
+  {q:'They ___ from Moscow.',a:['are']},
+  {q:'___ she have long hair?',a:['does']},
+  {q:'What ___ he look like?',a:['does']},
+  {q:'What ___ he like?',a:['is']}]},
+ {id:8,tag:'MATCH 8',title:'VAR check: find the mistake 📺',instr:'В каждом предложении ошибка. Напиши предложение правильно.',wide:true,items:[
+  {q:'I am eat breakfast at 8 every day.',a:['I eat breakfast at 8 every day','I eat breakfast at eight every day']},
+  {q:'He play football on Saturdays.',a:['He plays football on Saturdays']},
+  {q:'She don\'t like rainy matches.',a:['She doesn\'t like rainy matches']},
+  {q:'I looking at the scoreboard now.',a:['I am looking at the scoreboard now']},
+  {q:'My friend is live near the stadium.',a:['My friend lives near the stadium']},
+  {q:'Do he have a beard?',a:['Does he have a beard']},
+  {q:'He is not like fast food.',a:['He doesn\'t like fast food']},
+  {q:'Are you play football?',a:['Do you play football']}]},
+ {id:9,tag:'ОГЭ · ГРАММАТИКА',oge:true,title:'My football coach',instr:'Как в ОГЭ: преобразуй слово справа так, чтобы оно подходило по смыслу и грамматически.',items:[
+  {q:'Mark Evans is my football coach. He ___ 35 years old.',k:'BE',a:['is']},
+  {q:'Every morning he ___ up at six o\'clock.',k:'GET',a:['gets']},
+  {q:'Then he ___ five kilometres in the park.',k:'RUN',a:['runs']},
+  {q:'Mark is tall and slim, and he ___ short dark hair.',k:'HAVE',a:['has']},
+  {q:'He is very kind and never shouts at the ___ in our team.',k:'CHILD',a:['children']},
+  {q:'Our team trains three times a week, and he always ___ to the stadium first.',k:'COME',a:['comes']},
+  {q:'"Football is the ___ game in the world," he says.',k:'GOOD',a:['best']},
+  {q:'All the boys in the team love ___ .',k:'HE',a:['him']}]},
+ {id:10,tag:'ОГЭ · СЛОВООБРАЗОВАНИЕ',oge:true,title:'Our new player',instr:'Как в ОГЭ: образуй от слова справа однокоренное слово, которое подходит по смыслу.',items:[
+  {q:'Our team has a new player, Oleg. He is very ___ and talks to everybody.',k:'FRIEND',a:['friendly']},
+  {q:'He is also very ___ — he never stops talking on the bus!',k:'TALK',a:['talkative']},
+  {q:'Oleg is a ___ striker: he scores in almost every match.',k:'SUCCESS',a:['successful']},
+  {q:'But some fans are ___ because he sometimes misses easy goals.',k:'HAPPY',a:['unhappy']},
+  {q:'He is very ___ and always explains tactics to the younger boys.',k:'HELP',a:['helpful']},
+  {q:'Nobody can say he is ___ — he is the nicest person in the team.',k:'KIND',a:['unkind']}]}
+];
+
+const GRADED=TASKS.filter(t=>t.items);
+const TOTAL=GRADED.reduce((s,t)=>s+t.items.length,0);
+const state={};let celebrated=false;
+
+function norm(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");
+  s=s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/n't\b/g,' not')
+     .replace(/\bi'm\b/g,'i am').replace(/'re\b/g,' are').replace(/'s\b/g,' is').replace(/'ve\b/g,' have');
+  return s.replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();
+}
+
+function renderWords(){
+  const box=document.getElementById('words');
+  WORDS.forEach(g=>{
+    const c=document.createElement('section');c.className='card vgroup';
+    c.innerHTML='<h3>'+g.g+'</h3>';
+    g.w.forEach(([w,t])=>{
+      const r=document.createElement('div');r.className='vrow';
+      r.innerHTML='<span class="w">'+w+'</span><span class="t">'+t+'</span>';
+      const b=document.createElement('button');b.className='say';b.textContent='🔊';b.onclick=()=>say(w.replace('/',','));
+      r.appendChild(b);c.appendChild(r);
+    });
+    box.appendChild(c);
+  });
+}
+function say(w){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(w);u.lang='en-GB';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+
+function renderTasks(){
+  const root=document.getElementById('tasks');
+  TASKS.forEach(t=>{
+    if(t.tip){const d=document.createElement('div');d.className='tip';d.innerHTML='💡 '+t.tip;root.appendChild(d);return}
+    const card=document.createElement('section');card.className='card';
+    card.innerHTML='<div class="tag'+(t.oge?' oge':'')+'">'+t.tag+'</div><h2>'+t.title+'</h2><p class="instr">'+t.instr+'</p>';
+    if(t.bank){
+      const b=document.createElement('div');b.className='bank';t._chips=[];
+      t.bank.forEach(w=>{const c=document.createElement('button');c.type='button';c.className='chip';c.textContent=w;c.onclick=()=>insertWord(t,w,c);b.appendChild(c);t._chips.push(c)});
+      card.appendChild(b);
+    }
+    const ol=document.createElement('ol');ol.className='items'+(t.oge?' oge':'');
+    t._inputs=[];t._fbs=[];
+    t.items.forEach(it=>{
+      const li=document.createElement('li');
+      if(it.k){const k=document.createElement('span');k.className='key';k.textContent=it.k;li.appendChild(k)}
+      let f;
+      if(t.type==='select'){f=document.createElement('select');f.innerHTML='<option value="">—</option>'+t.options.map(o=>'<option>'+o+'</option>').join('')}
+      else{f=document.createElement('input');f.type='text';f.autocomplete='off';f.setAttribute('autocapitalize','off');f.spellcheck=false;if(t.wide)f.className='wide'}
+      const parts=it.q.split('___');
+      if(parts.length>1){li.append(document.createTextNode(parts[0]),f,document.createTextNode(parts[1]))}
+      else{li.append(document.createTextNode(it.q),f)}
+      const fb=document.createElement('span');fb.className='fb';li.appendChild(fb);
+      f.addEventListener('focus',()=>t._last=f);
+      f.addEventListener('input',()=>{f.classList.remove('ok','bad','empty');fb.textContent='';updateBank(t)});
+      f.addEventListener('change',()=>{f.classList.remove('ok','bad','empty');fb.textContent=''});
+      t._inputs.push(f);t._fbs.push(fb);ol.appendChild(li);
+    });
+    card.appendChild(ol);
+    const btn=document.createElement('button');btn.className='check';btn.textContent='✅ Check';btn.onclick=()=>check(t);
+    const res=document.createElement('div');res.className='res';t._res=res;
+    card.append(btn,res);root.appendChild(card);
+  });
+}
+
+function insertWord(t,w,chip){
+  if(chip.disabled)return;
+  let target=(t._last&&!t._last.value.trim())?t._last:t._inputs.find(f=>!f.value.trim());
+  if(!target)return;
+  target.value=w;target.classList.remove('ok','bad','empty');
+  t._fbs[t._inputs.indexOf(target)].textContent='';
+  updateBank(t);
+  const next=t._inputs.find(f=>!f.value.trim());t._last=next||null;
+}
+function updateBank(t){
+  if(!t._chips)return;
+  const used=new Set(t._inputs.map(f=>norm(f.value)));
+  t._chips.forEach(c=>c.disabled=used.has(norm(c.textContent)));
+}
+
+function check(t){
+  const vals=t._inputs.map(f=>f.value.trim());
+  if(vals.every(v=>!v)){
+    t._inputs.forEach((f,i)=>{f.classList.remove('ok','bad');f.classList.add('empty');t._fbs[i].textContent='';t._fbs[i].className='fb'});
+    t._res.textContent='Задание пустое — выполни его и попробуй ещё раз 💪';t._res.style.color='var(--empty)';return;
+  }
+  let s=0;const errors=[];
+  t._inputs.forEach((f,i)=>{
+    const it=t.items[i],fb=t._fbs[i];f.classList.remove('ok','bad','empty');
+    if(!vals[i]){f.classList.add('empty');fb.textContent='Пусто — попробуй сам 💪';fb.className='fb empty';errors.push({q:it.q,k:it.k,u:'(пропуск)',a:'—'});return}
+    if(it.a.map(norm).includes(norm(vals[i]))){s++;f.classList.add('ok');fb.textContent='✓ Great!';fb.className='fb ok'}
+    else{f.classList.add('bad');fb.textContent='Правильно: '+it.a[0];fb.className='fb bad';errors.push({q:it.q,k:it.k,u:vals[i],a:it.a[0]})}
+  });
+  const prev=state[t.id];
+  state[t.id]={s,total:t.items.length,checks:(prev?prev.checks:0)+1,errors};
+  const n=t.items.length;
+  t._res.textContent=s===n?'⚽ '+s+'/'+n+' — GOAL! Всё верно!':s+'/'+n+(s>=n*0.7?' — неплохо! Посмотри на ошибки.':' — разберись с ошибками и попробуй ещё раз.');
+  t._res.style.color=s===n?'var(--ok)':'var(--ink)';
+  updateScore();
+}
+
+function updateScore(){
+  const got=GRADED.reduce((a,t)=>a+(state[t.id]?state[t.id].s:0),0);
+  document.getElementById('score').textContent=got+' : '+TOTAL;
+  if(!celebrated&&GRADED.every(t=>state[t.id]&&state[t.id].s===t.items.length)){celebrated=true;celebrate()}
+}
+
+function buildReport(){
+  const got=GRADED.reduce((a,t)=>a+(state[t.id]?state[t.id].s:0),0);
+  let r=STUDENT+' — HW '+TOPIC+'\nИтого: '+got+'/'+TOTAL+' ('+Math.round(got/TOTAL*100)+'%)\n\n';
+  GRADED.forEach(t=>{const st=state[t.id];r+=t.title+': '+(st?st.s+'/'+st.total+' (проверок: '+st.checks+')':'не проверено (0/'+t.items.length+')')+'\n'});
+  const errs=[];
+  GRADED.forEach(t=>{const st=state[t.id];if(st)st.errors.forEach(e=>errs.push('['+t.title+'] '+e.q.replace('___','___')+(e.k?' ('+e.k+')':'')+' → '+e.u+' → '+e.a))});
+  r+='\n❌ Ошибки и пропуски\n'+(errs.length?errs.join('\n'):'нет 🎉')+'\n';
+  return r;
+}
+function showReport(){const r=buildReport();const box=document.getElementById('report');box.textContent=r;box.style.display='block';return r}
+async function copyText(t){try{await navigator.clipboard.writeText(t);return true}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(_){}ta.remove();return true}}
+document.getElementById('copy').onclick=async()=>{const r=showReport();await copyText(r);alert('Отчёт скопирован! Вставь его в Telegram и отправь мне 🙂')};
+document.getElementById('send').onclick=async()=>{
+  const r=showReport();await copyText(r);
+  if(navigator.share){try{await navigator.share({text:r});return}catch(e){}}
+  window.open('https://t.me/share/url?url='+encodeURIComponent('HW')+'&text='+encodeURIComponent(r),'_blank');
+};
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+  const w=b.dataset.tab==='words';
+  document.getElementById('words').classList.toggle('hidden',!w);
+  document.getElementById('tasks').classList.toggle('hidden',w);
+  document.getElementById('final').classList.toggle('hidden',w);
+});
+
+function celebrate(){
+  const p=document.getElementById('party');p.style.display='block';
+  const ball=document.getElementById('ball');ball.style.animation='none';void ball.offsetWidth;ball.style.animation='';
+  const cv=document.getElementById('fw'),ctx=cv.getContext('2d');
+  const fit=()=>{cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)};fit();
+  const cols=['#ffd23f','#ffffff','#2fd158','#ff4d6d','#4dabff'];let parts=[],t0=performance.now();
+  function burst(){const x=innerWidth*(.15+Math.random()*.7),y=innerHeight*(.15+Math.random()*.4),c=cols[Math.random()*cols.length|0];
+    for(let i=0;i<70;i++){const a=Math.random()*Math.PI*2,v=2+Math.random()*4.5;parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c,s:Math.random()<.12})}}
+  let last=0;
+  (function loop(now){
+    if(now-t0>1200&&now-last>380&&now-t0<7000){burst();last=now}
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    parts.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.06;q.vx*=.985;q.l-=.012;ctx.globalAlpha=Math.max(q.l,0);
+      if(q.s){ctx.font='14px serif';ctx.fillText('⚽',q.x,q.y)}else{ctx.fillStyle=q.c;ctx.beginPath();ctx.arc(q.x,q.y,2.6,0,7);ctx.fill()}});
+    parts=parts.filter(q=>q.l>0);ctx.globalAlpha=1;
+    if(p.style.display==='block')requestAnimationFrame(loop);
+  })(t0);
+}
+document.getElementById('close').onclick=()=>{document.getElementById('party').style.display='none'};
+
+renderWords();renderTasks();
+</script>
+</body>
+</html>
