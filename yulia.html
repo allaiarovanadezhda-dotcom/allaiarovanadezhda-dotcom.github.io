@@ -303,6 +303,7 @@ footer{text-align:center;font-weight:600;margin-top:30px}
     <div class="warn-box" style="color:var(--ink)">🔄 Противоположности часто делаются приставкой:<br>
       <b>un-</b> unreliable, untidy · <b>dis-</b> dishonest, disorganized · <b>in-</b> insensitive, insecure<br>
       <b>im-</b> перед m / p: immature, impatient · <b>ir-</b> перед r: irresponsible</div>
+    <p class="fb" style="margin:8px 0 0">🔈 Не слышно звук? На iPhone выключите беззвучный режим (переключатель сбоку) и прибавьте громкость.</p>
     <label class="toggle"><input type="checkbox" id="hideTr"> Скрыть перевод (проверьте себя)</label>
   </div>
   <div id="vocab"></div>
@@ -353,6 +354,7 @@ footer{text-align:center;font-weight:600;margin-top:30px}
     <label class="toggle"><input type="checkbox" id="hideQ"> Скрыть текст вопроса (только на слух, как на экзамене)</label>
     <button class="btn" onclick="exam()">▶ Начать</button>
     <button class="btn dark" onclick="stopAll()">■ Стоп</button>
+    <p class="fb meh" style="margin:8px 0 0">🔈 Не слышно звук? На iPhone выключите беззвучный режим (переключатель сбоку) и прибавьте громкость.</p>
     <div id="examStatus"></div>
   </div>
 
@@ -701,14 +703,26 @@ function celebrateIfAll(){
 
 /* ---------- SPEAKING ---------- */
 let tok=null;
-function stopAll(){if(tok)tok.stop=true;try{speechSynthesis.cancel();}catch(e){}
+function stopAll(){if(tok)tok.stop=true;try{if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();}catch(e){}
  document.querySelectorAll('.q-card').forEach(c=>c.classList.remove('live'));document.getElementById('examStatus').textContent='';}
+let voices=[];
+function loadVoices(){try{voices=speechSynthesis.getVoices()||[];}catch(e){}}
+if('speechSynthesis' in window){loadVoices();try{speechSynthesis.onvoiceschanged=loadVoices;}catch(e){}}
+let unlocked=false;
+function unlockAudio(){if(unlocked||!('speechSynthesis' in window))return;unlocked=true;
+ try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);}catch(e){}}
+['touchend','click'].forEach(ev=>document.addEventListener(ev,unlockAudio,{once:true,capture:true}));
 function speak(text,t){return new Promise(res=>{
- if(!('speechSynthesis' in window)){res();return;}
- try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';u.rate=.92;
-  const vs=speechSynthesis.getVoices();const v=vs.find(x=>x.lang==='en-GB')||vs.find(x=>/^en/.test(x.lang));if(v)u.voice=v;
+ if(!('speechSynthesis' in window)){alert('Этот браузер не умеет озвучивать текст. Откройте ссылку в Safari или Chrome 💗');res();return;}
+ try{
+  if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
+  try{speechSynthesis.resume();}catch(e){}
+  const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';u.rate=.92;u.volume=1;
+  if(!voices.length)loadVoices();
+  const v=voices.find(x=>x.lang==='en-GB')||voices.find(x=>/^en[-_]GB/i.test(x.lang))||voices.find(x=>/^en/i.test(x.lang));if(v)u.voice=v;
   let done=false;const fin=()=>{if(!done){done=true;res();}};u.onend=fin;u.onerror=fin;
-  setTimeout(fin,Math.max(5000,text.length*110));speechSynthesis.speak(u);}catch(e){res();}
+  setTimeout(fin,Math.max(6000,text.length*120));speechSynthesis.speak(u);
+ }catch(e){res();}
 });}
 function countdown(sec,card,t){return new Promise(res=>{
  const bar=card.querySelector('.bar i'),tm=card.querySelector('.time');let left=sec;
@@ -727,7 +741,7 @@ async function exam(){
   const qt=c.querySelector('.q-text');if(hide)qt.classList.add('hidden');
   c.scrollIntoView({behavior:'smooth',block:'center'});
   st.textContent=`Вопрос ${i+1} из ${QS.length} — слушайте 🎧`;
-  await new Promise(r=>setTimeout(r,700));if(t.stop)break;
+  if(i>0){await new Promise(r=>setTimeout(r,700));if(t.stop)break;}
   await speak(QS[i][1],t);if(t.stop)break;
   st.textContent=`Вопрос ${i+1} из ${QS.length} — отвечайте вслух! 🎤`;
   await countdown(40,c,t);qt.classList.remove('hidden');c.classList.remove('live');
@@ -735,7 +749,7 @@ async function exam(){
  document.querySelectorAll('.q-text').forEach(q=>q.classList.remove('hidden'));
  if(!t.stop)st.textContent='Готово! Вы молодец 💗 Теперь можно записать ответы письменно.';
 }
-if('speechSynthesis' in window){try{speechSynthesis.getVoices();}catch(e){}}
+
 
 /* ---------- REPORT ---------- */
 function buildReport(){
