@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Yulia's Homework ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff4fa3; --hot:#e0218a; --soft:#ffe3f0; --baby:#ffc6e2;
+  --ink:#111; --white:#fff; --ok:#22a86b; --bad:#e63946;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:'Montserrat',system-ui,sans-serif; color:var(--ink); line-height:1.5;
+  background-color:#ffb3d6;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.95) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(255,255,255,.75) 0 1.2px, transparent 1.8px),
+    radial-gradient(circle, rgba(224,33,138,.55) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(0,0,0,.22) 0 .6px, transparent 1px),
+    linear-gradient(135deg,#ffd6ec 0%,#ff8cc6 45%,#ffc6e2 75%,#ff9fd0 100%);
+  background-size:23px 23px,37px 37px,17px 17px,11px 11px,100% 100%;
+  background-position:0 0,11px 7px,5px 13px,3px 3px,0 0;
+  background-attachment:fixed;
+  min-height:100vh;
+}
+.sparkles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.sparkles span{position:absolute;color:#fff;text-shadow:0 0 6px #fff,0 0 12px #ff8cc6;animation:tw 2.6s ease-in-out infinite;opacity:0}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:16px 16px 60px}
+
+header{text-align:center;padding:22px 10px 8px}
+.logo{font-family:'Pacifico',cursive;font-size:clamp(44px,12vw,72px);color:var(--hot);margin:0;line-height:1.1;
+  text-shadow:3px 3px 0 #fff,-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,6px 6px 0 var(--ink)}
+.sub{display:inline-block;margin-top:10px;background:var(--ink);color:#fff;border-radius:999px;padding:6px 16px;font-weight:600;font-size:14px}
+.emojis{font-size:22px;margin-top:8px;letter-spacing:4px}
+
+nav{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;padding:10px 2px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;border:2px solid var(--ink);background:#fff;color:var(--ink);font:600 14px 'Montserrat';padding:8px 14px;border-radius:999px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+nav button.on{background:var(--ink);color:#ff8cc6}
+
+.tab{display:none}.tab.on{display:block;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+
+.card{background:#fff;border:2px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);padding:18px;margin:18px 0}
+.card.pinkdots{background-color:var(--soft);background-image:radial-gradient(circle,#fff 0 2px,transparent 2.5px);background-size:18px 18px}
+.card.black{background-color:#111;color:#fff;background-image:radial-gradient(circle,rgba(255,79,163,.7) 0 1px,transparent 1.6px),radial-gradient(circle,rgba(255,255,255,.5) 0 .8px,transparent 1.3px);background-size:15px 15px,27px 27px;background-position:0 0,7px 9px}
+.card.stripe{background:repeating-linear-gradient(45deg,#fff 0 14px,#ffe6f2 14px 28px)}
+.card.holo{background:linear-gradient(120deg,#ffd6ec,#ffffff 30%,#ffc0e0 55%,#f3eaff 80%,#ffd6ec);background-size:300% 300%;animation:holo 8s ease infinite}
+@keyframes holo{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+h2{font-family:'Pacifico',cursive;font-weight:400;color:var(--hot);font-size:30px;margin:0 0 6px}
+.black h2{color:#ff8cc6}
+h3{margin:14px 0 6px;font-size:18px}
+.lead{font-size:15px;opacity:.85;margin:0 0 10px}
+.chip{display:inline-block;background:var(--pink);color:#fff;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:800;letter-spacing:.5px}
+.black .chip{background:#fff;color:var(--hot)}
+.formula{display:block;background:var(--ink);color:#fff;border-radius:14px;padding:10px 12px;margin:8px 0;font-weight:600}
+.black .formula{background:#fff;color:var(--ink)}
+.formula b{color:#ff8cc6}.black .formula b{color:var(--hot)}
+.ex{border-left:4px solid var(--pink);padding:4px 0 4px 10px;margin:8px 0}
+.ru{color:#555;font-style:italic}.black .ru{color:#ffd1e8}
+mark{background:#ff4fa3;color:#fff;border-radius:6px;padding:0 5px;font-style:normal;font-weight:800}
+.warn-box{background:#fff;border:2px dashed var(--hot);border-radius:16px;padding:10px 12px;margin:10px 0}
+.flow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.flow > div{background:#fff;color:var(--ink);border-radius:16px;padding:10px;border:2px solid var(--pink)}
+.flow h4{margin:0 0 6px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cols ul{margin:6px 0;padding-left:18px}
+@media (max-width:480px){.flow,.cols{grid-template-columns:1fr}}
+
+.btn{position:relative;overflow:hidden;display:inline-block;border:2px solid var(--ink);border-radius:999px;cursor:pointer;
+  background:linear-gradient(180deg,#ff8ccb,#e0218a);color:#fff;font:800 15px 'Montserrat';padding:11px 22px;box-shadow:4px 4px 0 var(--ink);margin:6px 6px 0 0}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);transform:skewX(-20deg);animation:shine 2.8s infinite}
+@keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.dark{background:linear-gradient(180deg,#333,#000);color:#ff8cc6}
+.btn.white{background:#fff;color:var(--ink)}
+.btn.small{font-size:13px;padding:7px 14px}
+
+.item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed #f5a3cb}
+.item:last-child{border-bottom:none}
+.num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--ink);color:#ff8cc6;display:grid;place-items:center;font-weight:800;font-size:13px}
+.txt{flex:1;font-size:16px}
+.cw{display:inline-block}
+.cell{font:600 16px 'Montserrat';width:150px;max-width:100%;padding:4px 8px;margin:2px 2px;border:none;border-bottom:2px dashed var(--pink);background:#fff6fb;border-radius:8px;color:var(--ink);outline:none}
+.cell:focus{border-bottom-style:solid;background:#fff}
+.cell.ok{background:#e6f8ef;border-bottom:2px solid var(--ok)}
+.cell.bad{background:#fdecee;border-bottom:2px solid var(--bad);text-decoration:line-through}
+.cell.empty{background:#fff3c4;border-bottom:2px solid #e6b800}
+.fix{color:var(--ok);font-weight:800;font-size:14px}
+.note{font-size:13px;color:#b8860b;font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.opt{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;font:600 14px 'Montserrat';cursor:pointer}
+.opt.sel{background:var(--ink);color:#ff8cc6}
+.opt.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opt.show{outline:3px solid var(--ok);outline-offset:2px}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:520px){.vgrid{grid-template-columns:1fr}}
+.vw{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:14px;padding:8px 10px}
+.vw b{font-size:16px}.ipa{color:var(--hot);font-size:13px}.tr{font-size:13px;color:#555}
+.hidetr .tr{filter:blur(5px)}.hidetr .vw:active .tr{filter:none}
+.say{border:2px solid var(--ink);background:#ffd6ec;border-radius:50%;width:38px;height:38px;flex:0 0 38px;cursor:pointer;font-size:16px}
+.words{display:inline-block;margin:6px 0;background:var(--ink);color:#ff8cc6;border-radius:10px;padding:3px 10px;font-weight:800;font-size:14px}
+.black .words{background:#fff;color:var(--hot)}
+.black .txt b{color:#fff}
+u.err{text-decoration-color:var(--bad);text-decoration-thickness:2px;font-weight:800}
+textarea.sent{min-height:52px;margin-top:6px}
+textarea.sent.ok{border-color:var(--ok);background:#e6f8ef}
+textarea.sent.bad{border-color:var(--bad);background:#fdecee}
+textarea.sent.empty{border-color:#e6b800;background:#fff3c4}
+.black .fb.good{color:#7ff0b8}.black .fb.meh{color:#ffd76a}.black .note{color:#ffd76a}
+textarea{width:100%;font:15px 'Montserrat';border:2px solid var(--pink);border-radius:14px;padding:10px;min-height:70px;background:#fff;color:var(--ink);resize:vertical}
+.result{margin-top:12px;font-weight:800;font-size:16px;border-radius:14px;padding:10px 12px;display:none}
+.result.show{display:block;background:var(--ink);color:#fff}
+.result.warn{display:block;background:#fff3c4;color:#5c4700;border:2px solid #e6b800}
+.result small{display:block;font-weight:600;color:#ffd1e8;margin-top:4px}
+.fb{font-size:13px;font-weight:600;margin-top:4px}
+.fb.good{color:var(--ok)}.fb.meh{color:#b8860b}
+
+.q-card{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:12px;margin:12px 0;box-shadow:4px 4px 0 var(--pink);transition:.3s}
+.q-card.live{box-shadow:0 0 0 4px var(--pink),6px 6px 0 var(--ink);transform:scale(1.01)}
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.q-text{font-weight:600;font-size:16px;margin:8px 0}
+.q-text.hidden{filter:blur(6px);user-select:none}
+.bar{height:8px;background:#ffe3f0;border-radius:999px;overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff8ccb,#e0218a);transition:width 1s linear}
+.time{font-weight:800;color:var(--hot);font-size:14px}
+#examStatus{font-weight:800;margin-top:8px}
+.toggle{font-size:14px;display:flex;gap:8px;align-items:center;margin-top:8px}
+
+#report{min-height:220px;font-size:13px}
+footer{text-align:center;font-weight:600;margin-top:30px}
+.confetti{position:fixed;top:-40px;z-index:50;pointer-events:none;font-size:22px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.9}}
+.celebrate{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:60;background:#111;color:#fff;border:3px solid #ff8cc6;border-radius:24px;padding:20px 26px;text-align:center;box-shadow:0 0 40px #ff4fa3;max-width:90vw}
+.celebrate b{font-family:'Pacifico';font-size:34px;color:#ff8cc6;font-weight:400}
+</style>
+</head>
+<body>
+<div class="sparkles" id="sparkles"></div>
+<div class="wrap">
+<header>
+  <h1 class="logo">Yulia</h1>
+  <div class="sub">Conditionals · Gerund & Infinitive · ЕГЭ Speaking</div>
+  <div class="emojis">🎾 🎀 🧘‍♀️ 💗 ✨</div>
+</header>
+
+<nav id="nav">
+  <button data-t="t2" class="on">🎾 Conditionals</button>
+  <button data-t="t1">✨ Памятка</button>
+  <button data-t="t3">🎀 -ing / to</button>
+  <button data-t="t6">💬 Personality</button>
+  <button data-t="t4">🎤 ЕГЭ</button>
+  <button data-t="t5">💌 Отправить</button>
+</nav>
+
+<!-- ============ ПАМЯТКА ============ -->
+<section class="tab" id="t1">
+  <div class="card black">
+    <h2>Главный лайфхак</h2>
+    <p style="margin:0">Не можете понять, какой кондишнл? <b>Переведите предложение на русский</b> 🇷🇺</p>
+    <div class="flow">
+      <div><h4>Нет «бы» 👉 реальный</h4>
+        <b>Zero</b> — это правда всегда (факт, закон природы, привычка).<br>
+        <b>First</b> — конкретная ситуация в будущем, которая реально может случиться.</div>
+      <div><h4>Есть «бы» 👉 нереальный</h4>
+        <b>Second</b> — воображаем про сейчас или вообще.<br>
+        <b>Third</b> — про прошлое, которое уже не изменить (сожаление, «а вот если бы…»).</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="chip">ZERO</span>
+    <span class="formula">If + <b>Present Simple</b>, <b>Present Simple</b></span>
+    Факты, законы природы, то, что происходит всегда.
+    <div class="ex">If you <u>heat</u> ice, it <u>melts</u>.<br><span class="ru">Если нагреть лёд, он тает. (всегда так)</span></div>
+    <div class="ex">If I <u>don't stretch</u>, my back <u>hurts</u>.<br><span class="ru">Если я не делаю растяжку, у меня болит спина.</span></div>
+  </div>
+
+  <div class="card pinkdots">
+    <span class="chip">FIRST</span>
+    <span class="formula">If + <b>Present Simple</b>, <b>will</b> + V</span>
+    Реальная ситуация в будущем — может случиться.
+    <div class="ex">If it <u>rains</u> tomorrow, we <u>will cancel</u> the match.<br><span class="ru">Если завтра пойдёт дождь, мы отменим матч.</span></div>
+    <div class="ex">If you <u>train</u> hard, you<u>'ll win</u>.<br><span class="ru">Если будете усердно тренироваться, выиграете.</span></div>
+  </div>
+
+  <div class="card black">
+    <span class="chip">SECOND</span>
+    <span class="formula">If + <b>Past Simple</b>, <b>would</b> + V</span>
+    Нереальное сейчас или в будущем — мечтаем, воображаем.
+    <div class="ex">If I <u>had</u> more time, I <u>would do</u> Pilates every day.<br><span class="ru">Если <mark>бы</mark> у меня было больше времени, я <mark>бы</mark> занималась пилатесом каждый день.</span></div>
+    <div class="ex">If I <u>were</u> you, I <u>would buy</u> the pink racket.<br><span class="ru">На вашем месте (если <mark>бы</mark> я была вами) я <mark>бы</mark> купила розовую ракетку.</span></div>
+    <p style="margin:6px 0 0;font-size:14px">💡 С be: <b>I / he / she were</b> — так правильнее (If I were you). <i>was</i> тоже встречается в разговорной речи.</p>
+  </div>
+
+  <div class="card stripe">
+    <span class="chip">THIRD</span>
+    <span class="formula">If + <b>Past Perfect (had + V3)</b>, <b>would have</b> + V3</span>
+    Нереальное прошлое: всё уже случилось, изменить нельзя.
+    <div class="ex">If she <u>had trained</u> harder, she <u>would have won</u> the final.<br><span class="ru">Если <mark>бы</mark> она тренировалась усерднее, она <mark>бы</mark> выиграла финал. (но не тренировалась и не выиграла)</span></div>
+    <div class="ex">If I <u>hadn't overslept</u>, I <u>wouldn't have missed</u> the class.<br><span class="ru">Если <mark>бы</mark> я не проспала, я <mark>бы</mark> не пропустила занятие.</span></div>
+  </div>
+
+  <div class="card holo">
+    <h2>Осторожно ⚠️</h2>
+    <div class="warn-box">После <b>if</b> никогда не ставим <b>will</b> и <b>would</b>.<br>❌ If it <s>will rain</s>… ✅ If it <b>rains</b>…<br>❌ If I <s>would have</s> time… ✅ If I <b>had</b> time…</div>
+    <div class="warn-box">Части можно менять местами. Запятая нужна, только если <b>if</b> стоит в начале:<br>If I win, I'll be happy. / I'll be happy if I win.</div>
+    <div class="warn-box"><b>unless</b> = if not: Unless you hurry, you'll be late. = If you don't hurry…</div>
+  </div>
+
+  <div class="card black">
+    <h2>Gerund & Infinitive</h2>
+    <p style="margin:0 0 8px">Тут понимать почти нечего — <b>нужно просто выучить глаголы</b>: после одних идёт <b>-ing</b>, после других <b>to + V</b>. Список я вам пришлю отдельно — выучите его, и задание будет лёгким 💗</p>
+    <div class="cols">
+      <div><span class="chip">+ -ING</span>
+        <ul><li>enjoy, avoid, mind</li><li>finish, keep, practise</li><li>suggest, consider, imagine</li><li>give up, can't stand</li><li>look forward to</li></ul>
+        <div class="ex">I enjoy <u>playing</u> tennis.</div></div>
+      <div><span class="chip">+ TO + V</span>
+        <ul><li>want, would like, hope</li><li>decide, plan, agree</li><li>refuse, promise, offer</li><li>manage, learn, afford</li><li>seem</li></ul>
+        <div class="ex">I decided <u>to join</u> the club.</div></div>
+    </div>
+    <h3>+ два мини-правила</h3>
+    <div class="ex">После <b>предлогов</b> — всегда <b>-ing</b>: good at <u>playing</u>, interested in <u>learning</u>, before <u>going</u>.</div>
+    <div class="ex"><b>like, love, hate, start, begin</b> — можно и так, и так: I like <u>swimming</u> / <u>to swim</u>.</div>
+  </div>
+</section>
+
+<!-- ============ CONDITIONALS ============ -->
+<section class="tab on" id="t2">
+  <div class="card pinkdots" id="c1">
+    <h2>1. Build the sentence</h2>
+    <p class="lead">Составьте предложение целиком по смыслу и ключевым словам. Глаголы даны в начальной форме — поставьте их в нужную форму сами. Сначала определите тип (есть «бы»?).</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkSent('c1')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+
+  <div class="card" id="ex2">
+    <h2>2. Open the brackets</h2>
+    <p class="lead">Поставьте глаголы в правильную форму. Сначала определите тип — потом пишите. Сокращения (won't, 'd, hadn't) можно.</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkText('ex2')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+
+  <div class="card black" id="c3">
+    <h2>3. What if…?</h2>
+    <p class="lead" style="opacity:1">Прочитайте, что случилось на самом деле, и напишите предложение с <b>if</b> о нереальной ситуации (Second или Third). Пример: <i>I was ill, so I didn't go to the party.</i> → <i>If I hadn't been ill, I would have gone to the party.</i></p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkSent('c3')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+
+  <div class="card stripe" id="ex3">
+    <h2>4. About you 💭</h2>
+    <p class="lead">Закончите предложения о себе. Это письменное задание — я проверю сама, но сайт подскажет, на месте ли нужная структура.</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkEx3()">Проверить структуру ✨</button>
+  </div>
+</section>
+
+<!-- ============ GERUND / INFINITIVE ============ -->
+<section class="tab" id="t3">
+  <div class="card black" style="padding:14px 18px">
+    <p style="margin:0">🎀 Сначала выучите список глаголов, который я вам прислала, — и только потом выполняйте задание. Пишите форму целиком: <b>doing</b> или <b>to do</b>.</p>
+  </div>
+  <div class="card" id="ex4">
+    <h2>5. -ing or to?</h2>
+    <p class="lead">Open the brackets.</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkText('ex4')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+
+  <div class="card holo" id="g2">
+    <h2>6. My tennis camp 🎾</h2>
+    <p class="lead">Текст в формате ЕГЭ: преобразуйте глагол в скобках, чтобы он подходил по смыслу.</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkText('g2')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+
+  <div class="card pinkdots" id="g3">
+    <h2>7. Find the mistake</h2>
+    <p class="lead">В каждом предложении подчёркнутая форма неправильная. Напишите правильную.</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkText('g3')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+</section>
+
+<!-- ============ PERSONALITY ============ -->
+<section class="tab" id="t6">
+  <div class="card black">
+    <h2>Personality 💬</h2>
+    <p style="margin:0 0 8px">Прилагательные для описания характера (English File Intermediate + бонусные слова). Нажмите 🔊, чтобы послушать, и повторите вслух.</p>
+    <div class="warn-box" style="color:var(--ink)">⚠️ <b>sensible</b> — благоразумный, здравомыслящий ≠ <b>sensitive</b> — чувствительный, чуткий. Ложные друзья!</div>
+    <div class="warn-box" style="color:var(--ink)">🔄 Противоположности часто делаются приставкой:<br>
+      <b>un-</b> unreliable, untidy · <b>dis-</b> dishonest, disorganized · <b>in-</b> insensitive, insecure<br>
+      <b>im-</b> перед m / p: immature, impatient · <b>ir-</b> перед r: irresponsible</div>
+    <label class="toggle"><input type="checkbox" id="hideTr"> Скрыть перевод (проверьте себя)</label>
+  </div>
+  <div id="vocab"></div>
+
+  <div class="card" id="p1">
+    <h2>8. Who is it?</h2>
+    <p class="lead">Прочитайте описание и напишите прилагательное.</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkText('p1')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+
+  <div class="card stripe" id="p2">
+    <h2>9. Opposites</h2>
+    <p class="lead">Напишите противоположное прилагательное с приставкой (un- / dis- / in- / im- / ir-).</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkText('p2')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+
+  <div class="card holo" id="p3">
+    <h2>10. Word formation · ЕГЭ</h2>
+    <p class="lead">Как в ЕГЭ (словообразование): преобразуйте слово в скобках, чтобы оно подходило по смыслу. Иногда нужна отрицательная приставка!</p>
+    <div class="items"></div>
+    <button class="btn" onclick="checkText('p3')">Check ✨</button>
+    <div class="result"></div>
+  </div>
+
+  <div class="card pinkdots" id="p4">
+    <h2>11. Describe a person ✍️</h2>
+    <p class="lead">Напишите 2–3 предложения про каждого человека. Используйте минимум 2 прилагательных из списка и объясните, почему вы так думаете. Это проверю я сама 💗</p>
+    <div class="items"></div>
+  </div>
+</section>
+
+<!-- ============ ЕГЭ ============ -->
+<section class="tab" id="t4">
+  <div class="card black">
+    <h2>ЕГЭ · Задание 3</h2>
+    <p style="margin:0 0 8px">Интервью: робот задаёт вопрос, у вас <b>40 секунд</b> на ответ. На экзамене вопросов 5, сегодня тренируемся на 10 из разных тем.</p>
+    <span class="formula">Формула ответа: <b>прямой ответ</b> → <b>причина / пример</b> → <b>ещё деталь</b><br>= 2–3 полных предложения</span>
+    <p style="margin:6px 0 0;font-size:14px">Полезные фразы: <i>Personally, I think… · As for me… · The main reason is that… · For example… · That's why…</i><br>⭐ Бонус: вставьте в ответы кондишнл или глагол из списка (enjoy doing, decided to…).</p>
+  </div>
+
+  <div class="card holo">
+    <h3 style="margin-top:0">🎤 Режим экзамена</h3>
+    <p class="lead">Робот читает вопросы по очереди, после каждого — 40 секунд на ответ вслух. Включи звук!</p>
+    <label class="toggle"><input type="checkbox" id="hideQ"> Скрыть текст вопроса (только на слух, как на экзамене)</label>
+    <button class="btn" onclick="exam()">▶ Начать</button>
+    <button class="btn dark" onclick="stopAll()">■ Стоп</button>
+    <div id="examStatus"></div>
+  </div>
+
+  <div id="qs"></div>
+</section>
+
+<!-- ============ ОТЧЁТ ============ -->
+<section class="tab" id="t5">
+  <div class="card pinkdots">
+    <h2>Отправь мне результат 💌</h2>
+    <p class="lead">Сначала нажмите Check во всех заданиях. Потом соберите отчёт и отправьте его <b>мне в Telegram</b>.</p>
+    <button class="btn" onclick="buildReport()">Собрать отчёт ✨</button>
+    <textarea id="report" readonly placeholder="Здесь появится отчёт…"></textarea>
+    <button class="btn dark" onclick="copyReport()">📋 Скопировать</button>
+    <button class="btn white" onclick="sendTg()">✈️ Отправить в Telegram</button>
+    <div id="copied" class="fb good"></div>
+    <p style="font-size:13px;margin-bottom:0">Если Telegram откроется — выберите чат со мной. Если нет — просто скопируйте отчёт и вставьте мне в личку 💗</p>
+  </div>
+</section>
+
+<footer>made with 💗 for Yulia · good luck on the court & on the exam 🎾</footer>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+/* req: каждая группа — список допустимых вариантов, хотя бы один должен быть в предложении */
+const SENT = {
+ c1:[
+  {ru:"Если нагреть лёд, он тает.",w:"heat · ice · melt",req:[["if"],["heat"],["ice"],["melts"]],no:["will","would"],m:"If you heat ice, it melts.",tag:"Zero"},
+  {ru:"Если я опоздаю на тренировку, тренер разозлится.",w:"be late · training · coach · get angry",req:[["if"],["am late"],["will get angry","will be angry"]],m:"If I am late for training, my coach will get angry.",tag:"First"},
+  {ru:"Если бы у меня был свой корт, я бы тренировалась каждый день.",w:"have · own court · train · every day",req:[["if"],["had"],["court"],["would train"]],m:"If I had my own court, I would train every day.",tag:"Second"},
+  {ru:"Если бы мы вышли раньше, мы бы не опоздали на рейс.",w:"leave · earlier · miss · flight",req:[["if"],["had left"],["would not have missed"]],m:"If we had left earlier, we wouldn't have missed the flight.",tag:"Third"},
+  {ru:"Если не спать, болит голова.",w:"not sleep · have a headache",req:[["if"],["do not sleep"],["have a headache","get a headache"]],no:["will","would"],m:"If you don't sleep, you have a headache.",tag:"Zero"},
+  {ru:"Если она хорошо сдаст экзамен, она поступит в университет мечты.",w:"pass · exam · get into · dream university",req:[["if"],["passes"],["will get into"]],m:"If she passes the exam well, she will get into her dream university.",tag:"First"},
+  {ru:"Если бы я умела летать, я бы полетела в Париж.",w:"can fly · fly to Paris",req:[["if"],["could fly"],["would fly"]],m:"If I could fly, I would fly to Paris.",tag:"Second"},
+  {ru:"Если бы ты мне сказала, я бы тебе помогла.",w:"tell · help",req:[["if"],["had told"],["would have helped"]],m:"If you had told me, I would have helped you.",tag:"Third"},
+  {ru:"На твоём месте (если бы я была тобой) я бы не волновалась.",w:"be you · worry",req:[["if"],["were you","was you"],["would not worry"]],m:"If I were you, I wouldn't worry.",tag:"Second"},
+  {ru:"Если ты не поторопишься, мы опоздаем. (используйте unless)",w:"unless · hurry · be late",req:[["unless"],["hurry"],["will be late"]],m:"Unless you hurry, we'll be late.",tag:"First + unless"}
+ ],
+ c3:[
+  {ru:"I didn't sleep well, so I played badly.",req:[["if"],["had slept"],["would not have played badly","would have played well","would have played better"]],m:"If I had slept well, I wouldn't have played badly.",tag:"Third"},
+  {ru:"I don't have a car, so I can't drive to training.",req:[["if"],["had a car"],["could drive","would drive","would be able to drive"]],m:"If I had a car, I could drive to training.",tag:"Second"},
+  {ru:"She didn't take an umbrella, so she got wet.",req:[["if"],["had taken"],["would not have got wet","would not have gotten wet"]],m:"If she had taken an umbrella, she wouldn't have got wet.",tag:"Third"},
+  {ru:"He doesn't practise, so he doesn't improve.",req:[["if"],["practised","practiced"],["would improve"]],m:"If he practised, he would improve.",tag:"Second"},
+  {ru:"We missed the bus, so we were late.",req:[["if"],["had not missed"],["would not have been late"]],m:"If we hadn't missed the bus, we wouldn't have been late.",tag:"Third"},
+  {ru:"I'm tired, so I won't go to Pilates.",req:[["if"],["were not tired","was not tired"],["would go"]],m:"If I weren't tired, I would go to Pilates.",tag:"Second"},
+  {ru:"They didn't book the court, so they couldn't play.",req:[["if"],["had booked"],["could have played","would have played","would have been able to play"]],m:"If they had booked the court, they could have played.",tag:"Third"},
+  {ru:"I live far from the sea, so I don't swim every day.",req:[["if"],["did not live far","lived near","lived close","lived by"],["would swim"]],m:"If I lived near the sea, I would swim every day.",tag:"Second"}
+ ]
+};
+
+const DATA = {
+ ex2:[
+  {t:"If you ___ (not drink) enough water, you ___ (get) tired very quickly.",a:[["don't drink","do not drink"],["get"]],tag:"Zero"},
+  {t:"If I ___ (win) the match on Saturday, my coach ___ (be) really proud of me.",a:[["win"],["will be"]],tag:"First"},
+  {t:"If I ___ (be) a famous tennis player, I ___ (travel) all over the world.",a:[["were","was"],["would travel"]],tag:"Second"},
+  {t:"If she ___ (not miss) the bus yesterday, she ___ (not be) late for training.",a:[["hadn't missed","had not missed"],["wouldn't have been","would not have been"]],tag:"Third"},
+  {t:"Ice ___ (melt) if you ___ (leave) it in the sun.",a:[["melts"],["leave"]],tag:"Zero"},
+  {t:"We ___ (not play) outside if it ___ (rain) tomorrow.",a:[["won't play","will not play"],["rains"]],tag:"First"},
+  {t:"If I ___ (have) more free time, I ___ (go) to Pilates every day.",a:[["had"],["would go"]],tag:"Second"},
+  {t:"If they ___ (book) the court earlier, they ___ (get) a better time.",a:[["had booked"],["would have got","would have gotten"]],tag:"Third"},
+  {t:"If you ___ (practise) your serve every day, it ___ (improve) very soon.",a:[["practise","practice"],["will improve"]],tag:"First"},
+  {t:"If I ___ (know) about the party, I ___ (come) with you.",a:[["had known"],["would have come"]],tag:"Third"},
+  {t:"If my phone ___ (not be) so old, I ___ (take) better photos.",a:[["weren't","wasn't","were not","was not"],["would take"]],tag:"Second"},
+  {t:"If you ___ (press) this button, the music ___ (start).",a:[["press"],["starts"]],tag:"Zero"}
+ ],
+ ex4:[
+  {t:"I really enjoy ___ (do) Pilates in the morning.",a:[["doing"]],tag:"-ing"},
+  {t:"She decided ___ (take) part in the tournament.",a:[["to take"]],tag:"to + V"},
+  {t:"My coach keeps ___ (tell) me to bend my knees.",a:[["telling"]],tag:"-ing"},
+  {t:"We hope ___ (see) you at the match.",a:[["to see"]],tag:"to + V"},
+  {t:"Do you mind ___ (wait) for five minutes?",a:[["waiting"]],tag:"-ing"},
+  {t:"He refused ___ (lend) me his racket.",a:[["to lend"]],tag:"to + V"},
+  {t:"I can't afford ___ (buy) new trainers this month.",a:[["to buy"]],tag:"to + V"},
+  {t:"Have you finished ___ (pack) your sports bag?",a:[["packing"]],tag:"-ing"},
+  {t:"She promised ___ (not be) late again.",a:[["not to be"]],tag:"to + V"},
+  {t:"I'm looking forward to ___ (play) at Wimbledon one day.",a:[["playing"]],tag:"-ing"},
+  {t:"Try to avoid ___ (eat) junk food before a game.",a:[["eating"]],tag:"-ing"},
+  {t:"They managed ___ (win) the doubles final.",a:[["to win"]],tag:"to + V"},
+  {t:"I'm quite good at ___ (hit) backhands.",a:[["hitting"]],tag:"предлог + -ing"},
+  {t:"Would you like ___ (join) our Pilates class?",a:[["to join"]],tag:"to + V"},
+  {t:"My sister suggested ___ (go) shopping after training.",a:[["going"]],tag:"-ing"},
+  {t:"I want ___ (improve) my English for the exam.",a:[["to improve"]],tag:"to + V"}
+ ],
+ g2:[
+  {t:"Last summer I decided ___ (go) to a tennis camp in Spain.",a:[["to go"]],tag:"to + V"},
+  {t:"I really enjoyed ___ (train) with professional coaches.",a:[["training"]],tag:"-ing"},
+  {t:"Every morning we practised ___ (serve) for two hours.",a:[["serving"]],tag:"-ing"},
+  {t:"After lunch the coach suggested ___ (do) some Pilates to relax.",a:[["doing"]],tag:"-ing"},
+  {t:"By the end of the camp I managed ___ (improve) my backhand a lot.",a:[["to improve"]],tag:"to + V"},
+  {t:"One day I forgot my racket, but a girl offered ___ (lend) me hers.",a:[["to lend"]],tag:"to + V"},
+  {t:"Now I can't imagine ___ (spend) a summer without sport.",a:[["spending"]],tag:"-ing"},
+  {t:"I'm already thinking about ___ (go) back there next year.",a:[["going"]],tag:"предлог + -ing"},
+  {t:"My parents have agreed ___ (pay) for the trip.",a:[["to pay"]],tag:"to + V"},
+  {t:"I can't wait ___ (see) my new friends again!",a:[["to see"]],tag:"to + V"},
+  {t:"I will never give up ___ (play) tennis.",a:[["playing"]],tag:"-ing"},
+  {t:"If I keep ___ (work) hard, I'll become a pro one day!",a:[["working"]],tag:"-ing"}
+ ],
+ g3:[
+  {t:"I enjoy *to play* tennis in the rain. → ___",a:[["playing"]],tag:"-ing"},
+  {t:"She wants *going* to the gym tonight. → ___",a:[["to go"]],tag:"to + V"},
+  {t:"We agreed *meeting* at six. → ___",a:[["to meet"]],tag:"to + V"},
+  {t:"Do you mind *to close* the window? → ___",a:[["closing"]],tag:"-ing"},
+  {t:"He promised *calling* me after the match. → ___",a:[["to call"]],tag:"to + V"},
+  {t:"I'm interested in *learn* Spanish. → ___",a:[["learning"]],tag:"предлог + -ing"},
+  {t:"They avoided *to talk* about the score. → ___",a:[["talking"]],tag:"-ing"},
+  {t:"I hope *winning* the next tournament. → ___",a:[["to win"]],tag:"to + V"},
+  {t:"She's tired of *wait* for the coach. → ___",a:[["waiting"]],tag:"предлог + -ing"},
+  {t:"We can't afford *losing* this match. → ___",a:[["to lose"]],tag:"to + V"}
+ ]
+};
+DATA.p1=[
+  {t:"Someone who likes telling other people what to do: ___",a:[["bossy"]],tag:"bossy"},
+  {t:"Someone who always does what they promised: ___",a:[["reliable"]],tag:"reliable"},
+  {t:"Someone who never changes their mind, even when they are wrong: ___",a:[["stubborn"]],tag:"stubborn"},
+  {t:"Someone who only thinks about themselves: ___",a:[["selfish"]],tag:"selfish"},
+  {t:"Someone who always wants to win and be the best: ___",a:[["competitive"]],tag:"competitive"},
+  {t:"Someone who is happy one minute and angry the next: ___",a:[["moody"]],tag:"moody"},
+  {t:"Someone who enjoys being with other people: ___",a:[["sociable"]],tag:"sociable"},
+  {t:"Someone who shows love easily and likes hugs: ___",a:[["affectionate"]],tag:"affectionate"},
+  {t:"Someone who wants to be very successful in life: ___",a:[["ambitious"]],tag:"ambitious"},
+  {t:"Someone who feels unhappy because other people have what they want: ___",a:[["jealous"]],tag:"jealous"},
+  {t:"Someone who likes doing things alone, without help: ___",a:[["independent"]],tag:"independent"},
+  {t:"Someone who is practical and makes good decisions: ___",a:[["sensible"]],tag:"sensible vs sensitive"},
+  {t:"Someone who gets nervous and worries a lot: ___",a:[["anxious"]],tag:"anxious"},
+  {t:"A child who always gets what they want and behaves badly: ___",a:[["spoilt","spoiled"]],tag:"spoilt"}
+];
+DATA.p2=[
+  {t:"reliable → ___",a:[["unreliable"]],tag:"un-"},
+  {t:"patient → ___",a:[["impatient"]],tag:"im-"},
+  {t:"responsible → ___",a:[["irresponsible"]],tag:"ir-"},
+  {t:"sensitive → ___",a:[["insensitive"]],tag:"in-"},
+  {t:"sociable → ___",a:[["unsociable"]],tag:"un-"},
+  {t:"tidy → ___",a:[["untidy"]],tag:"un-"},
+  {t:"organized → ___",a:[["disorganized","disorganised"]],tag:"dis-"},
+  {t:"honest → ___",a:[["dishonest"]],tag:"dis-"},
+  {t:"mature → ___",a:[["immature"]],tag:"im-"},
+  {t:"ambitious → ___",a:[["unambitious"]],tag:"un-"}
+];
+DATA.p3=[
+  {t:"My best friend is very ___ (SOCIETY) — she can talk to anyone at a party.",a:[["sociable"]],tag:"sociable"},
+  {t:"Don't be so ___ (PATIENCE)! The match starts in five minutes.",a:[["impatient"]],tag:"im-"},
+  {t:"A good coach must be ___ (RELY) — you need to trust them.",a:[["reliable"]],tag:"reliable"},
+  {t:"It was really ___ (RESPONSIBLE) of him to leave his little sister alone.",a:[["irresponsible"]],tag:"ir-"},
+  {t:"She is so ___ (COMPETE) — she hates losing even at board games.",a:[["competitive"]],tag:"competitive"},
+  {t:"Tennis players need to feel ___ (CONFIDENCE) on court.",a:[["confident","self confident"]],tag:"confident"},
+  {t:"My cousin is very ___ (AMBITION) — she wants to open her own Pilates studio.",a:[["ambitious"]],tag:"ambitious"},
+  {t:"I'm a bit ___ (ORGANIZE) — my sports bag is always a mess.",a:[["disorganized","disorganised"]],tag:"dis-"},
+  {t:"Thank you for buying me a ticket — that was very ___ (GENEROSITY) of you.",a:[["generous"]],tag:"generous"},
+  {t:"That joke was ___ (SENSITIVE) — you hurt her feelings.",a:[["insensitive"]],tag:"in-"},
+  {t:"Teenagers are often ___ (REBEL) and don't want to follow rules.",a:[["rebellious"]],tag:"rebellious"},
+  {t:"He's 25 but he behaves like a child — he's so ___ (MATURE).",a:[["immature"]],tag:"im-"}
+];
+const P4=["Your best friend","Your tennis coach","Someone in your family","Yourself 💗"];
+const VOCAB=[
+ ["💗 Positive",[
+  ["affectionate","əˈfekʃənət","ласковый, любящий"],["ambitious","æmˈbɪʃəs","амбициозный, целеустремлённый"],
+  ["charming","ˈtʃɑːmɪŋ","обаятельный"],["competitive","kəmˈpetətɪv","любящий соревноваться"],
+  ["determined","dɪˈtɜːmɪnd","решительный, настойчивый"],["easy-going","ˌiːziˈɡəʊɪŋ","спокойный, лёгкий в общении"],
+  ["generous","ˈdʒenərəs","щедрый"],["hard-working","ˌhɑːdˈwɜːkɪŋ","трудолюбивый"],
+  ["honest","ˈɒnɪst","честный"],["independent","ˌɪndɪˈpendənt","независимый, самостоятельный"],
+  ["mature","məˈtʃʊə","зрелый, взрослый"],["organized","ˈɔːɡənaɪzd","организованный"],
+  ["patient","ˈpeɪʃnt","терпеливый"],["reliable","rɪˈlaɪəbl","надёжный"],
+  ["responsible","rɪˈspɒnsəbl","ответственный"],["self-confident","ˌselfˈkɒnfɪdənt","уверенный в себе"],
+  ["sensible","ˈsensəbl","благоразумный, здравомыслящий"],["sensitive","ˈsensətɪv","чувствительный, чуткий"],
+  ["sociable","ˈsəʊʃəbl","общительный"],["tidy","ˈtaɪdi","аккуратный, опрятный"]]],
+ ["🖤 Negative",[
+  ["aggressive","əˈɡresɪv","агрессивный"],["anxious","ˈæŋkʃəs","тревожный, беспокойный"],
+  ["bossy","ˈbɒsi","любящий командовать"],["insecure","ˌɪnsɪˈkjʊə","неуверенный в себе"],
+  ["jealous","ˈdʒeləs","ревнивый, завистливый"],["lazy","ˈleɪzi","ленивый"],
+  ["mean","miːn","жадный; вредный"],["moody","ˈmuːdi","с переменчивым настроением"],
+  ["rebellious","rɪˈbeljəs","бунтарский"],["selfish","ˈselfɪʃ","эгоистичный"],
+  ["spoilt","spɔɪlt","избалованный"],["stubborn","ˈstʌbən","упрямый"]]],
+ ["🔄 Opposites",[
+  ["disorganized","dɪsˈɔːɡənaɪzd","неорганизованный"],["dishonest","dɪsˈɒnɪst","нечестный"],
+  ["immature","ˌɪməˈtʃʊə","незрелый, ребячливый"],["impatient","ɪmˈpeɪʃnt","нетерпеливый"],
+  ["insensitive","ɪnˈsensətɪv","бесчувственный, нечуткий"],["irresponsible","ˌɪrɪˈspɒnsəbl","безответственный, ненадёжный"],
+  ["unambitious","ˌʌnæmˈbɪʃəs","без амбиций"],["unreliable","ˌʌnrɪˈlaɪəbl","ненадёжный"],
+  ["unsociable","ʌnˈsəʊʃəbl","необщительный, замкнутый"],["untidy","ʌnˈtaɪdi","неопрятный, неаккуратный"]]]
+];
+const NAMES={p1:"8. Who is it? (personality)",p2:"9. Opposites (personality)",p3:"10. Word formation (personality)",c1:"1. Build the sentence",ex2:"2. Open the brackets (conditionals)",c3:"3. What if…? (Second / Third)",ex4:"5. -ing or to?",g2:"6. My tennis camp (-ing / to)",g3:"7. Find the mistake (-ing / to)"};
+const GRADED=["c1","ex2","c3","ex4","g2","g3","p1","p2","p3"];
+
+const EX3 = [
+  {p:"If I win my next tournament, …",type:1,hint:"First: will + V"},
+  {p:"If I were a Barbie doll for one day, …",type:2,hint:"Second: would + V"},
+  {p:"If I hadn't started playing tennis, …",type:3,hint:"Third: would have + V3"},
+  {p:"If I don't sleep enough before a match, …",type:0,hint:"Zero: Present Simple"},
+  {p:"If I could meet any person in the world, …",type:2,hint:"Second: would + V"}
+];
+
+const QS = [
+  ["Family","How much time do you usually spend with your family, and what do you like doing together?"],
+  ["Sport","Why do you think many teenagers stop doing sport when they get older?"],
+  ["Environment","What can young people do in everyday life to help protect the environment?"],
+  ["Music","What kind of music do you listen to, and when do you usually listen to it?"],
+  ["Travel","Which country would you like to visit, and why?"],
+  ["Technology","How do smartphones make our lives easier, and what problems can they cause?"],
+  ["Health","What does a healthy lifestyle mean to you?"],
+  ["School","Which school subject will be the most useful in your future life, and why?"],
+  ["Friendship","What qualities do you value most in a friend?"],
+  ["Free time","What would you do if you had a whole free day with no plans?"]
+];
+
+/* ---------- STATE ---------- */
+const state={};
+GRADED.forEach(k=>state[k]={checks:0,score:0,total:0,done:false,errors:[]});
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+/* ---------- SPARKLES ---------- */
+(function(){const box=document.getElementById('sparkles');const ch=["✦","✧","✦","·","✨"];
+ for(let i=0;i<38;i++){const s=document.createElement('span');s.textContent=ch[i%ch.length];
+  s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
+  s.style.fontSize=(8+Math.random()*16)+'px';s.style.animationDelay=(Math.random()*3)+'s';
+  s.style.animationDuration=(2+Math.random()*2.5)+'s';box.appendChild(s);}})();
+
+/* ---------- TABS ---------- */
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById(b.dataset.t).classList.add('on');window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ---------- RENDER ---------- */
+function renderSent(id){
+ document.querySelector('#'+id+' .items').innerHTML=SENT[id].map((it,i)=>
+  `<div class="item"><span class="num">${i+1}</span><div class="txt"><b>${esc(it.ru)}</b>
+   ${it.w?`<div class="words">${esc(it.w)}</div>`:''}
+   <textarea class="sent" rows="2" data-i="${i}" autocomplete="off" autocapitalize="sentences" autocorrect="off" spellcheck="false" placeholder="If …"></textarea>
+   <div class="fb"></div><div class="note"></div></div></div>`).join('');
+}
+renderSent('c1');renderSent('c3');
+
+function renderText(id){
+ document.querySelector('#'+id+' .items').innerHTML=DATA[id].map((it,i)=>{
+  const p=it.t.split('___');let h='';
+  p.forEach((s,j)=>{h+=esc(s).replace(/\*(.+?)\*/g,'<u class="err">$1</u>');if(j<p.length-1)h+=`<span class="cw"><input class="cell" data-i="${i}" data-j="${j}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"> <span class="fix"></span></span>`;});
+  return `<div class="item"><span class="num">${i+1}</span><div class="txt">${h}<div class="note"></div></div></div>`;}).join('');
+}
+renderText('ex2');renderText('ex4');renderText('g2');renderText('g3');renderText('p1');renderText('p2');renderText('p3');
+document.getElementById('vocab').innerHTML=VOCAB.map((g,gi)=>`<div class="card ${['pinkdots','black','stripe'][gi]}"><h2>${g[0]}</h2><div class="vgrid">${
+ g[1].map(w=>`<div class="vw"><div><b>${esc(w[0])}</b> <span class="ipa">/${w[1]}/</span><div class="tr">${esc(w[2])}</div></div><button class="say" onclick="speak('${w[0]}')">🔊</button></div>`).join('')}</div></div>`).join('');
+document.getElementById('hideTr').onchange=e=>document.getElementById('vocab').classList.toggle('hidetr',e.target.checked);
+document.querySelector('#p4 .items').innerHTML=P4.map((p,i)=>`<div class="item"><span class="num">${i+1}</span><div class="txt"><b>${esc(p)}</b><textarea data-p="${i}" placeholder="My best friend is… because…"></textarea></div></div>`).join('');
+
+document.querySelector('#ex3 .items').innerHTML=EX3.map((it,i)=>
+ `<div class="item"><span class="num">${i+1}</span><div class="txt"><b>${esc(it.p)}</b>
+  <div style="font-size:12px;opacity:.7">${esc(it.hint)}</div>
+  <textarea data-i="${i}" placeholder="Write your ending…"></textarea><div class="fb"></div></div></div>`).join('');
+
+document.getElementById('qs').innerHTML=QS.map((q,i)=>
+ `<div class="q-card" data-i="${i}"><div class="q-top"><span class="chip">${i+1} · ${q[0]}</span><span class="time"></span></div>
+  <div class="q-text">${esc(q[1])}</div><div class="bar"><i></i></div>
+  <button class="btn small" onclick="playOne(${i})">🔊 Вопрос</button>
+  <button class="btn small dark" onclick="timerOne(${i})">⏱ 40 сек</button>
+  <textarea data-q="${i}" placeholder="Можете записать ответ (2–3 предложения) — он попадёт в отчёт"></textarea></div>`).join('');
+
+/* ---------- CHECK HELPERS ---------- */
+function variants(s){
+ let x=s.toLowerCase().replace(/[’‘`´]/g,"'");
+ x=x.replace(/won't/g,"will not").replace(/can't/g,"can not").replace(/cannot/g,"can not")
+    .replace(/n't/g," not").replace(/'ll/g," will").replace(/'re/g," are").replace(/'m/g," am")
+    .replace(/'ve/g," have").replace(/\b(it|he|she|that|what|there|who)'s/g,"$1 is");
+ const clean=t=>t.replace(/[^a-z\s]/g," ").replace(/\s+/g," ").trim();
+ if(x.includes("'d"))return [clean(x.replace(/'d/g," would")),clean(x.replace(/'d/g," had"))];
+ return [clean(x)];
+}
+function match(user,answers){const u=variants(user).map(x=>' '+x+' ');return answers.some(a=>variants(a).some(v=>u.some(x=>x.includes(' '+v+' '))));}
+function showResult(id,st,weak){
+ const r=document.querySelector('#'+id+' .result');const p=Math.round(st.score/st.total*100);
+ let msg=p===100?"Perfect! Вы королева кондишеналов 👑":p>=80?"Очень круто! Чуть-чуть доработать 💗":p>=50?"Неплохо, но есть что повторить 🎀":"Загляните в памятку и попробуйте ещё раз ✨";
+ if((id==='ex4'||id[0]==='g')&&p===100)msg="Perfect! Глаголы выучены 👑";
+ r.className='result show';
+ r.innerHTML=`Результат: ${st.score}/${st.total} (${p}%) — ${msg}`+(weak.size?`<small>Повтори: ${[...weak].join(', ')}</small>`:'');
+}
+function emptyMsg(id){const r=document.querySelector('#'+id+' .result');r.className='result warn';r.textContent='Задание пока пустое — выполните его и попробуйте ещё раз 💗';}
+
+function sentOk(user,it){
+ const vs=variants(user).map(v=>' '+v+' ');
+ return vs.some(v=>it.req.every(g=>g.some(a=>v.includes(' '+variants(a)[0]+' ')))
+   &&!(it.no||[]).some(n=>v.includes(' '+n+' ')));
+}
+function checkSent(id){
+ const items=SENT[id];const tas=[...document.querySelectorAll('#'+id+' textarea.sent')];
+ tas.forEach(t=>{t.classList.remove('ok','bad','empty');const it=t.closest('.item');it.querySelector('.fb').textContent='';it.querySelector('.note').textContent='';});
+ if(!tas.some(t=>t.value.trim())){tas.forEach(t=>t.classList.add('empty'));emptyMsg(id);return;}
+ const st=state[id];st.checks++;st.errors=[];st.score=0;st.total=items.length;st.done=true;const weak=new Set();
+ tas.forEach(t=>{
+  const i=+t.dataset.i,it=items[i],box=t.closest('.item'),fb=box.querySelector('.fb');const q=`${i+1}. ${it.ru}`;
+  if(!t.value.trim()){t.classList.add('empty');box.querySelector('.note').textContent='Тут пусто — попробуйте сами 💗';st.errors.push({q,a:'— (пропуск)',c:'—'});weak.add(it.tag);return;}
+  if(sentOk(t.value,it)){t.classList.add('ok');st.score++;fb.className='fb good';fb.textContent='✓ Perfect!';}
+  else{t.classList.add('bad');fb.className='fb meh';fb.textContent='Пример правильного ответа: '+it.m;st.errors.push({q,a:t.value.trim(),c:it.m});weak.add(it.tag);}
+ });
+ showResult(id,st,weak);celebrateIfAll();
+}
+
+function checkText(id){
+ const cells=[...document.querySelectorAll('#'+id+' .cell')];const items=DATA[id];
+ document.querySelectorAll('#'+id+' .note').forEach(n=>n.textContent='');
+ cells.forEach(c=>{c.classList.remove('ok','bad','empty');c.nextElementSibling.textContent='';});
+ if(!cells.some(c=>c.value.trim())){cells.forEach(c=>c.classList.add('empty'));emptyMsg(id);return;}
+ const st=state[id];st.checks++;st.errors=[];st.score=0;st.total=cells.length;st.done=true;const weak=new Set();
+ cells.forEach(c=>{
+  const i=+c.dataset.i,j=+c.dataset.j,it=items[i],ans=it.a[j];
+  let k=0;const q=`${i+1}. `+it.t.replace(/___/g,()=>(k++===j)?'[ ? ]':'…');
+  if(!c.value.trim()){c.classList.add('empty');c.closest('.item').querySelector('.note').textContent='Тут пусто — попробуйте сами 💗';st.errors.push({q,a:'— (пропуск)',c:'—'});weak.add(it.tag);return;}
+  if(match(c.value,ans)){c.classList.add('ok');st.score++;}
+  else{c.classList.add('bad');c.nextElementSibling.textContent='→ '+ans[0];st.errors.push({q,a:c.value.trim(),c:ans[0]});weak.add(it.tag);}
+ });
+ showResult(id,st,weak);celebrateIfAll();
+}
+
+function checkEx3(){
+ document.querySelectorAll('#ex3 textarea').forEach(t=>{
+  const it=EX3[+t.dataset.i],fb=t.nextElementSibling,v=' '+t.value.toLowerCase().replace(/[’`]/g,"'")+' ';
+  fb.className='fb';
+  if(!t.value.trim()){fb.className='fb meh';fb.textContent='Тут пусто — попробуйте сами 💗';return;}
+  const hasWould=/\bwould\b|'d\b|\bwouldn't\b|\bcould\b|\bmight\b/.test(v);
+  const hasWill=/\bwill\b|'ll\b|\bwon't\b|\bgoing to\b|\bcan\b/.test(v);
+  let ok;
+  if(it.type===0)ok=!hasWould&&!/\bwill\b|'ll\b|won't/.test(v);
+  if(it.type===1)ok=hasWill;
+  if(it.type===2)ok=hasWould;
+  if(it.type===3)ok=hasWould;
+  if(ok&&it.type===3&&!/\bhave\b/.test(v)){fb.className='fb meh';fb.textContent='Почти! Для прошлого нужно would have + V3 (или это смешанный кондишнл — тогда тоже ок, обсудим 💗)';return;}
+  fb.className=ok?'fb good':'fb meh';
+  fb.textContent=ok?'✓ Структура на месте! Остальное проверю я 💗':'Проверьте структуру: '+it.hint;
+ });
+ save();
+}
+
+/* ---------- CELEBRATION ---------- */
+let celebrated=false;
+function celebrateIfAll(){
+ save();
+ const ks=GRADED;
+ if(celebrated||!ks.every(k=>state[k].done&&state[k].score===state[k].total))return;
+ celebrated=true;const em=["✨","💗","🎀","🎾","💖","🩷","⭐"];
+ for(let i=0;i<90;i++){const s=document.createElement('div');s.className='confetti';s.textContent=em[i%em.length];
+  s.style.left=Math.random()*100+'vw';s.style.animationDuration=(2.5+Math.random()*2.5)+'s';s.style.animationDelay=(Math.random()*1.2)+'s';
+  document.body.appendChild(s);setTimeout(()=>s.remove(),6500);}
+ const c=document.createElement('div');c.className='celebrate';
+ c.innerHTML='<b>Game, set, match!</b><br>Всё идеально, Юлия! 👑🎾<br><small>Не забудьте отправить мне отчёт 💌</small>';
+ document.body.appendChild(c);setTimeout(()=>c.remove(),4500);c.onclick=()=>c.remove();
+}
+
+/* ---------- SPEAKING ---------- */
+let tok=null;
+function stopAll(){if(tok)tok.stop=true;try{speechSynthesis.cancel();}catch(e){}
+ document.querySelectorAll('.q-card').forEach(c=>c.classList.remove('live'));document.getElementById('examStatus').textContent='';}
+function speak(text,t){return new Promise(res=>{
+ if(!('speechSynthesis' in window)){res();return;}
+ try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';u.rate=.92;
+  const vs=speechSynthesis.getVoices();const v=vs.find(x=>x.lang==='en-GB')||vs.find(x=>/^en/.test(x.lang));if(v)u.voice=v;
+  let done=false;const fin=()=>{if(!done){done=true;res();}};u.onend=fin;u.onerror=fin;
+  setTimeout(fin,Math.max(5000,text.length*110));speechSynthesis.speak(u);}catch(e){res();}
+});}
+function countdown(sec,card,t){return new Promise(res=>{
+ const bar=card.querySelector('.bar i'),tm=card.querySelector('.time');let left=sec;
+ bar.style.transition='none';bar.style.width='0%';void bar.offsetWidth;bar.style.transition='width 1s linear';tm.textContent=left+' сек';
+ const iv=setInterval(()=>{if(t.stop){clearInterval(iv);tm.textContent='';res();return;}
+  left--;bar.style.width=((sec-left)/sec*100)+'%';tm.textContent=left>0?left+' сек':'Время! ⏰';
+  if(left<=0){clearInterval(iv);res();}},1000);
+});}
+const card=i=>document.querySelector(`.q-card[data-i="${i}"]`);
+function playOne(i){stopAll();tok={stop:false};speak(QS[i][1],tok);}
+async function timerOne(i){stopAll();const t=tok={stop:false};const c=card(i);c.classList.add('live');await countdown(40,c,t);c.classList.remove('live');}
+async function exam(){
+ stopAll();const t=tok={stop:false};const st=document.getElementById('examStatus');const hide=document.getElementById('hideQ').checked;
+ for(let i=0;i<QS.length;i++){
+  if(t.stop)break;const c=card(i);c.classList.add('live');
+  const qt=c.querySelector('.q-text');if(hide)qt.classList.add('hidden');
+  c.scrollIntoView({behavior:'smooth',block:'center'});
+  st.textContent=`Вопрос ${i+1} из ${QS.length} — слушайте 🎧`;
+  await new Promise(r=>setTimeout(r,700));if(t.stop)break;
+  await speak(QS[i][1],t);if(t.stop)break;
+  st.textContent=`Вопрос ${i+1} из ${QS.length} — отвечайте вслух! 🎤`;
+  await countdown(40,c,t);qt.classList.remove('hidden');c.classList.remove('live');
+ }
+ document.querySelectorAll('.q-text').forEach(q=>q.classList.remove('hidden'));
+ if(!t.stop)st.textContent='Готово! Вы молодец 💗 Теперь можно записать ответы письменно.';
+}
+if('speechSynthesis' in window){try{speechSynthesis.getVoices();}catch(e){}}
+
+/* ---------- REPORT ---------- */
+function buildReport(){
+ const ks=GRADED;let s=0,t=0;const totals={};
+ ks.forEach(k=>totals[k]=SENT[k]?SENT[k].length:document.querySelectorAll('#'+k+' .cell').length);
+ ks.forEach(k=>{t+=totals[k];if(state[k].done)s+=state[k].score;});
+ let r=`Юлия — HW Conditionals + Gerund/Infinitive\nИтого: ${s}/${t} (${Math.round(s/t*100)}%)\n\n`;
+ ks.forEach(k=>{const st=state[k];r+=st.done?`${NAMES[k]}: ${st.score}/${st.total} (проверок: ${st.checks})\n`:`${NAMES[k]}: не проверено\n`;});
+ const errs=ks.filter(k=>state[k].done&&state[k].errors.length);
+ r+="\n❌ Ошибки и пропуски\n";
+ if(!errs.length)r+="нет 🎉\n";
+ errs.forEach(k=>{r+=`\n${NAMES[k]}\n`;state[k].errors.forEach(e=>{r+=`• ${e.q}\n  ответ: ${e.a}${e.c!=='—'?` → правильно: ${e.c}`:''}\n`;});});
+ const w=[...document.querySelectorAll('#ex3 textarea')].filter(x=>x.value.trim());
+ r+="\n✍️ 4. About you\n";r+=w.length?w.map(x=>`• ${EX3[+x.dataset.i].p.replace(' …','')} ${x.value.trim()}`).join('\n')+'\n':'не выполнено\n';
+ const sp=[...document.querySelectorAll('#qs textarea')].filter(x=>x.value.trim());
+ const pw=[...document.querySelectorAll('#p4 textarea')].filter(x=>x.value.trim());
+ r+="\n✍️ 11. Describe a person\n";r+=pw.length?pw.map(x=>`• ${P4[+x.dataset.p]}: ${x.value.trim()}`).join('\n')+'\n':'не выполнено\n';
+ r+="\n🎤 ЕГЭ, задание 3 (письменные ответы)\n";
+ r+=sp.length?sp.map(x=>`• Q${+x.dataset.q+1}: ${QS[+x.dataset.q][1]}\n  ${x.value.trim()}`).join('\n')+'\n':'не записаны\n';
+ document.getElementById('report').value=r;return r;
+}
+async function copyReport(){
+ const r=buildReport();const el=document.getElementById('report');let ok=false;
+ try{await navigator.clipboard.writeText(r);ok=true;}catch(e){try{el.removeAttribute('readonly');el.select();ok=document.execCommand('copy');el.setAttribute('readonly','');}catch(e2){}}
+ document.getElementById('copied').textContent=ok?'Скопировано! Вставьте мне в Telegram 💌':'Не получилось скопировать — выделите текст вручную 💗';
+}
+function sendTg(){const r=buildReport();copyReport();window.open('https://t.me/share/url?url='+encodeURIComponent(r),'_blank');}
+
+/* ---------- SAVE ---------- */
+const KEY='yulia_hw_conditionals';
+function save(){try{
+ const d={cells:{},sent:{},ex3:[...document.querySelectorAll('#ex3 textarea')].map(x=>x.value),
+  sp:[...document.querySelectorAll('#qs textarea')].map(x=>x.value),p4:[...document.querySelectorAll('#p4 textarea')].map(x=>x.value)};
+ ['ex2','ex4','g2','g3','p1','p2','p3'].forEach(id=>d.cells[id]=[...document.querySelectorAll('#'+id+' .cell')].map(c=>c.value));
+ ['c1','c3'].forEach(id=>d.sent[id]=[...document.querySelectorAll('#'+id+' textarea.sent')].map(c=>c.value));
+ localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
+function load(){try{
+ const d=JSON.parse(localStorage.getItem(KEY)||'null');if(!d)return;
+ ['c1','c3'].forEach(id=>{const arr=(d.sent||{})[id]||[];document.querySelectorAll('#'+id+' textarea.sent').forEach((c,i)=>{if(arr[i])c.value=arr[i];});});
+ ['ex2','ex4','g2','g3','p1','p2','p3'].forEach(id=>{const arr=(d.cells||{})[id]||[];document.querySelectorAll('#'+id+' .cell').forEach((c,i)=>{if(arr[i])c.value=arr[i];});});
+ document.querySelectorAll('#ex3 textarea').forEach((x,i)=>{if(d.ex3&&d.ex3[i])x.value=d.ex3[i];});
+ document.querySelectorAll('#qs textarea').forEach((x,i)=>{if(d.sp&&d.sp[i])x.value=d.sp[i];});
+ document.querySelectorAll('#p4 textarea').forEach((x,i)=>{if(d.p4&&d.p4[i])x.value=d.p4[i];});
+}catch(e){}}
+load();
+document.addEventListener('input',save);
+</script>
+</body>
+</html>
