@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sonya's Homework 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+
+:root{--purple:#8e5bd6;--purple-d:#5b2fa0;--pink:#ff6fae;--lilac:#efe3ff;--ink:#3b2560;--ok:#2bb673;--bad:#e8456b;--warn:#f2a531}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:#f6eeff;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='%23d9c2ff' opacity='.55'%3E%3Cellipse cx='30' cy='38' rx='9' ry='8'/%3E%3Ccircle cx='19' cy='26' r='4'/%3E%3Ccircle cx='27' cy='20' r='4'/%3E%3Ccircle cx='36' cy='21' r='4'/%3E%3Ccircle cx='42' cy='28' r='4'/%3E%3C/g%3E%3Cg fill='%23ffc2de' opacity='.6'%3E%3Cellipse cx='70' cy='78' rx='7' ry='6'/%3E%3Ccircle cx='61' cy='69' r='3'/%3E%3Ccircle cx='67' cy='64' r='3'/%3E%3Ccircle cx='74' cy='65' r='3'/%3E%3Ccircle cx='79' cy='71' r='3'/%3E%3C/g%3E%3C/svg%3E")}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+header{text-align:center;padding:24px 16px 20px;border-radius:26px;color:#fff;margin-bottom:12px;
+ background:radial-gradient(circle at 12% 30%,rgba(255,255,255,.9) 0 2px,transparent 3px),radial-gradient(circle at 80% 20%,rgba(255,255,255,.8) 0 1.5px,transparent 3px),radial-gradient(circle at 60% 80%,rgba(255,255,255,.9) 0 2px,transparent 3px),linear-gradient(135deg,#a56ff0,#ff6fae);
+ background-size:90px 90px,120px 120px,70px 70px,100% 100%;box-shadow:0 10px 30px rgba(142,91,214,.35)}
+header h1{font-family:'Pacifico',cursive;font-weight:400;font-size:32px;margin:0 0 6px}
+header p{margin:4px 0;font-weight:700}
+.dogs{font-size:28px;letter-spacing:6px}
+.progress{height:12px;background:rgba(255,255,255,.4);border-radius:999px;margin:10px auto 0;max-width:300px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:#fff;border-radius:999px;transition:width .4s}
+.tabs{position:sticky;top:8px;z-index:5;display:flex;gap:6px;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:6px;border-radius:999px;box-shadow:0 4px 14px rgba(91,47,160,.18);margin-bottom:6px}
+.tab{flex:1;border:none;font:inherit;font-weight:900;font-size:15px;padding:10px 6px;border-radius:999px;background:transparent;color:var(--purple-d);cursor:pointer}
+.tab.on{background:linear-gradient(135deg,#b07cff,#ff6fae);color:#fff;box-shadow:inset 0 2px 0 rgba(255,255,255,.4)}
+.page{display:none}.page.on{display:block}
+section.task{border-radius:24px;padding:12px;margin:18px 0;box-shadow:0 6px 18px rgba(91,47,160,.15)}
+.inner{background:rgba(255,255,255,.93);border-radius:18px;padding:16px}
+h2{margin:0 0 6px;font-size:21px;font-weight:900;color:var(--purple-d)}
+.instr{margin:0 0 12px;font-size:15px}
+.tag{display:inline-block;font-size:12px;font-weight:900;color:#fff;background:var(--pink);border-radius:999px;padding:2px 10px;margin-bottom:6px}
+.bg-glitter{background:radial-gradient(circle,rgba(255,255,255,.95) 0 1.5px,transparent 2.5px) 0 0/22px 22px,radial-gradient(circle,rgba(255,240,250,.8) 0 1px,transparent 2px) 11px 11px/17px 17px,linear-gradient(135deg,#c79bff,#ff9dcb)}
+.bg-pink{background:#ffc9e3}
+.bg-check{background-color:#fff;background-image:linear-gradient(90deg,rgba(255,111,174,.35) 50%,transparent 50%),linear-gradient(rgba(255,111,174,.35) 50%,transparent 50%);background-size:28px 28px}
+.bg-dots{background:radial-gradient(#fff 28%,transparent 31%) 0 0/24px 24px,#b88cf0}
+.bg-stripes{background:repeating-linear-gradient(45deg,#ffd0e6 0 16px,#e6d4ff 16px 32px)}
+.bg-stars{background-color:#7a48c9;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M15 5l2 6 6 2-6 2-2 6-2-6-6-2 6-2z' fill='%23ffe1f0'/%3E%3Cpath d='M45 35l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z' fill='%23fff'/%3E%3C/svg%3E")}
+.bg-floral{background-color:#f3ecff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='%23ff8fc0'%3E%3Ccircle cx='22' cy='15' r='5'/%3E%3Ccircle cx='29' cy='22' r='5'/%3E%3Ccircle cx='22' cy='29' r='5'/%3E%3Ccircle cx='15' cy='22' r='5'/%3E%3C/g%3E%3Ccircle cx='22' cy='22' r='4' fill='%23ffd34d'/%3E%3C/svg%3E")}
+.item{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:14px;margin:6px 0;background:#fbf7ff;border:2px solid transparent}
+.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--purple);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:4px}
+.body{flex:1;min-width:0}
+.line{line-height:2.1;font-size:16px}
+.q{font-weight:700;margin-right:8px}
+.rev{font-size:11px;font-weight:900;color:#fff;background:#b07cff;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+.hint{font-size:13px;color:#8a6bb8;font-weight:700;line-height:1.4;margin-bottom:4px}
+input[type=text],select{font:inherit;font-size:16px;color:var(--ink);border:2px solid #d8c4f7;border-radius:12px;padding:5px 10px;background:#fff;outline:none;max-width:100%}
+input[type=text]{width:190px}
+input[type=text].wide{width:100%}
+input:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,111,174,.2)}
+input.target{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,111,174,.25)}
+.msg{font-size:14px;font-weight:700}
+.item.ok{border-color:var(--ok);background:#ecfbf3}.item.ok .msg{color:var(--ok)}
+.item.bad{border-color:var(--bad);background:#fff0f3}.item.bad .msg{color:var(--bad)}
+.item.empty{border-color:var(--warn);background:#fff8ec}.item.empty .msg{color:#b8740c}
+.gaptext{font-size:17px;line-height:2.4}
+.gap{display:inline-flex;flex-direction:column;vertical-align:top;margin:0 2px}
+.gap input{width:140px;padding:3px 8px}
+.gap .msg{font-size:12px;line-height:1.2;max-width:150px}
+.gap.ok input{border-color:var(--ok);background:#ecfbf3}.gap.ok .msg{color:var(--ok)}
+.gap.bad input{border-color:var(--bad);background:#fff0f3}.gap.bad .msg{color:var(--bad)}
+.gap.empty input{border-color:var(--warn);background:#fff8ec}.gap.empty .msg{color:#b8740c}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px;padding:10px;border-radius:14px;background:#fff;border:2px dashed #e0cdfb}
+.chip{border:none;font:inherit;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--lilac);color:var(--purple-d);cursor:pointer}
+.chip.used{opacity:.3;text-decoration:line-through;cursor:default}
+.btn{position:relative;overflow:hidden;border:none;cursor:pointer;font:inherit;font-weight:900;font-size:17px;color:#fff;padding:12px 26px;border-radius:999px;margin-top:12px;
+ background:linear-gradient(135deg,#b07cff,#ff6fae);box-shadow:0 6px 16px rgba(255,111,174,.4),inset 0 2px 0 rgba(255,255,255,.5)}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:shine 2.8s infinite}
+@keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+.btn:active{transform:scale(.97)}
+.btn.small{font-size:14px;padding:8px 16px}
+.btn.ghost{background:#fff;color:var(--purple-d);box-shadow:0 2px 8px rgba(91,47,160,.2)}.btn.ghost::after{display:none}
+.fb{margin-top:12px;font-weight:700;font-size:16px;border-radius:14px}
+.fb:not(:empty){padding:12px 14px;background:var(--lilac)}
+.row-btns{display:flex;flex-wrap:wrap;gap:10px}
+.wgroup{font-weight:900;font-size:18px;margin:16px 0 8px;color:var(--purple-d)}
+.word{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:14px;background:#fbf7ff;margin:5px 0}
+.word .em{font-size:22px;width:30px;text-align:center;flex:none}
+.word .en{font-weight:900;flex:1.1}
+.word .ru{flex:1;color:#6e4fa0}
+.say{flex:none;border:none;background:var(--lilac);border-radius:999px;font-size:17px;padding:4px 10px;cursor:pointer}
+.hide-ru .word .ru,.hide-en .word .en{filter:blur(6px);cursor:pointer}
+.word .shown{filter:none!important}
+.tense{background:#fff;border-radius:14px;padding:12px 14px;margin:10px 0;border-left:7px solid var(--pink)}
+.tense h3{margin:0 0 4px;font-size:17px;color:var(--purple-d)}
+.tense .f{font-weight:700}
+.tense .m{font-size:14px;color:#8a6bb8;font-weight:700}
+.ex{color:#7a5aa8;font-style:italic}
+.small{font-size:13px}
+pre#report{white-space:pre-wrap;background:#fff;border-radius:14px;padding:14px;font-family:inherit;font-size:15px;border:2px dashed #d8c4f7}
+.remind{background:#fff3c4;border-radius:14px;padding:10px 14px;font-weight:700;margin-top:10px}
+footer{text-align:center;padding:20px 0 40px;font-size:14px;color:#7a5aa8}
+@media (max-width:480px){header h1{font-size:27px}input[type=text]{width:100%}.q{display:block}.tab{font-size:13px}.gap input{width:128px}}
+
+/* ---- game ---- */
+.arena{position:relative;height:300px;border-radius:18px;overflow:hidden;
+ background:linear-gradient(180deg,#bfe3ff 0%,#e9d9ff 60%,#ffd6ea 100%)}
+.arena .cloud{position:absolute;font-size:34px;opacity:.7}
+.fword{position:absolute;left:50%;transform:translateX(-50%);background:#fff;color:var(--purple-d);font-weight:900;font-size:24px;
+ padding:8px 18px;border-radius:999px;box-shadow:0 6px 16px rgba(91,47,160,.25);white-space:nowrap}
+.fword.hit{background:var(--ok);color:#fff}.fword.miss{background:var(--bad);color:#fff}
+.ground{position:absolute;left:0;right:0;bottom:0;height:34px;background:repeating-linear-gradient(90deg,#8e5bd6 0 30px,#fff 30px 44px);opacity:.85}
+.ghud{display:flex;justify-content:space-between;font-weight:900;color:var(--purple-d);margin:8px 2px}
+.gopts{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.gopt{border:none;font:inherit;font-weight:900;font-size:17px;padding:12px;border-radius:14px;background:var(--lilac);color:var(--purple-d);cursor:pointer}
+.gopt.right{background:var(--ok);color:#fff}.gopt.wrongc{background:var(--bad);color:#fff}
+.gover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;background:rgba(255,255,255,.88);font-weight:900;color:var(--purple-d)}
+.gover .big{font-size:40px}
+/* ---- quest ---- */
+.qwin{background:#fff;border-radius:18px;overflow:hidden;border:2px solid #e0cdfb}
+.qbar{background:linear-gradient(135deg,#7a48c9,#ff6fae);color:#fff;font-weight:900;font-size:13px;letter-spacing:.08em;padding:10px 14px;text-transform:uppercase}
+.qbar .dots{letter-spacing:3px;margin-right:8px;opacity:.8}
+.chat{padding:12px;max-height:340px;overflow-y:auto;background:#fbf7ff}
+.bub{max-width:85%;padding:9px 13px;border-radius:16px;margin:6px 0;font-size:15px;line-height:1.35}
+.bub.them{background:#fff;border:2px solid #eadcff}
+.bub.them b{color:#c2185b}
+.bub.me{background:linear-gradient(135deg,#b07cff,#ff6fae);color:#fff;margin-left:auto;font-weight:700}
+.bub.note{max-width:100%;background:#fff3c4;font-size:14px;font-weight:700;text-align:center}
+.board{font-family:ui-monospace,Menlo,monospace;background:#1d1240;color:#ffd34d;border-radius:12px;padding:10px 12px;margin:6px 0;font-size:14px}
+.board .r{color:#ff7b9c}
+.qopts{padding:12px;display:grid;gap:8px}
+.qopt{border:2px solid #e0cdfb;font:inherit;font-weight:800;font-size:16px;padding:12px;border-radius:14px;background:#fff;color:var(--ink);cursor:pointer;text-align:left}
+.qopt.right{background:var(--ok);border-color:var(--ok);color:#fff}
+.qopt.wrongc{background:#ffe3ea;border-color:var(--bad);color:var(--bad)}
+.qopt:disabled{cursor:default}
+.why{font-size:14px;font-weight:800;color:var(--bad);padding:0 14px 12px}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s}
+.ending{padding:16px;text-align:center}
+.ending .big{font-size:42px}
+/* ---- find mistake ---- */
+.tok{display:inline-block;border:2px solid transparent;background:#fff;border-radius:10px;padding:2px 8px;margin:2px;font-weight:700;font-size:16px;cursor:pointer;font-family:inherit;color:var(--ink)}
+.tok.sel{background:#ffd9ec;border-color:var(--pink)}
+.ruhint{font-size:13px;color:#8a6bb8;font-weight:700}
+/* ---- builder ---- */
+.ans{min-height:46px;border:2px dashed #d8c4f7;border-radius:14px;padding:6px;background:#fff;margin:6px 0;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.ans:empty::before{content:"нажимай на слова по порядку…";color:#b9a3dc;font-size:14px;padding:4px 6px}
+.pool{display:flex;flex-wrap:wrap;gap:6px}
+.wchip{border:none;font:inherit;font-weight:800;padding:6px 12px;border-radius:999px;background:var(--lilac);color:var(--purple-d);cursor:pointer}
+.ans .wchip{background:linear-gradient(135deg,#b07cff,#ff6fae);color:#fff}
+.wchip.gone{visibility:hidden}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="dogs">✈️🐶🌴</div>
+  <h1>Sonya's Homework #3</h1>
+  <p>Airport · Trip to Thailand · used to · Who…with?</p>
+  <p class="small">Всё сохраняется само — можно делать по частям 💾</p>
+  <div class="progress"><span id="bar"></span></div>
+  <p class="small" id="barText"></p>
+</header>
+
+<nav class="tabs">
+  <button class="tab on" data-page="pEx">📝 Упражнения</button>
+  <button class="tab" data-page="pWords">📚 Слова</button>
+  <button class="tab" data-page="pGram">📌 Грамматика</button>
+</nav>
+
+<div class="page on" id="pEx">
+
+  <!-- 1 GAME -->
+  <section class="task bg-glitter" id="sec-t1">
+    <div class="inner">
+      <span class="tag">Упражнение 1</span>
+      <h2>☁️ Словопад</h2>
+      <p class="instr">Английские слова падают с неба! Нажми правильный перевод, <b>пока слово не упало</b>. Слова падают всё быстрее. Можно играть много раз — засчитывается лучший результат. Забыла слова? Сначала загляни во вкладку «📚 Слова».</p>
+      <div class="ghud"><span id="gScore">Счёт: 0</span><span id="gCount">0 / 20</span><span id="gBest"></span></div>
+      <div class="arena" id="arena">
+        <div class="cloud" style="left:8%;top:20px">☁️</div><div class="cloud" style="right:10%;top:90px">☁️</div><div class="cloud" style="left:40%;top:170px">✈️</div>
+        <div class="ground"></div>
+        <div class="gover" id="gOver"><div class="big">✈️</div><p>20 слов про аэропорт и путешествия</p><button class="btn" id="gStart">Начать игру 🎮</button></div>
+      </div>
+      <div class="gopts" id="gOpts"></div>
+      <div class="fb" id="fb-t1"></div>
+    </div>
+  </section>
+
+  <!-- 2 QUEST -->
+  <section class="task bg-stripes" id="sec-t2">
+    <div class="inner">
+      <span class="tag">Упражнение 2</span>
+      <h2>🛫 Квест: летим на Пхукет!</h2>
+      <p class="instr">Ты в аэропорту и летишь на Пхукет. Выбирай, что ответить. Неправильный ответ сразу загорится красным — попробуй ещё раз. А от твоих решений зависит концовка! 🌴</p>
+      <div class="qwin">
+        <div class="qbar"><span class="dots">●●●</span><span id="qStep">Аэропорт · Шаг 1</span></div>
+        <div class="chat" id="chat"></div>
+        <div class="qopts" id="qOpts"></div>
+        <div class="why" id="qWhy"></div>
+      </div>
+      <button class="btn small ghost" id="qRestart">🔄 Пройти квест заново</button>
+      <div class="fb" id="fb-t2"></div>
+    </div>
+  </section>
+
+  <div id="tasks"></div>
+
+  <section class="task bg-glitter">
+    <div class="inner">
+      <h2>🏆 Итог</h2>
+      <p class="instr">Когда всё сделаешь — нажми кнопку и отправь результат учителю.</p>
+      <button class="btn" id="finishBtn">Посмотреть результат 💜</button>
+      <div id="reportBox" style="display:none;margin-top:14px">
+        <pre id="report"></pre>
+        <div class="row-btns">
+          <button class="btn small" id="copyBtn">📋 Скопировать</button>
+          <button class="btn small" id="tgBtn">✈️ Отправить в Telegram</button>
+        </div>
+        <p class="small" id="copyMsg"></p>
+        <div class="remind">📩 Не забудь: скопируй результат и отправь его своему учителю в Telegram!</div>
+      </div>
+      <hr style="border:none;border-top:2px dashed #e5d6fb;margin:20px 0 10px">
+      <button class="btn small ghost" id="resetBtn">🗑 Начать заново</button>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="pWords">
+  <section class="task bg-floral">
+    <div class="inner">
+      <h2>📚 Слова этого ДЗ</h2>
+      <p class="instr">Забыла слово? Загляни сюда! 🔊 — послушай и повтори вслух.<br>
+      Проверь себя: спрячь перевод или английский и вспоминай. Нажми на размытое слово — оно появится.</p>
+      <div class="row-btns">
+        <button class="btn small ghost" id="hideRu">🙈 Спрятать перевод</button>
+        <button class="btn small ghost" id="hideEn">🙈 Спрятать английский</button>
+      </div>
+      <div id="wordsBox"></div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="pGram">
+  <section class="task bg-stripes">
+    <div class="inner">
+      <h2>⏪ used to — «раньше (а теперь нет)»</h2>
+      <div class="tense"><h3>➕ used to + глагол</h3>
+        <div class="ex">I used to be afraid of planes. (Раньше я боялась самолётов.)<br>This building used to be a museum.</div></div>
+      <div class="tense"><h3>➖ didn't use to + глагол</h3>
+        <div class="ex">Timofey didn't use to like fish.</div>
+        <div class="m">⚠️ После did / didn't — use (без d)!</div></div>
+      <div class="tense"><h3>❓ Did … use to + глагол?</h3>
+        <div class="ex">Did you use to have a pet when you were little?</div></div>
+    </div>
+  </section>
+  <section class="task bg-pink">
+    <div class="inner">
+      <h2>🧑‍🤝‍🧑 Вопросы с Who</h2>
+      <div class="tense"><h3>С кем? → Who + do/did/are… + … + <b>with</b>?</h3>
+        <div class="f">with стоит в САМОМ КОНЦЕ!</div>
+        <div class="ex">Who do you like to drink coffee with?<br>Who did you go to the countryside with?<br>Who are you flying to Phuket with?</div></div>
+      <div class="tense"><h3>Кто делает? → Who + глагол (без do!)</h3>
+        <div class="ex">Who plays the violin? (НЕ Who does play…)<br>Who cooks dinner in your family?</div>
+        <div class="m">Если «кто» — это тот, кто делает, do/does не нужен, а глагол с -s.</div></div>
+      <div class="tense"><h3>Who is…? — Кто это?</h3>
+        <div class="ex">Who is the girl who plays the violin? — My sister.</div></div>
+    </div>
+  </section>
+  <section class="task bg-check">
+    <div class="inner">
+      <h2>⏰ Времена — коротко</h2>
+      <div class="tense"><h3>🔁 Present Simple — обычно</h3><div class="ex">We have breakfast at half past seven on weekdays.</div></div>
+      <div class="tense"><h3>▶️ Present Continuous — сейчас</h3><div class="ex">What are you doing? — We're having breakfast.</div></div>
+      <div class="tense"><h3>⏪ Past Simple — в прошлом</h3><div class="ex">What did you do last weekend? — We went to the countryside.</div></div>
+    </div>
+  </section>
+</div>
+
+<footer>🐾 Have a great trip, Sonya! 🌴</footer>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const VOCAB=[
+ ['✈️ Airport — из урока','departure','вылет, отправление','🛫'],['✈️ Airport — из урока','hand luggage','ручная кладь','🎒'],
+ ['✈️ Airport — из урока','luggage / baggage','багаж','🧳'],['✈️ Airport — из урока','boarding pass','посадочный талон','🎫'],
+ ['✈️ Airport — из урока','gate','выход на посадку','🚪'],['✈️ Airport — из урока','delayed','задерживается','⏰'],
+ ['✈️ Airport — из урока','boarding','идёт посадка','🚶‍♀️'],['✈️ Airport — из урока','cancelled','отменён','❌'],
+ ['✈️ Airport — из урока','departed','улетел','🛩️'],
+ ['🛄 Airport — ещё слова','check-in (desk)','регистрация (стойка регистрации)','🧾'],['🛄 Airport — ещё слова','passport','паспорт','🛂'],
+ ['🛄 Airport — ещё слова','passport control','паспортный контроль','👮‍♀️'],['🛄 Airport — ещё слова','security','досмотр','🔍'],
+ ['🛄 Airport — ещё слова','suitcase','чемодан','🧳'],['🛄 Airport — ещё слова','flight','рейс, полёт','✈️'],
+ ['🛄 Airport — ещё слова','arrivals','прилёт','🛬'],['🛄 Airport — ещё слова','departures board','табло вылета','📋'],
+ ['🛄 Airport — ещё слова','window seat','место у окна','🪟'],['🛄 Airport — ещё слова','aisle seat','место у прохода','💺'],
+ ['🛄 Airport — ещё слова','passenger','пассажир','🧍‍♀️'],['🛄 Airport — ещё слова','flight attendant','бортпроводник, стюардесса','👩‍✈️'],
+ ['🛄 Airport — ещё слова','take off','взлетать','🛫'],['🛄 Airport — ещё слова','land','приземляться','🛬'],
+ ['🛄 Airport — ещё слова','on time','вовремя','✅'],['🛄 Airport — ещё слова','last call','последний вызов на посадку','📢'],
+ ['🛄 Airport — ещё слова','duty-free','магазин дьюти-фри','🛍️'],['🛄 Airport — ещё слова','liquids','жидкости','💧'],
+ ['💬 Фразы в аэропорту','Here you are.','Вот, пожалуйста (когда что-то даёшь).','🤲'],
+ ['💬 Фразы в аэропорту','Is the flight on time?','Рейс по расписанию?','⏱️'],
+ ['💬 Фразы в аэропорту','I\'m going on holiday.','Я еду в отпуск / на каникулы.','🌴'],
+ ['💬 Фразы в аэропорту','For two weeks.','На две недели.','📅'],
+ ['💬 Фразы в аэропорту','Can I have…, please?','Можно мне…, пожалуйста?','🍫'],
+ ['⏪ used to / Who','used to','раньше (делала, а теперь нет)','⏪'],['⏪ used to / Who','didn\'t use to','раньше не (делала)','🙅‍♀️'],
+ ['⏪ used to / Who','Who … with?','С кем…?','🧑‍🤝‍🧑'],['⏪ used to / Who','violin','скрипка','🎻'],
+ ['⏪ used to / Who','the countryside','за город, сельская местность','🌳'],['⏪ used to / Who','on weekdays','по будним дням','📆'],
+ ['⏪ used to / Who','smell','пахнуть','🌹'],['⏪ used to / Who','feel rested','чувствовать себя отдохнувшим','😌'],
+ ['🔁 Повтор из ДЗ №1–2','striped / checked / spotted','в полоску / в клетку / в горошек','🎨'],['🔁 Повтор из ДЗ №1–2','trainers','кроссовки','👟'],
+ ['🔁 Повтор из ДЗ №1–2','scarf','шарф','🧣'],['🔁 Повтор из ДЗ №1–2','hoodie','худи','🧢'],
+ ['🔁 Повтор из ДЗ №1–2','curious','любопытный','🔍'],['🔁 Повтор из ДЗ №1–2','sociable','общительный','🗣️'],
+ ['🔁 Повтор из ДЗ №1–2','patient','терпеливый','⏳'],['🔁 Повтор из ДЗ №1–2','daring','смелый','🔥'],
+ ['🔁 Повтор из ДЗ №1–2','mustn\'t','нельзя','⛔'],['🔁 Повтор из ДЗ №1–2','don\'t have to','не обязательно','😌']
+];
+const FALL=[
+ ['departure','вылет'],['hand luggage','ручная кладь'],['luggage','багаж'],['boarding pass','посадочный талон'],['gate','выход на посадку'],
+ ['delayed','задерживается'],['boarding','идёт посадка'],['cancelled','отменён'],['departed','улетел'],['check-in','регистрация'],
+ ['passport control','паспортный контроль'],['security','досмотр'],['suitcase','чемодан'],['flight','рейс'],['arrivals','прилёт'],
+ ['window seat','место у окна'],['aisle seat','место у прохода'],['passenger','пассажир'],['take off','взлетать'],['land','приземляться'],
+ ['on time','вовремя'],['last call','последний вызов'],['flight attendant','стюардесса'],['liquids','жидкости'],
+ ['scarf','шарф'],['trainers','кроссовки'],['striped','в полоску'],['curious','любопытный'],['patient','терпеливый'],['mustn\'t','нельзя']
+];
+const FALL_N=20;
+
+/* quest: ok:true/false; set:{flag:value}; why = объяснение ошибки */
+const QUEST=[
+ {who:'Check-in agent',say:'Good morning! Where are you flying today?',o:[
+   {t:'To Phuket, Thailand.',ok:1},{t:'In Phuket, Thailand.',why:'Летим КУДА? → to Phuket. In = в (где).'}]},
+ {who:'Check-in agent',say:'Can I see your passport, please?',o:[
+   {t:'Here you are.',ok:1},{t:'Here you is.',why:'You → are: Here you are.'},{t:'Yes, look my passport.',why:'Look AT. И лучше вежливо: Here you are.'}]},
+ {who:'Check-in agent',say:'How many bags are you checking in?',o:[
+   {t:'One suitcase. And this is my hand luggage.',ok:1},{t:'Two baggages.',why:'Luggage / baggage не бывает с -s! Говорим: two bags / two suitcases.'},{t:'One suitcase and one hand luggages.',why:'Hand luggage — без -s.'}]},
+ {who:'Check-in agent',say:'Would you like a window seat or an aisle seat?',o:[
+   {t:'A window seat, please. I want to see the clouds!',ok:1,set:{seat:'window'}},
+   {t:'An aisle seat, please. I like to walk around.',ok:1,set:{seat:'aisle'}},
+   {t:'I want sit near window.',why:'want TO sit, near THE window. Проще: A window seat, please.'}]},
+ {who:'Check-in agent',say:'Here\'s your boarding pass. Gate 12. Boarding starts at 10:30. Have a nice flight!',o:[
+   {t:'Thank you! Is the flight on time?',ok:1},{t:'Thank you! The flight is on time?',why:'В вопросе is идёт первым: Is the flight on time?'},{t:'Thank you! Is the flight in time?',why:'Вовремя по расписанию = on time.'}]},
+ {note:'🔍 Security — досмотр',who:'Security officer',say:'Do you have any liquids in your hand luggage?',o:[
+   {t:'No, I don\'t.',ok:1},{t:'No, I doesn\'t.',why:'I → don\'t. Doesn\'t только с he / she / it.'},{t:'No, I am not.',why:'Вопрос с Do → ответ No, I don\'t.'}]},
+ {note:'🛂 Passport control — паспортный контроль',who:'Officer',say:'What\'s the purpose of your visit?',o:[
+   {t:'I\'m going on holiday.',ok:1},{t:'I am go on holiday.',why:'am + -ing: I\'m going.'},{t:'I\'m visit Thailand.',why:'am + -ing: I\'m visiting.'}]},
+ {who:'Officer',say:'How long are you staying?',o:[
+   {t:'For two weeks.',ok:1},{t:'Since two weeks.',why:'На какой срок → for two weeks.'},{t:'Two weeks ago.',why:'Ago = «назад» (в прошлом). Нам нужно: for two weeks.'}]},
+ {note:'⏰ До посадки 40 минут',who:'Sonya (думает)',say:'I have 40 minutes. What shall I do?',o:[
+   {t:'I\'ll look at the cosmetics in duty-free!',ok:1,set:{shop:1}},
+   {t:'I\'ll go to the gate and watch the planes.',ok:1,set:{shop:0}},
+   {t:'I will going to the gate.',why:'После will — глагол без -ing: I will go.'}]},
+ {note:'☕ Кафе',who:'Waiter',say:'Hi! What would you like?',o:[
+   {t:'Can I have a hot chocolate, please?',ok:1},{t:'Can I has a hot chocolate?',why:'После can — have (без -s).'},{t:'Give me hot chocolate.',why:'Так грубо! Вежливо: Can I have…, please?'}]},
+ {board:'PHUKET &nbsp;10:30 &nbsp;GATE 12 &nbsp;<span class="r">DELAYED 20 MIN</span>',who:'Passenger',say:'Excuse me, what does the board say about the flight to Phuket?',o:[
+   {t:'It\'s delayed. We have 20 more minutes.',ok:1},{t:'It\'s cancelled. Let\'s go home!',why:'Cancelled = отменён. А delayed = задерживается.'},{t:'It has departed!',why:'Departed = уже улетел. А delayed = задерживается.'}]},
+ {dyn:'announce',who:'Sonya (думает)',say:'Oh no! Where\'s my boarding pass?!',o:[
+   {t:'It\'s in my hand luggage!',ok:1},{t:'It\'s in my suitcase.',why:'Чемодан уже сдан в багаж на регистрации! Талон — в ручной клади.'},{t:'I must to find it!',why:'После must — без to: I must find it.'}]},
+ {note:'✈️ В самолёте',who:'Flight attendant',say:'Would you like chicken or pasta?',o:[
+   {t:'Pasta, please.',ok:1},{t:'I\'d like chicken, please.',ok:1},{t:'I like pasta.',why:'I like = я вообще люблю. А «я бы хотела» = I\'d like… / Pasta, please.'}]}
+];
+
+const MIST=[
+ {s:'What are you do?',bad:3,fix:'doing',full:'What are you doing?',ru:'Что вы делаете?'},
+ {s:'Does you always have breakfast so late?',bad:0,fix:'Do',full:'Do you always have breakfast so late?',ru:'Вы всегда завтракаете так поздно?'},
+ {s:'On weekdays we has breakfast at half past seven.',bad:3,fix:'have',full:'On weekdays we have breakfast at half past seven.',ru:'По будним дням мы завтракаем в половине восьмого.'},
+ {s:'Is he happy with he job?',bad:4,fix:'his',full:'Is he happy with his job?',ru:'Он доволен своей работой?'},
+ {s:'He does the same things every days.',bad:5,fix:'day',full:'He does the same things every day.',ru:'Он делает одни и те же вещи каждый день.'},
+ {s:'This building use to be a museum.',bad:2,fix:'used',full:'This building used to be a museum.',ru:'Раньше это здание было музеем.'},
+ {s:'The roses smells wonderful.',bad:2,fix:'smell',full:'The roses smell wonderful.',ru:'Розы пахнут чудесно.'},
+ {s:'It look like rain.',bad:1,fix:'looks',full:'It looks like rain.',ru:'Похоже, будет дождь.'},
+ {s:'What did you did last weekend?',bad:3,fix:'do',full:'What did you do last weekend?',ru:'Что вы делали в прошлые выходные?'},
+ {s:'We go to the countryside last weekend.',bad:1,fix:'went',full:'We went to the countryside last weekend.',ru:'Мы ездили за город в прошлые выходные.'},
+ {s:'Who is the girl which plays the violin?',bad:4,fix:'who',full:'Who is the girl who plays the violin?',ru:'Кто та девочка, которая играет на скрипке?'},
+ {s:'They feeled rested after the holidays.',bad:1,fix:'felt',full:'They felt rested after the holidays.',ru:'Они чувствовали себя отдохнувшими после каникул.'},
+ {s:'Did you had a pet when you were little?',bad:2,fix:'have',full:'Did you have a pet when you were little?',ru:'У тебя были домашние животные, когда ты была маленькой?'}
+];
+
+const TASKS=[
+ {id:'t6',title:'📋 Табло вылета',instr:'Посмотри на табло и ответь на вопросы. Слова <b>delayed, cancelled, boarding, departed, on time, last call</b> — во вкладке «📚 Слова». <b>+40</b> = на 40 минут позже.'+
+  '<div class="board" style="line-height:1.7">DEPARTURES ✈<br>09:15 &nbsp;ISTANBUL &nbsp;GATE 5 &nbsp;<span class="r">DEPARTED</span><br>10:30 &nbsp;PHUKET &nbsp;&nbsp;GATE 12 <span class="r">BOARDING</span><br>11:00 &nbsp;DUBAI &nbsp;&nbsp;&nbsp;GATE 7 &nbsp;<span class="r">DELAYED +40</span><br>11:45 &nbsp;MOSCOW &nbsp;&nbsp;— &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="r">CANCELLED</span><br>12:20 &nbsp;DOHA &nbsp;&nbsp;&nbsp;&nbsp;GATE 3 &nbsp;ON TIME<br>12:35 &nbsp;LONDON &nbsp;&nbsp;GATE 9 &nbsp;<span class="r">LAST CALL</span></div>',kind:'select',items:[
+  {q:'Which flight has already left?',o:['Istanbul','Doha','Phuket'],a:'Istanbul'},
+  {q:'Which flight is cancelled?',o:['Moscow','Dubai','London'],a:'Moscow'},
+  {q:'What is happening with the flight to Phuket?',o:['It\'s boarding.','It\'s delayed.','It\'s cancelled.'],a:'It\'s boarding.'},
+  {q:'Which gate does the flight to Phuket leave from?',o:['Gate 12','Gate 5','Gate 7'],a:'Gate 12'},
+  {q:'The flight to Dubai is ___ .',o:['delayed','on time','departed'],a:'delayed'},
+  {q:'What time does the flight to Dubai leave now?',o:['at 11:40','at 11:00','at 10:20'],a:'at 11:40'},
+  {q:'Is the flight to Doha on time?',o:['Yes, it is.','No, it isn\'t.','Yes, it does.'],a:'Yes, it is.'},
+  {q:'Passengers to London must run to the gate. Why?',o:['It\'s the last call.','The flight is cancelled.','The flight has departed.'],a:'It\'s the last call.'},
+  {q:'Passengers to Moscow don\'t have to go to a gate. Why?',o:['Their flight is cancelled.','Their flight is on time.','Their flight is boarding.'],a:'Their flight is cancelled.'},
+  {q:'You are late for the flight to Istanbul. Can you still catch it?',o:['No, it has departed.','Yes, it\'s boarding.','Yes, it\'s delayed.'],a:'No, it has departed.'}]},
+ {id:'t3',title:'🔍 Найди ошибку',instr:'Это предложения из твоего школьного упражнения, но в каждом есть <b>одна ошибка</b>! Нажми на неправильное слово, потом Check. Перевод — серым под предложением.',kind:'mist',items:MIST},
+ {id:'t4',title:'⏪ used to: раньше и сейчас',instr:'Поставь глагол в форму с <b>used to / didn\'t use to / Did … use to</b>. Помни: после did — <b>use</b> без d!',kind:'text',items:[
+  {q:'When I was five, I ___ (be) afraid of dogs. Now I love them! 🐶',a:['used to be']},
+  {q:'Timofey ___ (not / like) fish, but now he eats it.',a:['did not use to like'],show:"didn't use to like"},
+  {q:'___ (you / have) a pet when you were little?',a:['did you use to have'],show:'Did you use to have'},
+  {q:'This building ___ (be) a museum. Now it\'s a library.',a:['used to be']},
+  {q:'My mum ___ (cook) pancakes every Sunday when I was little. 🥞',a:['used to cook']},
+  {q:'I ___ (not / fly) by plane, but now I fly a lot! ✈️',a:['did not use to fly'],show:"didn't use to fly"},
+  {q:'___ (Timofey / cry) at night when he was a baby?',a:['did timofey use to cry'],show:'Did Timofey use to cry'},
+  {q:'I ___ (wear) baggy hoodies, but now I wear tight tops.',a:['used to wear']}]},
+ {id:'t5',title:'🧑‍🤝‍🧑 Собери вопрос с Who',instr:'Нажимай на слова по порядку и собери вопрос. Нажмёшь на слово в ответе — оно вернётся обратно. Подсказка: <b>with</b> — в конце!',kind:'build',items:[
+  {ru:'С кем ты любишь пить кофе? ☕',a:'Who do you like to drink coffee with?'},
+  {ru:'С кем ты была в театре в субботу? 🎭',a:'Who were you at the theatre with on Saturday?'},
+  {ru:'С кем вы ездили за город? 🌳',a:'Who did you go to the countryside with?'},
+  {ru:'С кем ты летишь на Пхукет? 🌴',a:'Who are you flying to Phuket with?'},
+  {ru:'С кем ты обычно путешествуешь? ✈️',a:'Who do you usually travel with?'},
+  {ru:'Кто та девочка, которая играет на скрипке? 🎻',a:'Who is the girl who plays the violin?'},
+  {ru:'Кто готовит ужин в твоей семье? 🍝',a:'Who cooks dinner in your family?'},
+  {ru:'С кем Тимофей играет в футбол? ⚽',a:'Who does Timofey play football with?'}]}
+];
+const ALL_IDS=['t1','t2','t6','t3','t4','t5'];
+const NAMES={t6:'Табло вылета',t1:'Словопад',t2:'Квест «Аэропорт»',t3:'Найди ошибку',t4:'used to',t5:'Вопросы с Who'};
+const BG=['bg-check','bg-dots','bg-pink','bg-stars'];
+
+/* ================= STORE ================= */
+const KEY='sonya_hw3_v1';
+let store={inputs:{},results:{},checks:{},game:null,quest:null};
+try{const s=localStorage.getItem(KEY);if(s)store=Object.assign(store,JSON.parse(s));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function norm(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");
+  [[/\bcan't\b/g,'can not'],[/\bwon't\b/g,'will not'],[/\bmustn't\b/g,'must not'],[/n't\b/g,' not'],[/\bi'm\b/g,'i am'],[/'re\b/g,' are'],[/'ve\b/g,' have'],
+   [/'ll\b/g,' will'],[/'d\b/g,' would'],[/\b(it|that|he|she|what|where|who|there|timofey|sonya|mum)'s\b/g,'$1 is'],[/\bcannot\b/g,'can not']].forEach(r=>{s=s.replace(r[0],r[1]);});
+  return s.replace(/-/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+
+/* ================= 1. GAME ================= */
+const arena=document.getElementById('arena'),gOpts=document.getElementById('gOpts');
+let G=null,raf=null;
+function gHud(){
+  document.getElementById('gScore').textContent='Счёт: '+(G?G.score:0);
+  document.getElementById('gCount').textContent=(G?Math.min(G.i,FALL_N):0)+' / '+FALL_N;
+  document.getElementById('gBest').textContent=store.game?('Рекорд: '+store.game.best+'/'+FALL_N):'';
+}
+function startGame(){
+  store.checks.t1=(store.checks.t1||0)+1;save();
+  G={q:shuffle(FALL).slice(0,FALL_N),i:0,score:0,correct:0,errors:[],speed:32};
+  document.getElementById('gOver').style.display='none';
+  nextWord();
+}
+function nextWord(){
+  arena.querySelectorAll('.fword').forEach(e=>e.remove());
+  if(G.i>=FALL_N)return endGame();
+  const w=G.q[G.i];
+  const others=shuffle(FALL.filter(x=>x[1]!==w[1])).slice(0,2).map(x=>x[1]);
+  const opts=shuffle([w[1],...others]);
+  const el=document.createElement('div');el.className='fword';el.textContent=w[0];arena.appendChild(el);
+  gOpts.innerHTML=opts.map(o=>`<button class="gopt">${esc(o)}</button>`).join('');
+  let y=-10,last=performance.now(),done=false;
+  const H=arena.clientHeight-34-50;
+  function finish(ok,picked,btn){
+    if(done)return;done=true;cancelAnimationFrame(raf);
+    gOpts.querySelectorAll('.gopt').forEach(b=>{b.disabled=true;if(b.textContent===w[1])b.classList.add('right');});
+    if(ok){G.correct++;G.score+=10+G.i*2;el.classList.add('hit');}
+    else{el.classList.add('miss');if(btn)btn.classList.add('wrongc');el.textContent=w[0]+' = '+w[1];
+      G.errors.push({q:w[0],your:picked||'не успела',right:w[1]});}
+    G.i++;G.speed+=3.2;gHud();
+    setTimeout(nextWord,ok?550:1300);
+  }
+  gOpts.querySelectorAll('.gopt').forEach(b=>b.onclick=()=>finish(b.textContent===w[1],b.textContent,b));
+  function step(t){
+    const dt=Math.min((t-last)/1000,.1);last=t;
+    y+=G.speed*dt;el.style.top=y+'px';
+    if(y>=H){finish(false,null,null);return;}
+    raf=requestAnimationFrame(step);
+  }
+  raf=requestAnimationFrame(step);
+  gHud();
+}
+function endGame(){
+  gOpts.innerHTML='';
+  const prev=store.game;
+  if(!prev||G.correct>=prev.best)store.game={best:G.correct,errors:G.errors,score:G.score};
+  store.results.t1={ok:store.game.best,total:FALL_N,wrong:store.game.errors,empty:[]};
+  save();updateBar();gHud();
+  const ov=document.getElementById('gOver');ov.style.display='flex';
+  const pct=G.correct/FALL_N;
+  ov.innerHTML=`<div class="big">${pct>=.9?'🏆':pct>=.7?'🐶':'🛫'}</div><p>Правильно: ${G.correct} из ${FALL_N}<br>Очки: ${G.score}</p>`+
+    `<p class="small">${pct===1?'Perfect! Ты знаешь все слова!':'Повтори слова, которые не успела, и сыграй ещё раз!'}</p><button class="btn" id="gStart2">Играть ещё 🔄</button>`;
+  document.getElementById('gStart2').onclick=startGame;
+  document.getElementById('fb-t1').textContent=`⭐ Лучший результат: ${store.game.best} / ${FALL_N}.`+
+    (G.errors.length?' Повтори: '+G.errors.map(e=>e.q+' — '+e.right).join(', ')+'.':'');
+}
+document.getElementById('gStart').onclick=startGame;
+
+/* ================= 2. QUEST ================= */
+let Q=null;
+function qStart(){
+  Q={i:0,flags:{},mistakes:[],firstTry:0,tried:false};
+  document.getElementById('chat').innerHTML='<div class="bub note">✈️ Аэропорт. Ты летишь на Пхукет! 🌴</div>';
+  qShow();
+}
+function bub(cls,html){const c=document.getElementById('chat');c.insertAdjacentHTML('beforeend',`<div class="bub ${cls}">${html}</div>`);c.scrollTop=c.scrollHeight;}
+function qShow(){
+  document.getElementById('qWhy').textContent='';
+  if(Q.i>=QUEST.length)return qEnd();
+  const s=QUEST[Q.i];Q.tried=false;
+  document.getElementById('qStep').textContent=`Аэропорт · Шаг ${Q.i+1} из ${QUEST.length}`;
+  if(s.note)bub('note',s.note);
+  if(s.board)bub('note',`<div class="board">DEPARTURES ✈ ${s.board}</div>`);
+  if(s.dyn==='announce'){
+    bub('note',Q.flags.shop?'📢 «LAST CALL for flight TK 68 to Phuket! Gate 12 is closing!» — Ты была в дьюти-фри и бежишь к выходу! 🏃‍♀️💨':'📢 «Flight TK 68 to Phuket is now boarding at gate 12.» — Ты уже у выхода. 😌');
+  }
+  bub('them',`<b>${esc(s.who)}:</b> ${esc(s.say)}`);
+  const box=document.getElementById('qOpts');
+  box.innerHTML=shuffle(s.o).map(o=>`<button class="qopt" data-t="${esc(o.t)}">${esc(o.t)}</button>`).join('');
+  box.querySelectorAll('.qopt').forEach(b=>b.onclick=()=>{
+    const o=s.o.find(x=>x.t===b.dataset.t);
+    if(o.ok){
+      if(!Q.tried)Q.firstTry++;
+      if(o.set)Object.assign(Q.flags,o.set);
+      b.classList.add('right');box.querySelectorAll('.qopt').forEach(x=>x.disabled=true);
+      document.getElementById('qWhy').textContent='';
+      setTimeout(()=>{bub('me',esc(o.t));Q.i++;qShow();},550);
+    }else{
+      if(!Q.tried){const r=s.o.filter(x=>x.ok).map(x=>x.t).join(' / ');
+        Q.mistakes.push({q:`${s.who}: ${s.say}`,your:o.t,right:r});}
+      Q.tried=true;b.classList.add('wrongc','shake');b.disabled=true;
+      document.getElementById('qWhy').textContent='❌ '+o.why+' Попробуй ещё раз!';
+    }
+  });
+}
+function qEnd(){
+  const f=Q.flags;
+  let txt=f.shop?'Ты чуть не опоздала из-за дьюти-фри — прибежала на посадку по «last call»! 😅 Но ты успела!':'Ты спокойно ждала у выхода, смотрела на самолёты и первой прошла на посадку. 😌';
+  txt+=f.seat==='window'?' В самолёте ты смотрела в окно на облака и море. ☁️🌊':' Место у прохода — удобно вставать и гулять по самолёту. 🚶‍♀️';
+  const n=QUEST.length;
+  bub('note','🛬 Самолёт приземлился. Welcome to Phuket! 🌴🐘');
+  document.getElementById('qStep').textContent='Аэропорт · Финиш';
+  document.getElementById('qWhy').textContent='';
+  document.getElementById('qOpts').innerHTML=`<div class="ending"><div class="big">${Q.firstTry===n?'🏆':'🌴'}</div>
+    <p><b>Концовка:</b> ${txt}</p><p><b>С первой попытки: ${Q.firstTry} из ${n}</b></p></div>`;
+  const ending=(f.shop?'дьюти-фри, last call':'спокойно у выхода')+', '+(f.seat==='window'?'у окна':'у прохода');
+  store.checks.t2=(store.checks.t2||0)+1;
+  const prev=store.quest;
+  if(!prev||Q.firstTry>=prev.best)store.quest={best:Q.firstTry,mistakes:Q.mistakes,ending};
+  store.results.t2={ok:store.quest.best,total:n,wrong:store.quest.mistakes,empty:[],ending:store.quest.ending};
+  save();updateBar();
+  document.getElementById('fb-t2').textContent=`⭐ Лучший результат: ${store.quest.best} / ${n} с первой попытки.`+(Q.firstTry===n?' Perfect! ✈️':' Пройди ещё раз, чтобы было без ошибок!');
+}
+document.getElementById('qRestart').onclick=qStart;
+
+/* ================= 3–5. TASKS ================= */
+function renderTasks(){
+  const box=document.getElementById('tasks');
+  TASKS.forEach((t,ti)=>{
+    const sec=document.createElement('section');sec.className='task '+BG[ti%BG.length];sec.id='sec-'+t.id;
+    let h=`<div class="inner"><span class="tag">Упражнение ${ti+3}</span><h2>${t.title}</h2><p class="instr">${t.instr}</p>`;
+    t.items.forEach((it,i)=>{
+      const id=`${t.id}-${i}`;let line='';
+      if(t.kind==='mist'){
+        line=it.s.split(' ').map((w,k)=>`<button class="tok" data-id="${id}" data-k="${k}">${esc(w)}</button>`).join('')+`<div class="ruhint">${esc(it.ru)}</div>`;
+      }else if(t.kind==='build'){
+        const words=it.a.replace(/\?$/,'').split(' ');
+        line=`<div class="q">${esc(it.ru)}</div><div class="ans" id="ans-${id}"></div><div class="pool" id="pool-${id}">`+
+          shuffle(words.map((w,k)=>[w,k])).map(([w,k])=>`<button class="wchip" data-id="${id}" data-k="${k}">${esc(w)}</button>`).join('')+'</div>';
+      }else if(t.kind==='select'){
+        const sel=`<select id="${id}"><option value="">— choose —</option>${shuffle(it.o).map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select>`;
+        line=it.q.includes('___')?esc(it.q).replace('___',sel):`<span class="q">${esc(it.q)}</span>${sel}`;
+      }else{
+        line=esc(it.q).replace('___',`<input type="text" id="${id}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">`);
+      }
+      h+=`<div class="item" id="row-${id}"><span class="num">${i+1}</span><div class="body"><div class="line">${line}</div><div class="msg"></div></div></div>`;
+    });
+    h+=`<button class="btn" data-check="${t.id}">Check ✨</button><div class="fb" id="fb-${t.id}"></div></div>`;
+    sec.innerHTML=h;box.appendChild(sec);
+  });
+  /* text inputs */
+  document.querySelectorAll('#tasks input,#tasks select').forEach(el=>{
+    if(store.inputs[el.id]!==undefined)el.value=store.inputs[el.id];
+    const on=()=>{store.inputs[el.id]=el.value;save();};el.addEventListener('input',on);el.addEventListener('change',on);
+  });
+  /* find mistake */
+  document.querySelectorAll('.tok').forEach(b=>{
+    if(store.inputs[b.dataset.id]===+b.dataset.k)b.classList.add('sel');
+    b.onclick=()=>{
+      const id=b.dataset.id,k=+b.dataset.k;
+      const was=store.inputs[id]===k;
+      document.querySelectorAll(`.tok[data-id="${id}"]`).forEach(x=>x.classList.remove('sel'));
+      if(was)delete store.inputs[id];else{store.inputs[id]=k;b.classList.add('sel');}
+      save();
+    };
+  });
+  /* builder */
+  TASKS.find(t=>t.kind==='build').items.forEach((it,i)=>{
+    const id=`t5-${i}`;(store.inputs[id]||[]).forEach(k=>moveWord(id,k,true));
+  });
+  document.querySelectorAll('.pool .wchip').forEach(b=>b.onclick=()=>{
+    const id=b.dataset.id,k=+b.dataset.k;
+    const arr=store.inputs[id]||[];arr.push(k);store.inputs[id]=arr;save();moveWord(id,k,true);
+  });
+  document.querySelectorAll('[data-check]').forEach(b=>b.addEventListener('click',()=>{
+    const t=TASKS.find(t=>t.id===b.dataset.check);
+    store.checks[t.id]=(store.checks[t.id]||0)+1;check(t);
+  }));
+}
+function moveWord(id,k,toAns){
+  const src=document.querySelector(`#pool-${id} .wchip[data-k="${k}"]`);
+  if(!src)return;
+  src.classList.add('gone');
+  const c=document.createElement('button');c.className='wchip';c.textContent=src.textContent;c.dataset.k=k;
+  c.onclick=()=>{
+    store.inputs[id]=(store.inputs[id]||[]).filter(x=>x!==k);save();
+    c.remove();src.classList.remove('gone');
+  };
+  document.getElementById('ans-'+id).appendChild(c);
+}
+function builtText(it,id){
+  const words=it.a.replace(/\?$/,'').split(' ');
+  return (store.inputs[id]||[]).map(k=>words[k]).join(' ');
+}
+
+const PRAISE=[[100,'Perfect! 🐶🏆 Ты супер!'],[85,'Great job! 💜 Почти идеально!'],[65,'Good! 👍 Посмотри на ошибки и повтори их.'],[0,'Keep going! 🐾 Загляни во вкладку «Грамматика» и попробуй ещё раз.']];
+function check(t){
+  const fb=document.getElementById('fb-'+t.id);
+  let filled=0,ok=0;const wrong=[],empty=[];
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}-${i}`,row=document.getElementById('row-'+id),msg=row.querySelector('.msg');
+    row.classList.remove('ok','bad','empty');
+    if(t.kind==='mist'){
+      const k=store.inputs[id];
+      if(k===undefined){row.classList.add('empty');msg.textContent='Нажми на слово с ошибкой ✍️';empty.push(it.s);return;}
+      filled++;
+      const picked=it.s.split(' ')[k];
+      if(k===it.bad){ok++;row.classList.add('ok');msg.textContent='✓ Правильно: '+it.full;}
+      else{row.classList.add('bad');msg.textContent='Ошибка в другом слове. Правильно: '+it.full;
+        wrong.push({q:it.s,your:'нажала «'+picked+'»',right:it.full});}
+      return;
+    }
+    if(t.kind==='build'){
+      const v=builtText(it,id);
+      if(!v){row.classList.add('empty');msg.textContent='Собери вопрос ✍️';empty.push(it.ru);return;}
+      if((store.inputs[id]||[]).length<it.a.split(' ').length){row.classList.add('empty');msg.textContent='Используй все слова 🧩';empty.push(it.ru+' (не все слова)');return;}
+      filled++;
+      if(norm(v)===norm(it.a)){ok++;row.classList.add('ok');msg.textContent='✓ '+it.a;}
+      else{row.classList.add('bad');msg.textContent='Правильно: '+it.a;wrong.push({q:it.ru,your:v+'?',right:it.a});}
+      return;
+    }
+    const v=document.getElementById(id).value.trim();
+    if(!v){row.classList.add('empty');msg.textContent='Попробуй сама ✍️';empty.push(it.q);return;}
+    filled++;
+    if(t.kind==='select'?v===it.a:it.a.some(a=>norm(a)===norm(v))){ok++;row.classList.add('ok');msg.textContent='✓';}
+    else{const r=it.show||(t.kind==='select'?it.a:it.a[0]);row.classList.add('bad');
+      msg.textContent='Правильно: '+r+(/\bused\b/i.test(v)&&/did/i.test(v)?' (после did — use без d!)':'');
+      wrong.push({q:it.q,your:v,right:r});}
+  });
+  const total=t.items.length;
+  if(filled===0){fb.textContent='Упражнение пустое 🐶 Выполни его и нажми Check ещё раз.';store.results[t.id]=null;save();updateBar();return;}
+  const pct=Math.round(ok/total*100);
+  let txt=`⭐ ${ok} / ${total}. `+PRAISE.find(p=>pct>=p[0])[1];
+  if(filled<total)txt+=` Есть незаполненные (${total-filled}) — сделай их и нажми Check ещё раз.`;
+  fb.textContent=txt;
+  store.results[t.id]={ok,total,wrong,empty};save();updateBar();
+}
+function updateBar(){
+  const n=ALL_IDS.filter(id=>store.results[id]).length;
+  document.getElementById('bar').style.width=Math.round(n/ALL_IDS.length*100)+'%';
+  document.getElementById('barText').textContent=`Сделано упражнений: ${n} из ${ALL_IDS.length}`;
+}
+
+/* ================= REPORT ================= */
+let reportText='';
+const TOTALS={t1:FALL_N,t2:QUEST.length,t3:MIST.length,t4:TASKS.find(t=>t.id==='t4').items.length,t5:TASKS.find(t=>t.id==='t5').items.length,t6:TASKS.find(t=>t.id==='t6').items.length};
+function finish(){
+  TASKS.forEach(check);
+  let ok=0,total=0;const lines=[],errs=[];
+  ALL_IDS.forEach((id,i)=>{
+    const r=store.results[id];total+=TOTALS[id];
+    const chk=`(${id==='t1'?'игр':id==='t2'?'попыток':'проверок'}: ${store.checks[id]||0})`;
+    if(!r){lines.push(`${i+1}. ${NAMES[id]}: не выполнено ${chk}`);return;}
+    ok+=r.ok;
+    lines.push(`${i+1}. ${NAMES[id]}: ${r.ok}/${TOTALS[id]} ${chk}`+(r.ending?` — концовка: ${r.ending}`:''));
+    (r.wrong||[]).forEach(w=>errs.push(`[${i+1}] ${w.q} → ${w.your} → правильно: ${w.right}`));
+    (r.empty||[]).forEach(q=>errs.push(`[${i+1}] ${q} → (пусто)`));
+  });
+  reportText=`🐶 Sonya — HW #3 Airport, used to, Who…with?\nИтого: ${ok}/${total} (${Math.round(ok/total*100)}%)\n\n`+lines.join('\n')+
+    (errs.length?`\n\n❌ Ошибки и пропуски:\n${errs.join('\n')}`:'\n\n✅ Ошибок нет!');
+  document.getElementById('report').textContent=reportText;
+  document.getElementById('reportBox').style.display='block';
+  document.getElementById('reportBox').scrollIntoView({behavior:'smooth'});
+}
+function copyReport(){
+  const m=document.getElementById('copyMsg'),done=()=>{m.textContent='Скопировано! Вставь в сообщение учителю 💜';};
+  const fallback=()=>{const ta=document.createElement('textarea');ta.value=reportText;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');done();}catch(e){m.textContent='Выдели текст выше и скопируй вручную.';}ta.remove();};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(reportText).then(done,fallback);else fallback();
+}
+
+/* ================= WORDS PAGE ================= */
+function speak(text){
+  try{const u=new SpeechSynthesisUtterance(text.replace(/→/g,',').replace(/\//g,',').replace(/…/g,''));u.lang='en-GB';u.rate=.85;
+    const vs=speechSynthesis.getVoices(),v=vs.find(v=>v.lang==='en-GB')||vs.find(v=>v.lang&&v.lang.startsWith('en'));if(v)u.voice=v;
+    speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}
+}
+function renderWords(){
+  const box=document.getElementById('wordsBox');let g0='',h='';
+  VOCAB.forEach((w,i)=>{
+    if(w[0]!==g0){g0=w[0];h+=`<div class="wgroup">${esc(g0)}</div>`;}
+    h+=`<div class="word"><span class="em">${w[3]}</span><span class="en">${esc(w[1])}</span><span class="ru">${esc(w[2])}</span><button class="say" data-i="${i}" aria-label="listen">🔊</button></div>`;
+  });
+  box.innerHTML=h;
+  box.querySelectorAll('.say').forEach(b=>b.onclick=()=>speak(VOCAB[b.dataset.i][1]));
+  box.querySelectorAll('.en,.ru').forEach(s=>s.onclick=()=>s.classList.toggle('shown'));
+}
+function toggleHide(cls,btn,label){
+  const p=document.getElementById('pWords'),on=p.classList.toggle(cls);
+  p.querySelectorAll('.shown').forEach(s=>s.classList.remove('shown'));
+  btn.textContent=on?'👀 Показать '+label:'🙈 Спрятать '+label;
+}
+document.getElementById('hideRu').onclick=e=>toggleHide('hide-ru',e.currentTarget,'перевод');
+document.getElementById('hideEn').onclick=e=>toggleHide('hide-en',e.currentTarget,'английский');
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id===b.dataset.page));
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('finishBtn').onclick=finish;
+document.getElementById('copyBtn').onclick=copyReport;
+document.getElementById('tgBtn').onclick=()=>window.open('https://t.me/share/url?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(reportText),'_blank');
+document.getElementById('resetBtn').onclick=()=>{if(confirm('Стереть все ответы и начать заново?')){try{localStorage.removeItem(KEY);}catch(e){}location.reload();}};
+if('speechSynthesis' in window)speechSynthesis.getVoices();
+
+renderWords();renderTasks();qStart();
+if(store.game)document.getElementById('fb-t1').textContent=`⭐ Лучший результат: ${store.game.best} / ${FALL_N}. Можно сыграть ещё!`;
+if(store.quest)document.getElementById('fb-t2').textContent=`⭐ Лучший результат: ${store.quest.best} / ${QUEST.length} с первой попытки.`;
+gHud();updateBar();
+</script>
+</body>
+</html>
