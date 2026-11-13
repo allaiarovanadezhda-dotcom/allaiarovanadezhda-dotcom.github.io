@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Max: Winter Quest</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@500;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef3ff; --ink:#1d2340; --muted:#5a6285; --card:#ffffff;
+  --red:#ff4d5e; --blue:#2f7bff; --green:#21c06b; --yellow:#ffc928; --orange:#ff8a1f; --purple:#8a4dff; --cyan:#18c5e0;
+  --ok:#17a85a; --bad:#e23b4e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:17px;line-height:1.5;
+  background-image:linear-gradient(rgba(47,123,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(47,123,255,.07) 2px,transparent 2px);
+  background-size:28px 28px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 60px}
+h1,h2{font-family:"Russo One",sans-serif;font-weight:400;margin:0}
+.pix{font-family:"Press Start 2P",monospace;font-size:10px;letter-spacing:1px}
+
+/* XP bar */
+.xp{position:sticky;top:0;z-index:5;background:#1d2340;color:#fff;padding:8px 16px;display:flex;align-items:center;gap:10px}
+.xp .bar{flex:1;height:14px;background:#3a4270;border:2px solid #fff;position:relative}
+.xp .fill{height:100%;width:0;background:repeating-linear-gradient(90deg,var(--green) 0 10px,#2fe07f 10px 20px);transition:width .4s}
+
+/* header */
+.hero{margin:18px 0;border:4px solid var(--ink);background:linear-gradient(135deg,#ff4d5e,#ff8a1f 30%,#ffc928 50%,#21c06b 70%,#2f7bff);
+  box-shadow:6px 6px 0 var(--ink);padding:18px;color:#fff;display:flex;gap:14px;align-items:center}
+.hero h1{font-size:28px;text-shadow:3px 3px 0 var(--ink);line-height:1.15}
+.hero p{margin:6px 0 0;font-weight:800;text-shadow:2px 2px 0 rgba(0,0,0,.35)}
+.hero svg{flex:none;width:86px;height:86px}
+.name{margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.name input{font:inherit;border:3px solid var(--ink);padding:4px 8px;width:150px;color:var(--ink)}
+
+/* sections */
+.sec{margin:26px 0;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+.sec-head{padding:14px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sec-head h2{font-size:21px;text-shadow:2px 2px 0 rgba(0,0,0,.35)}
+.sec-head .pix{background:rgba(0,0,0,.3);padding:6px 8px;white-space:nowrap}
+.sec-body{padding:16px}
+.task{background:var(--card);border:3px solid var(--ink);padding:12px 14px;margin-bottom:12px}
+.task .ins{font-weight:800}
+.task .ins small{display:block;font-weight:600;color:var(--muted)}
+
+.grass .sec-head{background:var(--green);border-bottom:10px solid #8b5a2b}
+.grass .sec-body{background:#fff8e6}
+.blue .sec-head{background:var(--blue)}
+.blue .sec-body{background-color:#dfeaff;background-image:linear-gradient(45deg,rgba(47,123,255,.12) 25%,transparent 25%,transparent 75%,rgba(47,123,255,.12) 75%),linear-gradient(45deg,rgba(47,123,255,.12) 25%,transparent 25%,transparent 75%,rgba(47,123,255,.12) 75%);background-size:30px 30px;background-position:0 0,15px 15px}
+.court .sec-head{background:var(--orange)}
+.court .sec-body{background:#ffd9ad;background-image:radial-gradient(circle at 50% 0,transparent 90px,#fff 90px,#fff 94px,transparent 94px),linear-gradient(90deg,transparent calc(50% - 2px),#fff calc(50% - 2px),#fff calc(50% + 2px),transparent calc(50% + 2px))}
+.stage .sec-head{background:var(--purple)}
+.stage .sec-body{background:#2a1a55;background-image:radial-gradient(#ffe36e 1.5px,transparent 1.5px),radial-gradient(#ff8fd1 1px,transparent 1px);background-size:34px 34px,22px 22px;background-position:0 0,11px 7px}
+.stripes .sec-head{background:#e6a800;color:#1d2340}
+.stripes .sec-head h2{text-shadow:none}
+.stripes .sec-body{background:repeating-linear-gradient(-45deg,#fff3c4 0 18px,#ffe58a 18px 36px)}
+.redz .sec-head{background:var(--red)}
+.redz .sec-body{background:#ffe1e4;background-image:radial-gradient(rgba(255,77,94,.25) 3px,transparent 3px);background-size:20px 20px}
+.cyanz .sec-head{background:var(--cyan)}
+.cyanz .sec-body{background:#d8f7fc;background-image:linear-gradient(rgba(24,197,224,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(24,197,224,.2) 1px,transparent 1px);background-size:14px 14px}
+.final .sec-head{background:var(--ink)}
+.final .sec-body{background:linear-gradient(135deg,#fff8e6,#e7f0ff)}
+
+/* reminder */
+.rule{background:#fff;border:3px solid var(--ink);padding:12px 14px;margin-bottom:12px}
+.rule h3{margin:0 0 6px;font-family:"Russo One";font-weight:400;font-size:17px}
+.formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-weight:800;margin:6px 0}
+.blk{padding:4px 10px;border:3px solid var(--ink);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+.b1{background:var(--blue)}.b2{background:var(--red)}.b3{background:var(--green)}.b4{background:var(--orange)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+td,th{border:2px solid var(--ink);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--yellow)}
+.ex{color:var(--muted);font-style:italic}
+
+/* questions */
+ol.q{margin:0;padding-left:22px}
+ol.q li{margin:10px 0}
+input.ans{font:inherit;font-weight:700;border:none;border-bottom:3px solid var(--blue);background:#f2f6ff;padding:2px 6px;min-width:90px;width:auto;color:var(--ink);border-radius:0}
+input.wide{display:block;width:100%;margin-top:4px;border:3px solid var(--ink);border-bottom-width:3px;padding:6px 8px}
+input.ans:focus{outline:3px solid var(--yellow)}
+input.ok{background:#d6f7e3;border-color:var(--ok)}
+input.bad{background:#ffdfe3;border-color:var(--bad)}
+.fb{display:block;font-size:14px;font-weight:700;margin-top:2px}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+.pic{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 4px}
+.pic div{background:#fff;border:3px solid var(--ink);text-align:center;padding:6px 4px;font-size:13px;font-weight:800}
+.pic span{display:block;font-size:30px}
+.ex-cards{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ex-cards span{background:#fff;border:2px dashed var(--purple);padding:2px 8px;font-size:14px}
+
+/* buttons */
+.btn{font-family:"Russo One";font-size:16px;color:#fff;background:var(--green);border:3px solid var(--ink);padding:10px 18px;cursor:pointer;box-shadow:0 5px 0 var(--ink);margin-top:6px;transition:transform .05s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.btn.alt{background:var(--blue)}
+.btn.y{background:var(--yellow);color:var(--ink)}
+.score{display:inline-block;margin-left:10px;font-weight:800;font-size:16px}
+.result{font-size:18px}
+.result .big{font-family:"Russo One";font-size:40px}
+.result ul{padding-left:20px}
+.stars{font-size:34px;letter-spacing:4px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border:3px solid #fff;display:none;z-index:9;font-weight:800}
+@media (max-width:480px){.hero h1{font-size:22px}.hero svg{width:64px;height:64px}.sec-head h2{font-size:18px}.pic{grid-template-columns:repeat(2,1fr)}}
+
+/* memory */
+.mem-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;font-weight:800}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.card{position:relative;height:74px;cursor:pointer;perspective:600px;border:none;background:none;padding:0;font:inherit}
+.card .in{position:absolute;inset:0;transition:transform .35s;transform-style:preserve-3d}
+.card.open .in,.card.done .in{transform:rotateY(180deg)}
+.card .f,.card .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;padding:4px;font-weight:800;font-size:14px;line-height:1.2}
+.card .f{background:var(--blue);color:#fff;font-family:"Press Start 2P";font-size:16px;background-image:radial-gradient(rgba(255,255,255,.25) 2px,transparent 2px);background-size:12px 12px}
+.card .b{background:#fff;transform:rotateY(180deg);color:var(--ink)}
+.card .b.ru{background:#fff3c4}
+.card.done .b{background:#d6f7e3;border-color:var(--ok)}
+.card.miss .b{background:#ffdfe3}
+.card .b span{font-size:22px;display:block}
+/* wordfall */
+.fall{position:relative;height:250px;background:linear-gradient(#bfe3ff,#eaf6ff);border:3px solid var(--ink);overflow:hidden}
+.fall .w{position:absolute;left:50%;transform:translateX(-50%);top:-40px;background:#fff;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:6px 14px;font-family:"Russo One";font-size:24px;white-space:nowrap}
+.fall .ground{position:absolute;left:0;right:0;bottom:0;height:22px;background:#fff;border-top:3px solid var(--ink)}
+.fall .msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;padding:20px}
+.flake{position:absolute;color:#fff;font-size:14px;animation:snow linear infinite;top:-20px;text-shadow:0 0 2px #7ab}
+@keyframes snow{to{transform:translateY(300px)}}
+.fall-top{display:flex;justify-content:space-between;font-weight:800;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.opt{font:inherit;font-weight:800;background:#fff;border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);padding:10px 4px;cursor:pointer;color:var(--ink)}
+.opt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.opt.good{background:#d6f7e3;border-color:var(--ok)}
+.opt.wrong{background:#ffdfe3;border-color:var(--bad)}
+/* choice */
+.ch{display:inline-flex;gap:6px;flex-wrap:wrap;vertical-align:middle}
+.ch button{font:inherit;font-weight:700;font-size:15px;background:#fff;border:2px solid var(--ink);padding:3px 10px;cursor:pointer;color:var(--ink)}
+.ch button.sel{background:var(--yellow)}
+.ch button.ok{background:#d6f7e3;border-color:var(--ok)}
+.ch button.bad{background:#ffdfe3;border-color:var(--bad)}
+.gap{display:inline-block;min-width:70px;border-bottom:3px solid var(--blue);text-align:center;font-weight:800;padding:0 4px}
+.remind{color:#c77700}
+.bigwin{display:none;position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:20;background:#fff;border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:22px 26px;text-align:center;max-width:90vw}
+.bigwin h2{font-size:30px;color:var(--red);text-shadow:2px 2px 0 var(--yellow)}
+#fw{position:fixed;inset:0;pointer-events:none;z-index:19}
+.done-badge{display:none;background:var(--ok);color:#fff;padding:4px 8px;font-size:10px;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="xp"><span class="pix">XP</span><div class="bar"><div class="fill" id="xpfill"></div></div><span class="pix" id="xptext">0 / 0</span></div>
+<canvas id="fw"></canvas>
+<div class="bigwin" id="bigwin"><h2>🎆 Максим, молодец! 🎆</h2><p style="font-weight:800;margin:10px 0">Все уровни пройдены! Не забудь отправить результат учителю 📨</p><button class="btn" onclick="closeWin()">Ура! 🎉</button></div>
+
+<div class="wrap">
+  <header class="hero">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-label="Кот Томас в шапке">
+      <rect x="3" y="0" width="10" height="2" fill="#ff4d5e"/><rect x="7" y="-1" width="2" height="1" fill="#fff"/>
+      <rect x="2" y="2" width="12" height="2" fill="#fff"/>
+      <rect x="2" y="4" width="12" height="9" fill="#ff9a3c"/>
+      <rect x="4" y="6" width="2" height="2" fill="#1d2340"/><rect x="10" y="6" width="2" height="2" fill="#1d2340"/>
+      <rect x="4" y="6" width="1" height="1" fill="#fff"/><rect x="10" y="6" width="1" height="1" fill="#fff"/>
+      <rect x="7" y="9" width="2" height="1" fill="#ff5e8a"/>
+      <rect x="6" y="10" width="1" height="1" fill="#1d2340"/><rect x="9" y="10" width="1" height="1" fill="#1d2340"/><rect x="7" y="11" width="2" height="1" fill="#1d2340"/>
+      <rect x="0" y="9" width="2" height="1" fill="#1d2340"/><rect x="14" y="9" width="2" height="1" fill="#1d2340"/>
+      <rect x="2" y="13" width="12" height="2" fill="#2f7bff"/><rect x="4" y="13" width="2" height="2" fill="#ffc928"/><rect x="8" y="13" width="2" height="2" fill="#ffc928"/><rect x="12" y="13" width="2" height="2" fill="#ffc928"/>
+    </svg>
+    <div>
+      <h1>MAX'S QUEST:<br>Winter Edition ❄️</h1>
+      <p>🧣 🧤 🥾 Past Simple vs Past Continuous + зимняя одежда</p>
+      <div class="name"><span class="pix">PLAYER:</span><input id="player" value="Максим" aria-label="Имя"></div>
+    </div>
+  </header>
+
+  <section class="sec grass">
+    <div class="sec-head"><h2>📜 Памятка</h2><span class="pix">TUTORIAL</span></div>
+    <div class="sec-body">
+      <div class="rule">
+        <h3>Past Simple или Past Continuous? 🤔</h3>
+        <table>
+          <tr><th>Past Simple<br>(факт, случилось)</th><td>I <b>bought</b> new gloves. / I <b>lost</b> my scarf.<br>Маркеры: <b>yesterday, last winter, two days ago, in 2025</b></td></tr>
+          <tr><th>Past Continuous<br>(процесс в момент)</th><td>I <b>was wearing</b> my coat. / It <b>was snowing</b>.<br>was / were + глагол-ing<br>Маркеры: <b>at 5 o'clock yesterday, at that moment, all evening, while</b></td></tr>
+        </table>
+      </div>
+      <div class="rule">
+        <h3>Процесс + его прервали ⚡</h3>
+        Длинное действие (процесс) — <b>Past Continuous</b>, короткое, которое его прервало — <b>Past Simple</b>.<br>
+        <span class="ex">Thomas <b>was sleeping</b> when I <b>came</b> into the room. 🐱<br>Mum <b>was cooking</b> pasta when Dad <b>came</b> home. 🍝</span>
+      </div>
+      <div class="rule">
+        <h3>Winter clothes ❄️</h3>
+        🧥 coat — пальто · 🧥 jacket — куртка · 🧣 scarf — шарф · 🧤 gloves — перчатки · 🧤 mittens — варежки · 🧢 hat — шапка · 🥾 boots — ботинки, сапоги · 👕 jumper — свитер · 🦵 tights — колготки · 🎧 earmuffs — наушники-ушки
+      </div>
+    </div>
+  </section>
+
+  <!-- 1 memory -->
+  <section class="sec blue" id="t1">
+    <div class="sec-head"><h2>🃏 Level 1: Winter Memory</h2><span class="pix" id="t1-pts">0 XP</span></div>
+    <div class="sec-body"><div class="task">
+      <div class="ins">Открывай по 2 карточки и находи пары «слово — перевод» (10 пар).<small>Find the pairs. Таймер включится после первой карточки.</small></div>
+      <div class="mem-top"><span>⏱ <span id="memTime">0:00</span></span><span>Найдено: <span id="memFound">0</span> из 10</span><span>Ходов: <span id="memMoves">0</span></span></div>
+      <div class="mem" id="mem"></div>
+    </div><button class="btn alt" onclick="memStart()">🔄 Заново</button><span class="score" id="t1-score"></span></div>
+  </section>
+
+  <!-- 2 wordfall -->
+  <section class="sec cyanz" id="t2">
+    <div class="sec-head"><h2>❄️ Level 2: Словопад</h2><span class="pix" id="t2-pts">0 XP</span></div>
+    <div class="sec-body"><div class="task">
+      <div class="ins">Слова падают как снег! Нажми правильный перевод, пока слово не упало.<small>Зимняя одежда + слова прошлой темы (Clothes and accessories). С каждым словом всё быстрее!</small></div>
+      <div class="fall-top"><span>Счёт: <span id="wfScore">0</span></span><span>Слово <span id="wfNum">0</span> / <span id="wfTotal">0</span></span></div>
+      <div class="fall" id="fall"><div class="ground"></div><div class="msg" id="wfMsg">Нажми «Старт» 👇</div></div>
+      <div class="opts" id="opts"></div>
+    </div><button class="btn" id="wfBtn" onclick="wfStart()">▶ Старт</button><span class="score" id="t2-score"></span></div>
+  </section>
+
+  <!-- 3 markers -->
+  <section class="sec stripes" id="t3">
+    <div class="sec-head"><h2>🎯 Level 3: слова-маркеры</h2><span class="pix" id="t3-pts">0 XP</span></div>
+    <div class="sec-body"><div class="task">
+      <div class="ins">Какое время подсказывает маркер? Нажми <b>PS</b> (Past Simple) или <b>PC</b> (Past Continuous).<small>Факт → PS, процесс в какой-то момент → PC.</small></div>
+      <ol class="q" id="t3-list"></ol>
+    </div><button class="btn alt" onclick="checkChoice('t3')">Проверить уровень</button><span class="score" id="t3-score"></span></div>
+  </section>
+
+  <!-- 4 PS vs PC -->
+  <section class="sec redz" id="t4">
+    <div class="sec-head"><h2>⚔️ Level 4: PS VS PC</h2><span class="pix" id="t4-pts">0 XP</span></div>
+    <div class="sec-body"><div class="task">
+      <div class="ins">Выбери правильный вариант.<small>Смотри на маркер — он подскажет время!</small></div>
+      <ol class="q" id="t4-list"></ol>
+    </div><button class="btn alt" onclick="checkChoice('t4')">Проверить уровень</button><span class="score" id="t4-score"></span></div>
+  </section>
+
+  <!-- 5 interrupted -->
+  <section class="sec stage" id="tI">
+    <div class="sec-head"><h2>⚡ Level 5: процесс + его прервали</h2><span class="pix" id="tI-pts">0 XP</span></div>
+    <div class="sec-body"><div class="task">
+      <div class="ins">Раскрой скобки: первое действие — процесс (<b>was/were + -ing</b>), второе его прервало (<b>Past Simple</b>).<small>Пример: Thomas was sleeping when I came into the room.</small></div>
+      <ol class="q" id="tI-list"></ol>
+    </div><button class="btn alt" onclick="checkFill('tI')">Проверить уровень</button><span class="score" id="tI-score"></span></div>
+  </section>
+
+  <!-- 6 spelling -->
+  <section class="sec court" id="t5">
+    <div class="sec-head"><h2>✍️ Level 6: напиши слово</h2><span class="pix" id="t5-pts">0 XP</span></div>
+    <div class="sec-body"><div class="task">
+      <div class="ins">Напиши по-английски.<small>Write the winter clothes word.</small></div>
+      <ol class="q" id="t5-list"></ol>
+    </div><button class="btn alt" onclick="checkSpell()">Проверить уровень</button><span class="score" id="t5-score"></span></div>
+  </section>
+
+  <section class="sec final">
+    <div class="sec-head"><h2>🏆 Итог</h2><span class="pix">BOSS LEVEL</span></div>
+    <div class="sec-body">
+      <button class="btn y" onclick="showResult(true)">Узнать результат</button>
+      <div id="result" class="result"></div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const TOPIC='HW Past Simple vs Past Continuous + Winter clothes';
+function norm(s){s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");s=s.replace(/\bwasn'?t\b/g,'was not').replace(/\bweren'?t\b/g,'were not');return s.replace(/[^a-zа-яё0-9\s]/g,' ').replace(/\s+/g,' ').trim();}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function showToast(t){const el=$('toast');el.textContent=t;el.style.display='block';clearTimeout(el._t);el._t=setTimeout(()=>el.style.display='none',2200);}
+
+/* tasks registry */
+const T={
+ t1:{name:'Winter Memory',score:0,max:10,checks:0,done:false,errors:[],extra:''},
+ t2:{name:'Словопад',score:0,max:0,checks:0,done:false,errors:[]},
+ t3:{name:'Слова-маркеры',score:0,max:0,checks:0,done:false,errors:[]},
+ t4:{name:'Past Simple vs Past Continuous',score:0,max:0,checks:0,done:false,errors:[]},
+ tI:{name:'Процесс + его прервали',score:0,max:0,checks:0,done:false,errors:[]},
+ t5:{name:'Напиши слово',score:0,max:0,checks:0,done:false,errors:[]}
+};
+function setScore(id){const t=T[id];$(id+'-score').textContent=`${t.score} / ${t.max}`;$(id+'-pts').textContent=`${t.score*10} XP`;updateXP();}
+function updateXP(){let g=0,m=0;for(const k in T){g+=T[k].score;m+=T[k].max;}$('xpfill').style.width=(m?g/m*100:0)+'%';$('xptext').textContent=`${g*10} / ${m*10}`;}
+function taskDone(id){T[id].done=true;if(Object.values(T).every(t=>t.done)&&!window._celebrated){window._celebrated=true;setTimeout(()=>{celebrate();showResult(false);},600);}}
+
+/* ---------- 1. MEMORY ---------- */
+const MEM=[['coat','🧥','пальто'],['jacket','🧥','куртка'],['scarf','🧣','шарф'],['gloves','🧤','перчатки'],['mittens','🧤','варежки'],['hat','🧢','шапка'],['boots','🥾','ботинки'],['jumper','👕','свитер'],['tights','🦵','колготки'],['earmuffs','🎧','ушки (наушники)']];
+let mem={};
+function memStart(){
+  clearInterval(mem.timer);
+  mem={open:[],found:0,moves:0,start:0,timer:null,lock:false};
+  const cards=shuffle(MEM.flatMap((p,i)=>[{id:i,html:`<span>${p[1]}</span>${p[0]}`,ru:false},{id:i,html:p[2],ru:true}]));
+  $('mem').innerHTML=cards.map((c,k)=>`<button class="card" data-id="${c.id}" onclick="memFlip(this)" aria-label="Карточка"><div class="in"><div class="f">?</div><div class="b${c.ru?' ru':''}">${c.html}</div></div></button>`).join('');
+  $('memTime').textContent='0:00';$('memFound').textContent='0';$('memMoves').textContent='0';
+}
+function fmt(sec){return Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');}
+function memFlip(el){
+  if(mem.lock||el.classList.contains('open')||el.classList.contains('done'))return;
+  if(!mem.start){mem.start=Date.now();mem.timer=setInterval(()=>$('memTime').textContent=fmt(Math.floor((Date.now()-mem.start)/1000)),500);}
+  el.classList.add('open');mem.open.push(el);
+  if(mem.open.length<2)return;
+  mem.moves++;$('memMoves').textContent=mem.moves;
+  const [a,b]=mem.open;mem.open=[];
+  if(a.dataset.id===b.dataset.id){a.classList.add('done');b.classList.add('done');mem.found++;$('memFound').textContent=mem.found;
+    if(mem.found===MEM.length){clearInterval(mem.timer);const sec=Math.floor((Date.now()-mem.start)/1000);
+      T.t1.checks++;T.t1.score=MEM.length;T.t1.extra=`время ${fmt(sec)}, ходов ${mem.moves}`;setScore('t1');showToast(`PERFECT! Время ${fmt(sec)} 🏆`);taskDone('t1');}
+  }else{mem.lock=true;a.classList.add('miss');b.classList.add('miss');setTimeout(()=>{a.classList.remove('open','miss');b.classList.remove('open','miss');mem.lock=false;},850);}
+}
+
+/* ---------- 2. WORDFALL ---------- */
+const WF=[
+ ['coat','пальто'],['scarf','шарф'],['gloves','перчатки'],['mittens','варежки'],['hat','шапка'],['boots','ботинки'],['jumper','свитер'],['jacket','куртка'],['tights','колготки'],['earmuffs','наушники-ушки'],
+ ['belt','ремень'],['earrings','серёжки'],['handbag','сумочка'],['trainers','кроссовки'],['striped','в полоску'],['baggy','мешковатый'],['tight','обтягивающий'],['hoodie','толстовка']
+];
+T.t2.max=WF.length;$('wfTotal').textContent=WF.length;
+let wf={};
+function wfStart(){
+  cancelAnimationFrame(wf.raf);
+  wf={list:shuffle(WF),i:-1,score:0,errors:[],raf:null,busy:false};
+  $('wfBtn').textContent='🔄 Заново';$('wfScore').textContent=0;
+  T.t2.checks++;
+  wfNext();
+}
+function wfNext(){
+  wf.i++;
+  if(wf.i>=wf.list.length){wfEnd();return;}
+  const [en,ru]=wf.list[wf.i];
+  $('wfNum').textContent=wf.i+1;$('wfMsg').textContent='';
+  const others=shuffle(WF.filter(w=>w[1]!==ru)).slice(0,2).map(w=>w[1]);
+  const opts=shuffle([ru,...others]);
+  $('opts').innerHTML=opts.map(o=>`<button class="opt" onclick="wfPick(this,'${o}')">${o}</button>`).join('');
+  const area=$('fall');area.querySelectorAll('.w').forEach(n=>n.remove());
+  const w=document.createElement('div');w.className='w';w.textContent=en;area.appendChild(w);
+  const dur=Math.max(2600,6500-wf.i*260); // speeds up
+  const H=area.clientHeight-22-w.offsetHeight;const t0=performance.now();wf.busy=false;
+  const step=now=>{const p=(now-t0)/dur;w.style.top=(-40+(H+40)*Math.min(p,1))+'px';
+    if(p>=1){wfMiss(null);return;}wf.raf=requestAnimationFrame(step);};
+  wf.raf=requestAnimationFrame(step);
+}
+function wfPick(btn,o){
+  if(wf.busy)return;wf.busy=true;cancelAnimationFrame(wf.raf);
+  const [en,ru]=wf.list[wf.i];
+  if(o===ru){btn.classList.add('good');wf.score++;$('wfScore').textContent=wf.score;setTimeout(wfNext,450);}
+  else{wfMiss(btn,o);}
+}
+function wfMiss(btn,o){
+  wf.busy=true;const [en,ru]=wf.list[wf.i];
+  if(btn)btn.classList.add('wrong');
+  document.querySelectorAll('.opt').forEach(b=>{if(b.textContent===ru)b.classList.add('good');});
+  wf.errors.push({q:en,a:o||'(не успел)',c:ru});
+  $('wfMsg').textContent=o?'':'Упало! ⬇️';
+  setTimeout(wfNext,1100);
+}
+function wfEnd(){
+  $('fall').querySelectorAll('.w').forEach(n=>n.remove());$('opts').innerHTML='';
+  const t=T.t2;t.score=wf.score;t.errors=wf.errors;setScore('t2');
+  $('wfMsg').innerHTML=`Игра окончена! ${wf.score} из ${wf.list.length} ${wf.score===wf.list.length?'🏆':'💪'}<br><small>Можно сыграть ещё раз — засчитается последняя игра.</small>`;
+  taskDone('t2');
+}
+// decorative snow
+(function(){const a=$('fall');for(let i=0;i<14;i++){const f=document.createElement('span');f.className='flake';f.textContent='❄';f.style.left=Math.random()*100+'%';f.style.animationDuration=(4+Math.random()*5)+'s';f.style.animationDelay=(-Math.random()*8)+'s';a.appendChild(f);}})();
+
+/* ---------- 3 & 4. CHOICE ---------- */
+const CH={
+ t3:[
+  ['yesterday','PS'],['at 5 o\'clock yesterday','PC'],['last winter','PS'],['all evening','PC'],['two days ago','PS'],['at that moment','PC'],['in 2025','PS'],['while','PC']
+ ].map(([m,c])=>({q:`<b>${m}</b> → `,opts:['PS','PC'],c,label:m})),
+ t4:[
+  {q:'Last winter Mum {} me new gloves. 🧤',opts:['bought','was buying'],c:'bought'},
+  {q:'At 5 pm yesterday it {}. ❄️',opts:['snowed','was snowing'],c:'was snowing'},
+  {q:'Yesterday I {} my scarf at school. 🧣',opts:['lost','was losing'],c:'lost'},
+  {q:'At that moment Thomas {} on my jumper. 🐱',opts:['slept','was sleeping'],c:'was sleeping'},
+  {q:'Two days ago we {} basketball. 🏀',opts:['played','were playing'],c:'played'},
+  {q:'All evening Diana {} for her mittens.',opts:['looked','was looking'],c:'was looking'}
+ ]
+};
+function renderChoice(id){
+  T[id].max=CH[id].length;
+  $(id+'-list').innerHTML=CH[id].map((it,i)=>{
+    const btns=`<span class="ch" data-t="${id}" data-i="${i}">${it.opts.map(o=>`<button onclick="pick(this)">${o}</button>`).join('')}</span>`;
+    const q=it.q.includes('{}')?it.q.replace('{}',`<span class="gap" id="${id}-g${i}">___</span>`)+'<br>'+btns:it.q+btns;
+    return `<li>${q}<span class="fb" id="${id}-fb${i}"></span></li>`;}).join('');
+}
+function pick(b){const g=b.parentNode;g.querySelectorAll('button').forEach(x=>x.classList.remove('sel','ok','bad'));b.classList.add('sel');
+  const gap=$(`${g.dataset.t}-g${g.dataset.i}`);if(gap)gap.textContent=b.textContent;}
+function checkChoice(id){
+  const t=T[id];let score=0,answered=0;const errs=[];
+  CH[id].forEach((it,i)=>{
+    const g=document.querySelector(`.ch[data-t="${id}"][data-i="${i}"]`);const sel=g.querySelector('.sel');const fb=$(`${id}-fb${i}`);
+    g.querySelectorAll('button').forEach(x=>x.classList.remove('ok','bad'));
+    const plain=(it.label||it.q.replace(/<[^>]+>/g,'').replace('{}','___')).trim();
+    if(!sel){fb.className='fb remind';fb.textContent='✋ Попробуй сам — выбери вариант!';errs.push({q:plain,a:'(пропуск)',c:null});return;}
+    answered++;
+    if(sel.textContent===it.c){score++;sel.classList.add('ok');fb.className='fb ok';fb.textContent='✔ Верно!';}
+    else{sel.classList.add('bad');fb.className='fb bad';fb.textContent='Правильно: '+it.c;errs.push({q:plain,a:sel.textContent,c:it.c});}
+  });
+  if(!answered){CH[id].forEach((_,i)=>{$(`${id}-fb${i}`).textContent='';});$(id+'-score').textContent='Выполни задание и попробуй ещё раз ✋';showToast('Сначала выполни задание 🙂');return;}
+  t.checks++;t.score=score;t.errors=errs;setScore(id);
+  showToast(score===t.max?'PERFECT! +'+score*10+' XP 🏆':score/t.max>=.7?'Good job! +'+score*10+' XP 🎮':'Попробуй ещё раз — ты сможешь! 💪');
+  if(answered===CH[id].length)taskDone(id);
+}
+
+/* ---------- 5. INTERRUPTED ---------- */
+const FILL={tI:[
+ {q:'Thomas {} (sleep) when I {} (come) into the room. 🐱',a:[['was sleeping'],['came']]},
+ {q:'Mum {} (cook) pasta when Dad {} (come) home. 🍝',a:[['was cooking'],['came']]},
+ {q:'I {} (play) Roblox when Diana {} (call) me. 🎮',a:[['was playing'],['called']]},
+ {q:'We {} (play) basketball when it {} (start) to snow. ❄️',a:[['were playing'],['started']]},
+ {q:'I {} (play) the drums when Thomas {} (run) into the room. 🥁',a:[['was playing'],['ran']]},
+ {q:'Diana {} (put on) her tights when Mum {} (open) the door.',a:[['was putting on'],['opened']]}
+]};
+function renderFill(id){
+  T[id].max=FILL[id].reduce((n,it)=>n+it.a.length,0);
+  $(id+'-list').innerHTML=FILL[id].map((it,i)=>{let n=0;
+    return `<li>${it.q.replace(/\{\}/g,()=>`<input class="ans" data-s="${id}" data-i="${i}" data-b="${n++}" autocomplete="off" autocapitalize="off" spellcheck="false" size="12">`)}<span class="fb" id="${id}-fb${i}"></span></li>`;}).join('');
+}
+function checkFill(id){
+  const t=T[id];let score=0,answered=0,total=0;const errs=[];
+  FILL[id].forEach((it,i)=>{
+    const fb=$(`${id}-fb${i}`);const msgs=[];let empty=0;
+    const plain=it.q.replace(/\{\}/g,'___');
+    document.querySelectorAll(`input[data-s="${id}"][data-i="${i}"]`).forEach((inp,b)=>{
+      total++;inp.classList.remove('ok','bad');const v=norm(inp.value);
+      if(!v){empty++;errs.push({q:plain,a:'(пропуск)',c:null});return;}
+      answered++;
+      if(it.a[b].map(norm).includes(v)){score++;inp.classList.add('ok');}
+      else{inp.classList.add('bad');msgs.push(it.a[b][0]);errs.push({q:plain,a:inp.value.trim(),c:it.a[b][0]});}
+    });
+    if(msgs.length){fb.className='fb bad';fb.textContent='Правильно: '+msgs.join(' / ')+(empty?' · ✋ заполни пустую клетку':'');}
+    else if(empty){fb.className='fb remind';fb.textContent='✋ Попробуй сам — заполни пропуск!';}
+    else{fb.className='fb ok';fb.textContent='✔ Верно!';}
+  });
+  if(!answered){FILL[id].forEach((_,i)=>$(`${id}-fb${i}`).textContent='');document.querySelectorAll(`input[data-s="${id}"]`).forEach(x=>x.classList.remove('ok','bad'));$(id+'-score').textContent='Выполни задание и попробуй ещё раз ✋';showToast('Сначала выполни задание 🙂');return;}
+  t.checks++;t.score=score;t.errors=errs;setScore(id);
+  showToast(score===t.max?'PERFECT! +'+score*10+' XP 🏆':score/t.max>=.7?'Good job! +'+score*10+' XP 🎮':'Попробуй ещё раз — ты сможешь! 💪');
+  if(answered===total)taskDone(id);
+}
+
+/* ---------- 6. SPELLING ---------- */
+const SP=[['🧣','шарф',['scarf']],['🧤','перчатки',['gloves']],['🥾','ботинки, сапоги',['boots']],['🧥','пальто',['coat']],['👕','свитер',['jumper','sweater']],['🧢','шапка',['hat','woolly hat','wooly hat']],['🦵','колготки',['tights']],['🎧','наушники-ушки',['earmuffs','ear muffs']],['🧤','варежки',['mittens']]];
+T.t5.max=SP.length;
+$('t5-list').innerHTML=SP.map((s,i)=>`<li>${s[0]} ${s[1]} → <input class="ans" id="sp${i}" autocomplete="off" autocapitalize="off" spellcheck="false" size="12"><span class="fb" id="t5-fb${i}"></span></li>`).join('');
+function checkSpell(){
+  const t=T.t5;let score=0,answered=0;const errs=[];
+  SP.forEach((s,i)=>{const inp=$('sp'+i),fb=$('t5-fb'+i);const v=norm(inp.value);inp.classList.remove('ok','bad');
+    if(!v){fb.className='fb remind';fb.textContent='✋ Попробуй сам — напиши слово!';errs.push({q:s[1],a:'(пропуск)',c:null});return;}
+    answered++;
+    if(s[2].includes(v)){score++;inp.classList.add('ok');fb.className='fb ok';fb.textContent='✔ Верно!';}
+    else{inp.classList.add('bad');fb.className='fb bad';fb.textContent='Правильно: '+s[2][0];errs.push({q:s[1],a:inp.value.trim(),c:s[2][0]});}
+  });
+  if(!answered){SP.forEach((_,i)=>$('t5-fb'+i).textContent='');$('t5-score').textContent='Выполни задание и попробуй ещё раз ✋';showToast('Сначала выполни задание 🙂');return;}
+  t.checks++;t.score=score;t.errors=errs;setScore('t5');
+  showToast(score===t.max?'PERFECT! +'+score*10+' XP 🏆':'Good try! +'+score*10+' XP 🎮');
+  if(answered===SP.length)taskDone('t5');
+}
+
+/* ---------- RESULT ---------- */
+function buildReport(){
+  const name=$('player').value.trim()||'Максим';let s=0,m=0;
+  for(const k in T){s+=T[k].score;m+=T[k].max;}
+  const pct=m?Math.round(s/m*100):0;
+  let r=`${name} — ${TOPIC}\nИтого: ${s}/${m} (${pct}%)\n\n`;
+  for(const k in T){const t=T[k];r+=`${t.name}: ${t.done||t.checks?t.score+'/'+t.max:'не выполнено'} (проверок: ${t.checks}${t.extra?', '+t.extra:''})\n`;}
+  const errs=[];for(const k in T){if(!T[k].checks&&k!=='t1'&&k!=='t2'){errs.push(`${T[k].name}: задание не выполнено`);continue;}T[k].errors.forEach(e=>errs.push(`${T[k].name}: ${e.q} → ${e.a}${e.c?' → правильно: '+e.c:''}`));}
+  if(!T.t1.done)errs.push('Winter Memory: игра не пройдена');
+  if(!T.t2.checks)errs.push('Словопад: игра не пройдена');
+  r+='\n❌ Ошибки и пропуски\n'+(errs.length?errs.join('\n'):'Нет! 🎉');
+  return {r,s,m,pct,name};
+}
+function showResult(scroll){
+  const {r,s,m,pct,name}=buildReport();window._res=r;
+  const all=Object.values(T).every(t=>t.done);
+  const stars=pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':pct>=50?'⭐':'☆';
+  const msg=!all?'Ещё не все уровни пройдены — заверши их, и будет салют! 🎆':pct>=90?'LEGENDARY! 🏆':pct>=70?'Отличная игра! 🎮':'Неплохо! Повтори памятку и пройди уровни ещё раз 💪';
+  $('result').innerHTML=`<p class="stars">${stars}</p><p><span class="big">${pct}%</span><br>${name}, ты набрал <b>${s} из ${m}</b> (${s*10} XP).</p><p><b>${msg}</b></p>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px"><button class="btn" style="background:#229ED9" onclick="sendTg()">✈️ Отправить учителю в Telegram</button><button class="btn y" onclick="copyRes()">📋 Скопировать</button></div>
+  <p style="font-size:14px;color:var(--muted);margin-top:8px">Отправь результат именно учителю 📨</p>`;
+  if(scroll)$('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function sendTg(){showResult(false);window.open('https://t.me/share/url?url='+encodeURIComponent(' ')+'&text='+encodeURIComponent(window._res||''),'_blank');}
+function copyRes(){const t=window._res||'';const done=()=>showToast('Скопировано! Отправь учителю 📨');
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done).catch(fb);}else fb();
+  function fb(){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){showToast('Сделай скриншот результата 📸');}ta.remove();}}
+
+/* ---------- FIREWORKS ---------- */
+function celebrate(){
+  $('bigwin').style.display='block';
+  const c=$('fw'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+  const cols=['#ff4d5e','#ffc928','#21c06b','#2f7bff','#8a4dff','#18c5e0','#ff8a1f','#ffffff'];
+  let parts=[];const end=Date.now()+6000;
+  function burst(){const bx=c.width*(.15+Math.random()*.7),by=c.height*(.1+Math.random()*.4),col=cols[Math.floor(Math.random()*cols.length)];
+    for(let i=0;i<60;i++){const a=Math.PI*2*i/60,sp=2+Math.random()*4;parts.push({x:bx,y:by,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:70+Math.random()*30,col});}}
+  let k=0;
+  (function loop(){
+    x.clearRect(0,0,c.width,c.height);
+    if(Date.now()<end&&k++%18===0)burst();
+    parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.vx*=.985;p.life--;x.fillStyle=p.col;x.globalAlpha=Math.max(p.life/100,0);x.fillRect(p.x,p.y,4,4);});
+    x.globalAlpha=1;parts=parts.filter(p=>p.life>0);
+    if(Date.now()<end||parts.length)requestAnimationFrame(loop);else x.clearRect(0,0,c.width,c.height);
+  })();
+}
+function closeWin(){$('bigwin').style.display='none';$('result').scrollIntoView({behavior:'smooth'});}
+
+memStart();renderChoice('t3');renderChoice('t4');renderFill('tI');updateXP();
+</script>
+</body>
+</html>
