@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HW</title>
+</head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Лера", gender: "f", theme: "pink",
+  title: "Ваши игры: примеры",
+  intro: "Миллионер, Мемори, Escape Room и квест «Аэропорт».",
+  rewards: false,
+  words: [
+    ["borrow", "одолжить (взять)"], ["lend", "дать взаймы"], ["save", "копить"], ["waste", "тратить впустую"],
+    ["afford", "позволить себе"], ["owe", "быть должным"]
+  ],
+  tasks: [
+    {
+      type: "millionaire", title: "Кто хочет стать миллионером? 💰",
+      items: [
+        { q: "What does **give up** mean?", o: ["сдаться", "отдать", "поднять", "вернуть"], a: 0 },
+        { q: "Can you ___ me some money? I'll give it back tomorrow.", o: ["lend", "borrow", "owe", "save"], a: 0 },
+        { q: "I ___ my keys! I can't find them anywhere.", o: ["have lost", "lost yesterday", "am losing", "lose"], a: 0 },
+        { q: "What does **look after** mean?", o: ["заботиться", "искать", "смотреть назад", "выглядеть"], a: 0 },
+        { q: "She has lived here ___ 2019.", o: ["since", "for", "from", "during"], a: 0 },
+        { q: "What does **run out of** mean?", o: ["закончиться (о запасах)", "выбежать", "убежать от", "опоздать"], a: 0 },
+        { q: "If I ___ rich, I would travel the world.", o: ["were", "am", "will be", "would be"], a: 0 },
+        { q: "What does **turn down** mean?", o: ["отказать / убавить", "повернуть вниз", "упасть", "выключить свет"], a: 0 }
+      ]
+    },
+    {
+      type: "memory", title: "Мемори 🃏", count: 6, time: 120,
+      instruction: "Найди все пары за 2 минуты!"
+    },
+    {
+      type: "escape", title: "Escape Room 🔐",
+      story: "Ты в старом английском замке. Чтобы выбраться, открой 4 двери — замки поддаются только правильным предлогам!",
+      rooms: [
+        { q: "I'm interested ___ music.", o: ["in", "on", "at", "about"], a: 0 },
+        { q: "She's afraid ___ spiders.", o: ["of", "from", "about", "with"], a: 0 },
+        { q: "We arrived ___ London at 6 pm.", o: ["in", "to", "at", "on"], a: 0 },
+        { q: "Впиши код-ответ: It depends ___ the weather.", a: ["on"], hint: "depend + ?" }
+      ]
+    },
+    {
+      type: "quest", title: "Квест «Аэропорт Лондона» ✈️", place: "Аэропорт Лондона",
+      intro: "Ты прилетела в Лондон! Пройди регистрацию, паспортный контроль и купи кофе. **От твоих ответов зависит концовка** 😉",
+      scenes: [
+        { place: "Регистрация", scene: "🧳 Стойка регистрации", who: "Agent", say: "Good morning! Can I see your passport, please?",
+          choices: [
+            { t: "Sure, here you are.", ok: true, reply: "Thank you. Any bags to check in?" },
+            { t: "Yes, take.", fb: "Звучит грубо. Вежливо: *Sure, here you are.*" },
+            { t: "I am give you.", fb: "Так нельзя. *Here you are* / *Here it is*." }
+          ] },
+        { place: "Регистрация", scene: "🧳 Стойка регистрации", who: "Agent", say: "Would you like a window or an aisle seat?",
+          choices: [
+            { t: "A window seat, please.", ok: true, reply: "Here's your boarding pass. Have a nice flight!" },
+            { t: "I want window.", fb: "Нужен артикль и «please»: *A window seat, please.*" }
+          ] },
+        { place: "Паспортный контроль", scene: "🛂 Паспортный контроль", who: "Officer", say: "What's the purpose of your visit?",
+          choices: [
+            { t: "I'm visiting friends.", ok: true, reply: "How long are you staying?" },
+            { t: "I am visit friends.", fb: "После am нужен -ing: *I'm visiting friends.*" },
+            { t: "I visiting friends.", fb: "Пропущен глагол am: *I'm visiting…*" }
+          ] },
+        { place: "Паспортный контроль", scene: "🛂 Паспортный контроль", who: "Officer", say: "How long are you staying?",
+          choices: [
+            { t: "For two weeks.", ok: true, reply: "Enjoy your stay in London!" },
+            { t: "Since two weeks.", fb: "*Since* — с какого момента. Для срока: *for two weeks*." },
+            { t: "During two weeks.", fb: "Отвечаем *For two weeks.*" }
+          ] },
+        { place: "Кафе", scene: "☕ Кафе в аэропорту", who: "Barista", say: "Hi there! What can I get you?",
+          choices: [
+            { t: "Could I have a latte, please?", ok: true, reply: "Of course! That's £3.50." },
+            { t: "Give me latte.", fb: "Слишком грубо. Вежливо: *Could I have…, please?*" },
+            { t: "I would like latte, please.", fb: "Почти! Нужен артикль: *I'd like **a** latte.*" }
+          ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🏆", text: "**Идеально!** Ты прошла аэропорт без единой ошибки — тебя приняли за местную 😎" },
+        { max: 2, emoji: "😊", text: "**Отлично!** Пара неловких моментов, но ты уже пьёшь латте в Лондоне ☕" },
+        { emoji: "😅", text: "**Ты справилась**, но в аэропорту на тебя странно посмотрели. Пройди ещё раз!" }
+      ]
+    }
+  ]
+});
+</script>
+</body>
+</html>

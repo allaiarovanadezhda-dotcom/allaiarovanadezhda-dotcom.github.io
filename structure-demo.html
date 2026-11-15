@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HW</title>
+</head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Лера", gender: "f", theme: "pink",
+  teacher: "",  teacherSign: "Your English teacher",
+  title: "2A · Doctor, doctor!",
+  intro: "ДЗ на 20 минут: разминка → работа над ошибками → слова → отработка → говорение → экзамен-шоу → письмо → детектив. Прогресс видно сверху ✨",
+
+  rules: [
+    { title: "Indirect questions", text: "После *Could you tell me… / Do you know…* порядок слов как в утверждении, без do/does/did.",
+      examples: ["Where **is** the clinic? → Could you tell me where the clinic **is**?"], mistake: "Не говори *Could you tell me where is the clinic?*" },
+    { title: "should / shouldn't — совет", text: "**should + глагол** без to.", examples: ["You **should** drink a lot of water.", "You **shouldn't** go to school today."] }
+  ],
+
+  words: [
+    ["a blister", "волдырь, мозоль"], ["a bruise", "синяк"], ["a rash", "сыпь"], ["a sore throat", "боль в горле"],
+    ["a cough", "кашель"], ["sneeze", "чихать"], ["faint", "упасть в обморок"], ["swell up", "опухнуть"],
+    ["sprain your ankle", "подвернуть лодыжку"], ["unconscious", "без сознания"]
+  ],
+  vocab: [
+    ["well-known", "известный"], ["absent-minded", "рассеянный"], ["easy-going", "лёгкий в общении"],
+    ["self-centred", "эгоцентричный"], ["bad-tempered", "вспыльчивый"], ["good-looking", "привлекательный"],
+    ["open-minded", "непредвзятый"], ["two-faced", "двуличный"]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "wordfall", title: "Словопад-разминка", count: 6, speed: 7 },
+
+    { part: "review", type: "mistakes", title: "Твои ошибки прошлых ДЗ", count: 5,
+      instruction: "Здесь задания, в которых ты ошиблась раньше. Ответишь верно — ошибка исчезнет из списка навсегда 💪",
+      items: [
+        { q: "Could you tell me where ___? (the station / is)", a: ["the station is"] },
+        { q: "— I don't like spiders. — Neither ___ I.", o: ["do", "am", "did"], a: 0 }
+      ] },
+
+    { part: "words", type: "vocab", title: "Слова прошлых уроков", count: 8 },
+
+    { part: "practice", type: "bank", title: "Что случилось?", rule: 1,
+      instruction: "Нажми на слово — оно встанет в пропуск. Одно слово лишнее.",
+      extra: ["sneeze"],
+      items: [
+        "I walked all day in new shoes and got a {blister}.",
+        "She fell off her bike and has a big {bruise} on her arm.",
+        "I can't speak — I've got a {sore throat}.",
+        "After the injury his knee started to {swell up}."
+      ] },
+    { part: "practice", type: "rewrite", title: "Вежливо спроси у врача", rule: 0,
+      items: [
+        { q: "What's wrong with me?", hint: "Could you tell me…", a: ["Could you tell me what's wrong with me", "Could you tell me what is wrong with me"] },
+        { q: "How often should I take the pills?", hint: "Do you know…", a: ["Do you know how often I should take the pills"] }
+      ] },
+
+    { part: "speak", type: "speak", title: "Запиши голосовое 🎙", max: 120,
+      tip: "Говори 30–60 секунд. Можно подглядывать во вкладку «Слова».",
+      items: [
+        "Tell me about the last time you were ill or injured. What happened?",
+        "Your friend has a sore throat. Give her 3 pieces of advice with **should / shouldn't**."
+      ] },
+
+    { part: "exam", type: "exam", title: "Экзамен-шоу", show: "Exam Show", time: 20,
+      items: [
+        { q: "I felt really ___ after the flight.", word: "EXHAUST", a: ["exhausted"] },
+        { q: "The doctor gave me a ___.", word: "PRESCRIBE", a: ["prescription"] },
+        { q: "It was ___ of you to leave the door open.", word: "CARE", a: ["careless"] }
+      ] },
+
+    { part: "write", type: "write", title: "Напиши сама",
+      items: [ { q: "Напиши сообщение подруге: ты заболела и не придёшь на вечеринку (3–4 предложения). Используй 2 слова из урока.", min: 25 } ] },
+
+    { part: "final", type: "detective", title: "Детектив: где Пончик?",
+      case: "Лера и пропавший кот",
+      story: "**Лера** приходит домой — а кота Пончика нигде нет 🐱! Отвечай правильно, чтобы найти улики.",
+      steps: [
+        { q: "Лера спрашивает соседа: «Could you tell me ___?»", o: ["if you saw my cat", "did you see my cat"], a: 0, clue: "Сосед видел кота у окна кухни в 5 вечера." },
+        { q: "Мама: «I didn't open the window.» Папа: «Neither ___ I.»", o: ["did", "do", "was"], a: 0, clue: "Окно никто не открывал — значит, Пончик дома!" },
+        { q: "В шкафу что-то ___ (чихать) — «Apchkhi!»", o: ["sneezed", "fainted", "coughed"], a: 0, clue: "Из шкафа с одеждой слышно чихание… там пыльно!" }
+      ],
+      suspects: [
+        { name: "Под кроватью", emoji: "🛏️" }, { name: "В шкафу", emoji: "🚪" },
+        { name: "На улице", emoji: "🌳" }, { name: "У соседа", emoji: "🏠" }
+      ],
+      culprit: 1,
+      solution: "Пончик спал в шкафу на Лериных свитерах и чихал от пыли 😹" }
+  ]
+});
+</script>
+</body>
+</html>
