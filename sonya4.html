@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="https://allaiarovanadezhda-dotcom.github.io/hw-engine-v1.js"></script>
+<script>
+/* ===== Сцены квестов (prop — картинка над прилавком; движок это поле не использует) ===== */
+var Q_AIRPORT = [
+  { place: "Самолёт", scene: "✈️ Самолёт приземлился", who: "Flight attendant", say: "Welcome to Phuket! Did you enjoy the flight?",
+    choices: [ { t: "Yes, it was great, thank you!", ok: true, reply: "Wonderful! Have a nice holiday!" },
+               { t: "Yes, it is great tomorrow.", fb: "Полёт уже был → Past Simple: it was. 🇷🇺 Вопрос: «Добро пожаловать на Пхукет! Тебе понравился полёт?» А твой ответ: «Да, он отличный завтра» 🙃" } ] },
+  { place: "Паспортный контроль", scene: "🛂 Паспортный контроль", who: "Officer", say: "Good afternoon. Passport, please.",
+    choices: [ { t: "Here you are.", ok: true, reply: "Thank you." },
+               { t: "Here you is.", fb: "Устойчивая фраза: Here you are. 🇷🇺 «Добрый день. Паспорт, пожалуйста». Here you are = «Вот, пожалуйста»." } ] },
+  { place: "Паспортный контроль", scene: "🛂 Паспортный контроль", who: "Officer", say: "What's the purpose of your visit?",
+    choices: [ { t: "I'm here on holiday.", ok: true, reply: "Great. Enjoy Thailand!" },
+               { t: "I am go on holiday.", fb: "Нельзя am + go. 🇷🇺 «Какова цель вашей поездки?» Ответ: «Я здесь на каникулах» — I'm here on holiday." } ] },
+  { place: "Паспортный контроль", scene: "🛂 Паспортный контроль", who: "Officer", say: "How long are you staying in Thailand?",
+    choices: [ { t: "For ten days.", ok: true, reply: "OK." },
+               { t: "Since ten days.", fb: "Сколько времени → for. 🇷🇺 «Как долго вы пробудете в Таиланде?» — «Десять дней» = For ten days." } ] },
+  { place: "Паспортный контроль", scene: "🛂 Паспортный контроль", who: "Officer", say: "Who are you travelling with?",
+    choices: [ { t: "With my family.", ok: true, reply: "Have a good time! Next, please." },
+               { t: "Who I travel with my family.", fb: "Отвечаем коротко, без Who. 🇷🇺 «С кем ты путешествуешь?» — «С семьёй» = With my family." } ] },
+  { place: "Выдача багажа", scene: "🧳 Где чемоданы?", who: "Mum", say: "Sonya, where do we get our suitcases?",
+    choices: [ { t: "At baggage claim. Look, belt number 3!", ok: true, reply: "Good girl! Let's go." },
+               { t: "At the gate.", fb: "🇷🇺 Мама: «Соня, где мы забираем чемоданы?» Gate — это выход на посадку (перед вылетом). Чемоданы — в baggage claim (выдача багажа)." } ] },
+  { place: "Выдача багажа", scene: "😟 Твоего чемодана нет на ленте!", who: "Staff", say: "Hello! Can I help you?",
+    choices: [ { t: "Yes, please. I can't find my suitcase.", ok: true, reply: "Don't worry. What does it look like?" },
+               { t: "Yes, I don't find my suitcase yesterday.", fb: "Проблема сейчас: I can't find… 🇷🇺 «Здравствуйте! Могу я вам помочь?» — «Да, пожалуйста. Я не могу найти свой чемодан»." } ] },
+  { place: "Выдача багажа", scene: "🧳 Опиши чемодан", who: "Staff", say: "What does your suitcase look like?",
+    choices: [ { t: "It's a big purple suitcase with stripes.", ok: true, reply: "A striped purple one… Here it is!" },
+               { t: "It is suitcase purple big.", fb: "Прилагательные стоят ПЕРЕД словом. 🇷🇺 «Как выглядит твой чемодан?» — «Это большой фиолетовый чемодан в полоску»." } ] },
+  { place: "Выдача багажа", scene: "💜 Нашёлся!", who: "Staff", say: "Is this your suitcase?",
+    choices: [ { t: "Yes, it is! Thank you so much!", ok: true, reply: "You're welcome!" },
+               { t: "Yes, it does!", fb: "Спросили Is…? → Yes, it is. 🇷🇺 «Это твой чемодан?» — «Да! Большое спасибо!»" } ] },
+  { place: "Таможня", scene: "🛃 Таможня", who: "Customs officer", say: "Do you have anything to declare?",
+    choices: [ { t: "No, I don't.", ok: true, reply: "OK, you can go." },
+               { t: "No, I doesn't.", fb: "С I всегда don't. 🇷🇺 «Вам есть что задекларировать?» (то есть: везёте что-то запрещённое или дорогое?) — «Нет»." } ] },
+  { place: "Зал прилёта", scene: "🚕 Зал прилёта (arrivals)", who: "Taxi driver", say: "Taxi? Where are you going?",
+    choices: [ { t: "To Patong Beach, please. How much is it?", ok: true, reply: "It's 800 baht." },
+               { t: "I go Patong yesterday.", fb: "🇷🇺 «Такси? Куда едете?» — «На пляж Патонг, пожалуйста. Сколько это стоит?» Yesterday = вчера, тут не подходит." } ] },
+  { place: "Такси", scene: "🚕 В такси", who: "Taxi driver", say: "Is this your first time in Thailand?",
+    choices: [ { t: "Yes, it is! I've never been here before.", ok: true, reply: "You'll love it! Welcome!" },
+               { t: "Yes, I never was been here.", fb: "Никогда раньше → Present Perfect. 🇷🇺 «Ты в Таиланде первый раз?» — «Да! Я никогда здесь раньше не была»." } ] }
+];
+
+var Q_711 = [
+  { prop: "🛒", place: "Касса", scene: "🏪 Ты подходишь к кассе", who: "Cashier", say: "Sawasdee ka! Hello! Is that everything?",
+    choices: [ { t: "Yes, that's all, thank you.", ok: true, reply: "OK!" },
+               { t: "Yes, I am everything.", fb: "🇷🇺 Кассир: «Здравствуйте! Это всё?» (всё, что ты покупаешь?) А «I am everything» = «я — это всё» 😄 Правильно: «Да, это всё, спасибо»." } ] },
+  { prop: "🥪", place: "Касса", scene: "🥪 Тостик", who: "Cashier", say: "Would you like me to heat up the toastie?",
+    choices: [ { t: "Yes, please. Can you heat it up?", ok: true, reply: "Sure! One minute." },
+               { t: "Yes, I heat.", fb: "🇷🇺 «Подогреть вам тостик?» Греет кассир, поэтому просим: «Да, пожалуйста. Можете подогреть?» A «Yes, I heat» = «Да, я грею»." } ] },
+  { prop: "🥤", place: "Касса", scene: "🥤 Чай", who: "Cashier", say: "Do you want a straw for your tea?",
+    choices: [ { t: "Yes, a straw, please.", ok: true, reply: "Here you are." },
+               { t: "Yes, I am a straw.", fb: "🇷🇺 «Вам трубочку для чая?» (straw = трубочка). А твой ответ: «Да, я трубочка» 😄 Скажи: «Да, трубочку, пожалуйста»." } ] },
+  { prop: "🛍️", place: "Касса", scene: "🛍️ Пакет", who: "Cashier", say: "Do you need a bag? It's 1 baht.",
+    choices: [ { t: "No, thank you. I have my own bag.", ok: true, reply: "Great!" },
+               { t: "No, I doesn't need.", fb: "С I → don't. 🇷🇺 «Вам нужен пакет? Он стоит 1 бат». Ответ: «Нет, спасибо. У меня своя сумка»." } ] },
+  { prop: "💳", place: "Касса", scene: "💳 Карта магазина", who: "Cashier", say: "Do you have a member card?",
+    choices: [ { t: "No, I don't.", ok: true, reply: "No problem." },
+               { t: "No, I haven't member.", fb: "Спросили Do you…? → No, I don't. 🇷🇺 «У вас есть карта покупателя (карта магазина)?» — «Нет»." } ] },
+  { prop: "🧮", place: "Касса", scene: "🧮 Сколько?", who: "Cashier", say: "That's eighty-five baht, please.",
+    choices: [ { t: "Eighty-five? OK.", ok: true, reply: "Cash or card?" },
+               { t: "Fifty-eight? OK.", fb: "🇷🇺 «С вас восемьдесят пять бат». eighty-five = 85, fifty-eight = 58. Посчитай: 45 + 25 + 15 = 85." } ] },
+  { prop: "💵", place: "Касса", scene: "💵 Чем платишь?", who: "Cashier", say: "Cash or card?",
+    choices: [ { t: "Cash, please.", ok: true, reply: "OK." },
+               { t: "I pay with cash yesterday.", fb: "🇷🇺 «Наличными или картой?» Отвечаем коротко: «Наличными, пожалуйста» = Cash, please. Yesterday = вчера, не подходит." } ] },
+  { prop: "💵", place: "Касса", scene: "💵 У тебя купюра 100 бат", who: "Cashier", say: "Eighty-five baht, please.",
+    choices: [ { t: "Here you are. Here's one hundred baht.", ok: true, reply: "Thank you!" },
+               { t: "Here's fifty baht.", fb: "🇷🇺 «Восемьдесят пять бат, пожалуйста». 50 меньше, чем 85, не хватит! Дай сто бат: «Вот, пожалуйста. Вот сто бат»." } ] },
+  { prop: "🪙", place: "Касса", scene: "🪙 Кассир даёт тебе 50 бат сдачи… а должно быть 15!", who: "Cashier", say: "Here's your change.",
+    choices: [ { t: "Excuse me, you gave me too much change. It's fifteen baht.", ok: true, reply: "Oh, thank you! You're very honest!" },
+               { t: "Wow, thanks, bye!", fb: "🇷🇺 «Вот ваша сдача» (change = сдача). 100 − 85 = 15. Будь честной: «Извините, вы дали мне слишком много сдачи. Должно быть пятнадцать бат» 💜" } ] },
+  { prop: "🧾", place: "Касса", scene: "🧾 Чек", who: "Cashier", say: "Would you like the receipt?",
+    choices: [ { t: "No, thanks.", ok: true, reply: "OK!" },
+               { t: "No, I not like.", fb: "🇷🇺 «Вам нужен чек?» (receipt = чек). Коротко: «Нет, спасибо» = No, thanks." } ] },
+  { prop: "🍦", place: "Касса", scene: "🍦 Предложение", who: "Cashier", say: "Would you like anything else? Ice cream is on sale today!",
+    choices: [ { t: "Oh, yes! A mango ice cream, please.", ok: true, reply: "Good choice! Ten baht more." },
+               { t: "I like ice cream.", fb: "🇷🇺 «Хотите что-нибудь ещё? Сегодня мороженое по скидке!» I like = «я вообще люблю». Когда покупаешь: «Да! Манговое мороженое, пожалуйста»." } ] },
+  { prop: "🌏", place: "Касса", scene: "🌏 Разговор", who: "Cashier", say: "Where are you from?",
+    choices: [ { t: "I'm from Russia.", ok: true, reply: "Oh, nice! Are you enjoying Phuket?" },
+               { t: "I from Russia.", fb: "Не забывай am. 🇷🇺 «Откуда ты?» — «Я из России» = I'm from Russia." } ] },
+  { prop: "🌴", place: "Касса", scene: "🌴 Разговор", who: "Cashier", say: "Are you enjoying Phuket?",
+    choices: [ { t: "Yes, I love it! I've already been to the beach.", ok: true, reply: "Wonderful!" },
+               { t: "Yes, I am love it!", fb: "Нельзя am + love. 🇷🇺 «Тебе нравится на Пхукете?» — «Да, обожаю! Я уже была на пляже»." } ] },
+  { prop: "👋", place: "Касса", scene: "👋 Пока!", who: "Cashier", say: "Here's your toastie. It's hot! Have a nice day!",
+    choices: [ { t: "Thank you, you too!", ok: true, reply: "Khop khun ka! Bye!" },
+               { t: "Thank you, me too!", fb: "🇷🇺 «Вот ваш тостик. Он горячий! Хорошего дня!» В ответ: «Спасибо, и вам!» = You too! (Me too = «я тоже»)" } ] }
+];
+
+var Q_REST = [
+  { prop: "👋", place: "Вход", scene: "🌅 Ресторан у моря", who: "Waiter", say: "Good evening! How many people?",
+    choices: [ { t: "Two, please. Me and my mum.", ok: true, reply: "Inside or outside?" },
+               { t: "We are two peoples.", fb: "🇷🇺 «Добрый вечер! Сколько человек?» Коротко: «Двое, пожалуйста. Я и мама». (people без -s)" } ] },
+  { prop: "🌊", place: "Вход", scene: "🌊 Где сесть?", who: "Waiter", say: "Inside or outside?",
+    choices: [ { t: "Outside, please. We want to see the sea.", ok: true, reply: "Here's your table and the menu." },
+               { t: "I want sit outside.", fb: "want + to. 🇷🇺 «Внутри или на улице?» — «На улице, пожалуйста. Мы хотим видеть море»." } ] },
+  { prop: "🥤", place: "Столик", scene: "📋 Меню", who: "Waiter", say: "What would you like to drink?",
+    choices: [ { t: "A mango smoothie, please.", ok: true, reply: "And for your mum?" },
+               { t: "I like mango smoothie.", fb: "🇷🇺 «Что будете пить?» I like = «я вообще люблю». Заказываем: «Манговый смузи, пожалуйста»." } ] },
+  { prop: "📝", place: "Столик", scene: "🍽️ Заказ", who: "Waiter", say: "Are you ready to order?",
+    choices: [ { t: "Yes, I'd like pad thai with chicken, please.", ok: true, reply: "Good choice!" },
+               { t: "Yes, I am ready order pad thai.", fb: "🇷🇺 «Готовы сделать заказ?» Заказываем: «Да, я бы хотела пад тай с курицей, пожалуйста» = I'd like…" } ] },
+  { prop: "🌶️", place: "Столик", scene: "🌶️ Острота", who: "Waiter", say: "How spicy? Not spicy, a little spicy or very spicy?",
+    choices: [ { t: "Not spicy, please. I don't like spicy food.", ok: true, reply: "OK, no chilli for you!" },
+               { t: "Very spicy, please! 🌶️🌶️🌶️", fb: "🇷🇺 «Насколько остро? Не остро, чуть-чуть остро или очень остро?» Тайское very spicy — это ОЧЕНЬ остро 🔥 Выбери «Не остро, пожалуйста»." } ] },
+  { prop: "🍤", place: "Столик", scene: "🍤 Ой!", who: "Waiter", say: "Sorry, we don't have chicken today. Would you like shrimp or pork?",
+    choices: [ { t: "Shrimp, please.", ok: true, reply: "Pad thai with shrimp, not spicy. OK!" },
+               { t: "I like shrimps yesterday.", fb: "🇷🇺 «Извините, сегодня нет курицы. Хотите креветки или свинину?» Выбираем коротко: «Креветки, пожалуйста»." } ] },
+  { prop: "🍚", place: "Столик", scene: "🍚 Гарнир", who: "Waiter", say: "Would you like some rice with that?",
+    choices: [ { t: "No, thank you. Noodles are enough.", ok: true, reply: "Sure!" },
+               { t: "No, I doesn't.", fb: "🇷🇺 «Хотите к этому рис?» Вежливо: «Нет, спасибо. Лапши достаточно». (с I — don't, не doesn't)" } ] },
+  { prop: "😋", place: "Столик", scene: "😋 Принесли еду", who: "Waiter", say: "Is everything OK with your food?",
+    choices: [ { t: "Yes, it's delicious, thank you!", ok: true, reply: "I'm happy you like it!" },
+               { t: "Yes, it was delicious tomorrow.", fb: "🇷🇺 «С едой всё хорошо?» — «Да, очень вкусно, спасибо!» Ты ешь сейчас → it's. Tomorrow = завтра, не подходит." } ] },
+  { prop: "👨‍🍳", place: "Столик", scene: "👩 Мама шепчет тебе", who: "Mum", say: "Sonya, ask him who cooks the food here!",
+    choices: [ { t: "Excuse me, who cooks the food here?", ok: true, reply: "Waiter: My dad does! He's the chef." },
+               { t: "Excuse me, who does cook the food here?", fb: "Who = кто делает → без does. 🇷🇺 Мама: «Соня, спроси его, кто здесь готовит еду!» — «Извините, кто здесь готовит?»" } ] },
+  { prop: "🥭", place: "Столик", scene: "🥭 Десерт", who: "Waiter", say: "Would you like a dessert? Mango sticky rice is very popular.",
+    choices: [ { t: "Yes, please! I've never tried it.", ok: true, reply: "You'll love it! It's sweet and creamy." },
+               { t: "Yes, I never try it yesterday.", fb: "Никогда → Present Perfect. 🇷🇺 «Хотите десерт? Манго с клейким рисом очень популярно». — «Да, пожалуйста! Я никогда его не пробовала»." } ] },
+  { prop: "🧾", place: "Столик", scene: "🧾 Вы поели. Позови официанта", who: "Waiter", say: "(the waiter is coming…)",
+    choices: [ { t: "Excuse me, can we have the bill, please?", ok: true, reply: "Of course!" },
+               { t: "Give me money, please!", fb: "🇷🇺 Ты сказала «Дайте мне денег» 😄 Счёт — the bill: «Извините, можно нам счёт, пожалуйста?»" } ] },
+  { prop: "💳", place: "Столик", scene: "💳 Оплата", who: "Waiter", say: "Would you like to pay by card or in cash?",
+    choices: [ { t: "By card, please.", ok: true, reply: "Here's the card machine." },
+               { t: "In card, please.", fb: "🇷🇺 «Будете платить картой или наличными?» Картой — by card, наличными — in cash." } ] },
+  { prop: "💜", place: "Выход", scene: "👋 Пока!", who: "Waiter", say: "Thank you! Come again!",
+    choices: [ { t: "Thank you! It was very tasty. We'll come again tomorrow!", ok: true, reply: "See you tomorrow! 💜" },
+               { t: "Thank you! It is very tasty yesterday.", fb: "🇷🇺 «Спасибо! Приходите ещё!» — «Спасибо! Было очень вкусно. Мы придём завтра!» Ужин закончился → it was." } ] }
+];
+
+var CAFE = [
+  { say: "Sawasdee ka! Welcome to Coco Café! 🥥 What can I get you?" },
+  { me: [ { t: "Can I have a Thai iced tea, please?", ok: true, reply: "Sure! Small or large?" },
+          { t: "I like Thai tea.", fb: "💡 🇷🇺 Бариста: «Добро пожаловать в Коко Кафе! Что вам приготовить?» I like = «я вообще люблю». Заказываем: «Можно тайский чай со льдом, пожалуйста?»" } ] },
+  { me: [ { t: "Small, please.", ok: true, reply: "With ice or without ice?" },
+          { t: "I am small.", fb: "💡 🇷🇺 «Маленький или большой?» А ты ответила «Я маленькая» 😄 Скажи: «Маленький, пожалуйста»." } ] },
+  { me: [ { t: "With ice, please. And not too sweet.", ok: true, reply: "No problem! Anything to eat?" },
+          { t: "With ice, please. Not too sweetly.", fb: "💡 🇷🇺 «Со льдом или без льда?» — «Со льдом, пожалуйста. И не слишком сладкий». Про вкус — sweet, не sweetly." } ] },
+  { me: [ { t: "Yes, I'd like a banana pancake, please.", ok: true, reply: "Great choice! For here or to go?" },
+          { t: "Yes, I would like eat banana pancake.", fb: "💡 🇷🇺 «Без проблем! Что-нибудь поесть?» — «Да, я бы хотела банановый блинчик» = I'd like a banana pancake." } ] },
+  { me: [ { t: "For here, please.", ok: true, reply: "OK! That's 120 baht." },
+          { t: "For go, please.", fb: "💡 🇷🇺 «Здесь или с собой?» С собой — to go, здесь — for here." } ] },
+  { me: [ { t: "Can I pay by card?", ok: true, reply: "Sorry, cash only. 🙏" },
+          { t: "I can pay card?", fb: "💡 🇷🇺 «С вас 120 бат». Хочешь спросить «Можно оплатить картой?» — в вопросе can идёт первым: Can I pay by card?" } ] },
+  { me: [ { t: "No problem. Here's 200 baht.", ok: true, reply: "Thank you! Here's your change: 80 baht." },
+          { t: "No problem. Here's 100 baht.", fb: "💡 🇷🇺 «Извините, только наличные». 100 меньше, чем 120, не хватит! Дай 200 бат." } ] },
+  { me: [ { t: "Thank you! Who makes these pancakes? They smell amazing!", ok: true, reply: "My grandma does! She used to have a little street food stall. 👵" },
+          { t: "Thank you! Who does make these pancakes?", fb: "💡 🇷🇺 Ты хочешь спросить: «Кто делает эти блинчики? Они так классно пахнут!» Who = кто делает → без does: Who makes…?" } ] },
+  { me: [ { t: "Wow! Did she use to cook on the street?", ok: true, reply: "Yes, she did! For 30 years! Enjoy your pancake! 🥞" },
+          { t: "Wow! Did she used to cooked on the street?", fb: "💡 🇷🇺 «Моя бабушка! У неё раньше был маленький ларёк с уличной едой». Спроси: «Она раньше готовила на улице?» После did → use to + глагол без окончаний." } ] },
+  { me: [ { t: "Thank you! Have a nice day!", ok: true, reply: "You too! Come again! 💜" },
+          { t: "Thank you! Me too!", fb: "💡 🇷🇺 «Да! 30 лет! Приятного аппетита!» Me too = «я тоже» — не подходит. Скажи: «Спасибо! Хорошего дня!»" } ] }
+];
+var CAFE_PROPS = [
+  ["What can I get you?", "📋"], ["Small or large?", "🥤"], ["With ice or without ice?", "🧊"],
+  ["Anything to eat?", "🥞"], ["For here or to go?", "🪑"], ["That's 120 baht.", "💵"],
+  ["Sorry, cash only.", "🙏"], ["Here's your change: 80 baht.", "🪙"], ["street food stall.", "👵"],
+  ["Enjoy your pancake!", "🥞"], ["Come again!", "💜"]
+];
+
+HW({
+  student: "Соня", nameEn: "Sonya", gender: "f",
+  theme: "lilac",
+  teacher: "",
+  title: "HW #4 Phuket: airport, 7-Eleven, café & Thai food",
+  intro: "Соня, скоро **Пхукет**! ✈️🌴 Сегодня ты *прилетишь* в аэропорт, сходишь в **7-Eleven**, закажешь напиток в кафе, поужинаешь в тайском ресторане и узнаешь, какая тайская еда острая, а какая сладкая. Забыла слово — загляни во вкладку «Слова» 💜",
+  celebrate: { text: "Sawasdee ka, Sonya! Ты готова к Таиланду! 🇹🇭", emoji: "🥭", rain: ["🥭","🌴","🍜","✈️","🐘","🥥","💜"], btn: "Khop khun ka! 🙏", fx: "both" },
+
+  rules: [
+    { title: "В магазине и кафе: коротко и вежливо",
+      text: "Отвечаем коротко и добавляем please / thank you. Когда заказываешь, говори не «I like…» (это «мне вообще нравится»), а «I'd like…» или просто «…, please».",
+      examples: ["Cash, please.", "No, thank you. I have a bag.", "A mango smoothie, please.", "I'd like pad thai, please.", "Can I have the bill, please?"],
+      mistake: "I like pasta. ❌ (= я вообще люблю пасту) → Pasta, please. ✅" },
+    { title: "Короткие ответы: Do you…? — No, I don't.",
+      text: "Как спросили, так и отвечаем: Do → do / don't, Does → does / doesn't, Are → am / 'm not. С I всегда don't, а не doesn't.",
+      examples: ["Do you have a member card? — No, I don't.", "Does Timofey like spicy food? — No, he doesn't.", "Are you from Russia? — Yes, I am."],
+      mistake: "No, I doesn't. ❌ → No, I don't. ✅" },
+    { title: "used to = раньше (а теперь нет)",
+      text: "used to + глагол: что было раньше, а теперь уже нет. В отрицании и вопросе с did пишем use to (без -d).",
+      examples: ["I used to be afraid of planes. (раньше боялась)", "Timofey didn't use to like fish. (раньше не любил)", "Did you use to have a pet?", "This shop used to be a café."],
+      mistake: "didn't used to ❌ · used to de ❌ · Did use to have ❌ → Did you use to have ✅" },
+    { title: "Вопросы с Who",
+      text: "1) КТО делает? → Who + глагол, без do/does: Who cooks dinner? 2) С КЕМ? → Who do/does … with? Предлог with — в самом конце!",
+      examples: ["Who cooks dinner in your family? (кто готовит)", "Who do you go to the gym with? (с кем)", "Who are you flying to Phuket with?", "Who is the girl who works in the café?"],
+      mistake: "Who are you flying with to Phuket? ❌ · With who…? ❌ · the girl which… ❌ (про людей — who)" },
+    { title: "Какое время? Слова-подсказки",
+      text: "every day / usually / always → Present Simple (I eat). now / right now / Look! → Present Continuous (I am eating). yesterday / ago / last week → Past Simple (I ate). never / ever / just / already → Present Perfect (I have eaten). tomorrow / next week → Future Simple (I will eat).",
+      examples: ["I swim every day.", "Look! I'm swimming!", "I swam yesterday.", "I have never swum in the ocean.", "I will swim tomorrow."],
+      mistake: "every days ❌ → every day ✅ · They feeled ❌ → They felt ✅ · Did you had ❌ → Did you have ✅" },
+    { title: "Вкусы тайской еды",
+      text: "spicy / hot — острый, salty — солёный, sweet — сладкий, sour — кислый. Чтобы было не остро: Not spicy, please. Чуть-чуть: A little spicy, please.",
+      examples: ["Not spicy, please.", "A little spicy, please.", "No chilli, please.", "Mango sticky rice is sweet.", "Tom yum is spicy and sour."],
+      mistake: "It's very sweetly. ❌ → It's very sweet. ✅" }
+  ],
+
+  words: [
+    ["heat up", "подогреть", "/hiːt ʌp/", "Can you heat it up? — heated up"],
+    ["bag", "пакет, сумка", "/bæɡ/", "Do you need a bag?"],
+    ["cash", "наличные", "/kæʃ/", "Cash or card?"],
+    ["card", "карта", "/kɑːd/", "by card — картой"],
+    ["change", "сдача", "/tʃeɪndʒ/", "Here's your change."],
+    ["receipt", "чек", "/rɪˈsiːt/", "p не читается!"],
+    ["straw", "трубочка", "/strɔː/", ""],
+    ["member card", "карта покупателя", "/ˈmembə kɑːd/", ""],
+    ["toastie", "горячий бутерброд", "/ˈtəʊsti/", "в 7-Eleven их греют"],
+    ["for here", "здесь (поем тут)", "/fə hɪə/", ""],
+    ["to go", "с собой", "/tə ɡəʊ/", ""],
+    ["menu", "меню", "/ˈmenjuː/", ""],
+    ["order", "заказывать", "/ˈɔːdə/", "ordered"],
+    ["the bill", "счёт", "/bɪl/", "Can we have the bill, please?"],
+    ["pay", "платить", "/peɪ/", "paid"],
+    ["waiter", "официант", "/ˈweɪtə/", ""],
+    ["delicious", "очень вкусный", "/dɪˈlɪʃəs/", ""],
+    ["spicy", "острый", "/ˈspaɪsi/", "Not spicy, please."],
+    ["salty", "солёный", "/ˈsɔːlti/", ""],
+    ["sweet", "сладкий", "/swiːt/", ""],
+    ["sour", "кислый", "/ˈsaʊə/", ""],
+    ["chilli", "перец чили", "/ˈtʃɪli/", ""],
+    ["mango sticky rice", "манго с клейким рисом", "/ˈmæŋɡəʊ ˈstɪki raɪs/", "тайский десерт"],
+    ["pad thai", "пад тай (жареная лапша)", "/pæd ˈtaɪ/", ""],
+    ["tom yum", "том ям (острый кислый суп)", "/tɒm ˈjʌm/", ""],
+    ["fried rice", "жареный рис", "/fraɪd raɪs/", ""],
+    ["noodles", "лапша", "/ˈnuːdlz/", ""],
+    ["shrimp", "креветка", "/ʃrɪmp/", ""],
+    ["coconut", "кокос", "/ˈkəʊkənʌt/", ""],
+    ["street food", "уличная еда", "/striːt fuːd/", ""],
+    ["try", "пробовать", "/traɪ/", "tried"],
+    ["passport control", "паспортный контроль", "/ˈpɑːspɔːt kənˈtrəʊl/", ""],
+    ["purpose of your visit", "цель поездки", "/ˈpɜːpəs/", ""],
+    ["baggage claim", "выдача багажа", "/ˈbæɡɪdʒ kleɪm/", ""],
+    ["suitcase", "чемодан", "/ˈsuːtkeɪs/", ""],
+    ["customs", "таможня", "/ˈkʌstəmz/", ""],
+    ["declare", "декларировать", "/dɪˈkleə/", "Anything to declare?"],
+    ["departure", "вылет", "/dɪˈpɑːtʃə/", ""],
+    ["arrivals", "прилёт", "/əˈraɪvlz/", ""],
+    ["gate", "выход на посадку", "/ɡeɪt/", ""],
+    ["take off", "взлетать", "/teɪk ɒf/", "took off"],
+    ["delayed", "задерживается", "/dɪˈleɪd/", ""],
+    ["cancelled", "отменён", "/ˈkænsld/", ""]
+  ],
+
+  tasks: [
+    // 1. РАЗМИНКА
+    { part: "warmup", type: "wordfall", title: "Словопад: магазин и еда 🥭", count: 12, speed: 8, dir: "en-ru",
+      words: [["heat up","подогреть"],["change","сдача"],["receipt","чек"],["cash","наличные"],["bag","пакет"],["straw","трубочка"],["the bill","счёт"],["to go","с собой"],["spicy","острый"],["salty","солёный"],["sweet","сладкий"],["sour","кислый"],["noodles","лапша"],["shrimp","креветка"],["coconut","кокос"],["delicious","очень вкусный"]] },
+
+    // 2. РАБОТА НАД ОШИБКАМИ
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками", tip: "Открой «Подсказку»: короткие ответы, used to, вопросы с Who.",
+      items: [
+        { q: "Check-in: «Would you like a window seat or an aisle seat?» (место у окна или у прохода?)", o: ["A window seat, please.", "I want sit near window.", "I am window seat."], a: 0 },
+        { q: "Waiter: «Would you like tea or juice?» (чай или сок?)", o: ["Juice, please.", "I like juice.", "I am juice."], a: 0 },
+        { q: "Officer: «Do you have any sharp things in your bag?» (есть острые предметы в сумке?) — No, I ___.", o: ["don't", "doesn't", "am not"], a: 0 },
+        { q: "Officer: «Why are you in Thailand?» (зачем ты в Таиланде?) — I ___ on holiday. (впиши 2 слова: am + …ing)", a: ["am going", "'m going", "am here"] },
+        { q: "На табло: DELAYED 30 min. Что это значит?", o: ["Рейс задерживается на 30 минут", "Рейс отменён", "Идёт посадка"], a: 0 },
+        { q: "На табло: CANCELLED. Что это значит?", o: ["Рейс отменён", "Рейс задерживается", "Последний вызов"], a: 0 },
+        { q: "gate — это…", o: ["выход на посадку", "прилёт", "досмотр"], a: 0 },
+        { q: "departure — это…", o: ["вылет", "выход на посадку", "регистрация"], a: 0 },
+        { q: "Sonya goes to gymnastics every ___.", o: ["Tuesday", "Tuesdays", "days"], a: 0 },
+        { q: "Who is the boy ___ is sitting next to Timofey?", o: ["who", "which", "what"], a: 0 },
+        { q: "feel → в прошлом: After the flight I ___ tired. (впиши слово)", a: ["felt"] },
+        { q: "Did your mum ___ a dog when she was little?", o: ["have", "had", "has"], a: 0 },
+        { q: "My mum ___ (not / drink) coffee, but now she drinks it every morning.", o: ["didn't use to drink", "didn't use to be drink", "didn't used to drinks"], a: 0 },
+        { q: "___ (you / like) cartoons when you were five?", o: ["Did you use to like", "Did use to like", "Did you used to liked"], a: 0 },
+        { q: "There ___ (be) a small café here. Now it's a big 7-Eleven.", o: ["used to be", "used to de", "use to be"], a: 0 },
+        { q: "С кем ты ходишь в зал? 🤸‍♀️", o: ["Who do you go to the gym with?", "Who do you go with to the gym?", "With who you go to the gym?"], a: 0 },
+        { q: "Кто покупает продукты в твоей семье? 🛒", o: ["Who buys food in your family?", "Who does buy food in your family?", "Who food buys your family in?"], a: 0 }
+      ] },
+
+    // 3. ПОВТОРЯЕМ СЛОВА
+    { part: "words", type: "vocab", count: 10, title: "Повторяем слова из всех ДЗ",
+      vocab: [
+        ["baggy","мешковатый"],["tight","облегающий"],["striped","в полоску"],["hoodie","худи"],["trainers","кроссовки"],["sunglasses","солнечные очки"],["scarf","шарф"],["earrings","серёжки"],
+        ["sewing","шитьё"],["knitting","вязание"],["fencing","фехтование"],["artistic","творческий"],["daring","смелый"],["patient","терпеливый"],
+        ["circus performer","цирковой артист"],["chocolate taster","дегустатор шоколада"],["games tester","тестировщик игр"],
+        ["check-in","регистрация"],["security","досмотр"],["boarding","посадка"],["last call","последний вызов"],["departed","улетел"],["curious","любопытный"],["hand luggage","ручная кладь"],["boarding pass","посадочный талон"]
+      ] },
+
+    // 4. Мемори: аэропорт
+    { part: "practice", type: "memory", title: "Мемори: слова аэропорта ✈️", count: 8, time: 150,
+      pairs: [["departure","вылет"],["arrivals","прилёт"],["gate","выход на посадку"],["departed","улетел"],["take off","взлетать"],["check-in","регистрация"],["security","досмотр"],["last call","последний вызов"],["delayed","задерживается"],["cancelled","отменён"],["baggage claim","выдача багажа"],["customs","таможня"]] },
+
+    // 5. Квест: аэропорт
+    { part: "practice", type: "quest", title: "Квест: прилёт на Пхукет 🛬", rule: [0, 1],
+      place: "Аэропорт Пхукета",
+      intro: "Самолёт приземлился! Тебе нужно пройти паспортный контроль, забрать чемодан, пройти таможню и найти такси. Выбирай правильные ответы! Ошибёшься — я переведу фразу на русский 💜",
+      scenes: Q_AIRPORT,
+      endings: [
+        { max: 0, emoji: "🏆", text: "Идеально! Ты прошла аэропорт без единой ошибки и уже едешь на пляж 🏝️" },
+        { max: 2, emoji: "🌴", text: "Отлично! Пара маленьких ошибок, но чемодан с тобой, и такси едет на Патонг!" },
+        { emoji: "🙈", text: "Ой, ты всё ещё ищешь чемодан… Посмотри «Подсказку» и пройди квест ещё раз!" }
+      ] },
+
+    // 6. Касса 7-Eleven
+    { part: "practice", type: "quest", title: "Симулятор: касса 7-Eleven 🏪", rule: [0, 1],
+      place: "7-Eleven на Пхукете",
+      intro: "Ты взяла тостик с ветчиной и сыром (45 бат), тайский молочный чай (25 бат) и воду (15 бат). Иди на кассу! Кассир будет задавать много вопросов 😉",
+      scenes: Q_711,
+      endings: [
+        { max: 0, emoji: "🏆", text: "Идеально! Кассир сказал: «Your English is great!» и подарил тебе наклейку 💜" },
+        { max: 3, emoji: "🥪", text: "Отлично! Тостик горячий, сдача правильная, всего пара ошибок." },
+        { emoji: "🙈", text: "Тостик остыл, а кассир запутался 😅 Посмотри «Подсказку» и пройди ещё раз!" }
+      ] },
+
+    // 7. Кафе
+    { part: "practice", type: "chat", title: "Чат: кафе у пляжа ☕🥥", rule: 0,
+      who: { name: "Ploy (barista)", avatar: "👩🏻" },
+      script: CAFE },
+
+    // 8. Ресторан
+    { part: "practice", type: "quest", title: "Квест: ужин в тайском ресторане 🍜🌶️", rule: [0, 5],
+      place: "Ресторан на пляже",
+      intro: "Вечер, вы с мамой пришли в тайский ресторан у моря. Официант будет задавать вопросы, а тебе нужно заказать еду так, чтобы она была НЕ острая 😉",
+      scenes: Q_REST,
+      endings: [
+        { max: 0, emoji: "👩‍🍳", text: "Идеально! Повар вышел и подарил тебе ещё один mango sticky rice 🥭" },
+        { max: 3, emoji: "🍜", text: "Вкусно и почти без ошибок! Пад тай не острый — то, что нужно 😋" },
+        { emoji: "🔥", text: "Ой, кажется, тебе принесли VERY spicy 🌶️🌶️🌶️ Пройди ещё раз!" }
+      ] },
+
+    // 9. Гонка: тайская еда
+    { part: "practice", type: "race", title: "Гонка: тайская еда 🌶️🥭", rule: 5,
+      items: [
+        { q: "Lime is very ___. 🍋", o: ["sour", "sweet", "salty"], a: 0 },
+        { q: "Sea water is ___. 🌊", o: ["salty", "sweet", "spicy"], a: 0 },
+        { q: "Chilli is ___. 🌶️", o: ["spicy", "sweet", "sour"], a: 0 },
+        { q: "Mango sticky rice is ___. 🥭", o: ["sweet", "salty", "spicy"], a: 0 },
+        { q: "Острый и кислый суп с креветками — это…", o: ["tom yum", "pad thai", "mango sticky rice"], a: 0 },
+        { q: "Жареная рисовая лапша с яйцом и арахисом — это…", o: ["pad thai", "tom yum", "fried rice"], a: 0 },
+        { q: "Как попросить без перца?", o: ["No chilli, please.", "Chilli no, yes.", "I am not chilli."], a: 0 },
+        { q: "🌶️🌶️🌶️ на меню значит…", o: ["very spicy", "a little spicy", "not spicy"], a: 0 },
+        { q: "Ты хочешь чуть-чуть остро. Что скажешь?", o: ["A little spicy, please.", "A little spicy, yesterday.", "Spicy little I."], a: 0 },
+        { q: "fried rice — это…", o: ["жареный рис", "рисовый суп", "клейкий рис"], a: 0 },
+        { q: "street food — это…", o: ["уличная еда", "еда в самолёте", "еда в отеле"], a: 0 },
+        { q: "Which one is a fruit?", o: ["mango", "noodles", "shrimp"], a: 0 },
+        { q: "shrimp — это…", o: ["креветка", "курица", "кокос"], a: 0 },
+        { q: "Coconut water comes from a ___. 🥥", o: ["coconut", "chilli", "noodle"], a: 0 }
+      ] },
+
+    // 10. Банк слов
+    { part: "practice", type: "bank", title: "Банк слов: еда и времена 🍜", rule: [4, 5],
+      instruction: "Нажми на слово — оно встанет в пропуск. Смотри на слова-подсказки в скобках: какое время?",
+      items: [
+        "Tom yum is a {spicy} and {sour} soup with shrimp. 🌶️🍤",
+        "Mango sticky rice is very {sweet}. It's made with {coconut} milk. 🥭",
+        "Don't drink sea water — it's {salty}! 🌊",
+        "Can I have pad thai {without} chilli, please? 🍜",
+        "I {didn't use to} eat spicy food, but now I love it! (раньше не ела)",
+        "Yesterday I {tried} fried rice for the first time. (вчера)",
+        "Look! The chef {is cooking} noodles right now. (сейчас)",
+        "I {have never eaten} durian. It smells terrible! (никогда)",
+        "Tomorrow we {will buy} fresh coconuts on the beach. (завтра)",
+        "My mum {drinks} Thai iced tea every day. (каждый день)",
+        "{Who} cooks the best street food in Phuket? (кто готовит?)"
+      ],
+      extra: ["use to", "sweetly", "cooked", "drink", "will bought", "Which"],
+      tip: "Повтори вкусы (spicy, sweet, sour, salty) и слова-подсказки времён." },
+
+    // 11. Who-вопросы
+    { part: "practice", type: "order", title: "Собери вопрос с Who 🧩", rule: 3,
+      instruction: "Собери вопрос из слов. Помни: предлог with — в самом конце!",
+      items: [
+        "Who are you going to Thailand with?",
+        "Who does Sonya cook pancakes with?",
+        "Who cooks breakfast in your family?",
+        "Who did you sit next to on the plane?",
+        "Who is Timofey staying with now?",
+        "Who will you swim with tomorrow?",
+        "Who used to live in this house?"
+      ],
+      tip: "«С кем?» → Who + do/does/did/are + … + with?  «Кто делает?» → Who + глагол." },
+
+    // 12. ФИНАЛ
+    { part: "final", type: "feed", title: "Финал: блог Сони на Пхукете 📸",
+      account: "@sonya_in_phuket", followers: 150,
+      posts: [
+        { avatar: "💜", pic: "✈️☁️🌴", bg: "linear-gradient(135deg,#c9b6ff,#ffd6e8)", caption: "We ___ in Phuket! The flight was long but fun 🛬", o: ["have just landed", "just land", "are land"], a: 0, fb: "just + Present Perfect: have just landed" },
+        { avatar: "💜", pic: "🏪🥪", bg: "linear-gradient(135deg,#d8c8ff,#fff1b8)", caption: "I ___ a hot toastie at 7-Eleven every morning! 😋", o: ["buy", "am buying tomorrow", "bought every"], a: 0, fb: "every morning → Present Simple: I buy" },
+        { avatar: "💜", pic: "🏖️🥭", bg: "linear-gradient(135deg,#ffd6e8,#b8f0ff)", caption: "Right now I ___ mango sticky rice on the beach 🥥", o: ["am eating", "eat", "ate"], a: 0, fb: "right now → Present Continuous: am eating" },
+        { avatar: "💜", pic: "🌶️🍜🔥", bg: "linear-gradient(135deg,#ffb8c6,#ffe0a3)", caption: "Yesterday I ___ tom yum. It was SO spicy! 🥵", o: ["tried", "try", "have tried"], a: 0, fb: "yesterday → Past Simple: tried" },
+        { avatar: "💜", pic: "🐘🌿", bg: "linear-gradient(135deg,#c8f5d0,#d8c8ff)", caption: "Tomorrow we ___ the elephant park! Can't wait! 🐘", o: ["will visit", "visited", "visit yesterday"], a: 0, fb: "tomorrow → Future Simple: will visit" },
+        { avatar: "💜", pic: "🤸‍♀️🌅", bg: "linear-gradient(135deg,#ffd1a8,#c9b6ff)", caption: "I ___ do gymnastics only in the gym, but today I did a handstand on the beach! 💪", o: ["used to", "use to", "am used"], a: 0, fb: "раньше (а теперь нет) → used to" },
+        { avatar: "💜", pic: "🐶🏝️", bg: "linear-gradient(135deg,#fff1b8,#ffd6e8)", caption: "Look at this cute beach dog! 🐾 ___ does it belong to?", o: ["Who", "Which", "What"], a: 0, fb: "Кому принадлежит? → Who does it belong to?" },
+        { avatar: "💜", pic: "📱👦🎮", bg: "linear-gradient(135deg,#b8f0ff,#c9b6ff)", caption: "Timofey, I miss you! Who ___ playing with at home? 💜", o: ["are you", "you are", "do you are"], a: 0, fb: "Вопрос: Who are you playing with?" }
+      ] }
+  ]
+});
+</script>
+
+<!-- ===== Нарисованные сцены над кассой, кафе и рестораном (движок не трогаем) ===== -->
+<style>
+.sx-scene{position:relative;margin:10px 0 14px;border-radius:20px;overflow:hidden;box-shadow:0 6px 18px rgba(90,60,150,.18);line-height:0;user-select:none;-webkit-user-select:none}
+.sx-scene svg{display:block;width:100%;height:auto}
+.sx-bubble{position:absolute;right:4%;top:7%;width:50%;background:#fff;border-radius:16px;padding:9px 11px;font:600 13.5px/1.3 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif;color:#3b2a63;box-shadow:0 3px 10px rgba(0,0,0,.15);transition:opacity .25s}
+.sx-bubble:before{content:"";position:absolute;left:-9px;top:20px;border:9px solid transparent;border-right-color:#fff;border-left:0}
+.sx-name{display:block;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#9a7fd6;margin-bottom:2px}
+.sx-prop{position:absolute;right:9%;bottom:8%;font-size:40px;line-height:1;animation:sxb 1.8s ease-in-out infinite;filter:drop-shadow(0 3px 3px rgba(0,0,0,.2))}
+@keyframes sxb{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media (min-width:600px){.sx-bubble{font-size:16px}.sx-prop{font-size:52px}}
+</style>
+<script>
+(function(){
+  /* ---------- человечек за прилавком ---------- */
+  function person(cx, o){
+    var y = 150; // уровень прилавка
+    var s = '';
+    // тело
+    s += '<rect x="'+(cx-34)+'" y="'+(y-62)+'" width="68" height="80" rx="26" fill="'+o.shirt+'"/>';
+    if (o.vest) s += '<path d="M'+(cx-30)+' '+(y-50)+' L'+(cx-8)+' '+(y-58)+' L'+cx+' '+(y-30)+' L'+(cx+8)+' '+(y-58)+' L'+(cx+30)+' '+(y-50)+' L'+(cx+30)+' '+(y+18)+' L'+(cx-30)+' '+(y+18)+'Z" fill="'+o.vest+'"/>';
+    if (o.apron) s += '<rect x="'+(cx-22)+'" y="'+(y-46)+'" width="44" height="64" rx="8" fill="'+o.apron+'"/><path d="M'+(cx-22)+' '+(y-44)+' L'+(cx-12)+' '+(y-60)+' M'+(cx+22)+' '+(y-44)+' L'+(cx+12)+' '+(y-60)+'" stroke="'+o.apron+'" stroke-width="4"/><rect x="'+(cx-10)+'" y="'+(y-30)+'" width="20" height="12" rx="3" fill="rgba(255,255,255,.35)"/>';
+    if (o.stripes) s += '<rect x="'+(cx-34)+'" y="'+(y-30)+'" width="68" height="5" fill="'+o.stripes[0]+'"/><rect x="'+(cx-34)+'" y="'+(y-24)+'" width="68" height="5" fill="'+o.stripes[1]+'"/><rect x="'+(cx-34)+'" y="'+(y-18)+'" width="68" height="5" fill="'+o.stripes[2]+'"/>';
+    if (o.bow) s += '<path d="M'+(cx-9)+' '+(y-60)+' L'+cx+' '+(y-56)+' L'+(cx-9)+' '+(y-52)+'Z M'+(cx+9)+' '+(y-60)+' L'+cx+' '+(y-56)+' L'+(cx+9)+' '+(y-52)+'Z" fill="'+o.bow+'"/>';
+    if (o.tag) s += '<rect x="'+(cx+8)+'" y="'+(y-46)+'" width="18" height="9" rx="2" fill="#fff"/>';
+    // шея
+    s += '<rect x="'+(cx-7)+'" y="'+(y-72)+'" width="14" height="14" rx="5" fill="'+o.skin+'"/>';
+    // руки
+    s += '<path d="M'+(cx-30)+' '+(y-48)+' Q'+(cx-52)+' '+(y-20)+' '+(cx-36)+' '+(y+4)+'" stroke="'+o.shirt+'" stroke-width="15" fill="none" stroke-linecap="round"/>';
+    s += '<circle cx="'+(cx-35)+'" cy="'+(y+5)+'" r="7" fill="'+o.skin+'"/>';
+    s += '<path d="M'+(cx+30)+' '+(y-48)+' Q'+(cx+52)+' '+(y-60)+' '+(cx+50)+' '+(y-84)+'" stroke="'+o.shirt+'" stroke-width="15" fill="none" stroke-linecap="round"/>';
+    s += '<circle cx="'+(cx+50)+'" cy="'+(y-88)+'" r="8" fill="'+o.skin+'"/>';
+    // волосы сзади
+    if (o.pony) s += '<path d="M'+(cx+18)+' '+(y-112)+' Q'+(cx+44)+' '+(y-100)+' '+(cx+32)+' '+(y-70)+' Q'+(cx+26)+' '+(y-92)+' '+(cx+14)+' '+(y-100)+'Z" fill="'+o.hair+'"/>';
+    if (o.bun) s += '<circle cx="'+cx+'" cy="'+(y-130)+'" r="11" fill="'+o.hair+'"/>';
+    // голова
+    s += '<circle cx="'+cx+'" cy="'+(y-96)+'" r="25" fill="'+o.skin+'"/>';
+    // волосы сверху
+    s += '<path d="M'+(cx-26)+' '+(y-94)+' Q'+(cx-26)+' '+(y-126)+' '+cx+' '+(y-123)+' Q'+(cx+27)+' '+(y-124)+' '+(cx+26)+' '+(y-94)+' Q'+(cx+14)+' '+(y-112)+' '+(cx-4)+' '+(y-108)+' Q'+(cx-16)+' '+(y-104)+' '+(cx-26)+' '+(y-94)+'Z" fill="'+o.hair+'"/>';
+    if (o.cap) s += '<path d="M'+(cx-25)+' '+(y-108)+' Q'+cx+' '+(y-132)+' '+(cx+25)+' '+(y-108)+'Z" fill="'+o.cap+'"/><rect x="'+(cx-30)+'" y="'+(y-110)+'" width="40" height="5" rx="2.5" fill="'+o.cap+'"/>';
+    // лицо
+    s += '<circle cx="'+(cx-9)+'" cy="'+(y-95)+'" r="3" fill="#2d2240"/><circle cx="'+(cx+9)+'" cy="'+(y-95)+'" r="3" fill="#2d2240"/>';
+    s += '<circle cx="'+(cx-8)+'" cy="'+(y-96)+'" r="1" fill="#fff"/><circle cx="'+(cx+10)+'" cy="'+(y-96)+'" r="1" fill="#fff"/>';
+    s += '<circle cx="'+(cx-16)+'" cy="'+(y-86)+'" r="4.5" fill="#ff9fb8" opacity=".6"/><circle cx="'+(cx+16)+'" cy="'+(y-86)+'" r="4.5" fill="#ff9fb8" opacity=".6"/>';
+    s += '<path d="M'+(cx-7)+' '+(y-84)+' Q'+cx+' '+(y-77)+' '+(cx+7)+' '+(y-84)+'" stroke="#a0405a" stroke-width="2.4" fill="none" stroke-linecap="round"/>';
+    if (o.flower) s += '<circle cx="'+(cx-20)+'" cy="'+(y-114)+'" r="5" fill="#ff7eb3"/><circle cx="'+(cx-20)+'" cy="'+(y-114)+'" r="2" fill="#ffe36e"/>';
+    return s;
+  }
+  function svg(inner, defs){ return '<svg viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs>'+(defs||'')+'</defs>'+inner+'</svg>'; }
+
+  /* ---------- 7-Eleven ---------- */
+  var shelves = '';
+  var cols = ['#ff7a7a','#ffd36e','#7ad3ff','#9be38f','#c59bff','#ff9ed2','#ffb070','#6fe0c9'];
+  for (var r=0;r<3;r++){ for (var c=0;c<9;c++){ shelves += '<rect x="'+(8+c*15)+'" y="'+(52+r*30)+'" width="11" height="'+(16+((c*7+r*3)%3)*3)+'" rx="2" fill="'+cols[(c+r*2)%8]+'" transform="translate(0,'+(6-((c*7+r*3)%3)*3)+')"/>'; } shelves += '<rect x="4" y="'+(74+r*30)+'" width="142" height="4" fill="#c9c3d6"/>'; }
+  var fridge = '<rect x="268" y="44" width="88" height="118" rx="6" fill="#dff3ff" stroke="#b9d7ea" stroke-width="3"/><line x1="312" y1="44" x2="312" y2="162" stroke="#b9d7ea" stroke-width="3"/>';
+  for (var f=0;f<3;f++){ for (var g=0;g<5;g++){ fridge += '<rect x="'+(274+g*16)+'" y="'+(54+f*36)+'" width="9" height="24" rx="4" fill="'+cols[(g+f*3)%8]+'" opacity=".85"/>'; } }
+  var SVG711 = svg(
+    '<rect width="360" height="210" fill="#f4f0fb"/>'+
+    '<rect width="360" height="34" fill="#fff"/><rect y="28" width="360" height="5" fill="#ff8a3d"/><rect y="33" width="360" height="5" fill="#2fb36b"/><rect y="38" width="360" height="5" fill="#ef4b5a"/>'+
+    '<text x="14" y="21" font-family="Arial Rounded MT Bold,Arial,sans-serif" font-size="15" font-weight="700" fill="#2fb36b">MINI MART</text><text x="300" y="21" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#ef4b5a">OPEN 24h</text>'+
+    shelves + fridge +
+    '<rect x="160" y="70" width="44" height="30" rx="4" fill="#5b5670"/><rect x="164" y="74" width="26" height="22" rx="2" fill="#ffd98a" opacity=".9"/><circle cx="197" cy="80" r="2.5" fill="#9be38f"/><circle cx="197" cy="88" r="2.5" fill="#ff7a7a"/>'+
+    '<text x="160" y="64" font-family="Arial,sans-serif" font-size="8" fill="#8a80a6">MICROWAVE</text>'+
+    person(110, {skin:'#f6cfae', hair:'#2b1d17', shirt:'#2fb36b', stripes:['#ff8a3d','#fff','#ef4b5a'], pony:true, tag:true}) +
+    '<rect x="0" y="150" width="360" height="60" fill="#fff"/><rect x="0" y="150" width="360" height="8" fill="#e7e1f3"/><rect x="0" y="176" width="360" height="5" fill="#ff8a3d"/><rect x="0" y="181" width="360" height="5" fill="#2fb36b"/><rect x="0" y="186" width="360" height="5" fill="#ef4b5a"/>'+
+    '<rect x="168" y="120" width="44" height="32" rx="4" fill="#4b4560"/><rect x="172" y="124" width="36" height="12" rx="2" fill="#9ff0c3"/><text x="175" y="133" font-family="monospace" font-size="9" fill="#1d5c3b">฿ 85</text>'+
+    '<rect x="222" y="132" width="20" height="20" rx="3" fill="#3d3850"/><rect x="225" y="135" width="14" height="6" rx="1" fill="#7ad3ff"/>'
+  );
+
+  /* ---------- Кафе у пляжа ---------- */
+  var SVGCAFE = svg(
+    '<rect width="360" height="210" fill="url(#sky1)"/>'+
+    '<circle cx="300" cy="40" r="20" fill="#fff3b0"/>'+
+    '<rect y="104" width="360" height="30" fill="#5ec8e5"/><path d="M0 110 Q20 106 40 110 T80 110 T120 110 T160 110 T200 110 T240 110 T280 110 T320 110 T360 110" stroke="#fff" stroke-width="2" fill="none" opacity=".7"/>'+
+    '<rect y="130" width="360" height="80" fill="#f7deb0"/>'+
+    '<path d="M300 150 Q296 100 312 66" stroke="#9a6b3f" stroke-width="7" fill="none"/>'+
+    '<path d="M312 66 Q290 52 268 64 M312 66 Q332 48 352 60 M312 66 Q300 40 286 38 M312 66 Q328 42 340 40 M312 66 Q318 82 338 88" stroke="#3fae6a" stroke-width="7" fill="none" stroke-linecap="round"/>'+
+    '<circle cx="308" cy="72" r="5" fill="#8a5a2b"/><circle cx="317" cy="74" r="5" fill="#8a5a2b"/>'+
+    '<path d="M-10 46 L180 46 L196 22 L6 22Z" fill="#d9a85b"/><path d="M-10 46 L180 46" stroke="#b9853c" stroke-width="3"/>'+
+    '<path d="M0 46 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10 l8 10 l8 -10" fill="#c4914a"/>'+
+    '<rect x="8" y="60" width="62" height="64" rx="5" fill="#3a3a44" stroke="#9a6b3f" stroke-width="4"/>'+
+    '<text x="39" y="76" text-anchor="middle" font-family="Chalkboard SE,Comic Sans MS,sans-serif" font-size="10" fill="#fff">MENU</text>'+
+    '<text x="14" y="92" font-family="Chalkboard SE,Comic Sans MS,sans-serif" font-size="7.5" fill="#ffe28a">Thai tea …40</text>'+
+    '<text x="14" y="104" font-family="Chalkboard SE,Comic Sans MS,sans-serif" font-size="7.5" fill="#ffb3d1">Pancake …80</text>'+
+    '<text x="14" y="116" font-family="Chalkboard SE,Comic Sans MS,sans-serif" font-size="7.5" fill="#9ff0c3">Smoothie …60</text>'+
+    person(128, {skin:'#e9b991', hair:'#1e1414', shirt:'#ffffff', apron:'#a77de0', bun:true, flower:true}) +
+    '<rect x="0" y="150" width="360" height="60" fill="#b9824e"/><rect x="0" y="150" width="360" height="9" fill="#d6a06a"/>'+
+    '<line x1="0" y1="176" x2="360" y2="176" stroke="#a2703f" stroke-width="2"/><line x1="0" y1="194" x2="360" y2="194" stroke="#a2703f" stroke-width="2"/>'+
+    '<path d="M206 126 L230 126 L227 152 L209 152Z" fill="#f2a65a"/><rect x="204" y="122" width="28" height="6" rx="3" fill="#fff"/><line x1="222" y1="122" x2="230" y2="104" stroke="#ff7eb3" stroke-width="3"/>'+
+    '<circle cx="256" cy="140" r="13" fill="#7a4e2a"/><circle cx="256" cy="136" r="9" fill="#9a6b3f"/><line x1="258" y1="130" x2="266" y2="114" stroke="#5ec8e5" stroke-width="3"/>',
+    '<linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe9ff"/><stop offset="1" stop-color="#e9dcff"/></linearGradient>'
+  );
+
+  /* ---------- Ресторан на закате ---------- */
+  var lights = '<path d="M0 18 Q90 44 180 18 T360 18" stroke="#5b4a6e" stroke-width="1.5" fill="none"/>';
+  var lc = ['#ffe36e','#ff9ed2','#9be3ff','#c59bff'];
+  for (var i=0;i<12;i++){ var lx = 12+i*30; var ly = 18 + 13*Math.sin(Math.PI*((lx%180)/180)); lights += '<circle cx="'+lx+'" cy="'+(ly+4)+'" r="4.5" fill="'+lc[i%4]+'"/><circle cx="'+lx+'" cy="'+(ly+4)+'" r="9" fill="'+lc[i%4]+'" opacity=".25"/>'; }
+  var SVGREST = svg(
+    '<rect width="360" height="210" fill="url(#sky2)"/>'+
+    '<circle cx="250" cy="100" r="26" fill="#ffd27a" opacity=".95"/>'+
+    '<rect y="100" width="360" height="40" fill="#7d6bc9"/><rect x="226" y="104" width="48" height="3" rx="1.5" fill="#ffd27a" opacity=".8"/><rect x="234" y="112" width="32" height="3" rx="1.5" fill="#ffd27a" opacity=".6"/><rect x="242" y="120" width="16" height="3" rx="1.5" fill="#ffd27a" opacity=".5"/>'+
+    lights +
+    '<path d="M24 150 Q18 96 34 62" stroke="#5a3d2b" stroke-width="7" fill="none"/>'+
+    '<path d="M34 62 Q12 50 -6 62 M34 62 Q54 46 74 56 M34 62 Q24 36 8 34 M34 62 Q50 38 62 36" stroke="#2f6b4a" stroke-width="7" fill="none" stroke-linecap="round"/>'+
+    person(120, {skin:'#f0c39e', hair:'#2b1d17', shirt:'#ffffff', vest:'#2d2240', bow:'#ef4b5a'}) +
+    '<rect x="0" y="150" width="360" height="60" fill="#fff6ee"/><rect x="0" y="150" width="360" height="8" fill="#f1ddea"/>'+
+    '<path d="M0 158 L360 158 L360 210 L0 210Z" fill="url(#cloth)"/>'+
+    '<ellipse cx="205" cy="160" rx="24" ry="7" fill="#fff" stroke="#e3d6ef"/><ellipse cx="205" cy="157" rx="14" ry="5" fill="#f7c35f"/>'+
+    '<rect x="238" y="128" width="8" height="26" rx="2" fill="#fff7d6"/><path d="M242 128 Q238 120 242 112 Q246 120 242 128Z" fill="#ffb347"/><circle cx="242" cy="122" r="12" fill="#ffd27a" opacity=".25"/>'+
+    '<rect x="146" y="78" width="26" height="34" rx="3" fill="#fff" transform="rotate(-8 159 95)"/><line x1="150" y1="88" x2="166" y2="86" stroke="#c9b6ff" stroke-width="2"/><line x1="151" y1="95" x2="167" y2="93" stroke="#c9b6ff" stroke-width="2"/><line x1="152" y1="102" x2="164" y2="100" stroke="#c9b6ff" stroke-width="2"/>',
+    '<linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6c5bb8"/><stop offset=".55" stop-color="#ff9fb0"/><stop offset="1" stop-color="#ffd1a3"/></linearGradient>'+
+    '<pattern id="cloth" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="#fff"/><rect width="10" height="10" fill="#ead9ff"/><rect x="10" y="10" width="10" height="10" fill="#ead9ff"/></pattern>'
+  );
+
+  var SCENES = [
+    { title: "Симулятор: касса 7-Eleven", name: "Cashier", svg: SVG711, start: ["Sawasdee ka! Hello! 👋", "🛒"],
+      lines: Q_711.map(function(s){ return [s.say, s.prop]; }), keys: ["Ты взяла тостик"] },
+    { title: "Чат: кафе у пляжа", name: "Ploy · barista", svg: SVGCAFE, start: ["Welcome to Coco Café! 🥥", "📋"],
+      lines: CAFE_PROPS, keys: ["Coco Café", "Thai iced tea"] },
+    { title: "Квест: ужин в тайском ресторане", name: "Waiter", svg: SVGREST, start: ["Good evening! Welcome! 🌅", "🕯️"],
+      lines: Q_REST.map(function(s){ return [s.say, s.prop]; }), keys: ["Вечер, вы с мамой"] }
+  ];
+
+  function locate(sc){
+    var all = document.body.getElementsByTagName('*'), cands = [];
+    for (var i=0;i<all.length;i++){
+      var el = all[i];
+      if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || (el.closest && el.closest('.sx-scene'))) continue;
+      var tx = el.textContent || '';
+      if (tx.indexOf(sc.title) > -1 && tx.length < sc.title.length + 40) cands.push(el);
+    }
+    cands.sort(function(a,b){ return a.textContent.length - b.textContent.length; });
+    for (var j=0;j<cands.length;j++){
+      var c = cands[j];
+      for (var k=0;k<10 && c.parentElement;k++){
+        c = c.parentElement;
+        var t = c.textContent || '';
+        var hit = sc.keys.some(function(x){ return t.indexOf(x) > -1; }) || sc.lines.some(function(l){ return t.indexOf(l[0]) > -1; });
+        if (hit) return { title: cands[j], box: c };
+      }
+    }
+    return null;
+  }
+
+  function current(box, sc){
+    var txt = box.innerText || '', best = -1, res = sc.start;
+    sc.lines.forEach(function(l){ var p = txt.lastIndexOf(l[0]); if (p > best){ best = p; res = [l[0], l[1]]; } });
+    return res;
+  }
+
+  function tick(){
+    SCENES.forEach(function(sc){
+      var f = locate(sc); if (!f) return;
+      var node = f.box.querySelector('.sx-scene');
+      if (!node){
+        node = document.createElement('div'); node.className = 'sx-scene';
+        node.innerHTML = sc.svg + '<div class="sx-bubble"><span class="sx-name"></span><span class="sx-text"></span></div><div class="sx-prop"></div>';
+        node.querySelector('.sx-name').textContent = sc.name;
+        var h = f.title; while (h.parentElement && h.parentElement !== f.box) h = h.parentElement;
+        h.parentElement === f.box ? h.after(node) : f.box.prepend(node);
+      }
+      var cur = current(f.box, sc);
+      var tEl = node.querySelector('.sx-text'), pEl = node.querySelector('.sx-prop');
+      if (tEl.textContent !== cur[0]) tEl.textContent = cur[0];
+      if (pEl.textContent !== cur[1]) pEl.textContent = cur[1];
+    });
+  }
+
+  var pending = false;
+  function schedule(){ if (pending) return; pending = true; requestAnimationFrame(function(){ pending = false; try { tick(); } catch(e){} }); }
+  function start(){ schedule(); new MutationObserver(function(m){ for (var i=0;i<m.length;i++){ var n = m[i].target; if (!(n.closest ? n.closest('.sx-scene') : (n.parentElement && n.parentElement.closest('.sx-scene')))) { schedule(); return; } } }).observe(document.body, { childList: true, subtree: true, characterData: true }); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body></html>
