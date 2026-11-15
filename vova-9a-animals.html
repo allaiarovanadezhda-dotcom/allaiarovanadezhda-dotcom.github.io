@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vova · Homework 9A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --surface2:#eceef2; --border:#dde1e7;
+  --text:#1f2328; --muted:#57606a; --dim:#8b949e;
+  --accent:#b77900; --accent-btn:#f0b429; --accent-soft:rgba(240,180,41,.16);
+  --ok:#1a7f37; --ok-soft:rgba(26,127,55,.09);
+  --err:#cf222e; --err-soft:rgba(207,34,46,.08);
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.topbar .in{max-width:760px;margin:0 auto;padding:10px 16px 6px;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.bar{flex:1;height:4px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent-btn);transition:width .3s}
+.tabs{max-width:760px;margin:0 auto;padding:0 16px 8px;display:flex;gap:6px}
+.tab{font-family:var(--mono);font-size:12.5px;border:1px solid var(--border);background:var(--surface);color:var(--muted);border-radius:5px;padding:5px 12px;cursor:pointer}
+.tab.on{background:var(--text);color:#fff;border-color:var(--text)}
+.hero{padding:36px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:34px;line-height:1.15;margin:10px 0 12px;font-weight:700;letter-spacing:-.02em}
+.hero p{color:var(--muted);margin:0 0 6px}
+.law{margin-top:18px;font-family:var(--mono);font-size:14px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent-btn);padding:12px 14px;border-radius:6px}
+.law span{color:var(--dim)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chip{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:4px;background:var(--surface)}
+section.task,.panel{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:22px;overflow:hidden;box-shadow:0 1px 2px rgba(31,35,40,.04)}
+.sh{padding:16px 18px 14px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start}
+.num{font-family:var(--mono);font-size:12px;color:#1f2328;background:var(--accent-btn);border-radius:4px;padding:2px 7px;margin-top:4px;font-weight:700}
+.sh h2{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.sh .sub{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:2px}
+.sh .ru{font-size:13.5px;color:var(--muted);margin-top:6px}
+.sh .sc{margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap;padding-top:2px}
+.sc.s-good{color:var(--ok)} .sc.s-mid{color:var(--accent)} .sc.s-bad{color:var(--err)}
+.body{padding:6px 18px 16px}
+.item{padding:12px 0;border-bottom:1px dashed var(--border);display:flex;gap:10px}
+.item:last-child{border-bottom:none}
+.item .n{font-family:var(--mono);font-size:12px;color:var(--dim);min-width:20px;padding-top:3px}
+.item .t{flex:1;min-width:0}
+.hint{font-family:var(--mono);font-size:12.5px;color:var(--accent);margin:0 2px}
+input.g,textarea{font:inherit;color:var(--text);background:#fafbfc;border:1px solid var(--border);border-radius:5px;padding:2px 8px;outline:none;max-width:100%;transition:border-color .15s}
+input.g{font-family:var(--mono);font-size:14px;height:30px;margin:2px 0}
+input.g.bk{border-style:dashed}
+input.g:focus,textarea:focus{border-color:var(--accent-btn)}
+.ok{border-color:var(--ok)!important;background:var(--ok-soft)!important}
+.bad{border-color:var(--err)!important;background:var(--err-soft)!important}
+.empty{border-color:var(--accent-btn)!important;background:var(--accent-soft)!important}
+.fix{font-family:var(--mono);font-size:12.5px;color:var(--ok);margin-left:6px}
+.fix.e{color:var(--accent)}
+textarea{width:100%;min-height:58px;padding:8px 10px;resize:vertical;font-size:15px;margin-top:8px}
+.src{font-family:var(--mono);font-size:14px;color:var(--err);text-decoration:line-through;text-decoration-color:rgba(207,34,46,.4)}
+.tip{font-size:13px;color:var(--muted);margin-top:2px}
+.fb{font-size:13.5px;margin-top:6px;color:var(--muted)}
+.fb .e{color:var(--err);display:block}
+.fb .o{color:var(--ok);display:block}
+.fb .w{color:var(--accent);display:block}
+.fb .m{font-family:var(--mono);font-size:12.5px;color:var(--muted);display:block;margin-top:2px}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px;padding:10px;border:1px dashed var(--border);border-radius:6px}
+.bank button{font-family:var(--mono);font-size:13px;color:var(--accent);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:4px 10px;cursor:pointer}
+.bank button:disabled{opacity:.3;cursor:default;text-decoration:line-through}
+.bank .lbl{font-family:var(--mono);font-size:11px;color:var(--dim);width:100%}
+.actions{padding:0 18px 18px;display:flex;gap:8px;flex-wrap:wrap}
+.msg{padding:0 18px 14px;font-size:13.5px;color:var(--accent)}
+button.btn{font-family:var(--mono);font-size:13px;font-weight:500;border-radius:6px;padding:9px 16px;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text);transition:all .15s}
+button.btn:hover{border-color:var(--dim)}
+button.btn.pri{background:var(--accent-btn);border-color:var(--accent-btn);color:#1f2328;font-weight:700}
+button.btn:disabled{opacity:.4;cursor:default}
+/* memory */
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px 0}
+.card{aspect-ratio:1.5;border:1px solid var(--border);border-radius:7px;background:var(--surface2);font-family:var(--mono);font-size:13px;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px;cursor:pointer;color:transparent;user-select:none;transition:all .15s}
+.card::before{content:'?';color:var(--dim)}
+.card.up,.card.done{background:var(--surface);color:var(--text)}
+.card.up::before,.card.done::before{content:''}
+.card.done{border-color:var(--ok);background:var(--ok-soft);cursor:default}
+.memstat{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+@media (max-width:520px){.mem{grid-template-columns:repeat(3,1fr)}.card{font-size:11.5px}}
+/* millionaire / quest */
+.ladder{display:flex;gap:4px;flex-wrap:wrap;margin:12px 0}
+.ladder span{font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:3px;border:1px solid var(--border);color:var(--dim)}
+.ladder span.cur{border-color:var(--accent-btn);color:var(--text);background:var(--accent-soft)}
+.ladder span.w{border-color:var(--ok);color:var(--ok)}
+.ladder span.l{border-color:var(--err);color:var(--err)}
+.mq{font-size:17px;font-weight:500;margin:10px 0 12px}
+.mopts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:520px){.mopts{grid-template-columns:1fr}}
+.mopt{font-family:var(--mono);font-size:13.5px;text-align:left;padding:10px 12px;border-radius:6px;border:1px solid var(--border);background:#fafbfc;color:var(--text);cursor:pointer}
+.mopt b{color:var(--accent);margin-right:6px}
+.mopt:disabled{cursor:default}
+.mopt.hide{visibility:hidden}
+.mopt.right{border-color:var(--ok);background:var(--ok-soft)}
+.mopt.wrong{border-color:var(--err);background:var(--err-soft)}
+.chat{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.bub{max-width:88%;padding:8px 12px;border-radius:10px;font-size:14.5px}
+.bub.them{background:var(--surface2);align-self:flex-start;border-top-left-radius:2px}
+.bub.me{background:#fff7e0;border:1px solid #f3dfa6;align-self:flex-end;border-top-right-radius:2px}
+.bub.me.x{background:var(--err-soft);border-color:#f2c1c4}
+.bub .who{font-family:var(--mono);font-size:11px;color:var(--dim);display:block}
+.qopts{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.qopts .mopt{width:100%}
+/* speaking */
+.q-list{margin:10px 0;padding-left:20px}
+.q-list li{margin-bottom:6px}
+label.chk{display:flex;gap:8px;align-items:center;font-size:14.5px;margin-top:10px;cursor:pointer}
+/* results */
+#results{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 18px;margin-top:8px}
+.big{font-family:var(--mono);font-size:44px;font-weight:700;letter-spacing:-.03em;margin:6px 0}
+.rs{display:grid;gap:8px;margin:16px 0}
+.rl{display:grid;grid-template-columns:1fr 60px;gap:10px;align-items:center;font-size:14px}
+.rl .tr{grid-column:1/-1;height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-top:-4px}
+.rl .tr i{display:block;height:100%}
+.rl .v{font-family:var(--mono);font-size:13px;text-align:right;color:var(--muted)}
+.adv{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
+.adv h3{font-size:14px;margin:0 0 8px;font-family:var(--mono);color:var(--accent);font-weight:500}
+.adv p{font-size:14px;color:var(--muted);margin:0 0 8px}
+.adv p b{color:var(--text)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.badge{font-family:var(--mono);font-size:12px;border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--dim)}
+.badge.on{border-color:var(--accent-btn);background:var(--accent-soft);color:var(--text)}
+.toast{font-family:var(--mono);font-size:12.5px;color:var(--ok);margin-top:10px;min-height:18px}
+/* hints */
+.hints h3{font-size:15px;margin:18px 0 6px}
+.hints .row{display:grid;grid-template-columns:44px 1fr;gap:10px;font-size:14px;border-top:1px solid var(--border);padding:10px 0}
+.hints .row b{font-family:var(--mono);color:var(--accent);font-weight:600}
+.hints code{font-family:var(--mono);font-size:12.5px;color:var(--muted);display:block}
+.hints table{width:100%;border-collapse:collapse;font-size:14px}
+.hints td{padding:5px 6px;border-top:1px solid var(--border)}
+.hints td:first-child{color:var(--err);font-family:var(--mono);font-size:13px;text-decoration:line-through}
+.hints td:last-child{color:var(--ok);font-family:var(--mono);font-size:13px}
+.v3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 10px;font-family:var(--mono);font-size:13px}
+/* salute */
+#salute{position:fixed;inset:0;z-index:50;pointer-events:none;overflow:hidden}
+#salute i{position:absolute;top:-20px;width:9px;height:9px;animation:fall linear forwards}
+#salute .stamp{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font-family:var(--mono);font-weight:700;font-size:24px;background:var(--text);color:#fff;padding:14px 22px;border-radius:8px;animation:pop 3.5s ease forwards;white-space:nowrap}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.8)}10%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0}}
+footer{text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:32px}
+@media (max-width:520px){h1{font-size:28px}.sh{flex-wrap:wrap}.sh .sc{margin-left:34px;width:100%}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="in"><span>BUILD 9A</span><div class="bar"><i id="pbar"></i></div><span id="ptxt">0%</span></div>
+  <div class="tabs"><button class="tab on" data-tab="tasks">Tasks</button><button class="tab" data-tab="hints">Подсказка</button></div>
+</div>
+
+<div class="wrap">
+<div id="view-tasks">
+  <header class="hero">
+    <div class="kicker">Homework · Vladimir</div>
+    <h1>Beware of the bug</h1>
+    <p>Second conditional + animals (9A). Plus a patch for the bugs from 8B.</p>
+    <p style="font-size:14px">Answers save automatically. Stuck? Open <b>Подсказка</b> at the top and come back.</p>
+    <div class="law"><span>// </span>What would you do if a bat flew into the office on release day?</div>
+    <div class="chips"><span class="chip">2nd conditional</span><span class="chip">3rd conditional</span><span class="chip">animals</span><span class="chip">articles</span><span class="chip">collocations</span></div>
+  </header>
+  <main id="app"></main>
+  <div style="display:flex;justify-content:center;margin:8px 0 18px">
+    <button class="btn pri" id="checkAll">Check everything</button>
+  </div>
+  <div id="results" hidden></div>
+</div>
+
+<div id="view-hints" class="hints" hidden>
+  <header class="hero" style="padding-bottom:10px">
+    <div class="kicker">Подсказка</div>
+    <h1 style="font-size:28px">Rules</h1>
+    <p>Посмотри и возвращайся к заданию (вкладка Tasks).</p>
+  </header>
+  <div class="panel"><div class="body">
+    <h3>4 conditionals</h3>
+    <div class="row"><b>0</b><div>Всегда так, факт<code>if + Present, Present</code><code>If a bee stings you, it dies.</code></div></div>
+    <div class="row"><b>1</b><div>Реально может случиться<code>if + Present, will + V1</code><code>If I go to the office, nobody will be there.</code></div></div>
+    <div class="row"><b>2</b><div>Воображаемое сейчас / в будущем<code>if + Past Simple, would + V1</code><code>If I saw a shark, I would swim to the shore.</code></div></div>
+    <div class="row"><b>3</b><div>Прошлое, уже не изменить<code>if + had + V3, would have + V3</code><code>If we had tested the game, we would have found the bug.</code></div></div>
+    <h3>Частые ошибки</h3>
+    <div class="row"><b>✗</b><div>После <i>if</i> не бывает will / would<code>If I will see… → If I see…</code><code>If I would see… → If I saw…</code></div></div>
+    <div class="row"><b>✗</b><div>would + V1 (2nd) или would have + V3 (3rd). <i>would had</i> не бывает<code>I would had swim → I would swim</code><code>I would have swum (3rd)</code></div></div>
+    <div class="row"><b>✓</b><div>If I <b>were</b> / If I <b>was</b> — оба варианта ок. can → <b>could</b><code>If I could have any pet, I'd get a wolf.</code></div></div>
+    <div class="row"><b>✓</b><div>'d = would или had. Смотри, что после:<code>I'd go = would · I'd gone = had</code></div></div>
+    <h3>Твои баги из 8B</h3>
+    <table>
+      <tr><td>lose on call</td><td>be late for the call</td></tr>
+      <tr><td>talk English</td><td>speak English</td></tr>
+      <tr><td>in USA</td><td>in the USA</td></tr>
+      <tr><td>join to the call</td><td>join the call</td></tr>
+      <tr><td>go on the lunch</td><td>go for lunch</td></tr>
+      <tr><td>go to office</td><td>go to the office</td></tr>
+      <tr><td>get them back (laptop)</td><td>give it back</td></tr>
+      <tr><td>If press…</td><td>If you press…</td></tr>
+      <tr><td>noticed shark</td><td>saw a shark</td></tr>
+    </table>
+    <h3>Артикли (коротко)</h3>
+    <div class="row"><b>a</b><div>один из многих, впервые упоминаем<code>I saw a shark. A wasp flew into the car.</code></div></div>
+    <div class="row"><b>the</b><div>понятно какой / единственный<code>the shore, the office, the game (наша), the USA</code></div></div>
+    <div class="row"><b>—</b><div>без артикля<code>go for lunch, go to work, go home, in Armenia</code></div></div>
+    <h3>V3: неправильные глаголы</h3>
+    <div class="v3">
+      <span>see</span><span>saw</span><span>seen</span>
+      <span>swim</span><span>swam</span><span>swum</span>
+      <span>bite</span><span>bit</span><span>bitten</span>
+      <span>sting</span><span>stung</span><span>stung</span>
+      <span>fly</span><span>flew</span><span>flown</span>
+      <span>run</span><span>ran</span><span>run</span>
+      <span>take</span><span>took</span><span>taken</span>
+      <span>find</span><span>found</span><span>found</span>
+      <span>wake</span><span>woke</span><span>woken</span>
+      <span>drink</span><span>drank</span><span>drunk</span>
+      <span>go</span><span>went</span><span>gone</span>
+      <span>be</span><span>was/were</span><span>been</span>
+    </div>
+    <h3>Animals 9A</h3>
+    <p style="font-size:14px;color:var(--muted)">bat · bee · bull · camel · cow · crocodile · deer · dolphin · eagle · elephant · giraffe · jellyfish · kangaroo · lion · mosquito · mouse · shark · snake · spider · wasp · wolf<br>verbs: bite · sting · attack · shout · wave · keep still · tie · rub · float</p>
+  </div></div>
+</div>
+
+<footer>9A Beware of the dog · English File Pre-Intermediate</footer>
+</div>
+<div id="salute" hidden></div>
+
+<script>
+const TG='Nady_Allayarova';
+const STUDENT='Вова';
+const HW='HW 9A Animals · 2nd conditional';
+
+const SECTIONS=[
+ {id:'mem',kind:'memory',title:'Warm-up: animals',sub:'// memory · EN ↔ RU',ru:'Найди пары: английское слово и перевод. Не входит в итоговый балл.',
+  pairs:[['jellyfish','медуза'],['wasp','оса'],['bat','летучая мышь'],['bull','бык'],['deer','олень'],['mosquito','комар'],['shark','акула'],['spider','паук']]},
+
+ {id:'fix',kind:'fix',title:'Bug fix: your 8B errors',sub:'// rewrite correctly',ru:'Это твои фразы из прошлого ДЗ. В каждой есть ошибки. Перепиши правильно, подсказка под фразой.',
+  advice:'<b>Bug fix:</b> перечитай таблицу «Твои баги из 8B» в Подсказке: артикли, speak English, join the call, be late for, give it back.',
+  items:[
+   {src:"If i lose on call, my boss will be angry.",tip:'опоздать на созвон ≠ lose',model:"If I am late for the call, my boss will be angry.",
+    need:[[/\bif i am late for the (call|meeting)\b/,'опоздать на созвон: If I am late for the call'],[/\bwill be angry\b/,'my boss will be angry']],
+    ban:[[/\blose\b/,'lose = потерять / проиграть, а не «опоздать»'],[/\bif i will\b/,'После if не ставим will']]},
+   {src:"If i lived in USA, i would talk English every day.",tip:'артикль + какой глагол с языками?',model:"If I lived in the USA, I would speak English every day.",
+    need:[[/\bif i lived\b/,'If I lived…'],[/\bin (the usa|the us|the united states|the states|america)\b/,'Артикль: in the USA (или in America)'],[/\bwould speak english\b/,'С языками — speak: I would speak English']],
+    ban:[[/\btalk english\b/,'talk English → speak English']]},
+   {src:"If we tested game, we would find this bug.",tip:'это уже в прошлом → какой conditional? + артикль',model:"If we had tested the game, we would have found this bug.",
+    need:[[/\bif we had tested\b/,'Прошлое → 3rd conditional: If we had tested…'],[/\bthe game\b/,'Артикль: the game'],[/\bwould have found\b/,'Результат: we would have found']],ban:[]},
+   {src:"If press this button, the game closes.",tip:'кто нажимает?',model:"If you press this button, the game closes.",
+    need:[[/\bif you (press|click|push|tap)\b/,'Нужно подлежащее: If you press…'],[/\bthe game closes\b/,'the game closes']],
+    ban:[[/\bwill\b/,'Это «всегда так» → zero conditional, без will']]},
+   {src:"If you lend me laptop, i will get them back tomorrow.",tip:'чей ноутбук? it или them? get или give?',model:"If you lend me your laptop, I will give it back tomorrow.",
+    need:[[/\blend me your laptop\b/,'Чей? lend me your laptop'],[/\bwill give it back\b/,'Вернуть кому-то: I will give it back'],[/\btomorrow\b/,'tomorrow']],
+    ban:[[/\bthem\b/,'laptop — один предмет → it'],[/\bget\b/,'get back = получить обратно; тебе нужно give back']]},
+   {src:"If i noticed shark, i would had swim to the coast.",tip:'артикль; would + какая форма?',model:"If I saw a shark, I would swim to the shore.",
+    need:[[/\bif i (saw|noticed) a shark\b/,'Артикль: a shark'],[/\bwould swim\b/,'would + V1: would swim'],[/\bto the (shore|coast|beach)\b/,'to the shore']],
+    ban:[[/\bwould had\b/,'would had не бывает: would + V1'],[/\bif i would\b/,'После if не ставим would']]},
+   {src:"If i go on the lunch, my coworker will send me invites for a call.",tip:'lunch с артиклем? приглашение НА созвон',model:"If I go for lunch, my colleague will send me an invite to a call.",
+    need:[[/\bif i go (for|to) lunch\b/,'Обед без артикля: go for lunch'],[/\bwill send me\b/,'will send me'],[/\b(an invite|invites|an invitation|invitations) to (a|the) call\b/,'an invite to a call']],
+    ban:[[/\bthe lunch\b/,'lunch без the'],[/\bon lunch\b/,'go for lunch, не on']]},
+   {src:"If i go to office there won't be anyone.",tip:'артикль + запятая после if-части',model:"If I go to the office, there won't be anyone there.",
+    need:[[/\bgo to the office\b/,'Артикль: go to the office'],[/\bthere will not be anyone\b|\bthere will be (nobody|no one)\b|\b(nobody|no one) will be there\b/,"there won't be anyone"]],ban:[]},
+   {src:"If i join to the call, everyone will talk loudly.",tip:'join + ?',model:"If I join the call, everyone will talk loudly.",
+    need:[[/\bif i join the call\b/,'join без to: join the call'],[/\beveryone will (talk|speak)\b/,'everyone will talk']],
+    ban:[[/\bjoin to\b/,'join to → join']]}
+  ]},
+
+ {id:'v3',kind:'gaps',title:'V3 warm-up',sub:'// past participle',ru:'Вспомни 3-ю форму. Она нужна для 3rd conditional.',
+  advice:'<b>V3:</b> выучи таблицу неправильных глаголов в Подсказке: seen, swum, bitten, stung, flown, woken, drunk.',
+  items:['see – saw – [::seen]','swim – swam – [::swum]','bite – bit – [::bitten]','sting – stung – [::stung]','fly – flew – [::flown]','run – ran – [::run]','take – took – [::taken]','wake – woke – [::woken]','drink – drank – [::drunk]','be – was/were – [::been]']},
+
+ {id:'second',kind:'gaps',title:'Wild situations',sub:'// 2nd: if + Past, would + V1',ru:'Глагол в скобках поставь в Past Simple. После would вставь глагол из рамки (нажми на слово или напечатай). Каждый глагол — один раз.',
+  bank:['keep','wave','rub','shout','tie','call','float','run'],
+  advice:'<b>2nd conditional:</b> if + Past Simple, would + V1. Неправильные: flew, bit, saw, came, fell, ran.',
+  items:[
+   "If a big dog [run::ran] towards me in a park in Yerevan, I would [#::keep] completely still.",
+   "If a wasp [fly::flew] into the office during a call, I would [#::wave] my hand to make it go out.",
+   "If a jellyfish [sting::stung] me, I wouldn't [#::rub] the sting with a towel.",
+   "If I [see::saw] a shark near the beach, I wouldn't [#::shout]. I would swim to the shore quietly.",
+   "If a snake [bite::bit] my friend in the mountains, I would [#::tie] a scarf above the bite and [#::call] a doctor.",
+   "If I [fall::fell] into a cold river, I would [#::float] and wait for help.",
+   "If a bear [come::came] to our camp at night, I wouldn't [#::run]."
+  ]},
+
+ {id:'third',kind:'gaps',title:'Post-mortem 2.0',sub:'// 3rd: if + had V3, would have V3',ru:'3rd conditional — твоё слабое место в 8B (4/12). Поставь глаголы в нужную форму.',
+  advice:'<b>3rd conditional:</b> if + had + V3, would have + V3. Не путай с 2nd: <i>If we tested… we would find</i> — это НЕ прошлое.',
+  items:[
+   "If I [know::had known] there was a wasp in my coffee, I [not / drink::would not have drunk] it.",
+   "If the neighbour's dog [not / bark::had not barked] all night, I [sleep::would have slept] well before the release.",
+   "If we [check::had checked] the build, the game [not / crash::would not have crashed].",
+   "If a snake [bite::had bitten] him, he [go::would have gone] to hospital.",
+   "If I [not / miss::had not missed] the flight, I [be::would have been] at the meeting.",
+   "If you [take::had taken] your umbrella, it [not / rain::would not have rained]. Murphy's Law!",
+   "If the mosquito [not / fly::had not flown] into my room, I [not / wake up::would not have woken up] at 3 a.m.",
+   "If they [tell::had told] me about the bug, I [fix::would have fixed] it."
+  ]},
+
+ {id:'mil',kind:'mil',title:'Who wants to be a millionaire?',sub:'// mixed: 0, 1, 2, 3 + articles',ru:'10 вопросов, у каждого один правильный ответ. Подсказку 50/50 можно взять один раз.',
+  advice:'<b>Mixed:</b> сначала определи, реальная это ситуация (1st), воображаемая (2nd) или прошлое (3rd).',
+  prize:['֏1k','֏2k','֏5k','֏10k','֏25k','֏50k','֏100k','֏250k','֏500k','֏1M'],
+  items:[
+   {q:"If I ___ a spider in the bath, I'd call my flatmate.",o:['see','saw','would see','have seen'],a:1},
+   {q:"If a bee ___ you, it dies.",o:['would sting','stung','stings','will sting'],a:2},
+   {q:"What would you do if a bat ___ into your bedroom?",o:['flies','would fly','had flown','flew'],a:3},
+   {q:"If we ___ the bug earlier, we would have released on time.",o:['had found','found','would find','find'],a:0},
+   {q:"If the client calls during lunch, I ___ answer.",o:['would','will','had','am'],a:1},
+   {q:"I ___ for the call if I were you.",o:["won't be late","wouldn't be late","hadn't been late","am not late"],a:1},
+   {q:"If I were a bird, I ___ to work every day.",o:["'ll fly","flew","'d fly","had flown"],a:2},
+   {q:"If I ___ have any pet, I'd get a wolf.",o:['can','will','could','had could'],a:2},
+   {q:"If I saw ___ shark, I'd swim to ___ shore.",o:['the / a','a / the','– / the','a / –'],a:1},
+   {q:"If I ___ the bus, I would have arrived on time.",o:["didn't miss","wouldn't miss","haven't missed","hadn't missed"],a:3}
+  ]},
+
+ {id:'quest',kind:'quest',title:'Monday call',sub:'// quest · choose your reply',ru:'Созвон с Джейком, продюсером из США. Выбирай правильную реплику: грамматика и confusing verbs.',
+  advice:'<b>Quest:</b> следи за формой после if и за парами hear/listen, lend/borrow.',
+  items:[
+   {them:"Hey Vladimir! Can you hear me OK?",o:["Yes, I can listen you well.","Yes, I can hear you well.","Yes, I hear to you well."],a:1},
+   {them:"So, what would you do if we moved the release to Friday?",o:["If we will move it to Friday, I would test the build on Thursday.","If we moved it to Friday, I will test the build on Thursday.","If we moved it to Friday, I would test the build on Thursday."],a:2},
+   {them:"Funny story: a bat flew into my office yesterday! What would you do?",o:["If a bat flew into my office, I'd open the window and wait.","If a bat would fly into my office, I opened the window.","If a bat flew into my office, I'd had opened the window."],a:0},
+   {them:"Are there any dangerous animals in Armenia?",o:["Some snakes in the mountains. If one bited me, I'll go to a doctor.","Some snakes in the mountains. If one bit me, I'd go to a doctor.","Some snakes in the mountains. If one bite me, I go to a doctor."],a:1},
+   {them:"Did the last update go well?",o:["Not really. If we tested it more, we would found the bug.","Not really. If we had tested it more, we would find had the bug.","Not really. If we had tested it more, we would have found the bug."],a:2},
+   {them:"OK, I'll send you the new build tonight. Anything else?",o:["Could you lend me your test phone for a week?","Could you borrow me your test phone for a week?","Could you borrow your test phone to me for a week?"],a:0}
+  ]},
+
+ {id:'speak',kind:'speak',title:'Speaking',sub:'// voice message',ru:'Запиши голосовое (1–2 минуты) и отправь преподавателю в Telegram. Отвечай полными предложениями с would.',
+  qs:["What would you do if you saw a snake in your garden?","What would you do if a colleague's dog barked during every call?","If you could have any animal as a pet, what would you get and why?","If you could work from any country, where would you live?"]},
+
+ {id:'write',kind:'write',title:'Your turn',sub:'// write 3 sentences',ru:'Напиши 3 предложения: что бы ты сделал, если бы… (животные, работа, Ереван). Формула: If + Past Simple, … would + V1.',
+  advice:'<b>Writing:</b> If + Past Simple, would + V1. Без would в части с if, без would had.',
+  count:3, placeholders:["If a cat walked on my keyboard during a call, …","If I saw a bear in the mountains, …","If I …"]}
+];
+
+/* storage */
+const STORE='vova_hw_9a_v1';
+let state={v:{},checked:{},checks:{}};
+try{const s=JSON.parse(localStorage.getItem(STORE)); if(s&&s.v){state=s;state.checks=state.checks||{};state.checked=state.checked||{};}}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(state))}catch(e){}}
+
+/* normalising */
+function base(s){
+  s=(s||'').toLowerCase().replace(/[’‘`´]/g,"'");
+  s=s.replace(/\bwon't\b/g,'will not').replace(/\bcan't\b/g,'can not').replace(/\bcannot\b/g,'can not')
+     .replace(/n't\b/g,' not').replace(/'ll\b/g,' will').replace(/'m\b/g,' am').replace(/'re\b/g,' are')
+     .replace(/'ve\b/g,' have').replace(/\b(it|he|she|that|there|what|who|where|here)'s\b/g,'$1 is')
+     .replace(/'d\b/g,' _d_');
+  return s.replace(/[^a-z0-9_]+/g,' ').trim().replace(/\s+/g,' ');
+}
+function variants(s){
+  let out=[base(s)];
+  while(out.some(x=>x.includes('_d_')) && out.length<64){
+    out=out.flatMap(x=>x.includes('_d_')?[x.replace('_d_','had'),x.replace('_d_','would')]:[x]);
+  }
+  return out;
+}
+function matches(inp,answers){const v=variants(inp);return answers.some(a=>v.includes(base(a)));}
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const GAP=/\[([^\]]*?)::([^\]]+)\]/g;
+const scores={};
+let totalInputs=0;
+
+/* render */
+const app=document.getElementById('app');
+SECTIONS.forEach((sec,si)=>{
+  const el=document.createElement('section');el.className='task';el.id='s-'+sec.id;
+  let h=`<div class="sh"><span class="num">${String(si+1).padStart(2,'0')}</span><div><h2>${sec.title}</h2><div class="sub">${sec.sub}</div><div class="ru">${sec.ru}</div></div><span class="sc" id="sc-${sec.id}"></span></div><div class="body" id="b-${sec.id}">`;
+  if(sec.kind==='gaps'){
+    if(sec.bank) h+=`<div class="bank" data-sec="${sec.id}"><span class="lbl">verbs</span>${sec.bank.map(w=>`<button type="button" data-w="${w}">${w}</button>`).join('')}</div>`;
+    sec.items.forEach((s,i)=>{let g=0;
+      const html=esc(s).replace(GAP,(m,hint,ans)=>{const k=`${sec.id}${i}_${g++}`;totalInputs++;
+        const bk=hint==='#';const len=Math.max(6,...ans.split('|').map(a=>a.length))+2;
+        return (hint&&!bk?`<span class="hint">(${hint})</span>`:'')+`<input class="g${bk?' bk':''}" data-k="${k}" data-a="${esc(ans)}" ${bk?'data-bank="1"':''} style="width:${len}ch" autocomplete="off" autocapitalize="off" spellcheck="false">`;});
+      h+=`<div class="item"><span class="n">${i+1}</span><div class="t">${html}</div></div>`;});
+  }
+  if(sec.kind==='fix'){
+    sec.items.forEach((it,i)=>{const k=sec.id+i;totalInputs++;
+      h+=`<div class="item"><span class="n">${i+1}</span><div class="t"><div class="src">${esc(it.src)}</div><div class="tip">↳ ${esc(it.tip)}</div><textarea data-k="${k}" rows="2" spellcheck="false" placeholder="Correct version…"></textarea><div class="fb" id="fb-${k}"></div></div></div>`;});
+  }
+  if(sec.kind==='write'){
+    for(let i=0;i<sec.count;i++){const k=sec.id+i;totalInputs++;
+      h+=`<div class="item"><span class="n">${i+1}</span><div class="t"><textarea data-k="${k}" rows="2" spellcheck="false" placeholder="${esc(sec.placeholders[i])}"></textarea><div class="fb" id="fb-${k}"></div></div></div>`;}
+  }
+  if(sec.kind==='memory'||sec.kind==='mil'||sec.kind==='quest'){ if(sec.kind!=='memory') totalInputs+=sec.items.length; }
+  if(sec.kind==='speak'){
+    totalInputs++;
+    h+=`<ol class="q-list">${sec.qs.map(q=>`<li>${esc(q)}</li>`).join('')}</ol>
+      <div class="actions" style="padding:4px 0 0"><button class="btn pri" id="openTg2">Open Telegram</button></div>
+      <label class="chk"><input type="checkbox" id="voiceSent"> Я отправил голосовое</label>`;
+  }
+  h+='</div>';
+  if(['gaps','fix','write'].includes(sec.kind)) h+=`<div class="msg" id="msg-${sec.id}"></div><div class="actions"><button class="btn pri" data-check="${sec.id}">Check</button><button class="btn" data-clear="${sec.id}">Clear</button></div>`;
+  el.innerHTML=h;app.appendChild(el);
+});
+
+/* inputs */
+document.querySelectorAll('#app input.g, #app textarea').forEach(inp=>{
+  const k=inp.dataset.k; if(state.v[k]!=null) inp.value=state.v[k];
+  inp.addEventListener('focus',()=>{lastFocus=inp;});
+  inp.addEventListener('input',()=>{state.v[k]=inp.value;inp.classList.remove('ok','bad','empty');
+    const f=inp.parentElement.querySelector('.fix[data-for="'+k+'"]');if(f)f.remove();
+    const fb=document.getElementById('fb-'+k);if(fb)fb.innerHTML='';
+    save();progress();refreshBanks();});
+});
+let lastFocus=null;
+
+/* word bank */
+function refreshBanks(){
+  document.querySelectorAll('.bank').forEach(b=>{
+    const root=document.getElementById('s-'+b.dataset.sec);
+    const used=[...root.querySelectorAll('input[data-bank]')].map(i=>base(i.value));
+    b.querySelectorAll('button').forEach(btn=>{btn.disabled=used.includes(base(btn.dataset.w));});
+  });
+}
+document.querySelectorAll('.bank button').forEach(btn=>btn.addEventListener('click',()=>{
+  const root=document.getElementById('s-'+btn.closest('.bank').dataset.sec);
+  let target=(lastFocus&&lastFocus.dataset.bank&&root.contains(lastFocus)&&!lastFocus.value.trim())?lastFocus:[...root.querySelectorAll('input[data-bank]')].find(i=>!i.value.trim());
+  if(!target) return;
+  target.value=btn.dataset.w;target.dispatchEvent(new Event('input'));
+  const next=[...root.querySelectorAll('input[data-bank]')].find(i=>!i.value.trim());
+  lastFocus=next||null;
+}));
+
+/* memory game */
+(function(){
+  const sec=SECTIONS.find(s=>s.id==='mem'),body=document.getElementById('b-mem');
+  function build(){
+    const cards=[];sec.pairs.forEach((p,i)=>{cards.push({t:p[0],i});cards.push({t:p[1],i});});
+    for(let j=cards.length-1;j>0;j--){const r=Math.floor(Math.random()*(j+1));[cards[j],cards[r]]=[cards[r],cards[j]];}
+    body.innerHTML=`<div class="mem">${cards.map(c=>`<div class="card" data-i="${c.i}">${esc(c.t)}</div>`).join('')}</div><div class="memstat" id="memstat"></div>`;
+    let open=[],moves=0,found=0,lock=false;
+    const stat=document.getElementById('memstat');
+    const show=()=>{stat.textContent=found===sec.pairs.length?`✓ Done in ${moves} moves. `:`Moves: ${moves} · pairs: ${found}/${sec.pairs.length}`;};
+    if(state.v.memDone){stat.innerHTML=`✓ Done in ${state.v.memDone} moves. <a href="#" id="memAgain">Play again</a>`;}
+    else show();
+    body.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>{
+      if(lock||c.classList.contains('up')||c.classList.contains('done'))return;
+      c.classList.add('up');open.push(c);
+      if(open.length===2){moves++;lock=true;
+        const [a,b]=open;
+        if(a.dataset.i===b.dataset.i){setTimeout(()=>{a.classList.add('done');b.classList.add('done');open=[];lock=false;found++;show();
+          if(found===sec.pairs.length){state.v.memDone=moves;save();progress();renderResults();}},250);}
+        else setTimeout(()=>{a.classList.remove('up');b.classList.remove('up');open=[];lock=false;show();},800);
+        show();
+      }
+    }));
+    const again=document.getElementById('memAgain');if(again)again.onclick=e=>{e.preventDefault();delete state.v.memDone;save();build();};
+  }
+  build();
+})();
+
+/* millionaire */
+function renderMil(){
+  const sec=SECTIONS.find(s=>s.id==='mil'),body=document.getElementById('b-mil');
+  const ans=i=>state.v['mil'+i];
+  const cur=sec.items.findIndex((_,i)=>ans(i)==null);
+  const ladder=`<div class="ladder">${sec.items.map((_,i)=>`<span class="${ans(i)==null?(i===cur?'cur':''):(ans(i)===sec.items[i].a?'w':'l')}">${sec.prize[i]}</span>`).join('')}</div>`;
+  if(cur===-1){
+    const ok=sec.items.filter((it,i)=>ans(i)===it.a).length;
+    body.innerHTML=ladder+`<div class="mq">Game over: ${ok}/10 · ${ok===10?'You are a millionaire! ֏1,000,000':'Prize: '+(ok?sec.prize[ok-1]:'֏0')}</div>
+      <div class="actions" style="padding:0"><button class="btn" id="milAgain">Play again</button></div>`;
+    document.getElementById('milAgain').onclick=()=>{sec.items.forEach((_,i)=>delete state.v['mil'+i]);delete state.v.mil5050;save();renderMil();scoreMil();progress();renderResults();};
+    scoreMil();return;
+  }
+  const it=sec.items[cur];const used=state.v.mil5050!=null;
+  let hide=[];if(state.v.mil5050===cur){hide=it.o.map((_,j)=>j).filter(j=>j!==it.a).slice(0,2);}
+  body.innerHTML=ladder+`<div class="memstat">Question ${cur+1} for ${sec.prize[cur]}</div><div class="mq">${esc(it.q)}</div>
+    <div class="mopts">${it.o.map((o,j)=>`<button class="mopt${hide.includes(j)?' hide':''}" data-j="${j}"><b>${'ABCD'[j]}</b>${esc(o)}</button>`).join('')}</div>
+    <div class="actions" style="padding:12px 0 0"><button class="btn" id="m5050" ${used?'disabled':''}>50 / 50</button></div>`;
+  document.getElementById('m5050').onclick=()=>{state.v.mil5050=cur;save();renderMil();};
+  body.querySelectorAll('.mopt').forEach(b=>b.onclick=()=>{
+    const j=+b.dataset.j;body.querySelectorAll('.mopt').forEach(x=>x.disabled=true);
+    b.classList.add(j===it.a?'right':'wrong');body.querySelector(`.mopt[data-j="${it.a}"]`).classList.add('right');
+    state.v['mil'+cur]=j;save();progress();
+    const nx=document.createElement('div');nx.className='actions';nx.style.padding='12px 0 0';
+    nx.innerHTML=`<span class="memstat" style="align-self:center">${j===it.a?'✓ Correct':'✗ Not quite'}</span><button class="btn pri">Next →</button>`;
+    body.appendChild(nx);nx.querySelector('button').onclick=()=>{renderMil();};
+    scoreMil();renderResults();
+  });
+}
+function scoreMil(){
+  const sec=SECTIONS.find(s=>s.id==='mil');const done=sec.items.filter((_,i)=>state.v['mil'+i]!=null);
+  if(!done.length){delete scores.mil;setSc('mil');return;}
+  const errors=[];let ok=0;
+  sec.items.forEach((it,i)=>{const a=state.v['mil'+i];
+    if(a===it.a) ok++; else errors.push({q:it.q,a:a==null?'(пропуск)':it.o[a],c:it.o[it.a]});});
+  scores.mil={ok,max:sec.items.length,errors};setSc('mil');
+}
+
+/* quest */
+function renderQuest(){
+  const sec=SECTIONS.find(s=>s.id==='quest'),body=document.getElementById('b-quest');
+  let h='<div class="chat">';let cur=-1;
+  for(let i=0;i<sec.items.length;i++){const it=sec.items[i],a=state.v['quest'+i];
+    h+=`<div class="bub them"><span class="who">Jake · producer</span>${esc(it.them)}</div>`;
+    if(a==null){cur=i;break;}
+    h+=`<div class="bub me${a===it.a?'':' x'}"><span class="who">you ${a===it.a?'✓':'✗'}</span>${esc(it.o[a])}</div>`;
+    if(a!==it.a) h+=`<div class="bub me" style="opacity:.8"><span class="who">better</span>${esc(it.o[it.a])}</div>`;
+  }
+  h+='</div>';
+  if(cur>=0){const it=sec.items[cur];h+=`<div class="qopts">${it.o.map((o,j)=>`<button class="mopt" data-j="${j}">${esc(o)}</button>`).join('')}</div>`;}
+  else{const ok=sec.items.filter((it,i)=>state.v['quest'+i]===it.a).length;
+    h+=`<div class="bub them"><span class="who">Jake · producer</span>${ok===sec.items.length?'Great call, Vladimir. Your English is getting really good!':'Thanks, Vladimir! Talk next week.'}</div>
+    <div class="actions" style="padding:12px 0 0"><span class="memstat" style="align-self:center">${ok}/${sec.items.length}</span><button class="btn" id="qAgain">Replay</button></div>`;}
+  body.innerHTML=h;
+  body.querySelectorAll('.qopts .mopt').forEach(b=>b.onclick=()=>{state.v['quest'+cur]=+b.dataset.j;save();progress();renderQuest();renderResults();});
+  const ag=document.getElementById('qAgain');if(ag)ag.onclick=()=>{sec.items.forEach((_,i)=>delete state.v['quest'+i]);save();renderQuest();progress();renderResults();};
+  scoreQuest();
+}
+function scoreQuest(){
+  const sec=SECTIONS.find(s=>s.id==='quest');const done=sec.items.filter((_,i)=>state.v['quest'+i]!=null);
+  if(!done.length){delete scores.quest;setSc('quest');return;}
+  const errors=[];let ok=0;
+  sec.items.forEach((it,i)=>{const a=state.v['quest'+i];
+    if(a===it.a) ok++; else errors.push({q:'Jake: '+it.them,a:a==null?'(пропуск)':it.o[a],c:it.o[it.a]});});
+  scores.quest={ok,max:sec.items.length,errors};setSc('quest');
+}
+
+/* speaking */
+const vs=document.getElementById('voiceSent');vs.checked=!!state.v.voiceSent;
+vs.onchange=()=>{state.v.voiceSent=vs.checked;save();progress();renderResults();};
+document.getElementById('openTg2').onclick=()=>window.open('https://t.me/'+TG,'_blank');
+
+/* checking */
+function setSc(id){const sc=document.getElementById('sc-'+id);const s=scores[id];
+  if(!s){sc.textContent='';sc.className='sc';return;}
+  const p=s.ok/s.max;sc.textContent=s.ok+' / '+s.max;sc.className='sc '+(p>=.8?'s-good':p>=.5?'s-mid':'s-bad');}
+
+function fixCheck(it,val){
+  let best=null;
+  for(const v of variants(val)){
+    const errs=(it.ban||[]).filter(([re])=>re.test(v)).map(x=>x[1]).concat(it.need.filter(([re])=>!re.test(v)).map(x=>x[1]));
+    if(!best||errs.length<best.length) best=errs;
+  }
+  return best;
+}
+function writeCheck(val){
+  const errs=[];const raw=(val||'').toLowerCase().replace(/[’‘]/g,"'");const v=base(val);
+  if(v.split(' ').length<6) errs.push('Напиши целое предложение (минимум 6 слов)');
+  if(!/\bif\b/.test(v)) errs.push('Нужно условие с if');
+  if(!/\bwould\b|'d\b/.test(raw)) errs.push('В результате нужно would / \'d + V1');
+  if(/\bwould had\b|'d had\b/.test(raw)) errs.push('would had не бывает: would + V1');
+  if(/\bwill\b|'ll\b|\bwon't\b/.test(raw)) errs.push('Это 2nd conditional: would, не will');
+  const ifPart=raw.split(/[,.;]/).find(p=>/\bif\b/.test(p));
+  if(ifPart && /\bwould\b|\bif i'd\b/.test(ifPart) && raw.includes(',')) errs.push('В части с if не нужен would — там Past Simple');
+  return errs;
+}
+function gapQuestion(tpl,j){let g=0;
+  return tpl.replace(GAP,(m,hint,ans)=>{const idx=g++;if(idx===j) return '___'+(hint&&hint!=='#'?' ('+hint+')':'');return ans.split('|')[0];});}
+
+function checkSection(id){
+  const sec=SECTIONS.find(s=>s.id===id),root=document.getElementById('s-'+id),msg=document.getElementById('msg-'+id);
+  let ok=0,max=0,filled=0;const errors=[];
+  if(sec.kind==='gaps'){
+    root.querySelectorAll('input.g').forEach(inp=>{max++;const ans=inp.dataset.a.split('|');
+      const old=root.querySelector('.fix[data-for="'+inp.dataset.k+'"]');if(old)old.remove();
+      inp.classList.remove('ok','bad','empty');
+      const [i,j]=inp.dataset.k.slice(id.length).split('_').map(Number);
+      const q=gapQuestion(sec.items[i],j);
+      if(!inp.value.trim()){inp.classList.add('empty');errors.push({q,a:'(пропуск)',c:ans[0]});
+        const f=document.createElement('span');f.className='fix e';f.dataset.for=inp.dataset.k;f.textContent='Попробуй сам';inp.after(f);return;}
+      filled++;
+      if(matches(inp.value,ans)){inp.classList.add('ok');ok++;}
+      else{inp.classList.add('bad');errors.push({q,a:inp.value,c:ans[0]});
+        const f=document.createElement('span');f.className='fix';f.dataset.for=inp.dataset.k;f.textContent='→ '+ans[0];inp.after(f);}
+    });
+  }
+  if(sec.kind==='fix'){
+    sec.items.forEach((it,i)=>{const k=id+i;max++;const ta=root.querySelector(`textarea[data-k="${k}"]`),fb=document.getElementById('fb-'+k);
+      ta.classList.remove('ok','bad','empty');
+      if(!ta.value.trim()){ta.classList.add('empty');fb.innerHTML='<span class="w">Попробуй сам: перепиши фразу правильно</span>';errors.push({q:it.src,a:'(пропуск)',c:it.model});return;}
+      filled++;const errs=fixCheck(it,ta.value);
+      if(!errs.length){ok++;ta.classList.add('ok');fb.innerHTML='<span class="o">✓ Bug fixed</span>';}
+      else{ta.classList.add('bad');fb.innerHTML=errs.map(e=>'<span class="e">• '+e+'</span>').join('')+'<span class="m">e.g. '+esc(it.model)+'</span>';errors.push({q:it.src,a:ta.value,c:it.model});}
+    });
+  }
+  if(sec.kind==='write'){
+    for(let i=0;i<sec.count;i++){const k=id+i;max++;const ta=root.querySelector(`textarea[data-k="${k}"]`),fb=document.getElementById('fb-'+k);
+      ta.classList.remove('ok','bad','empty');
+      if(!ta.value.trim()){ta.classList.add('empty');fb.innerHTML='<span class="w">Попробуй сам: напиши своё предложение</span>';errors.push({q:'Writing '+(i+1),a:'(пропуск)',c:'If + Past, would + V1'});continue;}
+      filled++;const errs=writeCheck(ta.value);
+      if(!errs.length){ok++;ta.classList.add('ok');fb.innerHTML='<span class="o">✓ Structure OK. Преподаватель прочитает и проверит остальное.</span>';}
+      else{ta.classList.add('bad');fb.innerHTML=errs.map(e=>'<span class="e">• '+e+'</span>').join('');errors.push({q:'Writing '+(i+1),a:ta.value,c:errs.join('; ')});}
+    }
+  }
+  if(!filled){
+    delete scores[id];setSc(id);
+    if(msg) msg.textContent='Сначала выполни задание, потом нажми Check.';
+    root.querySelectorAll('.fix').forEach(f=>f.remove());root.querySelectorAll('.empty').forEach(x=>x.classList.remove('empty'));
+    root.querySelectorAll('.fb').forEach(f=>f.innerHTML='');
+    return false;
+  }
+  if(msg) msg.textContent=filled<max?'Есть пустые ответы: заполни их и проверь ещё раз.':'';
+  scores[id]={ok,max,errors};setSc(id);return true;
+}
+
+document.querySelectorAll('[data-check]').forEach(b=>b.addEventListener('click',()=>{
+  const id=b.dataset.check;
+  if(checkSection(id)){state.checked[id]=true;state.checks[id]=(state.checks[id]||0)+1;}
+  save();renderResults();
+}));
+document.querySelectorAll('[data-clear]').forEach(b=>b.addEventListener('click',()=>{
+  const id=b.dataset.clear,root=document.getElementById('s-'+id);
+  root.querySelectorAll('input.g,textarea').forEach(i=>{i.value='';i.classList.remove('ok','bad','empty');delete state.v[i.dataset.k];});
+  root.querySelectorAll('.fix').forEach(f=>f.remove());root.querySelectorAll('.fb').forEach(f=>f.innerHTML='');
+  const msg=document.getElementById('msg-'+id);if(msg)msg.textContent='';
+  delete scores[id];setSc(id);delete state.checked[id];save();progress();refreshBanks();renderResults();
+}));
+
+function progress(){
+  let n=Object.keys(state.v).filter(k=>!['memDone','mil5050','voiceSent'].includes(k)&&state.v[k]!=null&&String(state.v[k]).trim()!=='').length;
+  if(state.v.voiceSent) n++;
+  const p=Math.min(100,Math.round(n/totalInputs*100));
+  document.getElementById('pbar').style.width=p+'%';document.getElementById('ptxt').textContent=p+'%';
+}
+
+/* results */
+const SCORED=SECTIONS.filter(s=>!['mem','speak'].includes(s.id));
+function badges(){
+  const r=id=>scores[id]?scores[id].ok/scores[id].max:0;
+  return [
+    {n:'🐛 Bug Fixer',on:r('fix')>=.8},
+    {n:'⏪ Time Traveller',on:r('third')>=.9},
+    {n:'֏ Millionaire',on:r('mil')===1},
+    {n:'🎧 Smooth Talker',on:r('quest')===1},
+    {n:'🐺 Animal Expert',on:!!state.v.memDone&&r('second')>=.9},
+    {n:'🎤 On Air',on:!!state.v.voiceSent}
+  ];
+}
+function totals(){let ok=0,max=0;SCORED.forEach(s=>{if(scores[s.id]){ok+=scores[s.id].ok;max+=scores[s.id].max;}});return {ok,max};}
+let saluted=false;
+function renderResults(){
+  const res=document.getElementById('results');
+  const done=SCORED.filter(s=>scores[s.id]);
+  if(!done.length){res.hidden=true;return;}
+  const {ok,max}=totals();const pct=Math.round(ok/max*100);
+  const col=p=>p>=80?'var(--ok)':p>=50?'var(--accent)':'var(--err)';
+  const verdict=pct>=90?'Excellent. Ready to ship.':pct>=75?'Good build. A few bugs to fix.':pct>=50?'Playable, but needs a patch.':'Critical bugs. We\'ll fix them in class.';
+  let h=`<div class="kicker">Result${done.length<SCORED.length?` · ${done.length}/${SCORED.length} tasks checked`:''}</div>
+  <div class="big" style="color:${col(pct)}">${ok}/${max} <span style="font-size:20px;color:var(--muted)">${pct}%</span></div>
+  <div style="color:var(--muted)">${verdict}</div><div class="rs">`;
+  done.forEach(s=>{const p=Math.round(scores[s.id].ok/scores[s.id].max*100);
+    h+=`<div class="rl"><span>${s.title}</span><span class="v">${scores[s.id].ok}/${scores[s.id].max}</span><div class="tr"><i style="width:${p}%;background:${col(p)}"></i></div></div>`;});
+  h+=`</div><div class="badges">${badges().map(b=>`<span class="badge${b.on?' on':''}">${b.n}</span>`).join('')}</div>`;
+  const weak=done.filter(s=>scores[s.id].ok/scores[s.id].max<.8);
+  h+=`<div class="adv"><h3>${weak.length?'// what to practise':'// all good'}</h3>`;
+  h+=weak.length?weak.map(s=>`<p>${s.advice}</p>`).join(''):'<p>Отлично. На уроке обсудим твои ответы и голосовое.</p>';
+  h+=`</div><div class="actions" style="padding:16px 0 0"><button class="btn pri" id="sendTg">Отправить в Telegram</button><button class="btn" id="copyRes">Copy result</button><button class="btn" id="resetAll">Start again</button></div>
+  <div class="toast" id="toast"></div>`;
+  res.innerHTML=h;res.hidden=false;
+  document.getElementById('copyRes').onclick=()=>copyReport(false);
+  document.getElementById('sendTg').onclick=()=>copyReport(true);
+  document.getElementById('resetAll').onclick=()=>{if(confirm('Delete all answers and start again?')){state={v:{},checked:{},checks:{}};save();location.reload();}};
+  const allDone=SCORED.every(s=>scores[s.id])&&state.v.memDone&&state.v.voiceSent;
+  if(allDone&&ok===max&&!saluted){saluted=true;salute();}
+}
+function report(){
+  const {ok,max}=totals();
+  const L=[`${STUDENT} — ${HW}`,`Итого: ${ok}/${max} (${max?Math.round(ok/max*100):0}%)`,''];
+  SECTIONS.forEach(s=>{
+    if(s.id==='mem'){L.push(`${s.title}: ${state.v.memDone?'done ('+state.v.memDone+' moves)':'not done'}`);return;}
+    if(s.id==='speak'){L.push(`${s.title}: ${state.v.voiceSent?'голосовое отправлено':'голосового нет'}`);return;}
+    L.push(scores[s.id]?`${s.title}: ${scores[s.id].ok}/${scores[s.id].max} (проверок: ${state.checks[s.id]||(['mil','quest'].includes(s.id)?1:0)})`:`${s.title}: not done`);
+  });
+  const errs=[];SCORED.forEach(s=>{if(scores[s.id]) scores[s.id].errors.forEach(e=>errs.push(`• [${s.title}] ${e.q} → ${e.a} → ✓ ${e.c}`));});
+  L.push('','❌ Ошибки и пропуски');L.push(errs.length?errs.join('\n'):'нет 🎉');
+  L.push('','✍️ Bug fix:');SECTIONS.find(s=>s.id==='fix').items.forEach((_,i)=>L.push(`${i+1}. ${state.v['fix'+i]||'—'}`));
+  L.push('','✍️ Your turn:');for(let i=0;i<3;i++) L.push(`${i+1}. ${state.v['write'+i]||'—'}`);
+  const b=badges().filter(x=>x.on).map(x=>x.n);if(b.length){L.push('','🏅 '+b.join(', '));}
+  return L.join('\n');
+}
+function copyReport(open){
+  const text=report();
+  const done=()=>{document.getElementById('toast').textContent=open?'Скопировано. Вставь отчёт в чат с преподавателем (@'+TG+') и отправь.':'Скопировано.';
+    if(open) window.open('https://t.me/'+TG,'_blank');};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(done,()=>fallback(text,done));}else fallback(text,done);
+}
+function fallback(text,done){const t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.focus();t.select();try{document.execCommand('copy');}catch(e){}t.remove();done();}
+
+function salute(){
+  const s=document.getElementById('salute');s.hidden=false;s.innerHTML='';
+  const cols=['#f0b429','#1f2328','#8b949e','#1a7f37','#dde1e7'];
+  for(let i=0;i<70;i++){const d=document.createElement('i');d.style.left=Math.random()*100+'vw';d.style.background=cols[i%cols.length];
+    d.style.animationDuration=(1.8+Math.random()*2)+'s';d.style.animationDelay=(Math.random()*.8)+'s';s.appendChild(d);}
+  const st=document.createElement('div');st.className='stamp';st.textContent='✓ BUILD PASSED · 100%';s.appendChild(st);
+  setTimeout(()=>{s.hidden=true;s.innerHTML='';},4500);
+}
+
+document.getElementById('checkAll').addEventListener('click',()=>{
+  SECTIONS.filter(s=>['gaps','fix','write'].includes(s.kind)).forEach(s=>{if(checkSection(s.id)){state.checked[s.id]=true;state.checks[s.id]=(state.checks[s.id]||0)+1;}});
+  scoreMil();scoreQuest();save();renderResults();
+  const r=document.getElementById('results');if(!r.hidden) r.scrollIntoView({behavior:'smooth'});
+});
+
+/* tabs */
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
+  document.getElementById('view-tasks').hidden=t.dataset.tab!=='tasks';
+  document.getElementById('view-hints').hidden=t.dataset.tab!=='hints';
+  window.scrollTo({top:0});
+});
+
+/* init */
+renderMil();renderQuest();
+Object.keys(state.checked||{}).forEach(id=>{if(SECTIONS.find(s=>s.id===id&&['gaps','fix','write'].includes(s.kind))) checkSection(id);});
+refreshBanks();progress();renderResults();
+</script>
+</body>
+</html>
