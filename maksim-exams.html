@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Максим", nameEn: "Maksim", gender: "m",
+  theme: "gamer",
+  teacher: "",
+  title: "School & Exams + Past Simple vs Past Continuous",
+  intro: "Максим, новый уровень! 🎮 Сегодня прокачиваем **школьные слова** (pass, fail, revise, take notes…) и снова сражаемся с боссом **Past Simple vs Past Continuous**. Много игр, мало писанины — погнали!",
+  celebrate: { text: "LEVEL COMPLETE! GG, Maksim!", emoji: "🎮", rain: ["🎮","🏆","🥁","🏀","⭐","🐱"], btn: "Next level ▶", fx: "both" },
+
+  rules: [
+    { title: "Learning and exams",
+      text: "**take an exam** — сдавать экзамен (процесс), **pass an exam** — сдать успешно, **fail an exam** — провалить. **do well / badly** — хорошо / плохо справиться. **get a good / bad mark** — получить хорошую / плохую оценку. **hand in your homework** — сдать домашку учителю. **revise for a test** — повторять к контрольной. **take notes** — записывать, конспектировать. **copy someone's work** — списывать. **miss a lesson** — пропустить урок.",
+      examples: ["I took the exam yesterday. I hope I passed!", "I revised for two hours and did well.", "Can I hand in my homework tomorrow?"],
+      mistake: "«Сдать экзамен» ≠ take an exam. Take — только сдавать (процесс). Сдал успешно = passed." },
+    { title: "Past Simple vs Past Continuous",
+      text: "**Past Continuous** (was / were + -ing) — длинное действие, которое шло в какой-то момент в прошлом. **Past Simple** (V2 / -ed) — короткое действие, которое его прервало, или действия одно за другим. **while** + обычно Past Continuous, **when** + обычно Past Simple. **at 5 pm yesterday** → Past Continuous.",
+      examples: ["I was playing Roblox when Mum came in.", "While I was revising, my phone rang.", "At 7 pm yesterday we were playing basketball.", "I finished my homework and went to the park."],
+      mistake: "I was play ❌ → I was playing ✅. They was ❌ → They were ✅." },
+    { title: "Expressions with take",
+      text: "**take** + photo / an exam / medicine / notes / the bus.",
+      examples: ["Can I take a photo of you?", "You should take some medicine.", "When it rains, I take the bus."],
+      mistake: "Оценку не «берут»: get a good mark, НЕ take a good mark." }
+  ],
+
+  words: [
+    ["copy someone's work", "списывать чужую работу", "", ""],
+    ["do well", "хорошо справиться, успевать", "", ""],
+    ["do badly", "плохо справиться", "", ""],
+    ["take notes", "записывать, конспектировать", "", ""],
+    ["get a good mark", "получить хорошую оценку", "", ""],
+    ["get a bad mark", "получить плохую оценку", "", ""],
+    ["hand in your homework", "сдать домашку (учителю)", "", ""],
+    ["pass an exam", "сдать экзамен (успешно)", "", "pass = сдал!"],
+    ["fail an exam", "провалить экзамен", "", ""],
+    ["revise for a test", "повторять к контрольной", "", ""],
+    ["take an exam", "сдавать экзамен", "", "процесс, не результат"],
+    ["miss a lesson", "пропустить урок", "", ""],
+    ["take a photo", "сфотографировать", "", ""],
+    ["take the bus", "ехать на автобусе", "", ""],
+    ["take medicine", "принимать лекарство", "", "medicine /ˈmedsn/"]
+  ],
+
+  tasks: [
+    // 1. Разминка
+    { part: "warmup", type: "wordfall", title: "Словопад: школьные слова", count: 10, speed: 7, dir: "en-ru" },
+
+    // 2. Работа над ошибками
+    { part: "review", type: "mistakes", count: 6, rule: 1, items: [
+      { q: "Yesterday at 5 pm I ___ (play) Roblox.", a: ["was playing"] },
+      { q: "While we were playing basketball, it ___ (start) to snow.", a: ["started"] },
+      { q: "They ___ watching a film when I called.", o: ["were", "was"], a: 0 },
+      { q: "Thomas ___ (not / sleep) when I came home — he was hungry!", a: ["wasn't sleeping", "was not sleeping"] }
+    ]},
+
+    // 3. Повторяем слова (одежда, зимняя одежда)
+    { part: "words", type: "vocab", count: 8, vocab: [
+      ["hoodie", "толстовка с капюшоном"], ["trainers", "кроссовки"], ["scarf", "шарф"],
+      ["gloves", "перчатки"], ["boots", "ботинки, сапоги"], ["jumper", "свитер"],
+      ["cap", "кепка"], ["belt", "ремень"], ["watch", "часы (наручные)"],
+      ["sunglasses", "солнечные очки"], ["woolly hat", "шерстяная шапка"], ["coat", "пальто"]
+    ]},
+
+    // 4. Отработка: свой квиз
+    { part: "practice", type: "bank", rule: 0,
+      title: "QUIZ: What kind of gamer-student are you? 🎮",
+      instruction: "Вставь глаголы. Два слова лишние!",
+      items: [
+        "I've got a Maths test on Monday. I want to {pass} it, so I start revising on Friday.",
+        "I always {take} notes in class — my notebook is full of them.",
+        "I forgot my homework! I ask the teacher: «Can I {hand} it in tomorrow?»",
+        "I never {copy} my friend's work. It's not fair!",
+        "If I {fail} a test, I try again and do better next time.",
+        "I usually {get} good marks in English. Mum is happy!",
+        "I don't want to {miss} a lesson, so I go to school even when it's snowing.",
+        "Before a big test I {revise} for two hours — no Roblox!",
+        "Some people {do} badly at school, but they still become famous drummers. 🥁"
+      ],
+      extra: ["make", "give"],
+      tip: "Повтори вкладку «Слова»: pass / fail / revise / hand in / take notes."
+    },
+
+    // 4b. Pro or Noob? — своё задание по словам урока
+    { part: "practice", type: "bank", rule: 0,
+      title: "Pro Player 🏆 or Noob 🐢?",
+      instruction: "Два геймера пишут в школьном чате. Вставь слова. Одно слово лишнее!",
+      items: [
+        "🏆 Pro: I {revised} for the History test all weekend.",
+        "🐢 Noob: I didn't. I was playing all weekend, so I'll probably {fail} it…",
+        "🏆 Pro: Listen in class and {take} notes — it really helps!",
+        "🐢 Noob: I can't. I always sit at the back and I {miss} half of what the teacher says.",
+        "🏆 Pro: Did you {hand} in your English homework?",
+        "🐢 Noob: No! Can I {copy} yours? Please! 🙏",
+        "🏆 Pro: No way! Do it yourself and you'll {get} a good mark.",
+        "🐢 Noob: OK… I really want to {pass} this test. I don't want a bad mark again.",
+        "🏆 Pro: Fine. But next time I want you to {do} well on your own! 💪"
+      ],
+      extra: ["make"],
+      tip: "revise, fail, take notes, miss, hand in, copy, get a mark, pass, do well."
+    },
+
+    // 5. Мемори
+    { part: "practice", type: "memory", title: "Мемори: найди пары", count: 8, time: 120 },
+
+    // 6. Гонка: Past Simple vs Past Continuous
+    { part: "practice", type: "race", title: "Гонка: какое время?", rule: 1, items: [
+      { q: "While I ___ Roblox, Mum came in.", o: ["was playing", "played"], a: 0 },
+      { q: "Thomas ___ on my keyboard when I was doing my homework.", o: ["jumped", "was jumping"], a: 0 },
+      { q: "At 7 pm yesterday we ___ basketball.", o: ["were playing", "played"], a: 0 },
+      { q: "First I finished my homework, then I ___ to the park.", o: ["went", "was going"], a: 0 },
+      { q: "The phone rang while I ___ for the test.", o: ["was revising", "revised"], a: 0 },
+      { q: "___ you playing the drums at 10 pm last night?", o: ["Were", "Did"], a: 0 },
+      { q: "I ___ a bad mark yesterday. 😬", o: ["got", "was getting"], a: 0 },
+      { q: "What ___ you doing when the lights went out?", o: ["were", "did"], a: 0 }
+    ], tip: "Длинное действие — was/were + -ing, короткое, которое его прервало, — V2." },
+
+    // 7. Соедини предложения
+    { part: "practice", type: "rewrite", rule: 1,
+      title: "Combo! Соедини два предложения",
+      instruction: "Соедини в одно предложение словом в скобках.",
+      items: [
+        { q: "I was revising. My phone rang. (when)", a: ["I was revising when my phone rang", "When my phone rang, I was revising"] },
+        { q: "Thomas was sleeping. I came home. (when)", a: ["Thomas was sleeping when I came home", "When I came home, Thomas was sleeping"] },
+        { q: "I was taking notes. My pen broke. (while)", a: ["My pen broke while I was taking notes", "While I was taking notes, my pen broke"] },
+        { q: "We were playing basketball. It started to snow. (when)", a: ["We were playing basketball when it started to snow", "When it started to snow, we were playing basketball"] },
+        { q: "Kolya copied my work. The teacher wasn't looking. (while)", a: ["Kolya copied my work while the teacher wasn't looking", "Kolya copied my work while the teacher was not looking", "While the teacher wasn't looking, Kolya copied my work", "While the teacher was not looking, Kolya copied my work"] }
+      ],
+      tip: "while + was/were + -ing; when + V2."
+    },
+
+    // 8. Миллионер
+    { part: "practice", type: "millionaire", title: "Кто хочет стать миллионером? 💰", items: [
+      { q: "Ты получил пятёрку: You ___ a good mark.", o: ["got", "took", "made", "did"], a: 0 },
+      { q: "«Сдать экзамен успешно» — это…", o: ["pass an exam", "take an exam", "miss an exam", "copy an exam"], a: 0 },
+      { q: "I was revising ___ my cat jumped on the book.", o: ["when", "while", "at", "during"], a: 0 },
+      { q: "Что НЕ говорят с take?", o: ["take a good mark", "take a photo", "take the bus", "take medicine"], a: 0 },
+      { q: "___ I was taking notes, my friend was drawing.", o: ["While", "Yesterday", "At", "Last"], a: 0 },
+      { q: "I've got a headache. — Take some ___!", o: ["medicine", "notes", "photo", "bus"], a: 0 },
+      { q: "What were you doing ___ 9 pm yesterday?", o: ["at", "in", "on", "while"], a: 0 },
+      { q: "He didn't revise, so he ___ the test.", o: ["failed", "passed", "handed", "took notes"], a: 0 },
+      { q: "Lazy Lenny never ___ in his homework on time.", o: ["hands", "takes", "does", "passes"], a: 0 },
+      { q: "We ___ to music when the teacher walked in.", o: ["were listening", "listened", "was listening", "listen"], a: 0 }
+    ]},
+
+    // 9. Финал: детектив
+    { part: "final", type: "detective",
+      title: "Детектив: пропавшая домашка 🕵️",
+      case: "The Case of the Missing Homework",
+      story: "Вечер. Завтра Максиму сдавать (hand in) домашку по английскому. Но в 8 вечера её нет на столе! Кто виноват? Отвечай на вопросы — собирай улики.",
+      steps: [
+        { q: "At 6 pm Maksim ___ his English homework at his desk.", o: ["was doing", "did doing"], a: 0, clue: "В 6 вечера домашка точно лежала на столе." },
+        { q: "While Maksim ___ the drums, the room was very loud.", o: ["was playing", "played"], a: 0, clue: "Из-за барабанов Максим не слышал, что происходит у стола." },
+        { q: "Kolya called: «Can I ___ your homework? I didn't do it!»", o: ["copy", "take"], a: 0, clue: "Коля хотел списать… но весь вечер был у себя дома." },
+        { q: "At 7 pm the robot vacuum ___ the kitchen, not Maksim's room.", o: ["was cleaning", "cleans"], a: 0, clue: "Робот-пылесос в это время убирал кухню." },
+        { q: "When Maksim came back, Thomas ___ on the desk — on something made of paper.", o: ["was sleeping", "slept"], a: 0, clue: "Из-под кота торчит листок с надписью «Homework»!" }
+      ],
+      suspects: [
+        { name: "Thomas", emoji: "🐱", desc: "Кот Максима. Любит тёплые места." },
+        { name: "Kolya", emoji: "🧑", desc: "Друг. Иногда хочет списать." },
+        { name: "Robo-Vac", emoji: "🤖", desc: "Робот-пылесос. Ест всё, что на полу." }
+      ],
+      culprit: 0,
+      solution: "Виноват Thomas! 🐱 Пока Максим играл на барабанах, кот запрыгнул на стол и уснул прямо на домашке. Домашка спасена — можно сдавать (hand it in) и получать хорошую оценку (get a good mark)!"
+    }
+  ]
+});
+</script>
+</body></html>
