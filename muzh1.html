@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Никита", nameEn: "Nikita", gender: "m",
+  theme: "strict",
+  colors: { accent: "#2563eb", accent2: "#93c5fd", soft: "#eff6ff" },
+  teacher: "",
+  teacherSign: "Твоя учительница ❤️",
+  title: "Present Simple: мой обычный день",
+  intro: "Никита, привет! 👋 Здесь всего **10–15 минут**: базовые глаголы, слова-маркеры и вопросы *What? Where? When? Why?*. Всё короткое, правила — во вкладке «Подсказка». Дойди до конца — в финале тебя ждёт кофе в Риме ☕🇮🇹",
+  celebrate: { text: "Отлично, Никита! Всё верно — заслуженный кофе ☕", emoji: "☕", rain: ["☕","🐈","✈️","🥐","🍕"], btn: "Ура!", fx: "fireworks" },
+
+  rules: [
+    { title: "Present Simple — что это",
+      text: "Говорим о том, что бывает регулярно: привычки, распорядок дня, факты. I / you / we / they + глагол. He / she / it + глагол с окончанием -s.",
+      examples: ["I drink coffee every morning.", "My cat sleeps all day.", "We travel every summer."],
+      mistake: "He work ❌ → He works ✅" },
+    { title: "Отрицание и вопрос: do / does",
+      text: "Отрицание: I/you/we/they don't + глагол; he/she/it doesn't + глагол (без -s!). Вопрос: Do / Does + кто + глагол? Ответ: Yes, I do. / No, he doesn't.",
+      examples: ["I don't eat fish.", "She doesn't like tea.", "Do you like cats? — Yes, I do.", "Does he cook? — No, he doesn't."],
+      mistake: "She doesn't likes ❌ → She doesn't like ✅ (-s уже «ушло» в does)" },
+    { title: "Окончания -s / -es / -ies",
+      text: "Обычно просто -s: works, eats, sleeps. После -sh, -ch, -o, -s, -x → -es: watches, goes, does. Согласная + y → -ies: study → studies. Исключение: have → has.",
+      examples: ["She watches TV.", "He goes to work.", "My cat has a big bowl."],
+      mistake: "He haves ❌ → He has ✅" },
+    { title: "Слова-маркеры",
+      text: "Подсказывают, что нужен Present Simple. always — всегда (100%), usually — обычно, often — часто, sometimes — иногда, rarely — редко, never — никогда (0%). Они стоят ПЕРЕД глаголом. every day / every morning / on Mondays / at the weekend — обычно в конце.",
+      examples: ["I always drink coffee.", "He never eats fast food.", "We eat pizza every Friday."],
+      mistake: "I drink always coffee ❌ → I always drink coffee ✅" },
+    { title: "Вопросительные слова",
+      text: "what — что; where — где, куда; when — когда; why — почему (ответ: because… — потому что); who — кто; how — как; what time — во сколько.",
+      examples: ["What? — Coffee.", "Where? — In Moscow.", "When? — In summer.", "Why? — Because it's tasty."] },
+    { title: "Специальные вопросы",
+      text: "Схема: Вопросительное слово + do/does + кто + глагол? Слово-маркер — перед глаголом.",
+      examples: ["Where do you live?", "What does your cat eat?", "When do you usually have breakfast?"],
+      mistake: "Where you live? ❌ / What does she eats? ❌ → Where do you live? / What does she eat? ✅" }
+  ],
+
+  words: [
+    ["eat", "есть, кушать", "/iːt/", ""],
+    ["drink", "пить", "/drɪŋk/", ""],
+    ["sleep", "спать", "/sliːp/", "долгое «и»"],
+    ["wake up", "просыпаться", "/weɪk ʌp/", ""],
+    ["get up", "вставать", "/ɡet ʌp/", ""],
+    ["go", "идти, ехать", "/ɡəʊ/", "he goes"],
+    ["work", "работать", "/wɜːk/", ""],
+    ["cook", "готовить (еду)", "/kʊk/", ""],
+    ["watch", "смотреть", "/wɒtʃ/", "he watches"],
+    ["read", "читать", "/riːd/", ""],
+    ["like", "нравиться, любить", "/laɪk/", ""],
+    ["live", "жить", "/lɪv/", "короткое «и»"],
+    ["travel", "путешествовать", "/ˈtrævl/", "ударение на 1-й слог"],
+    ["have breakfast", "завтракать", "/hæv ˈbrekfəst/", "he has breakfast"],
+    ["have dinner", "ужинать", "/hæv ˈdɪnə/", ""],
+    ["always", "всегда", "/ˈɔːlweɪz/", "100%"],
+    ["usually", "обычно", "/ˈjuːʒuəli/", ""],
+    ["often", "часто", "/ˈɒfn/", "t не читается"],
+    ["sometimes", "иногда", "/ˈsʌmtaɪmz/", ""],
+    ["never", "никогда", "/ˈnevə/", "0%"],
+    ["what", "что", "/wɒt/", ""],
+    ["where", "где, куда", "/weə/", ""],
+    ["when", "когда", "/wen/", ""],
+    ["why", "почему", "/waɪ/", ""],
+    ["who", "кто", "/huː/", ""],
+    ["how", "как", "/haʊ/", ""]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "wordfall", title: "Словопад: базовые глаголы", count: 10, speed: 7, dir: "en-ru",
+      words: [["eat","есть"],["drink","пить"],["sleep","спать"],["wake up","просыпаться"],["get up","вставать"],["go","идти, ехать"],["work","работать"],["cook","готовить"],["watch","смотреть"],["read","читать"],["like","нравиться"],["live","жить"],["travel","путешествовать"]] },
+
+    { part: "words", type: "vocab", count: 6 },
+
+    { part: "practice", type: "gaps", title: "Глагол в Present Simple",
+      instruction: "Поставь глагол в нужную форму. Помни: he / she / it / my cat → -s.",
+      rule: [0, 2],
+      items: [
+        "I {drink} coffee every morning. (drink)",
+        "My cat {sleeps} all day. (sleep)",
+        "My wife {cooks} very tasty pasta. (cook)",
+        "We {eat} pizza on Fridays. (eat)",
+        "He {goes} to work at 9. (go)",
+        "She {watches} TV in the evening. (watch)",
+        "My cat {doesn't like} water. (not like)",
+        "I {don't sleep} after lunch. (not sleep)"
+      ],
+      tip: "he/she/it → -s; отрицание: don't / doesn't + глагол без -s" },
+
+    { part: "practice", type: "choice", title: "Do или does?",
+      instruction: "Выбери правильный вариант.",
+      rule: 1,
+      items: [
+        { q: "___ you like coffee?", o: ["Do", "Does"], a: 0 },
+        { q: "___ your cat sleep on the bed?", o: ["Do", "Does"], a: 1 },
+        { q: "She ___ like tea.", o: ["don't", "doesn't"], a: 1 },
+        { q: "My friends ___ cook at home.", o: ["don't", "doesn't"], a: 0 },
+        { q: "Does he ___ fish?", o: ["eat", "eats"], a: 0 }
+      ],
+      tip: "he/she/it → does / doesn't, и тогда глагол без -s" },
+
+    { part: "practice", type: "bank", title: "Слова-маркеры: как часто?",
+      instruction: "Вставь маркер по процентам в скобках.",
+      rule: 3,
+      items: [
+        "I {always} drink coffee in the morning. (100%)",
+        "My cat {usually} sleeps on the sofa. (90%)",
+        "We {often} eat pizza. (70%)",
+        "I {sometimes} cook dinner. (50%)",
+        "My cat {never} eats vegetables. (0%)"
+      ],
+      extra: ["rarely"],
+      tip: "always 100% → usually → often → sometimes → rarely → never 0%" },
+
+    { part: "practice", type: "order", title: "Маркер на своё место",
+      instruction: "Собери предложение. Маркер — перед глаголом, every… — в конце.",
+      rule: 3,
+      items: [
+        "I usually get up at 7.",
+        "My cat always sleeps after lunch.",
+        "We never eat fast food.",
+        "They travel every summer."
+      ],
+      tip: "always / usually / never — перед глаголом" },
+
+    { part: "practice", type: "match", title: "Вспоминаем вопросительные слова",
+      instruction: "Соедини слово и перевод.",
+      rule: 4,
+      pairs: [["what","что"],["where","где, куда"],["when","когда"],["why","почему"],["who","кто"],["how","как"],["what time","во сколько"]] },
+
+    { part: "practice", type: "choice", title: "Какой вопрос?",
+      instruction: "Посмотри на ответ и выбери вопросительное слово.",
+      rule: 4,
+      items: [
+        { q: "___ do you live? — In Kazan.", o: ["Where", "When", "What"], a: 0 },
+        { q: "___ do you drink in the morning? — Coffee.", o: ["What", "Where", "Why"], a: 0 },
+        { q: "___ do you get up? — At 7 o'clock.", o: ["What time", "Who", "Why"], a: 0 },
+        { q: "___ do you like cats? — Because they are cute.", o: ["Why", "How", "Where"], a: 0 },
+        { q: "___ does she travel? — In summer.", o: ["When", "What", "Who"], a: 0 },
+        { q: "___ do you go to work? — By car.", o: ["How", "When", "What"], a: 0 }
+      ],
+      tip: "where — место, when — время, why — причина (because…)" },
+
+    { part: "practice", type: "order", title: "Собери специальный вопрос",
+      instruction: "Вопросительное слово + do/does + кто + глагол?",
+      rule: 5,
+      items: [
+        "Where do you usually drink coffee?",
+        "What does your cat eat?",
+        "When do you have breakfast?",
+        "Why does he like Italy?"
+      ],
+      tip: "Where you live ❌ → Where do you live ✅" },
+
+    { part: "speak", type: "speak", max: 90,
+      tip: "Отвечай коротко, 1–2 предложения. Можно с маркерами: always, usually, sometimes.",
+      items: [
+        "What do you usually eat for breakfast?",
+        "When do you drink coffee?",
+        "Where do you like to travel? Why?"
+      ] },
+
+    { part: "final", type: "chat", title: "Кофе в Риме ☕🇮🇹",
+      instruction: "Ты в маленьком кафе в Риме. Бариста хочет поболтать — выбери правильный ответ.",
+      rule: [0, 5],
+      who: { name: "Marco", avatar: "🧔" },
+      script: [
+        { say: "Ciao! Welcome to Caffè Roma ☕ Are you a tourist?" },
+        { me: [
+          { t: "Yes, I am. I travel every summer.", ok: true, reply: "Cool! Where do you live?" },
+          { t: "Yes, I am. I travels every summer.", fb: "💡 После I глагол без -s: I travel." }
+        ] },
+        { me: [
+          { t: "I live in Russia.", ok: true, reply: "Nice! What do you usually drink in the morning?" },
+          { t: "I lives in Russia.", fb: "💡 -s только для he / she / it. I live." }
+        ] },
+        { me: [
+          { t: "I usually drink coffee.", ok: true, reply: "Me too! 😄 Do you like cats? Our café has a cat — Bruno 🐈" },
+          { t: "I drink usually coffee.", fb: "💡 Маркер стоит перед глаголом: I usually drink." }
+        ] },
+        { me: [
+          { t: "Yes, I do! I love cats.", ok: true, reply: "Bruno sleeps here all day. He never works 😂" },
+          { t: "Yes, I does! I love cats.", fb: "💡 С I — do: Yes, I do." }
+        ] },
+        { me: [
+          { t: "Ha-ha! When does the café open?", ok: true, reply: "At 8 a.m. every day. Come tomorrow, Nikita! Enjoy your coffee ☕" },
+          { t: "Ha-ha! When the café opens?", fb: "💡 Специальный вопрос: When + does + the café + open?" }
+        ] }
+      ] }
+  ]
+});
+</script>
+</body></html>
