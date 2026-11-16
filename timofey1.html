@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Тимофей", nameEn: "Timofey", gender: "m",
+  theme: "gamer",
+  decor: ["🏒", "🥅", "⛸️", "🐱", "🐶", "🐹"],
+  teacher: "",
+  whatsapp: true,                       // кнопка «Отправить в WhatsApp» (можно вписать номер: "79001234567")
+  title: "Winter clothes ❄️ One — many",
+  intro: "Привет, **Тимофей**! 🏒 На улице зима ❄️ — пора одеваться тепло!\nСегодня: **зимняя одежда** и **один — много** (hat → hats).\nЗабыл правило? Жми **💡 Подсказка** — и сразу назад к заданию!",
+  celebrate: { text: "ГОЛ! Всё верно! Ты чемпион! 🏆", emoji: "🏒", rain: ["🏒","🥅","⛸️","🧤","🧣","❄️"], btn: "Ура! 🎉", fx: "both" },
+
+  rules: [
+    { title: "Один → много: + s",
+      text: "Чаще всего просто добавь **-s**.\nПеред словом в единственном числе — **a**: *a hat* (одна шапка).",
+      examples: ["a hat → two hats 🧢🧢", "a cat → three cats 🐱🐱🐱", "a boot → boots 🥾🥾"],
+      mistake: "❌ two hat → ✅ two hats" },
+    { title: "+ es",
+      text: "Если слово кончается на **s, sh, ch, x** — добавь **-es**.",
+      examples: ["a dress → dresses", "a box → boxes", "a watch → watches", "a bus → buses"],
+      mistake: "❌ boxs → ✅ boxes" },
+    { title: "y → ies",
+      text: "Если перед **y** согласная — **y** меняем на **ies**. Если гласная (ay, ey, oy) — просто **s**.",
+      examples: ["a puppy → puppies 🐶🐶", "a lorry → lorries", "a toy → toys 🧸 (o + y = просто s)"],
+      mistake: "❌ puppys → ✅ puppies" },
+    { title: "f → ves",
+      text: "Многие слова на **f / fe** меняют его на **ves**.",
+      examples: ["a scarf → scarves 🧣🧣", "a wolf → wolves 🐺", "a knife → knives"],
+      mistake: "❌ scarfs → ✅ scarves" },
+    { title: "Слова-исключения",
+      text: "Эти слова меняются по-особому — их надо просто помнить:",
+      examples: ["a man → men 👨", "a woman → women 👩", "a child → children 🧒", "a foot → feet 🦶", "a tooth → teeth 🦷", "a mouse → mice 🐭", "a sheep → sheep 🐑 (не меняется!)", "a fish → fish 🐟 (не меняется!)"],
+      mistake: "❌ childs, mouses, sheeps → ✅ children, mice, sheep" },
+    { title: "Всегда «много»",
+      text: "Некоторые вещи состоят из двух половинок — они **всегда** во множественном числе.",
+      examples: ["trousers 👖", "jeans", "shorts", "My trousers **are** blue."],
+      mistake: "❌ a trouser → ✅ trousers" }
+  ],
+
+  words: [
+    ["hat", "шапка 🧢", "/hæt/", ""],
+    ["scarf", "шарф 🧣", "/skɑːf/", "много: scarves"],
+    ["gloves", "перчатки 🧤", "/ɡlʌvz/", ""],
+    ["coat", "пальто 🧥", "/kəʊt/", ""],
+    ["jacket", "куртка", "/ˈdʒækɪt/", ""],
+    ["jumper", "свитер 🧶", "/ˈdʒʌmpə/", ""],
+    ["boots", "сапоги, ботинки 🥾", "/buːts/", ""],
+    ["socks", "носки 🧦", "/sɒks/", ""],
+    ["trousers", "брюки 👖", "/ˈtraʊzəz/", "всегда много"],
+    ["skates", "коньки ⛸️", "/skeɪts/", "бонус для хоккеиста!"]
+  ],
+
+  tasks: [
+    // 1. РАЗМИНКА
+    { part: "warmup", type: "wordfall", title: "❄️ Снегопад слов", instruction: "Слова падают, как снег! Лови перевод.", count: 8, speed: 8, dir: "en-ru" },
+
+    // 2. РАБОТА НАД ОШИБКАМИ
+    { part: "review", type: "mistakes", count: 4, title: "🛠 Работа над ошибками", instruction: "Выбери правильный ответ.",
+      items: [
+        { q: "🧸 one teddy — two ___", o: ["teddies", "teddys"], a: 0 },
+        { q: "❄️ It's cold. It's ___.", o: ["winter", "summer"], a: 0 },
+        { q: "🐹 My hamster ___ a lot. 😴", o: ["sleeps", "eat"], a: 0 }
+      ] },
+
+    // 3. ПОВТОРЯЕМ СЛОВА (прошлые темы)
+    { part: "words", type: "vocab", count: 6, mode: "match", title: "🔁 Вспоминаем старые слова", instruction: "Соедини пары.",
+      vocab: [
+        ["ball", "мяч ⚽"], ["doll", "кукла 🪆"], ["teddy", "мишка 🧸"], ["kite", "воздушный змей 🪁"], ["train", "поезд 🚂"],
+        ["cat", "кот 🐱"], ["dog", "собака 🐶"], ["hamster", "хомяк 🐹"], ["rabbit", "кролик 🐰"],
+        ["spring", "весна 🌷"], ["summer", "лето ☀️"], ["autumn", "осень 🍂"], ["winter", "зима ❄️"],
+        ["T-shirt", "футболка 👕"], ["dress", "платье 👗"], ["shorts", "шорты 🩳"],
+        ["eat", "есть 🍎"], ["sleep", "спать 😴"], ["lie", "лежать 🛋️"]
+      ] },
+    { part: "words", type: "memory", title: "🧤 Мемори: зимний шкаф", instruction: "Открывай карточки и ищи пары!", count: 6, time: 120,
+      pairs: [ ["hat", "🧢 шапка"], ["scarf", "🧣 шарф"], ["gloves", "🧤 перчатки"], ["coat", "🧥 пальто"], ["boots", "🥾 сапоги"], ["socks", "🧦 носки"], ["jumper", "🧶 свитер"], ["skates", "⛸️ коньки"] ] },
+
+    // 4. ОТРАБОТКА: один — много
+    { part: "practice", type: "race",
+      skinText: { me: "🏒", rival: "🧤", goal: "🥅", meName: "Тимофей", rivalName: "Вратарь", title: "Хоккейный матч",
+        ok: ["ГОЛ! 🏒", "Шайба в воротах! 🥅", "Какой бросок! 🔥"], bad: "Вратарь поймал шайбу! 🧤",
+        win: "Победа! Ты забросил больше шайб! 🏆", lose: "Вратарь сегодня в ударе. Ещё раз? 💪" },
+      title: "🏒 Хоккейный матч", instruction: "Отвечай верно — и забивай шайбу! Один → много.", rule: [0,1,2,3,4],
+      items: [
+        { q: "🧢 one hat → two ___", o: ["hats", "hates", "hat"], a: 0 },
+        { q: "🧣 one scarf → two ___", o: ["scarves", "scarfs", "scarf"], a: 0 },
+        { q: "📦 one box → two ___", o: ["boxes", "boxs", "box"], a: 0 },
+        { q: "🐭 one mouse → three ___", o: ["mice", "mouses", "mouse"], a: 0 },
+        { q: "🐶 one puppy → four ___", o: ["puppies", "puppys", "puppy"], a: 0 },
+        { q: "🦶 one foot → two ___", o: ["feet", "foots", "feets"], a: 0 },
+        { q: "👗 one dress → two ___", o: ["dresses", "dresss", "dress"], a: 0 },
+        { q: "🐑 one sheep → five ___", o: ["sheep", "sheeps", "shoop"], a: 0 }
+      ], tip: "Повтори правила: +s, +es, y→ies, f→ves и исключения." },
+
+    { part: "practice", type: "bank", title: "🐹 Вставь слово", instruction: "Нажми на слово — оно встанет в пропуск. Осторожно: есть ловушки!", rule: [3,4],
+      items: [
+        "🐭 Look! Three {mice} are under my bed!",
+        "🧣 I've got two {scarves}: a blue one and a red one.",
+        "🧒 There are five {children} on the ice. ⛸️",
+        "🐶 My dog has got big white {teeth}.",
+        "🧤 It's cold! Put on your {gloves}, Timofey!",
+        "🥅 Two {men} are in the hockey goal."
+      ],
+      extra: ["mouses", "scarfs", "childs"],
+      tip: "Исключения: mouse → mice, child → children, tooth → teeth, man → men." }
+  ]
+});
+</script>
+</body></html>

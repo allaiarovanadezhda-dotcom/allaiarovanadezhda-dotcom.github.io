@@ -1350,6 +1350,13 @@
     var w = null; try { w = window.open(u, "_blank"); } catch (err) {}
     if (!w) location.href = u;
   }
+  function openWa(text) {
+    var num = H.whatsapp === true ? "" : String(H.whatsapp || "").replace(/[^0-9]/g, "");
+    var u = "https://wa.me/" + num;
+    if (text) { var e = encodeURIComponent(text); if (e.length < 6000) u += "?text=" + e; }
+    var w = null; try { w = window.open(u, "_blank"); } catch (err) {}
+    if (!w) location.href = u;
+  }
   function copyText(s) {
     try { if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(s).then(function () { return true; }, fallback); } catch (e) {}
     return Promise.resolve(fallback());
@@ -1363,9 +1370,10 @@
     var c = el("section", "card send pat" + (T.plain ? 0 : 1)), inner = el("div", "inner"); c.appendChild(inner);
     var who = H.teacher ? "<b>именно " + esc(H.teacher) + "</b>" : "<b>именно своему учителю</b>";
     inner.appendChild(el("h2", "", "<span>💌 Отправить результат</span>"));
-    inner.appendChild(el("p", "", "Когда всё сделаешь — нажми кнопку и отправь отчёт " + who + " в Telegram."));
+    inner.appendChild(el("p", "", "Когда всё сделаешь — нажми кнопку и отправь отчёт " + who + (H.whatsapp ? " в Telegram или WhatsApp." : " в Telegram.")));
     var btns = el("div", "btns"), tg = el("button", "btn", "✈️ Отправить в Telegram"), cp = el("button", "btn ghost", "📋 Скопировать отчёт"), see = el("button", "btn ghost", "👀 Посмотреть");
-    [tg, cp, see].forEach(function (b) { b.type = "button"; btns.appendChild(b); });
+    var wa = H.whatsapp ? el("button", "btn", "💬 Отправить в WhatsApp") : null;
+    [tg, wa, cp, see].forEach(function (b) { if (b) { b.type = "button"; btns.appendChild(b); } });
     var note = el("div", "msg"), pre = el("pre", "rep hidden");
     inner.appendChild(btns); inner.appendChild(note); inner.appendChild(pre);
     function finishHW(proceed, goText) {
@@ -1380,6 +1388,13 @@
       note.innerHTML = "Отчёт скопирован ✅ Открывается чат с учителем. Если текст не появился сам — <b>вставь</b> его и отправь.";
       openTg(r);
     }
+    if (wa) wa.addEventListener("click", function () {
+      finishHW(function () {
+        var r = buildReport(); copyText(r);
+        note.innerHTML = "Отчёт скопирован ✅ Открывается WhatsApp. " + (H.whatsapp === true ? "Выбери чат с учителем, " : "") + "Если текст не появился сам — <b>вставь</b> его и отправь.";
+        openWa(r);
+      }, "💬 Отправить в WhatsApp");
+    });
     cp.addEventListener("click", function () {
       finishHW(function () { copyText(buildReport()); note.textContent = "Скопировано ✅ Вставь в Telegram и отправь " + (H.teacher || "учителю") + "."; }, "📋 Скопировать отчёт");
     });
