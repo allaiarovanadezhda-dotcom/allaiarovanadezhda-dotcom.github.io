@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Стёпа", nameEn: "Stepa", gender: "m",
+  theme: "sunny",
+  teacher: "",
+  title: "Learning and exams + Past Simple / Past Continuous",
+  intro: "Привет, Стёпа! ☀️ Сегодня тема — **школа и экзамены**: *revise, hand in, take notes, pass, fail*. А ещё повторяем **Past Simple** и **Past Continuous** и их слова-маркеры. В конце — детектив: **кто съел твою домашку?** 🕵️",
+  celebrate: { text: "Stepa, you're a Perfect Student! 🌟 Всё верно!", emoji: "☀️", rain: ["🐀","🐷","🐢","🐶","🐱","🏝️","⭐"], btn: "Ура!", fx: "both" },
+
+  rules: [
+    { title: "Learning and exams — глагол + выражение",
+      text: "Запоминай глагол вместе со второй частью:<br>• **copy** someone's work — списывать<br>• **do** well / badly — учиться хорошо / плохо<br>• **get** a good / bad mark — получить хорошую / плохую оценку<br>• **hand in** your homework — сдать домашку учителю<br>• **pass** / **fail** an exam — сдать / провалить экзамен<br>• **revise** for a test — готовиться (повторять) к контрольной<br>• **take** notes — записывать, конспектировать<br>• **take** an exam — сдавать (писать) экзамен<br><br>И ещё с **take**: take **a photo**, take **medicine**, take **the bus**.",
+      examples: ["I'm taking an exam tomorrow. I hope I pass it!", "Lazy Lenny copies someone's work."],
+      mistake: "**take** an exam = сдавать (процесс), а **pass** an exam = сдать (успешно!). Не путай 😉" },
+
+    { title: "⏰ Past Simple — что случилось",
+      text: "Законченное действие в прошлом. Действия одно за другим.<br>**+** I played / I went (2-я форма или -ed)<br>**−** I **didn't** play / I didn't go<br>**?** **Did** you play? / Did you go?<br><br>**Слова-маркеры:** yesterday, last week / month / year, two days **ago**, in 2025, when I was five, then.",
+      examples: ["Yesterday I got a good mark.", "Two days ago we took a Maths test.", "Did you hand in your homework?"],
+      mistake: "После **did / didn't** — первая форма: Did you **go**? (не Did you went?)" },
+
+    { title: "⏳ Past Continuous — что происходило (процесс)",
+      text: "Действие было **в процессе** в какой-то момент в прошлом.<br>**was / were + глагол-ing**<br>I / he / she / it **was** revising<br>you / we / they **were** revising<br>**−** I wasn't revising  **?** Were you revising?<br><br>**Слова-маркеры:** at 7 pm yesterday, at this time yesterday, at that moment, all evening, **while**.",
+      examples: ["At 7 pm yesterday I was revising for my test.", "What were you doing at this time yesterday?"],
+      mistake: "Не забывай **was / were**: I **was** sleeping (не I sleeping). We **were**, а не we was." },
+
+    { title: "⚡ Past Simple + Past Continuous вместе",
+      text: "Длинное действие (процесс) — **Past Continuous**. Короткое, которое его прервало, — **Past Simple**.<br>• **while** + Past Continuous (пока…)<br>• **when** + Past Simple (когда вдруг…)",
+      examples: ["I was taking notes **when** my pen broke.", "**While** I was revising, my rat jumped on the book."],
+      mistake: "While I **was doing** my homework… (после while — обычно процесс, -ing)" },
+
+    { title: "🧭 Шпаргалка: какое время выбрать?",
+      text: "• **usually, every day, often** → Present Simple: I usually take the bus.<br>• **now, at the moment, Look!** → Present Continuous: I'm revising now.<br>• **yesterday, ago, last…** → Past Simple: I passed the test last week.<br>• **at 5 pm yesterday, while, at that moment** → Past Continuous: I was dancing at 5 pm yesterday.",
+      examples: ["Every day I take notes. Yesterday I took a lot of notes!"] },
+
+    { title: "🔁 Повторяем прошлые темы",
+      text: "• **should / shouldn't** — совет: You should revise. You shouldn't copy.<br>• **have to** — нужно (так правила): I have to wear a uniform.<br>• **must** — обязательно; **mustn't** — нельзя: You mustn't copy in a test!<br>• **make**: make a mistake, make your bed, make a noise<br>• **do**: do homework, do exercise, do the washing-up, do well",
+      mistake: "После should / must / have to — глагол без to и без -s: He should **revise** (не should to revise)." }
+  ],
+
+  words: [
+    ["copy someone's work", "списывать у кого-то", "/ˈkɒpi ˈsʌmwʌnz wɜːk/", ""],
+    ["do well / badly", "учиться (справляться) хорошо / плохо", "/duː wel / ˈbædli/", ""],
+    ["get a good / bad mark", "получить хорошую / плохую оценку", "/ɡet ə ɡʊd / bæd mɑːk/", ""],
+    ["hand in your homework", "сдать домашнее задание", "/hænd ɪn jɔː ˈhəʊmwɜːk/", ""],
+    ["pass an exam", "сдать экзамен (успешно)", "/pɑːs ən ɪɡˈzæm/", ""],
+    ["fail an exam", "провалить экзамен", "/feɪl ən ɪɡˈzæm/", ""],
+    ["revise for a test", "готовиться к контрольной", "/rɪˈvaɪz fər ə test/", "ударение: reVISE"],
+    ["take notes", "записывать, конспектировать", "/teɪk nəʊts/", ""],
+    ["take an exam", "сдавать (писать) экзамен", "/teɪk ən ɪɡˈzæm/", "≠ pass!"],
+    ["take a photo", "сфотографировать", "/teɪk ə ˈfəʊtəʊ/", ""],
+    ["take medicine", "принимать лекарство", "/teɪk ˈmedsn/", ""],
+    ["take the bus", "ехать на автобусе", "/teɪk ðə bʌs/", ""],
+    ["hard-working", "трудолюбивый", "/ˌhɑːdˈwɜːkɪŋ/", ""],
+    ["lazy", "ленивый", "/ˈleɪzi/", ""]
+  ],
+
+  tasks: [
+    // 1. Разминка
+    { part: "warmup", type: "race", title: "Гонка: take a…?", instruction: "Выбирай быстро правильное слово!", rule: 0,
+      items: [
+        { q: "Can I take a ___ of my capybara? 📸", o: ["photo", "bus", "mark"], a: 0 },
+        { q: "I've got a headache. I should take some ___ 💊", o: ["medicine", "photo", "notes"], a: 0 },
+        { q: "It's raining, so I take the ___ to school 🚌", o: ["bus", "exam", "medicine"], a: 0 },
+        { q: "The teacher is talking. I take ___ in my notebook ✏️", o: ["notes", "the bus", "a photo"], a: 0 },
+        { q: "Tomorrow I'm taking an English ___ 📝", o: ["exam", "photo", "medicine"], a: 0 },
+        { q: "Lazy Lenny ___ someone's work 😴", o: ["copies", "takes", "passes"], a: 0 },
+        { q: "Perfect Patricia always ___ well at school 🌟", o: ["does", "makes", "takes"], a: 0 },
+        { q: "Oh no, I got a bad ___ in History 😢", o: ["mark", "note", "bus"], a: 0 }
+      ] },
+
+    // 2. Повторяем грамматику прошлых тем
+    { part: "review", type: "mistakes", count: 6, title: "Вспоминаем прошлые темы", rule: 5,
+      items: [
+        { q: "You've got a test tomorrow. You ___ revise tonight.", o: ["should", "shouldn't"], a: 0 },
+        { q: "In a test you ___ copy someone's work!", o: ["mustn't", "have to"], a: 0 },
+        { q: "Vets ___ wear special clothes at work.", o: ["have to", "mustn't"], a: 0 },
+        { q: "Every evening I ___ my homework.", o: ["do", "make"], a: 0 },
+        { q: "Sorry, I ___ a mistake in my test.", o: ["made", "did"], a: 0 },
+        { q: "You ___ go to bed late before an exam.", o: ["shouldn't", "should"], a: 0 }
+      ] },
+
+    // 3. Слова прошлых юнитов
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова прошлых уроков",
+      vocab: [
+        ["vet", "ветеринар"], ["firefighter", "пожарный"], ["nurse", "медсестра"], ["pilot", "пилот"],
+        ["hairdresser", "парикмахер"], ["uniform", "форма"], ["trainers", "кроссовки"], ["jacket", "куртка"],
+        ["tie", "галстук"], ["make a mistake", "сделать ошибку"], ["make your bed", "заправить кровать"],
+        ["do the washing-up", "помыть посуду"], ["do exercise", "делать зарядку"], ["make a noise", "шуметь"]
+      ] },
+
+    // 4. Соедини выражения
+    { part: "practice", type: "match", title: "Собери выражение", instruction: "Соедини глагол с его второй частью.", rule: 0,
+      pairs: [
+        ["copy", "someone's work"],
+        ["hand in", "your homework"],
+        ["revise", "for a test"],
+        ["take", "notes in class"],
+        ["get", "a bad mark"],
+        ["fail", "an exam"],
+        ["do", "well at school"]
+      ], tip: "Посмотри вкладку «Слова»: глагол учим вместе со второй частью." },
+
+    // 5. Квиз
+    { part: "practice", type: "bank", title: "QUIZ: What kind of student are you? 🤓",
+      instruction: "Вставь глаголы из банка (2 слова лишние). Потом посчитай очки: ответ **a** = 2 очка, **b** = 0. Ты Perfect Patricia или Lazy Lenny? 😄", rule: 0,
+      items: [
+        "1. You've got a big test next week. a) I start to {revise} for it today.",
+        "   b) I don't revise. I write the test, but I {fail} it.",
+        "2. Your teacher is explaining a new rule. a) I {take} notes in my notebook.",
+        "3. You forgot your homework at home. a) I ask my teacher: «Can I {hand} it in tomorrow?»",
+        "   b) I quickly {copy} my friend's work at break.",
+        "4. You often {get} bad marks in Maths. a) I ask the teacher to explain it again.",
+        "5. You want to {do} well at school. a) I listen in class and ask questions.",
+        "6. You've got an exam tomorrow. a) I revised a lot, so I'm sure I'm going to {pass} it!"
+      ],
+      extra: ["miss", "sleep"],
+      tip: "Повтори вкладку «Слова»: copy, do, get, hand in, pass, fail, revise, take." },
+
+    // 6. Past Simple / Past Continuous
+    { part: "practice", type: "gaps", title: "Stepa's crazy evening 🐀",
+      instruction: "Поставь глагол в **Past Simple** или **Past Continuous**.", rule: [1, 2, 3],
+      items: [
+        "Yesterday at 7 pm I {was revising} (revise) for my English test.",
+        "My mum {was cooking} (cook) dinner and my dogs {were sleeping} (sleep) on the sofa.",
+        "Suddenly my mini-pig {ran} (run) into my room!",
+        "While I {was taking} (take) notes, one of my rats {jumped} (jump) on my notebook.",
+        "I {took} (take) a funny photo of the rat and then I {went} (go) to bed.",
+        "Today I {got} (get) a good mark! The teacher {said} (say): «Well done, Stepa!»",
+        "While the teacher {was checking} (check) our tests, the boy next to me {fell} (fall) asleep 😴"
+      ],
+      tip: "Процесс (был в процессе) → was/were + -ing. Короткое действие / что случилось → Past Simple (2-я форма)." },
+
+    // 7. Слова-маркеры
+    { part: "practice", type: "choice", title: "Слова-маркеры: какое время? 🔎",
+      instruction: "Найди слово-маркер и выбери правильный вариант.", rule: [1, 2, 4],
+      items: [
+        { q: "Three days ago I ___ a bad mark in History.", o: ["got", "was getting"], a: 0 },
+        { q: "At 8 o'clock last night I ___ my homework.", o: ["was doing", "did"], a: 0 },
+        { q: "We ___ an English exam last week.", o: ["took", "were taking"], a: 0 },
+        { q: "What ___ at this time yesterday?", o: ["were you doing", "did you do"], a: 0 },
+        { q: "___ I was taking notes, my pen broke.", o: ["While", "Ago", "Last week"], a: 0 },
+        { q: "I was dancing at the folk dance club ___ my mum called me.", o: ["when", "ago", "yesterday"], a: 0 },
+        { q: "My capybara video got 100 likes ___. 🎥", o: ["yesterday", "at that moment", "while"], a: 0 },
+        { q: "In 2025 my family ___ to the Maldives. 🏝️", o: ["went", "was going"], a: 0 },
+        { q: "Какой маркер — для Past Continuous?", o: ["at 5 pm yesterday", "two weeks ago", "last year"], a: 0 },
+        { q: "Какой маркер — для Past Simple?", o: ["last month", "at that moment", "while"], a: 0 }
+      ],
+      tip: "ago, last…, yesterday, in 2025 → Past Simple. at 5 pm yesterday, at that moment, while → Past Continuous." },
+
+    // 8. Финал
+    { part: "final", type: "detective", title: "Детектив: кто съел домашку Стёпы? 🕵️",
+      case: "Пропала домашка!",
+      story: "Yesterday Stepa revised for his test and did his English homework. In the morning he wanted to hand it in, but the homework wasn't in his bag! There were only small pieces of paper on the floor… Who did it? Ответь на вопросы — получишь улики.",
+      steps: [
+        { q: "At 8 pm yesterday Stepa ___ his homework in his room.", o: ["was doing", "were doing", "did doing"], a: 0, clue: "🔍 Дверь в комнату Стёпы весь вечер была открыта." },
+        { q: "While Stepa ___ a shower, someone came into his room.", o: ["was taking", "took", "takes"], a: 0, clue: "🔍 На полу следы маленьких копыт — не лапок!" },
+        { q: "The cat and the dogs ___ on the sofa all evening — Mum saw them.", o: ["were sleeping", "was sleeping", "sleeped"], a: 0, clue: "🔍 У кота и собак алиби: мама видела их на диване." },
+        { q: "The four rats ___ in their cage. The cage was closed.", o: ["were sitting", "was sitting", "sitted"], a: 0, clue: "🔍 Клетка с крысами была закрыта на замок." },
+        { q: "Then Stepa ___ a funny sound from under the bed: «Oink-oink!»", o: ["heard", "was hear", "hears"], a: 0, clue: "🔍 Из-под кровати кто-то хрюкнул! 🐽" }
+      ],
+      suspects: [
+        { name: "The cat", emoji: "🐱", desc: "Любит спать на тетрадках" },
+        { name: "The four rats", emoji: "🐀", desc: "Очень умные и любят бумагу" },
+        { name: "The dogs", emoji: "🐶", desc: "Всегда голодные" },
+        { name: "The turtle", emoji: "🐢", desc: "Тихая, но загадочная" },
+        { name: "The mini-pig", emoji: "🐷", desc: "Ест всё, что видит" }
+      ],
+      culprit: 4,
+      solution: "Это мини-пиг! 🐷 Пока Стёпа принимал душ (was taking a shower), он забежал в комнату и съел домашку. Кот и собаки спали, крысы сидели в закрытой клетке, а черепашка слишком медленная 🐢. Stepa took a photo of the guilty pig, and the teacher said: «OK, you can hand in your homework tomorrow!» 😄" }
+  ]
+});
+</script>
+</body></html>
