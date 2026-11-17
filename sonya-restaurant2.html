@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Соня", nameEn: "Sonya", gender: "f",
+  theme: "lilac",
+  teacher: "",
+  title: "At the restaurant 🍽️ + Sea animals 🐬",
+  intro: "Соня, представь: ты прилетела на **Пхукет**, вечером идёшь с мамой в ресторан у моря 🌊. Нужно заказать еду, попросить меню и сдачу — и не перепутать креветку с медузой 😄 А ещё повторим слова **аэропорта**!",
+  teacherSign: "Надежда",
+  celebrate: { text: "Соня, ты настоящий гость ресторана на Пхукете!", emoji: "🐬", rain: ["🐬","🦀","🦐","🍰","💜","🌴"], btn: "Ура! 💜", fx: "both" },
+
+  rules: [
+    { title: "В ресторане: вежливые фразы",
+      text: "Просим — Can I / Can we … , please? (Можно…?) или вежливее Could you … ? (Не могли бы вы…?). Заказываем — I'll have … (Я буду…). Официант спрашивает: What would you like to drink? / Would you like anything for dessert? / Anything else?",
+      examples: ["Can we have the menu, please? — Можно нам меню?", "I'll have the grilled prawns. — Я буду креветки на гриле.", "I'll have the same. — Я буду то же самое.", "Could you give me my change? — Не могли бы вы дать мне сдачу?"],
+      mistake: "change = сдача, но и «менять»: Can we change our table? — Можно поменять столик?" },
+    { title: "Сравниваем времена",
+      text: "Present Simple — всегда, обычно (Dolphins swim fast). Present Continuous — прямо сейчас (A dolphin is swimming now!). Past Simple — вчера, в прошлом (I saw a crab yesterday). Present Perfect — опыт «когда-нибудь / никогда» (I have never eaten squid). Future Simple — будет (I will see a turtle tomorrow).",
+      examples: ["Look! A shark is swimming! (сейчас)", "Sharks eat fish. (всегда)", "Yesterday I ate crab. (вчера)", "Have you ever seen a whale? (опыт)", "Tomorrow we will swim. (будущее)"],
+      mistake: "swim — swam — swum, eat — ate — eaten, see — saw — seen (неправильные глаголы, не swimmed / eated)" },
+    { title: "Короткие ответы",
+      text: "Отвечаем тем же вспомогательным глаголом, что в вопросе: Do → do/don't, Did → did/didn't, Have → have/haven't, Are → am/'m not.",
+      examples: ["Do you like crabs? — Yes, I do. / No, I don't.", "Did you see a dolphin? — Yes, I did.", "Have you ever eaten octopus? — No, I haven't."],
+      mistake: "Не говорим «No, I not» или «Yes, I like» — только No, I don't / Yes, I do." },
+    { title: "Who … with? и used to",
+      text: "Who do you … with? — С кем ты…? Порядок: Who + do/did + you + глагол + with? used to + глагол — раньше (а теперь нет).",
+      examples: ["Who do you go swimming with? — I go swimming with my mum.", "Who did you have dinner with?", "I used to be afraid of fish. — Раньше я боялась рыбы."],
+      mistake: "Не «With who you go…?», а Who do you go … with?" }
+  ],
+
+  words: [
+    ["menu", "меню", "/ˈmenjuː/"],
+    ["waiter", "официант", "/ˈweɪtə/"],
+    ["dessert", "десерт", "/dɪˈzɜːt/", "ударение на 2-й слог"],
+    ["change", "сдача; менять", "/tʃeɪndʒ/"],
+    ["bill", "счёт (в ресторане)", "/bɪl/"],
+    ["book a table", "заказать столик", "/bʊk ə ˈteɪbl/"],
+    ["I'll have…", "я буду… (заказываю)", "/aɪl hæv/"],
+    ["the same", "то же самое", "/ðə seɪm/"],
+    ["Anything else?", "Что-нибудь ещё?", "/ˈeniθɪŋ els/"],
+    ["steak", "стейк", "/steɪk/"],
+    ["chips", "картошка фри", "/tʃɪps/"],
+    ["prawn", "креветка", "/prɔːn/"],
+    ["crab", "краб", "/kræb/"],
+    ["squid", "кальмар", "/skwɪd/"],
+    ["octopus", "осьминог", "/ˈɒktəpəs/"],
+    ["lobster", "лобстер, омар", "/ˈlɒbstə/"],
+    ["tuna", "тунец", "/ˈtjuːnə/"],
+    ["dolphin", "дельфин", "/ˈdɒlfɪn/"],
+    ["shark", "акула", "/ʃɑːk/"],
+    ["jellyfish", "медуза", "/ˈdʒelifɪʃ/"],
+    ["sea turtle", "морская черепаха", "/siː ˈtɜːtl/"],
+    ["starfish", "морская звезда", "/ˈstɑːfɪʃ/"],
+    ["whale", "кит", "/weɪl/"],
+    ["swim — swam — swum", "плавать", "/swɪm swæm swʌm/", "неправильный глагол"],
+    ["eat — ate — eaten", "есть, кушать", "/iːt eɪt ˈiːtn/", "неправильный глагол"],
+    ["see — saw — seen", "видеть", "/siː sɔː siːn/", "неправильный глагол"]
+  ],
+
+  tasks: [
+    // 1. РАЗМИНКА
+    { part: "warmup", type: "memory", title: "Мемори: морские жители 🐬",
+      instruction: "Найди пары: слово — перевод.",
+      pairs: [["dolphin","дельфин"],["shark","акула"],["jellyfish","медуза"],["starfish","морская звезда"],["prawn","креветка"],["crab","краб"],["squid","кальмар"],["octopus","осьминог"]],
+      count: 8 },
+
+    // 2. РАБОТА НАД ОШИБКАМИ (аэропорт, короткие ответы, used to, Who…with?)
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками",
+      items: [
+        { q: "Наш самолёт взлетает в 10 утра: Our plane ___ at 10 a.m.", o: ["takes off","lands","gate"], a: 0 },
+        { q: "Где ждать посадку на самолёт? At the ___ (выход на посадку).", o: ["gate","arrivals","luggage"], a: 0 },
+        { q: "Когда прилетаешь, выходишь в зал ___ (прилёт).", o: ["arrivals","departure","check-in"], a: 0 },
+        { q: "Do you like sharks? — No, I ___.", a: ["don't","do not"] },
+        { q: "Did you see a dolphin yesterday? — Yes, I ___.", a: ["did"] },
+        { q: "Have you ever eaten squid? — No, I ___.", a: ["haven't","have not"] },
+        { q: "Раньше Тимофей боялся воды: Timofey ___ afraid of water.", a: ["used to be"] },
+        { q: "Собери вопрос «С кем ты ходишь плавать?»: with / who / you / do / go swimming", a: ["Who do you go swimming with"] }
+      ] },
+
+    // 3. ПОВТОРЯЕМ СЛОВА (накопительно + аэропорт и старые слова)
+    { part: "words", type: "vocab", count: 10, title: "Повторяем слова из всех ДЗ",
+      vocab: [
+        ["departure","вылет"],["arrivals","прилёт"],["gate","выход на посадку"],["boarding pass","посадочный талон"],
+        ["passport","паспорт"],["luggage","багаж"],["take off","взлетать"],["land","приземляться"],["security","досмотр"],
+        ["check-in desk","стойка регистрации"],
+        ["knitting","вязание"],["sewing","шитьё"],["fencing","фехтование"],["patient","терпеливый"],["daring","смелый"],["artistic","творческий"]
+      ] },
+
+    // 4. ОТРАБОТКА: ресторан (банк слов)
+    { part: "practice", type: "bank", title: "Ужин на Пхукете 🍽️", rule: 0,
+      instruction: "Соня и мама в ресторане у моря. Нажми на слово — оно встанет в пропуск.",
+      items: [
+        "Mum (по телефону): Can we {book} a table for two for 8 o'clock tomorrow?",
+        "Sonya: Can we have the {menu}, please?",
+        "Sonya: Do you have the menu in {English}?",
+        "Waiter: What would you like to {drink}?",
+        "Sonya: I'll {have} the grilled prawns.",
+        "Mum: I'll have the {same}.",
+        "Waiter: Anything {else}?",
+        "Waiter: Would you like anything for {dessert}?",
+        "Sonya: It's very windy here. Can we {change} our table?",
+        "Mum: Could you bring the {bill}, please?"
+      ],
+      extra: ["swim", "gate"],
+      tip: "Повтори фразы из вкладки «Подсказка» → «В ресторане»." },
+
+    // 5. ОТРАБОТКА: времена + морские жители (банк)
+    { part: "practice", type: "bank", title: "Кто плавает в море? 🐠", rule: 1,
+      instruction: "Выбери правильную форму глагола. Подумай: сейчас, всегда, вчера, опыт или будущее?",
+      items: [
+        "Look! A dolphin {is swimming} next to our boat right now!",
+        "Sharks {eat} fish and squid.",
+        "Yesterday I {saw} a big jellyfish on the beach. Don't touch it!",
+        "I {have never eaten} octopus. Is it tasty?",
+        "Tomorrow we {will see} sea turtles on a boat trip.",
+        "When I was little, I {used to} be afraid of crabs.",
+        "Last summer Timofey {swam} in the sea for the first time."
+      ],
+      extra: ["swimmed", "eated", "is see"],
+      tip: "swim — swam, see — saw, eat — ate — eaten. Present Continuous = am/is/are + -ing." },
+
+    // 6. НАЙДИ ОШИБКУ
+    { part: "practice", type: "spot", title: "Найди ошибки в посте Сони 📱", rule: [1,3],
+      instruction: "Соня написала пост, но сделала 7 ошибок. Нажми на неверное слово и исправь.",
+      text: "Yesterday Mum and I [go=>went] to a seafood restaurant. The waiter asked: “What would you like [drink=>to drink]?” Mum said: “I'll have [a=>the] same.” I ordered prawns, and Mum [eat=>ate] crab. Right now I [sit=>am sitting] on the beach and I can see a dolphin! I [never have=>have never] seen a dolphin before. Tomorrow we [go=>will go|are going] to the sea again!" },
+
+    // 7. ГОВОРЕНИЕ
+    { part: "speak", type: "speak", max: 90,
+      tip: "Отвечай полными предложениями, 2–3 предложения на вопрос.",
+      items: [
+        "What will you order in a restaurant in Thailand? (I'll have…)",
+        "Which sea animals would you like to see? Which ones are you afraid of?",
+        "Who do you usually go to cafés with?"
+      ] },
+
+    // 8. ПИШЕМ САМИ — составь сама
+    { part: "write", type: "write", title: "Составь сама ✍️", rule: [0,3],
+      items: [
+        { q: "Ты в ресторане на Пхукете. Напиши 2 фразы: попроси меню и закажи еду (I'll have…).", min: 8, must: ["I'll have"] },
+        { q: "Придумай вопрос с who … with? про море или еду и ответь на него. Например: Who do you … with?", min: 8, must: ["who", "with"] },
+        { q: "Что ты раньше не любила или боялась, а теперь нет? Используй used to (про рыбу, море, животных…).", min: 6, must: ["used to"] }
+      ] },
+
+    // 9. ФИНАЛ — квест с атмосферой
+    { part: "final", type: "quest", title: "Квест: Sonya in Phuket 🌴",
+      place: "Пхукет: аэропорт → ресторан у моря",
+      intro: "Соня с мамой прилетела на Пхукет! Пройди путь из аэропорта в ресторан и не ошибись в фразах.",
+      scenes: [
+        { place: "Аэропорт Пхукета", scene: "🛬✈️🌴 Самолёт приземлился. Жарко! Табло светится: ARRIVALS → . У будки стоит офицер в форме 👮",
+          who: "Officer", say: "Welcome to Thailand! Can I see your passport, please?",
+          choices: [
+            { t: "Here you are.", ok: true, reply: "Thank you. Have a nice holiday!" },
+            { t: "I'll have the steak, please.", fb: "«Я буду стейк, пожалуйста» — это фраза для ресторана! Офицер говорит: «Можно ваш паспорт?» → отвечаем «Here you are» — «Вот, пожалуйста»." }
+          ] },
+        { place: "Аэропорт Пхукета", scene: "🧳🧳🧳 Чемоданы едут по ленте. Мама ищет ваш фиолетовый чемодан 💜",
+          who: "Mum", say: "Sonya, are we at departure or arrivals now?",
+          choices: [
+            { t: "We're at arrivals — we've just landed!", ok: true, reply: "Right! Let's take our luggage and go to the hotel." },
+            { t: "We're at departure — our plane takes off soon.", fb: "«Мы в зоне вылета — наш самолёт скоро взлетает». Но вы только что прилетели! arrivals — прилёт, departure — вылет, take off — взлетать, land — приземляться." }
+          ] },
+        { place: "Ресторан «Blue Wave»", scene: "🏮🌊🪑 Вечер. Ресторан прямо на берегу, на столиках фонарики, шумит море. К вам подходит улыбающийся официант в белой рубашке с меню в руках 🧑‍🍳📖",
+          who: "Waiter", say: "Good evening! Do you have a reservation?",
+          choices: [
+            { t: "Yes, we booked a table for two for 8 o'clock.", ok: true, reply: "Perfect! Your table is by the sea. This way, please." },
+            { t: "Yes, we book a table yesterday.", fb: "«Да, мы бронировать столик вчера». Официант спросил: «У вас есть бронь?» Вчера = Past Simple: we booked (мы забронировали), а не book." }
+          ] },
+        { place: "Ресторан «Blue Wave»", scene: "🪑🌅 Вы сели за столик у воды. Официант кладёт меню и наливает воду со льдом 🧊",
+          who: "Waiter", say: "Here is the menu. What would you like to drink?",
+          choices: [
+            { t: "Can I have a mango shake, please?", ok: true, reply: "Of course! Mango shake is our favourite 🥭" },
+            { t: "I'd like something for dessert.", fb: "«Я бы хотела что-нибудь на десерт» — но официант спросил: «Что вы будете пить?» (drink — пить). Ответ: Can I have a mango shake? — Можно мне манговый шейк?" }
+          ] },
+        { place: "Ресторан «Blue Wave»", scene: "🦐🦀🦑 Официант показывает на доску: TODAY'S SPECIAL — grilled prawns, crab, squid",
+          who: "Waiter", say: "Today we have fresh prawns, crab and squid. What would you like?",
+          choices: [
+            { t: "I'll have the grilled prawns, please.", ok: true, reply: "Great choice! And for you, madam? — Mum: I'll have the same!" },
+            { t: "I had the grilled prawns.", fb: "«Я ела креветки на гриле» (в прошлом). А нужно заказать сейчас: I'll have… — «Я буду…»." }
+          ] },
+        { place: "Ресторан «Blue Wave»", scene: "📝 Официант записывает заказ в блокнот и поднимает глаза",
+          who: "Waiter", say: "Anything else?",
+          choices: [
+            { t: "No, thank you. That's all.", ok: true, reply: "OK! Your food will be ready in 15 minutes." },
+            { t: "Yes, I am.", fb: "«Да, я есть» — так не отвечают. Вопрос: «Что-нибудь ещё?» Ответ: No, thank you. That's all. — Нет, спасибо, это всё." }
+          ] },
+        { place: "Ресторан «Blue Wave»", scene: "🌊🐬🐬 Вдруг в воде у ресторана кто-то прыгает! Все гости встают и смотрят на море",
+          who: "Waiter", say: "Look! Can you see them? Dolphins are swimming near the restaurant!",
+          choices: [
+            { t: "Wow! I have never seen dolphins before!", ok: true, reply: "They come here almost every evening. You're lucky! 🐬" },
+            { t: "Wow! I never see dolphins before yesterday.", fb: "«Ого! Я никогда вижу дельфинов до вчера» — ошибка. «Я никогда раньше не видела» = опыт → Present Perfect: I have never seen dolphins before." }
+          ] },
+        { place: "Ресторан «Blue Wave»", scene: "🍽️✨ Тарелки пустые, очень вкусно! Официант уносит посуду",
+          who: "Waiter", say: "Would you like anything for dessert?",
+          choices: [
+            { t: "Yes, mango sticky rice, please!", ok: true, reply: "Mmm, it's the best Thai dessert! 🥭🍚" },
+            { t: "Yes, a jellyfish, please!", fb: "«Да, медузу, пожалуйста!» 😄 jellyfish — медуза, её не едят на десерт! Официант спросил: «Хотите что-нибудь на десерт?»" }
+          ] },
+        { place: "Ресторан «Blue Wave»", scene: "💵 Счёт — 800 бат. Мама дала 1000 бат, а официант принёс… только чек 🧾",
+          who: "Waiter", say: "Thank you very much! Have a nice evening!",
+          choices: [
+            { t: "Could you give me my change, please?", ok: true, reply: "Oh, I'm so sorry! Here are your 200 baht. 🙏" },
+            { t: "Can we change our table, please?", fb: "«Можно нам поменять столик?» — но вы уже уходите! Тебе нужна сдача: Could you give me my change? — Не могли бы вы дать мне сдачу? (change = сдача)" }
+          ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🏆🐬", text: "Perfect! Официант сказал: «Your English is excellent!» — и подарил тебе брелок-дельфинчика 💜" },
+        { max: 2, emoji: "🌴😊", text: "Отличный вечер! Пара фраз запуталась, но ужин удался, и дельфинов ты увидела!" },
+        { emoji: "🦀", text: "Ужин получился весёлым, но немного запутанным. Загляни во вкладку «Слова» и попробуй ещё раз!" }
+      ] }
+  ]
+});
+</script>
+</body></html>
