@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Лера", nameEn: "Lera", gender: "f",
+  theme: "pink",
+  teacher: "",
+  title: "2A · Present Perfect Simple vs Continuous · Health · on time / in time",
+  intro: "Привет, Лера! 🌸 Сегодня повторяем **Present Perfect Simple и Continuous**, слова про **здоровье и травмы** и разницу между **on time** и **in time**. Если сомневаешься — жми *💡 Подсказка*.",
+  celebrate: { text: "Всё идеально! Ты сегодня летаешь, как на воздушных полотнах 🪽", emoji: "🪽", rain: ["🪽","🌸","🐱","✨","💖"], btn: "Ура!", fx: "both" },
+
+  rules: [
+    {
+      title: "Present Perfect Simple vs Continuous",
+      text: "**Simple** (have done) — важен **результат** или **сколько раз / сколько штук**: I've written two essays today.\n**Continuous** (have been doing) — важен **сам процесс** и его длительность, часто с for / since / all day / How long…?; или видны **следы** недавнего действия: Your hands are dirty — what have you been doing?\nС **for / since** у глаголов live, work, study, teach, wait и т.п. часто возможны **оба** варианта: I've lived / I've been living here for a year.",
+      examples: ["I've drunk three glasses of water today. (сколько — Simple)", "I've been drinking water all day. (процесс — Continuous)", "You look tired. Have you been studying all night? (следы действия)"],
+      mistake: "Нельзя: I've been reading three books this month. → I've read three books this month (есть количество)."
+    },
+    {
+      title: "Глаголы состояния — только Simple",
+      text: "Глаголы **know, like, love, hate, want, need, believe, understand, have (= владеть)** обычно не ставятся в Continuous.",
+      examples: ["I've known Masha for ten years.", "She's had her cat since 2023."],
+      mistake: "I've been knowing him for years ✗ → I've known him for years ✓"
+    },
+    {
+      title: "on time vs in time",
+      text: "**on time** = точно по расписанию, не опоздать (not late).\n**in time** = успеть, пока не стало слишком поздно (not too late). Часто **in time to do** / **in time for something**, а также **just in time** — «в самый последний момент».",
+      examples: ["Our flight left on time — at 6:40.", "I got to the shop just in time to buy bread before it closed.", "Will the dress be ready in time for the party?"],
+      mistake: "We got to the station on time to catch the train ✗ → in time to catch ✓"
+    }
+  ],
+
+  words: [
+    ["consciousness", "сознание (lose consciousness — потерять сознание)", "/ˈkɒnʃəsnəs/", ""],
+    ["diagnosis", "диагноз", "/ˌdaɪəɡˈnəʊsɪs/", "мн.ч. diagnoses"],
+    ["measure the temperature", "измерить температуру", "/ˈmeʒə ðə ˈtemprətʃə/", "ещё можно take sb's temperature"],
+    ["gynaecologist", "гинеколог", "/ˌɡaɪnəˈkɒlədʒɪst/", "амер. gynecologist"],
+    ["brain tumour", "опухоль мозга", "/breɪn ˈtjuːmə/", "амер. tumor"],
+    ["hypochondriac", "ипохондрик", "/ˌhaɪpəˈkɒndriæk/", ""],
+    ["blister", "волдырь, мозоль", "/ˈblɪstə/", ""],
+    ["bruise", "синяк", "/bruːz/", ""],
+    ["rash", "сыпь", "/ræʃ/", "come out in a rash — покрыться сыпью"],
+    ["sprain", "растянуть (связку)", "/spreɪn/", "sprain your ankle / wrist"],
+    ["swollen", "опухший", "/ˈswəʊlən/", ""],
+    ["stitches", "швы", "/ˈstɪtʃɪz/", ""],
+    ["painkiller", "обезболивающее", "/ˈpeɪnkɪlə/", ""],
+    ["sore throat", "больное горло", "/sɔː θrəʊt/", ""],
+    ["faint", "упасть в обморок", "/feɪnt/", ""],
+    ["dizzy", "чувствующий головокружение", "/ˈdɪzi/", ""],
+    ["on time", "вовремя, по расписанию", "/ɒn taɪm/", "= not late"],
+    ["in time", "вовремя, успеть", "/ɪn taɪm/", "= not too late"]
+  ],
+
+  tasks: [
+    // 1. РАЗМИНКА
+    { part: "warmup", type: "memory", title: "Мемори: здоровье", count: 8, time: 150,
+      pairs: [["consciousness","сознание"],["diagnosis","диагноз"],["hypochondriac","ипохондрик"],["brain tumour","опухоль мозга"],["blister","волдырь"],["bruise","синяк"],["rash","сыпь"],["swollen","опухший"],["stitches","швы"],["dizzy","головокружение"]] },
+
+    // 2. РАБОТА НАД ОШИБКАМИ
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками",
+      items: [
+        { q: "Do you know where ___? (the nearest pharmacy / be)", a: ["the nearest pharmacy is"] },
+        { q: "Could you tell me what time ___? (the clinic / close)", a: ["the clinic closes"] },
+        { q: "I'm not hungry. — ___ I. (Я тоже)", a: ["Neither am", "Nor am"] },
+        { q: "You've been to Prague, ___?", o: ["haven't you", "didn't you", "have you"], a: 0 },
+        { q: "The earlier you go to bed, ___ you feel in the morning.", o: ["the better", "better", "the best"], a: 0 },
+        { q: "My sister is very ___ — she always talks to new people first.", o: ["open-minded", "self-confident", "absent-minded"], a: 1 }
+      ] },
+
+    // 3. ПОВТОРЯЕМ СЛОВА
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова" },
+
+    // 4. ОТРАБОТКА
+    { part: "practice", type: "choice", title: "Simple или Continuous?", rule: [0,1],
+      instruction: "Choose the correct form. If both are possible, choose ✓ both. (Как в Grammar Bank 2A, упр. a)",
+      tip: "Повтори: результат/количество → Simple, процесс/длительность → Continuous, глаголы состояния → только Simple.",
+      items: [
+        { q: "I ___ this series for three weeks and I still haven't finished it.", o: ["'ve watched", "'ve been watching", "✓ both"], a: 1 },
+        { q: "My cousin ___ in Spain for two years.", o: ["has lived", "has been living", "✓ both"], a: 2 },
+        { q: "How many films ___ this month?", o: ["have you watched", "have you been watching", "✓ both"], a: 0 },
+        { q: "Your eyes are red. ___?", o: ["Have you cried", "Have you been crying", "✓ both"], a: 1 },
+        { q: "I ___ Masha since primary school.", o: ["'ve known", "'ve been knowing", "✓ both"], a: 0 },
+        { q: "She ___ two painkillers today, so she can't take any more.", o: ["'s taken", "'s been taking", "✓ both"], a: 0 },
+        { q: "Sorry about my hands — I ___ the fence all morning.", o: ["'ve painted", "'ve been painting", "✓ both"], a: 1 },
+        { q: "I ___ my keys. Have you seen them?", o: ["'ve lost", "'ve been losing", "✓ both"], a: 0 },
+        { q: "He ___ a headache since lunch.", o: ["'s had", "'s been having", "✓ both"], a: 0 },
+        { q: "Our coach ___ at this studio since 2019.", o: ["has taught", "has been teaching", "✓ both"], a: 2 }
+      ] },
+
+    { part: "practice", type: "gaps", title: "Глагол в скобках", rule: [0,1],
+      instruction: "Complete the sentences with the present perfect simple or continuous form of the verb in brackets. Use contractions where possible. (Как в Grammar Bank 2A, упр. b)",
+      tip: "Смотри на подсказки: all night, for, since → чаще Continuous; three times, already, yet, количество → Simple.",
+      items: [
+        "Mum {has made|'s made} me three cups of tea with lemon today. (make)",
+        "Why are you so out of breath? {Have you been running}? (you / run)",
+        "We {haven't seen|have not seen} each other since the summer holidays. (not see)",
+        "My little brother {has been coughing|'s been coughing} all night — nobody slept! (cough)",
+        "How long {have you had} that rash on your arm? (you / have)",
+        "I {'ve been reading|have been reading} this novel for a week and I'm only on page 40. (read)",
+        "I {'ve read|have read} this novel three times — it's my favourite. (read)",
+        "The doctor {hasn't said|has not said} anything about the X-ray yet. (not say)",
+        "It {'s been raining|has been raining} since we arrived in Edinburgh. (rain)",
+        "They {'ve been going out|have been going out} together for six months. (go out)",
+        "I {'ve been feeling|have been feeling|'ve felt|have felt} dizzy since I got up. (feel)",
+        "Polina {has never broken|'s never broken} a bone. (never / break)"
+      ] },
+
+    { part: "practice", type: "gaps", title: "Все времена: история про травму", rule: 0,
+      instruction: "Лера рассказывает, как получила травму. Поставь глаголы в нужное время: Past Simple, Past Continuous, Present Perfect Simple / Continuous, Future.",
+      tip: "Last Friday / when → Past; since then / for a week → Present Perfect; прогноз → will.",
+      items: [
+        "Last Friday I {was practising|was practicing} a new trick on the aerial hoop when my hand {slipped}. (practise / slip)",
+        "I {fell} on my arm and it {hurt} a lot. (fall / hurt)",
+        "My coach {took} me to the clinic straight away. (take)",
+        "The doctor said I {had sprained} my wrist. (sprain)",
+        "Since then I {'ve been wearing|have been wearing} a bandage. (wear)",
+        "I {haven't trained|have not trained|haven't been training|have not been training} for a week. (not train)",
+        "I {'ve never had|have never had} an injury before. (never / have)",
+        "My coach thinks I {'ll be|will be} back on the hoop in ten days. (be)"
+      ] },
+
+    { part: "practice", type: "choice", title: "on time или in time?", rule: 2,
+      instruction: "Выбери верный вариант.",
+      tip: "on time = по расписанию, не опоздать; in time = успеть до того, как станет поздно.",
+      items: [
+        { q: "The plane took off exactly ___ — at 7:15.", o: ["on time", "in time"], a: 0 },
+        { q: "We got to the cinema just ___ to buy popcorn before the film started.", o: ["on time", "in time"], a: 1 },
+        { q: "Please hand in your essay ___. Late work won't be accepted.", o: ["on time", "in time"], a: 0 },
+        { q: "The ambulance came ___ and the man survived.", o: ["on time", "in time"], a: 1 },
+        { q: "If you don't leave now, you won't get to the airport ___ for your flight.", o: ["on time", "in time"], a: 1 },
+        { q: "Lera is never late for training — she's always ___.", o: ["on time", "in time"], a: 0 },
+        { q: "I finished my project just ___ — five minutes before the deadline.", o: ["on time", "in time"], a: 1 },
+        { q: "Did the concert start ___? — No, it was twenty minutes late.", o: ["on time", "in time"], a: 0 }
+      ] },
+
+    { part: "practice", type: "match", title: "Illnesses and injuries (p.152)",
+      instruction: "Match the symptoms to the problems — как в Vocabulary Bank p.152, но с новыми фразами.",
+      tip: "Повтори Vocabulary Bank p.152 и вкладку «Слова».",
+      pairs: [
+        ["My throat hurts when I swallow.", "a sore throat"],
+        ["My body temperature is 38.7.", "a temperature"],
+        ["I've got red spots all over my arms.", "a rash"],
+        ["My new shoes have rubbed my heel.", "a blister"],
+        ["The room is spinning around me.", "I feel dizzy"],
+        ["I twisted my foot and now it's huge.", "a sprained ankle"],
+        ["There's a purple mark on my leg.", "a bruise"],
+        ["He suddenly fell to the floor and didn't move.", "he fainted / lost consciousness"],
+        ["She thinks every small pain is a serious illness.", "a hypochondriac"]
+      ] },
+
+    { part: "practice", type: "bank", title: "Слова: здоровье",
+      instruction: "Complete the sentences with a word from the box. There are two extra words. (Vocabulary Bank p.152 + слова с урока)",
+      tip: "Повтори слова на вкладке «Слова».",
+      extra: ["sneeze", "bruise"],
+      items: [
+        "My aunt is a real {hypochondriac} — every time she has a headache, she's sure it's something terrible.",
+        "The nurse measured my {temperature} — it was 38.5.",
+        "He hit his head on the ice and lost {consciousness} for a few seconds.",
+        "The doctor couldn't make a {diagnosis} without a blood test.",
+        "My new trainers gave me a huge {blister} on my heel.",
+        "After eating strawberries, she came out in a {rash} all over her face.",
+        "I fell off my bike and needed five {stitches} in my knee.",
+        "My ankle is so {swollen} that I can't put my shoe on.",
+        "Take two {painkillers} and lie down for an hour.",
+        "A {gynaecologist} is a doctor who looks after women's health."
+      ] },
+
+    { part: "practice", type: "rewrite", title: "Перефразируй", rule: [0,1],
+      instruction: "Перепиши предложение, начиная с подсказки. Смысл не меняется.",
+      tip: "for + период, since + точка во времени; How long…? + Present Perfect.",
+      items: [
+        { q: "I started doing aerial silks in 2022. I still do it.", hint: "I've been doing…", a: ["I have been doing aerial silks since 2022"] },
+        { q: "Kate got her cat three years ago.", hint: "Kate has had…", a: ["Kate has had her cat for three years", "Kate has had her cat for 3 years"] },
+        { q: "It started snowing two hours ago. It's still snowing.", hint: "It has…", a: ["It has been snowing for two hours", "It has been snowing for 2 hours"] },
+        { q: "My last visit to the dentist was in March.", hint: "I haven't…", a: ["I haven't been to the dentist since March", "I have not been to the dentist since March"] },
+        { q: "When did you start feeling ill?", hint: "How long…?", a: ["How long have you been feeling ill", "How long have you felt ill"] },
+        { q: "This is my first time in Italy.", hint: "I've never…", a: ["I have never been to Italy before", "I have never been to Italy"] },
+        { q: "Tom and Ann met in 2019.", hint: "Tom and Ann have known…", a: ["Tom and Ann have known each other since 2019"] }
+      ] },
+
+    // 8. ФИНАЛ
+    { part: "final", type: "quest", title: "Квест: травмпункт в Барселоне",
+      place: "Барселона 🇪🇸",
+      intro: "Лера на каникулах в Барселоне. Утром на открытой тренировке по воздушной гимнастике она неудачно спрыгнула с полотен — запястье болит и опухло. Помоги ей объясниться в клинике!",
+      scenes: [
+        { place: "Ресепшен", scene: "🏥 Регистратура", who: "Receptionist", say: "Good afternoon! What's the problem?",
+          choices: [
+            { t: "I've hurt my wrist. It's really swollen.", ok: true, reply: "Oh dear. Please take a seat, the doctor will see you soon." },
+            { t: "I've been hurting my wrist. It's really swollen.", fb: "💡 Травма — это результат, а не процесс: I've hurt my wrist." }
+          ] },
+        { place: "Ресепшен", scene: "⏰ Регистратура", who: "Receptionist", say: "Do you have an appointment?",
+          choices: [
+            { t: "No, sorry. I hope I'm in time — I know you close at six.", ok: true, reply: "Don't worry, you're just in time. It's five to six!" },
+            { t: "No, sorry. I hope I'm on time — I know you close at six.", fb: "💡 Лера хочет успеть до закрытия — это in time." }
+          ] },
+        { place: "Кабинет", scene: "👩‍⚕️ Кабинет врача", who: "Doctor", say: "So, how long has it been hurting?",
+          choices: [
+            { t: "It's been hurting since this morning.", ok: true, reply: "I see. And what happened exactly?" },
+            { t: "It hurts since this morning.", fb: "💡 Действие началось в прошлом и продолжается: It's been hurting since…" }
+          ] },
+        { place: "Кабинет", scene: "🎪 Кабинет врача", who: "Doctor", say: "And what happened exactly?",
+          choices: [
+            { t: "I was doing aerial silks when I fell and landed on my hand.", ok: true, reply: "Ah, aerial silks! Beautiful but dangerous. Did you lose consciousness?" },
+            { t: "I have been doing aerial silks when I have fallen on my hand.", fb: "💡 Конкретный момент в прошлом → Past Continuous + Past Simple: I was doing… when I fell." }
+          ] },
+        { place: "Кабинет", scene: "🩺 Кабинет врача", who: "Doctor", say: "Did you lose consciousness? Do you feel dizzy?",
+          choices: [
+            { t: "No, I didn't faint, and I don't feel dizzy.", ok: true, reply: "Good. Let me measure your temperature and look at the wrist." },
+            { t: "No, I didn't faint, and I don't feel swollen.", fb: "💡 swollen — «опухший» про часть тела; головокружение — dizzy." }
+          ] },
+        { place: "Кабинет", scene: "💊 Кабинет врача", who: "Doctor", say: "Have you taken anything for the pain?",
+          choices: [
+            { t: "Yes, I've taken one painkiller.", ok: true, reply: "Fine. Good news: the diagnosis is a sprain, nothing is broken. No aerial silks for two weeks!" },
+            { t: "Yes, I've been taking one painkiller.", fb: "💡 Одна таблетка — количество, результат → Present Perfect Simple." }
+          ] },
+        { place: "Отель", scene: "🐱 Видеозвонок маме", who: "Mum", say: "Lera! Are you OK? What have you been doing all afternoon?",
+          choices: [
+            { t: "I've been sitting in a clinic! But I'm fine — it's just a sprain.", ok: true, reply: "Phew! Now rest, and send me a photo of the cat in the hotel lobby 😸" },
+            { t: "I've sat in a clinic all afternoon! But I'm fine — it's just a sprain.", fb: "💡 all afternoon — длительность, процесс → I've been sitting." }
+          ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🪽", text: "Идеально! Лера объяснилась без единой ошибки — врач даже попросил показать видео её номера на полотнах." },
+        { max: 2, emoji: "🌸", text: "Отлично! Пара мелких ошибок, но Лера всё объяснила и получила нужную помощь." },
+        { emoji: "🐱", text: "Лера справилась, но было непросто. Повтори правила во вкладке «Подсказка» и пройди квест ещё раз!" }
+      ] }
+  ]
+});
+</script>
+</body></html>
