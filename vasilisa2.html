@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Василиса", nameEn: "Vasilisa", gender: "f",
+  theme: "strict",
+  teacher: "",
+  title: "Restaurant & Housework: make or do",
+  intro: "Сегодня — **ресторан** и **дела по дому**. Тебя ждут две ролевые игры с официантом: сначала заказываем еду, потом решаем проблемы с блюдами и счётом. Потом — **make или do** и фразы вроде *make the bed* и *unload the dishwasher*. Если что-то забыла — открой вкладку «Подсказка» 💡",
+  celebrate: { text: "Excellent! Ужин заказан, дома порядок!", emoji: "🍽️", rain: ["🍽️","🥩","🍟","🧹","✨"], btn: "Thank you!", fx: "confetti" },
+
+  rules: [
+    { title: "В ресторане: официант и гость",
+      text: "**Официант говорит:** Do you have a reservation? / Can I get you something to drink? / Still or sparkling? / Are you ready to order? / What would you like for your starter / main course? / How would you like your steak? / Anything else?\n\n**Гость говорит:** A table for two, please. / I'd like… / I'll have… / Could I have…? / For my starter I'd like… / Could we have the bill, please?\n\n**Порядок блюд:** starter (закуска) → main course (основное) → dessert (десерт).\n**Стейк:** rare (с кровью) → medium (средняя прожарка) → well done (хорошо прожаренный).\n**Вода:** still (без газа) / sparkling (с газом).",
+      examples: ["I'd like the fish soup for my starter, please.", "I'll have the steak with chips. Medium, please.", "Could we have the bill, please?"],
+      mistake: "❌ I want steak. / Give me water. — звучит грубо. ✅ I'd like… / I'll have… / Could I have…?" },
+    { title: "Если с едой что-то не так",
+      text: "Сначала вежливо привлекаем внимание: **Excuse me…** Потом говорим, что не так, — конкретно.\n\n• **This isn't what I ordered.** — Это не то, что я заказывала.\n• **I asked for** my steak well done, but it's rare. — Я просила… (ask **for**!)\n• My soup is **cold**. / There's a problem with my…\n• **Could you take it back, please?** / **Could you bring me another one?**\n• **I think there's a mistake in the bill.** — Кажется, в счёте ошибка.\n\n**Официант отвечает:** I'm so sorry. I'll take it back. / I'll change it. / I'll ask the chef.\n\n**Платим:** by card (картой) / in cash (наличными).",
+      examples: ["Excuse me, I asked for sparkling water, but this is still.", "Sorry, but this isn't what we ordered."],
+      mistake: "❌ I asked my steak well done. ✅ I asked FOR my steak well done. ❌ You did a mistake. ✅ You made a mistake." },
+    { title: "Make или do?",
+      text: "**DO** — работа, дела, занятия, «что-то делать вообще»: do homework, do housework, do the shopping, do the washing-up, do the ironing, do exercise, do sport, do a course, do an exam, do your best, do nothing, do the cooking, do someone a favour.\n\n**MAKE** — создаём что-то, появляется результат: make a cake, make dinner, make a mess, make a mistake, make a noise, make a decision, make a phone call, make friends, make money, make a plan, make the bed, make breakfast, make a cup of tea, make a reservation, make a complaint, make a promise, make an effort.\n\n**Лайфхак:** если можно потрогать или увидеть результат (торт, беспорядок, шум) — скорее **make**.",
+      examples: ["I made a mistake in my homework.", "Let's do the shopping and then make dinner."],
+      mistake: "❌ do a mistake (по-русски «сделать ошибку») ✅ make a mistake. ❌ make homework ✅ do homework." },
+    { title: "Дела по дому (Housework)",
+      text: "• **make the bed** — заправлять кровать\n• **lay / set the table** — накрывать на стол\n• **clear the table** — убирать со стола\n• **load / unload the dishwasher** — загружать / разгружать посудомойку\n• **do the washing-up** — мыть посуду руками\n• **do the washing** — стирать\n• **hang up the washing** — развешивать бельё\n• **do the ironing** — гладить\n• **take out the rubbish** — выносить мусор\n• **tidy your room** — убираться в комнате\n• **vacuum / hoover the floor** — пылесосить\n• **put away your clothes** — убирать одежду на место\n• **pick up** dirty clothes — поднимать (с пола)",
+      examples: ["I always make my bed in the morning.", "Can you lay the table? Dinner is ready!"],
+      mistake: "❌ I clean the dishes ✅ I do the washing-up. ❌ put the table ✅ lay the table." },
+    { title: "Повторяем: Conditionals 0–3",
+      text: "**Памятка:** переведи на русский. Если в переводе есть **«бы»** — условие нереальное (2 или 3 тип). Нет «бы» — реальное (0 или 1).\n\n• **0:** If + Present, Present — всегда так (факт). If you heat ice, it melts.\n• **1:** If + Present, will + V — реально в будущем. If it snows, I'll stay at home.\n• **2:** If + Past, would + V — «бы» сейчас/вообще. If I had a car, I would drive to school.\n• **3:** If + had V3, would have V3 — «бы» о прошлом. If I had known, I would have come.",
+      examples: ["If I had more time, I would learn Chinese faster. (было БЫ → 2 тип)"],
+      mistake: "❌ If it will snow… ✅ If it snows… (после if нет will)" },
+    { title: "Повторяем: планы на будущее",
+      text: "**be going to + V** — планы, намерения и предсказания по тому, что видим: I'm going to learn to cook. Look at the clouds — it's going to snow.\n\n**Present Continuous** — договорённости, всё уже решено, есть время и место: I'm meeting Anya at 6 tomorrow.",
+      examples: ["We're having dinner at a restaurant on Friday — I've booked a table."],
+      mistake: "❌ I meet my friend tomorrow (о договорённости) ✅ I'm meeting my friend tomorrow." }
+  ],
+
+  words: [
+    ["menu", "меню", "/ˈmenjuː/", ""],
+    ["reservation", "бронь (столика)", "/ˌrezəˈveɪʃn/", "book a table — забронировать столик"],
+    ["waiter / waitress", "официант / официантка", "/ˈweɪtə/ /ˈweɪtrəs/", ""],
+    ["starter", "закуска (первое блюдо)", "/ˈstɑːtə/", ""],
+    ["main course", "основное блюдо", "/ˌmeɪn ˈkɔːs/", ""],
+    ["dessert", "десерт", "/dɪˈzɜːt/", "ударение на 2-й слог; desert /ˈdezət/ — пустыня"],
+    ["steak", "стейк", "/steɪk/", "читается «стейк», не «стик»"],
+    ["rare", "с кровью (о мясе)", "/reə/", ""],
+    ["medium", "средней прожарки", "/ˈmiːdiəm/", ""],
+    ["well done", "хорошо прожаренный", "/ˌwel ˈdʌn/", ""],
+    ["chips", "картошка фри", "/tʃɪps/", "брит.; в Америке — fries"],
+    ["side salad", "салат-гарнир", "/ˈsaɪd ˌsæləd/", ""],
+    ["grilled", "на гриле", "/ɡrɪld/", ""],
+    ["fried", "жареный (на сковороде)", "/fraɪd/", ""],
+    ["still water", "вода без газа", "/stɪl ˈwɔːtə/", ""],
+    ["sparkling water", "газированная вода", "/ˈspɑːklɪŋ ˈwɔːtə/", ""],
+    ["the bill", "счёт", "/bɪl/", "в Америке — the check"],
+    ["tip", "чаевые", "/tɪp/", ""],
+    ["This isn't what I ordered.", "Это не то, что я заказывала.", "", ""],
+    ["I asked for…", "я просила…", "", "ask FOR something"],
+    ["tuna", "тунец", "/ˈtjuːnə/", "«тьюна», не «туна»"],
+    ["I think there's a mistake in the bill.", "Кажется, в счёте ошибка.", "", ""],
+    ["faint (fainted)", "упасть в обморок (упала в обморок)", "/feɪnt/", ""],
+    ["lose consciousness (lost consciousness)", "потерять сознание", "/ˈkɒnʃəsnəs/", "lose — lost — lost"],
+    ["impression", "впечатление", "/ɪmˈpreʃn/", "make an impression — произвести впечатление (MAKE!)"],
+    ["make the bed", "заправлять кровать", "/meɪk ðə bed/", ""],
+    ["lay the table", "накрывать на стол", "/leɪ ðə ˈteɪbl/", "= set the table"],
+    ["clear the table", "убирать со стола", "/klɪə ðə ˈteɪbl/", ""],
+    ["load the dishwasher", "загружать посудомойку", "/ləʊd ðə ˈdɪʃwɒʃə/", ""],
+    ["unload the dishwasher", "разгружать посудомойку", "/ʌnˈləʊd ðə ˈdɪʃwɒʃə/", ""],
+    ["do the washing-up", "мыть посуду", "/duː ðə ˌwɒʃɪŋ ˈʌp/", ""],
+    ["do the washing", "стирать", "/duː ðə ˈwɒʃɪŋ/", ""],
+    ["hang up the washing", "развешивать бельё", "/hæŋ ʌp/", ""],
+    ["do the ironing", "гладить", "/ˈaɪənɪŋ/", "r не читается: «айенинг»"],
+    ["take out the rubbish", "выносить мусор", "/ˈrʌbɪʃ/", ""],
+    ["tidy your room", "убираться в комнате", "/ˈtaɪdi/", ""],
+    ["vacuum the floor", "пылесосить пол", "/ˈvækjuːm/", "= hoover"],
+    ["put away your clothes", "убирать одежду на место", "/pʊt əˈweɪ/", ""],
+    ["make a mistake", "сделать ошибку", "/mɪˈsteɪk/", "MAKE, не do!"],
+    ["make a mess", "устроить беспорядок", "/mes/", ""],
+    ["make a noise", "шуметь", "/nɔɪz/", ""],
+    ["make a decision", "принять решение", "/dɪˈsɪʒn/", ""],
+    ["make friends", "заводить друзей", "", ""],
+    ["make money", "зарабатывать деньги", "", ""],
+    ["do homework", "делать домашнее задание", "", ""],
+    ["make a reservation", "забронировать (столик)", "", ""],
+    ["make a complaint", "пожаловаться", "/kəmˈpleɪnt/", ""],
+    ["make a promise", "пообещать", "/ˈprɒmɪs/", ""],
+    ["make an effort", "постараться", "/ˈefət/", ""],
+    ["do someone a favour", "сделать одолжение", "/ˈfeɪvə/", ""],
+    ["do the cooking", "готовить (дело по дому)", "", ""],
+    ["do exercise", "делать упражнения, зарядку", "", ""],
+    ["do a course", "проходить курс", "", ""],
+    ["do your best", "сделать всё возможное", "", ""]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "wordfall", title: "Словопад", count: 10, speed: 7, dir: "en-ru" },
+
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками",
+      items: [
+        { q: "If I ___ (have) more time, I would learn Chinese faster. (Если БЫ у меня было…)", a: ["had"] },
+        { q: "If it snows tomorrow, we ___ (stay) at home. (реально — без «бы»)", a: ["will stay"] },
+        { q: "If you heat ice, it ___ (melt). (факт)", a: ["melts"] },
+        { q: "If I had known about the party, I ___ (come). (пришла БЫ — в прошлом)", a: ["would have come"] },
+        { q: "Look at those clouds! It ___ snow.", o: ["is going to", "is snowing"], a: 0 },
+        { q: "I ___ my friend at 6 tomorrow — we've already agreed.", o: ["am meeting", "meet"], a: 0 },
+        { q: "I'm waiting ___ my dog — he's still in the snow!", o: ["for", "to"], a: 0 }
+      ] },
+
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова",
+      vocab: [
+        ["check-in desk", "стойка регистрации"], ["boarding pass", "посадочный талон"],
+        ["gate", "выход на посадку"], ["departures", "вылет (табло)"], ["arrivals", "прилёт"],
+        ["hand luggage", "ручная кладь"], ["security", "досмотр"], ["passport control", "паспортный контроль"],
+        ["baggage reclaim", "выдача багажа"], ["delayed", "задержан (рейс)"],
+        ["take off", "взлетать"], ["land", "приземляться"]
+      ] },
+
+    { part: "practice", type: "match", title: "Меню: что есть что", rule: 0,
+      instruction: "Соедини слово и перевод.",
+      pairs: [
+        ["starter", "закуска"], ["main course", "основное блюдо"], ["dessert", "десерт"],
+        ["chips", "картошка фри"], ["well done", "хорошо прожаренный"], ["rare", "с кровью"],
+        ["sparkling water", "вода с газом"], ["still water", "вода без газа"],
+        ["the bill", "счёт"], ["tip", "чаевые"]
+      ],
+      tip: "Повтори вкладку «Слова»: ресторан." },
+
+    { part: "practice", type: "choice", title: "Слова с урока",
+      instruction: "Выбери подходящее слово.",
+      items: [
+        { q: "I don't eat meat, so I'll have the ___ salad.", o: ["tuna", "steak"], a: 0 },
+        { q: "It was so hot in the restaurant that a woman ___ and fell on the floor.", o: ["fainted", "ordered"], a: 0 },
+        { q: "He hit his head and lost ___ for a few minutes.", o: ["consciousness", "impression"], a: 0 },
+        { q: "Magadan made a big ___ on my friend from Moscow — so much snow!", o: ["impression", "mistake"], a: 0 },
+        { q: "Excuse me, I think there's a ___ in the bill.", o: ["mistake", "tip"], a: 0 },
+        { q: "I like my steak ___ — with a little blood inside.", o: ["rare", "well done"], a: 0 }
+      ],
+      tip: "Повтори новые слова во вкладке «Слова»." },
+
+    { part: "practice", type: "chat", title: "Ролевая игра 1: заказываем ужин", rule: 0,
+      instruction: "Ты с подругой пришла в ресторан. Выбирай вежливые и правильные реплики.",
+      who: { name: "Waiter", avatar: "🤵" },
+      script: [
+        { say: "Good evening! Do you have a reservation?" },
+        { me: [
+          { t: "Yes, a table for two. The name's Vasilisa.", ok: true, reply: "Great, follow me, please. Here's the menu." },
+          { t: "Yes, I have reservation for two.", fb: "💡 Нужен артикль: a reservation. Проще и естественнее: A table for two, please." }
+        ] },
+        { say: "Can I get you something to drink?" },
+        { me: [
+          { t: "Could I have some water, please?", ok: true, reply: "Of course. Still or sparkling?" },
+          { t: "Give me water.", fb: "💡 Звучит грубо. Вежливо: Could I have…? или I'd like…" }
+        ] },
+        { me: [
+          { t: "Sparkling, please.", ok: true, reply: "Sparkling water. Are you ready to order?" },
+          { t: "With gas, please.", fb: "💡 Вода с газом — sparkling water, без газа — still water. «With gas» так не говорят." }
+        ] },
+        { me: [
+          { t: "Yes. For my starter I'd like the mushroom soup.", ok: true, reply: "Mushroom soup. And for your main course?" },
+          { t: "Yes. For my dessert I'd like the mushroom soup.", fb: "💡 Суп — это starter (закуска), а dessert — сладкое в конце." }
+        ] },
+        { me: [
+          { t: "I'll have the steak with chips, please.", ok: true, reply: "How would you like your steak?" },
+          { t: "I'm having the steak with chips.", fb: "💡 Заказываем так: I'll have… или I'd like…" }
+        ] },
+        { me: [
+          { t: "Well done, please.", ok: true, reply: "Well done. Would you like a side salad with that?" },
+          { t: "Very done, please.", fb: "💡 Прожарка: rare — medium — well done." }
+        ] },
+        { me: [
+          { t: "No, thanks. That's all.", ok: true, reply: "Perfect. I'll bring your drinks right away!" },
+          { t: "No, thank. It's all.", fb: "💡 No, thanks (с -s). That's all — это всё." }
+        ] }
+      ],
+      tip: "Повтори фразы гостя: I'd like… / I'll have… / Could I have…?" },
+
+    { part: "practice", type: "quest", title: "Ролевая игра 2: что-то пошло не так", rule: 1,
+      place: "Ресторан «Snowflake», Магадан",
+      intro: "Ты ужинаешь в ресторане. За окном −25 и снег, а на кухне сегодня всё идёт не по плану. Решай проблемы вежливо и правильно!",
+      scenes: [
+        { place: "Столик у окна", scene: "🍲 Тебе принесли грибной суп, но он совсем холодный.", who: "Waiter", say: "Is everything OK with your soup?",
+          choices: [
+            { t: "Actually, it's a bit cold. Could you take it back, please?", ok: true, reply: "I'm so sorry! I'll take it back and bring you a hot one." },
+            { t: "It's cold. Bring other.", fb: "💡 Грубо и с ошибкой. Вежливо: Could you take it back, please? / Could you bring me another one?" }
+          ] },
+        { place: "Столик у окна", scene: "🥩 Ты просила стейк well done, а он с кровью.", who: "Waiter", say: "Here's your steak. Enjoy your meal!",
+          choices: [
+            { t: "Excuse me, I asked for my steak well done, but it's rare.", ok: true, reply: "Oh, I'm really sorry. I'll ask the chef to cook it a bit more." },
+            { t: "Excuse me, I asked my steak well done, but it's rare.", fb: "💡 Просить что-то — ask FOR something. Помнишь verbs + prepositions?" }
+          ] },
+        { place: "Столик у окна", scene: "🍗 Подруга заказывала тунца, а ей несут курицу-гриль.", who: "Waiter", say: "And here's the grilled chicken for your friend.",
+          choices: [
+            { t: "Sorry, but this isn't what we ordered. My friend asked for the tuna.", ok: true, reply: "Oh no, my mistake! I'll change it right away." },
+            { t: "Sorry, but this isn't what we order.", fb: "💡 Заказывали в прошлом — ordered: This isn't what we ordered." }
+          ] },
+        { place: "Столик у окна", scene: "🍰 Пора выбирать десерт.", who: "Waiter", say: "Would you like a dessert?",
+          choices: [
+            { t: "Yes, could we see the dessert menu, please?", ok: true, reply: "Of course, here you are." },
+            { t: "Yes, we want see dessert menu.", fb: "💡 Вежливо: Could we see the dessert menu, please? (и want TO see, если уж want)" }
+          ] },
+        { place: "Столик у окна", scene: "🧾 Вы наелись и хотите заплатить.", who: "Waiter", say: "Can I get you anything else?",
+          choices: [
+            { t: "No, thank you. Could we have the bill, please?", ok: true, reply: "Of course. One moment." },
+            { t: "No, thank you. Could we have the count, please?", fb: "💡 Счёт в ресторане — the bill." }
+          ] },
+        { place: "Столик у окна", scene: "🧾 В счёте две бутылки воды, а вы брали одну.", who: "Waiter", say: "Here you are. That's 4,500 roubles.",
+          choices: [
+            { t: "Excuse me, I think there's a mistake in the bill. We only had one bottle of water.", ok: true, reply: "You're right, I'm so sorry. Here's the new bill." },
+            { t: "Excuse me, I think you did a mistake in the bill.", fb: "💡 Ошибку не «делают» (do), а make: make a mistake. Ещё вежливее: I think there's a mistake in the bill." }
+          ] },
+        { place: "Столик у окна", scene: "💳 Осталось оплатить.", who: "Waiter", say: "How would you like to pay?",
+          choices: [
+            { t: "By card, please.", ok: true, reply: "Here's the card machine. Thank you, and have a lovely evening!" },
+            { t: "With card, please.", fb: "💡 Правильно: by card (картой) или in cash (наличными)." }
+          ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🏆", text: "Идеально! Официант запомнил тебя как самую вежливую гостью Магадана." },
+        { max: 2, emoji: "👍", text: "Хорошо! Пара ошибок, но ужин удался и все проблемы решены." },
+        { emoji: "🙂", text: "Ужин спасён, но фразы стоит повторить — загляни в «Подсказку» и пройди ещё раз." }
+      ] },
+
+    { part: "practice", type: "rewrite", title: "Скажи вежливо", rule: [0, 1],
+      instruction: "Перепиши грубую фразу вежливо, начиная с подсказки.",
+      items: [
+        { q: "Give me the menu.", hint: "Could I…", a: ["Could I have the menu please", "Could I see the menu please"] },
+        { q: "I want the chicken.", hint: "I'd like…", a: ["I'd like the chicken please", "I'd like the chicken"] },
+        { q: "Bring the bill.", hint: "Could we…", a: ["Could we have the bill please", "Could we have the bill"] },
+        { q: "This is not my food! I didn't order it.", hint: "This isn't what…", a: ["This isn't what I ordered"] },
+        { q: "My steak is bad. I said well done!", hint: "I asked for…", a: ["I asked for my steak well done", "I asked for my steak well done but it's rare", "I asked for it well done"] }
+      ],
+      tip: "Повтори: Could I have…? / I'd like… / This isn't what I ordered / I asked for…" },
+
+    { part: "practice", type: "gaps", title: "Make или do?", rule: 2,
+      instruction: "Впиши make или do в нужной форме (makes, made, doing…).",
+      items: [
+        "Vasilisa always {does} her homework after dinner.",
+        "Shh! Don't {make} a noise — the dog is sleeping.",
+        "I {made} a big mistake in my test yesterday.",
+        "Who is going to {do} the shopping this weekend?",
+        "It isn't easy to {make} friends in a new school.",
+        "This year I'm {doing} an online Chinese course.",
+        "Can you {make} a phone call and book a table for Friday?",
+        "Don't worry about the test — just {do} your best.",
+        "My mum {makes} a delicious fish soup every Sunday.",
+        "We need to {make} a decision: pizza or sushi?",
+        "I {do} exercise every morning, even when it's −30 outside."
+      ],
+      tip: "DO — дела и занятия; MAKE — создаём результат (mistake, noise, friends, decision)." },
+
+    { part: "practice", type: "choice", title: "Make или do: устойчивые выражения", rule: 2,
+      instruction: "Эти выражения нужно просто запомнить: говорят только так, а не иначе. Выбери make или do.",
+      items: [
+        { q: "___ a mistake — сделать ошибку", o: ["make", "do"], a: 0 },
+        { q: "___ homework — делать домашнее задание", o: ["do", "make"], a: 0 },
+        { q: "___ a reservation — забронировать (столик)", o: ["make", "do"], a: 0 },
+        { q: "___ the shopping — ходить за покупками", o: ["do", "make"], a: 0 },
+        { q: "___ a complaint — пожаловаться", o: ["make", "do"], a: 0 },
+        { q: "___ the cooking — готовить (как дело по дому)", o: ["do", "make"], a: 0 },
+        { q: "___ breakfast — приготовить завтрак", o: ["make", "do"], a: 0 },
+        { q: "___ the washing-up — мыть посуду", o: ["do", "make"], a: 0 },
+        { q: "___ a promise — пообещать", o: ["make", "do"], a: 0 },
+        { q: "___ sport — заниматься спортом", o: ["do", "make"], a: 0 },
+        { q: "___ an effort — постараться, приложить усилие", o: ["make", "do"], a: 0 },
+        { q: "___ someone a favour — сделать одолжение", o: ["do", "make"], a: 0 },
+        { q: "___ a cup of tea — заварить чашку чая", o: ["make", "do"], a: 0 },
+        { q: "___ nothing — ничего не делать", o: ["do", "make"], a: 0 },
+        { q: "___ a plan — составить план", o: ["make", "do"], a: 0 },
+        { q: "___ an exam — сдавать экзамен", o: ["do", "make"], a: 0 }
+      ],
+      tip: "Выражения с make и do — во вкладке «Подсказка»." },
+
+    { part: "practice", type: "bank", title: "Суббота у Василисы", rule: 3,
+      instruction: "Вставь слова из банка. Одно слово — лишнее.",
+      items: [
+        "In the morning I {make} my bed and open the curtains.",
+        "The dishwasher has finished. Can you {unload} it and put the plates in the cupboard?",
+        "Dinner is ready! Please {lay} the table — we need four plates.",
+        "After dinner Dad and I {clear} the table.",
+        "It's −25 and snowing, but somebody has to take {out} the rubbish!",
+        "My dog loses so much hair! I {vacuum} the floor every day.",
+        "The washing is ready. Let's {hang} up the clothes to dry.",
+        "Don't leave your clean clothes on the chair — put them {away}.",
+        "I never do the {ironing} — I hate it!",
+        "My room is a mess. I need to {tidy} it before my friends come."
+      ],
+      extra: ["load"],
+      tip: "Повтори «Дела по дому» в «Подсказке»." },
+
+    { part: "write", type: "write", title: "Пишем сами", rule: [0, 2, 3],
+      items: [
+        { q: "Who does the housework in your family? Напиши, кто что делает дома (минимум 5 дел) и что ты сама любишь и не любишь делать.", min: 40, must: ["make", "do"] },
+        { q: "Напиши диалог в ресторане (6–8 реплик): ты заказываешь еду, но с блюдом проблема. Используй: I'd like, well done, I asked for, the bill.", min: 50, must: ["I'd like", "the bill"] }
+      ] },
+
+    { part: "final", type: "detective", title: "Детектив: беспорядок на кухне",
+      case: "Кто устроил беспорядок?",
+      story: "Vasilisa comes home from school. It's −27 outside and it's snowing. She opens the kitchen door and… what a mess! The dishwasher is open, clean plates are on the floor and a steak has disappeared from the table. Who did it? Отвечай на вопросы — за каждый верный ответ получишь улику.",
+      steps: [
+        { q: "Mum's note on the fridge: «I ___ the shopping from 3 to 5. Back soon!»", o: ["did", "made"], a: 0, clue: "🛒 Мама была в магазине с 3 до 5 — у неё алиби." },
+        { q: "Dad's message: «I'm still at work. I ___ twenty phone calls today!»", o: ["made", "did"], a: 0, clue: "📞 Папа весь день на работе." },
+        { q: "The robot vacuum cleaner can only ___ the floor.", o: ["vacuum", "lay"], a: 0, clue: "🤖 Робот-пылесос с утра стоит на зарядке: 100%, сегодня он не включался." },
+        { q: "Someone opened the dishwasher but didn't ___ it — the plates are on the floor.", o: ["unload", "make"], a: 0, clue: "🍽️ Тарелки не убраны в шкаф, а просто сброшены на пол. Кто-то искал что-то вкусное…" },
+        { q: "The steak was ___ — almost not cooked. People in this family always eat it well done.", o: ["rare", "sparkling"], a: 0, clue: "🥩 Сырое мясо никто из людей есть не стал бы…" },
+        { q: "If a person had eaten the steak, they ___ a fork.", o: ["would have used", "will use"], a: 0, clue: "🐾 Вилка чистая, а на полу — следы лап и немного снега!" }
+      ],
+      suspects: [
+        { name: "Mum", emoji: "👩", desc: "Любит готовить, сегодня ходила в магазин." },
+        { name: "Dad", emoji: "👨", desc: "Работает допоздна, обожает стейки." },
+        { name: "Robot vacuum", emoji: "🤖", desc: "Убирает пол, иногда врезается в стулья." },
+        { name: "The dog", emoji: "🐕", desc: "Только что вернулся с прогулки по снегу. Выглядит очень довольным." }
+      ],
+      culprit: 3,
+      solution: "Это собака! Она вернулась с прогулки, запрыгнула к столу, сбросила тарелки и утащила стейк. Теперь Василисе придётся clean the floor, unload the dishwasher и… make a decision: никогда больше не оставлять стейк на столе! 🐾" }
+  ]
+});
+</script>
+</body></html>
