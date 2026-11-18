@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Стёпа", nameEn: "Stepa", gender: "m",
+  theme: "sunny",
+  teacher: "",
+  title: "Learning and exams + Expressions with take",
+  intro: "Привет, **Stepa**! 🐀🐷🐢 Сегодня повторяем слова про **учёбу и экзамены**, учим выражения с **take** и ещё раз тренируем **Past Simple / Past Continuous**. Если сомневаешься, какое время ставить, открывай вкладку «Подсказка» 💡",
+  celebrate: { text: "Супер, Stepa! Все твои животные тобой гордятся!", emoji: "🐀", rain: ["🐀","🐷","🐢","🐶","🐱","📸","⭐"], btn: "Ура!", fx: "confetti" },
+
+  rules: [
+    { title: "⏳ Какое время выбрать?",
+      text: "**Present Simple**: обычно, всегда (always, usually, every day): I take a shower every morning.\n**Present Continuous**: прямо сейчас (now, at the moment): I am taking a photo now.\n**Past Simple**: закончилось в прошлом (yesterday, last week, ago, then, suddenly): I took a photo yesterday.\n**Past Continuous** (was/were + -ing): длилось в какой-то момент в прошлом (at 5 pm yesterday, while): I was taking a shower at 7 pm.",
+      examples: ["I usually take the bus to school.", "Look! The cat is sleeping.", "Last summer we took a lot of photos.", "At 8 pm yesterday Stepa was revising for the test."],
+      mistake: "Не путай: was + -ing (was taking), а не was take / was took." },
+    { title: "🐀 Past Simple или Past Continuous?",
+      text: "Длинное действие (шло, длилось) → **Past Continuous**: was/were + глагол с -ing.\nКороткое действие, которое его прервало или случилось потом → **Past Simple**.\n**while** (пока) → обычно Past Continuous.\n**when, then, suddenly** (когда, потом, вдруг) → обычно Past Simple.",
+      examples: ["While Stepa was taking a shower, the dog came in.", "Then he heard a funny sound.", "I was sleeping when the phone rang."],
+      mistake: "❌ While I took a shower… → ✅ While I was taking a shower…\n❌ Then I was hear… → ✅ Then I heard…" },
+    { title: "📚 Learning and exams",
+      text: "take an exam: сдавать экзамен (писать его)\npass an exam: сдать экзамен (успешно)\nfail an exam: провалить экзамен\nrevise (for a test): повторять к контрольной\nlearn by heart: выучить наизусть\nget a good / bad mark: получить хорошую / плохую оценку\ncheat: списывать",
+      examples: ["I'm revising for my test tomorrow.", "She passed all her exams!", "You mustn't cheat in a test."],
+      mistake: "pass = успешно сдать! «Я сдаю экзамен (пишу его)» = I'm taking an exam." },
+    { title: "📸 Expressions with take",
+      text: "take a photo: сфотографировать\ntake a shower: принять душ\ntake a break: сделать перерыв\ntake the bus: поехать на автобусе\ntake notes: делать записи\ntake care of: заботиться о\ntake part in: участвовать в\ntake your time: не торопись",
+      examples: ["Can I take a photo of your mini-pig?", "Stepa takes care of his rats.", "We took part in a dance competition."],
+      mistake: "take — неправильный глагол: take → took → taken." },
+    { title: "🔁 Прошлые темы: should, must, have to, make / do",
+      text: "**should / shouldn't**: совет (стоит / не стоит).\n**have to**: надо (так нужно, правила).\n**must / mustn't**: обязательно / нельзя.\nПосле них глагол без to и без -ing: should take, must do.\n**make**: make a mistake, make a cake, make friends.\n**do**: do homework, do a test, do sport.",
+      examples: ["You should take a break.", "We have to take the bus.", "You mustn't cheat!", "I made a mistake."],
+      mistake: "❌ You should to take… → ✅ You should take…" }
+  ],
+
+  words: [
+    ["take an exam", "сдавать экзамен (писать его)", "/teɪk ən ɪɡˈzæm/", ""],
+    ["pass an exam", "сдать экзамен (успешно)", "/pɑːs ən ɪɡˈzæm/", ""],
+    ["fail an exam", "провалить экзамен", "/feɪl ən ɪɡˈzæm/", ""],
+    ["revise", "повторять (к контрольной)", "/rɪˈvaɪz/", "ударение на -vise"],
+    ["learn by heart", "выучить наизусть", "/lɜːn baɪ hɑːt/", ""],
+    ["get a good mark", "получить хорошую оценку", "/ɡet ə ɡʊd mɑːk/", ""],
+    ["cheat", "списывать", "/tʃiːt/", ""],
+    ["take a photo", "сфотографировать", "/teɪk ə ˈfəʊtəʊ/", ""],
+    ["take a shower", "принять душ", "/teɪk ə ˈʃaʊə/", ""],
+    ["take a break", "сделать перерыв", "/teɪk ə breɪk/", ""],
+    ["take the bus", "поехать на автобусе", "/teɪk ðə bʌs/", ""],
+    ["take notes", "делать записи", "/teɪk nəʊts/", ""],
+    ["take care of", "заботиться о", "/teɪk keər əv/", ""],
+    ["take part in", "участвовать в", "/teɪk pɑːt ɪn/", ""],
+    ["take your time", "не торопись", "/teɪk jɔː taɪm/", ""]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "race", title: "Гонка: take, make или do? 🐀",
+      instruction: "Выбери правильное слово как можно быстрее!",
+      rule: [3, 4],
+      items: [
+        { q: "Can I ___ a photo of your capybara? 📸", o: ["take", "make", "do"], a: 0 },
+        { q: "I always ___ a shower in the morning.", o: ["take", "do", "make"], a: 0 },
+        { q: "We're tired. Let's ___ a break!", o: ["take", "do", "go"], a: 0 },
+        { q: "Please ___ care of my rats on Sunday.", o: ["take", "make", "do"], a: 0 },
+        { q: "Last year Stepa ___ part in a folk dance competition. 💃", o: ["took", "made", "did"], a: 0 },
+        { q: "Don't run! Take your ___.", o: ["time", "break", "bus"], a: 0 },
+        { q: "I ___ my homework every evening.", o: ["do", "take", "make"], a: 0 },
+        { q: "Oops! I ___ a mistake.", o: ["made", "did", "took"], a: 0 }
+      ] },
+
+    { part: "review", type: "mistakes", title: "Работа над ошибками 🔎", count: 4,
+      instruction: "В прошлом ДЗ были ошибки с Past Simple и Past Continuous. Попробуй ещё раз! Открой глагол в скобках.",
+      rule: 1,
+      tip: "while → was/were + -ing; then / suddenly → Past Simple (2-я форма).",
+      items: [
+        { q: "While Stepa ___ a photo of his cat, the dog jumped on him. (take)", a: ["was taking"] },
+        { q: "Then the mini-pig ___ a noise and ran away. (hear)", a: ["heard"] },
+        { q: "While the rats ___, the cat came into the room.", o: ["slept", "were sleeping", "was sleep"], a: 1 },
+        { q: "Suddenly Stepa ___ a strange sound.", o: ["was hear", "heard", "hear"], a: 1 },
+        { q: "I ___ a shower when you called me. (take)", a: ["was taking"] },
+        { q: "What ___ at 8 pm yesterday? (you / do)", a: ["were you doing"] }
+      ] },
+
+    { part: "words", type: "vocab", title: "Повторяем слова 🐢", count: 6 },
+
+    { part: "practice", type: "bank", title: "Стёпа и большой экзамен 📚",
+      instruction: "Вставь слова из банка. Два слова лишние!",
+      rule: [2, 0],
+      tip: "Повтори слова Learning and exams во вкладке «Слова».",
+      extra: ["made", "notes"],
+      items: [
+        "Last Friday Stepa {took} a big English exam.",
+        "Before the exam he {revised} for three days.",
+        "He learned all the new words by {heart}.",
+        "Every hour he took a short {break} and played with his rats. 🐀",
+        "In the exam his friend wanted to {cheat}, but Stepa said: «You mustn't do that!»",
+        "Stepa didn't {fail} the exam. He {passed} it!",
+        "He got a very good {mark}. Five! ⭐"
+      ] },
+
+    { part: "practice", type: "choice", title: "Какое время? + take ⏳",
+      instruction: "Выбери правильный вариант. Смотри на слова-маркеры!",
+      rule: [0, 1, 3, 4],
+      tip: "at 7 pm yesterday / while → Past Continuous; last summer / yesterday → Past Simple; после should / have to глагол без to.",
+      items: [
+        { q: "Yesterday at 7 pm Stepa ___ a shower.", o: ["was taking", "took", "takes"], a: 0 },
+        { q: "Last summer we ___ a lot of photos in the Maldives. 🏝️", o: ["took", "were taking", "take"], a: 0 },
+        { q: "While I ___ care of the turtle, the cat ate my sandwich.", o: ["was taking", "took", "take"], a: 0 },
+        { q: "Look! The mini-pig ___ a nap on my bed! 🐷", o: ["is taking", "takes", "took"], a: 0 },
+        { q: "You look tired. You should ___ a break.", o: ["take", "to take", "taking"], a: 0 },
+        { q: "We have to ___ the bus to school every day.", o: ["take", "taking", "took"], a: 0 },
+        { q: "I ___ a mistake in the test yesterday.", o: ["made", "did", "took"], a: 0 },
+        { q: "My sister usually ___ notes in class.", o: ["takes", "is taking", "took"], a: 0 }
+      ] },
+
+    { part: "final", type: "detective", title: "Детектив: кто взял фотоаппарат Стёпы? 📷🕵️",
+      case: "Пропал фотоаппарат!",
+      story: "Stepa wanted to take photos of his pets for a school project. But the camera disappeared! 😱 Ответь на вопросы, собери улики и найди, кто это сделал.",
+      rule: [1, 3],
+      steps: [
+        { q: "At 5 pm Stepa ___ for his English test in his room.", o: ["was revising", "revised", "revises"], a: 0, clue: "🐾 На столе маленький-маленький след лапки!" },
+        { q: "At 6 pm he ___ a break and went to the kitchen.", o: ["took", "was taking", "made"], a: 0, clue: "😴 Кот весь вечер спал на диване и никуда не ходил." },
+        { q: "While the dog ___ in the garden, Stepa looked under the bed.", o: ["was playing", "played", "plays"], a: 0, clue: "🐶 Собака всё время была на улице, значит, это не она." },
+        { q: "Then Stepa ___ a quiet sound from the cage: «click-click».", o: ["heard", "was hear", "was hearing"], a: 0, clue: "📸 «Click-click» — так щёлкает фотоаппарат!" },
+        { q: "When Stepa opened the cage, the rats ___ selfies!", o: ["were taking", "took", "was taking"], a: 0, clue: "🐀 Маленькие следы + щелчки фотоаппарата… всё ясно!" },
+        { q: "Stepa laughed: «You ___ take my things without asking!»", o: ["mustn't", "don't have to", "should"], a: 0, clue: "🔎 Дело раскрыто!" }
+      ],
+      suspects: [
+        { name: "The mini-pig", emoji: "🐷", desc: "Big, loves food and sleeps a lot." },
+        { name: "The cat", emoji: "🐱", desc: "Lazy, loves the sofa." },
+        { name: "The dog", emoji: "🐶", desc: "Loves running in the garden." },
+        { name: "The rats", emoji: "🐀", desc: "Small, smart and very curious." }
+      ],
+      culprit: 3,
+      solution: "Это крысы! 🐀 Пока Стёпа делал перерыв на кухне (he took a break), они утащили фотоаппарат в клетку и делали селфи (they were taking selfies) 📸😂" }
+  ]
+});
+</script>
+</body></html>
