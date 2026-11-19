@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Стёпа", nameEn: "Stepa", gender: "m",
+  theme: "sunny",
+  teacher: "",
+  title: "Revision: jobs, rules & take",
+  intro: "Привет, Стёпа! ☀️ Сегодня повторяем **профессии**, правила с **have to / must / mustn't**, **make / do / take** и фразовые глаголы с **take**. А в конце ты станешь **гидом на Мальдивах** 🏝️ Если сомневаешься — загляни во вкладку «Подсказка».",
+  celebrate: { text: "Ура! Всё верно! Крысы, мини-пиг и черепашка аплодируют! 👏", emoji: "🐀🐖🐢", rain: ["🐀","🐖","🐢","🐶","🐱","🏝️","☀️"], btn: "Ещё раз полюбоваться 🎉", fx: "both" },
+
+  rules: [
+    { title: "have to / don't have to — надо / не надо",
+      text: "**have to** = надо, обязательно (так требуют правила, родители, школа). **don't have to** = НЕ обязательно, можно не делать. С he / she / it: **has to**, **doesn't have to**. Вопрос: **Do you have to…? / Does he have to…?**",
+      examples: ["Stepa has to feed his rats every day.", "It's Sunday. I don't have to get up early.", "Does he have to walk the dogs? — Yes, he does."],
+      mistake: "❌ He have to… → ✅ He has to… / ❌ He doesn't has to → ✅ He doesn't have to" },
+    { title: "must / mustn't — должен / НЕЛЬЗЯ",
+      text: "**must** = должен, очень важно. **mustn't** = НЕЛЬЗЯ, запрещено! После must / mustn't — глагол без to. Не путай: **mustn't** = нельзя, а **don't have to** = не обязательно.",
+      examples: ["You must put on sun cream. It's very hot!", "You mustn't touch the dog. It can bite!", "You mustn't take my things without asking!"],
+      mistake: "❌ You should take my things without asking → ✅ You mustn't take my things without asking (это запрет)" },
+    { title: "В прошлом: had to / didn't have to / could / couldn't",
+      text: "У **must** нет прошедшего времени — используем **had to** (пришлось). **didn't have to** = не пришлось. **could** = мог, умел. **couldn't** = не мог, не умел.",
+      examples: ["Yesterday Stepa had to clean the rats' cage.", "It was Sunday, so he didn't have to go to school.", "When he was five, he couldn't read, but he could dance!"],
+      mistake: "❌ Yesterday I must… → ✅ Yesterday I had to…" },
+    { title: "make / do / take — запомни пары",
+      text: "**do**: the dishes, the shopping, homework, your best, well / badly in a test. **make**: your bed, lunch, a cake, a mistake, a noise. **take**: a shower, a break, a photo, notes, an exam, a bus. Прошедшее: do → **did**, make → **made**, take → **took**.",
+      examples: ["I always take a shower in the morning.", "At 6 pm he took a break.", "Make your bed, please!", "Do your best!"],
+      mistake: "❌ make a shower → ✅ take a shower / ❌ made a break → ✅ took a break" },
+    { title: "Фразовые глаголы с take",
+      text: "**take after** — быть похожим на родственника. **take up** — начать заниматься (хобби). **take off** — снимать (одежду, обувь); взлетать (о самолёте). **take part in** — участвовать в. **take care of** — заботиться о. **take place** — проходить, происходить (о событии). **take back** — вернуть (в магазин). Меняется только take: **takes** (он), **took** (прошлое), **taking** (-ing).",
+      examples: ["Stepa takes after his mum.", "He took up folk dancing.", "The plane took off at 6 am.", "The concert will take place on Friday."],
+      mistake: "❌ I'm going to take place in a competition → ✅ I'm going to take part in a competition (take place — только о событии)" },
+    { title: "⏳ Подсказка по временам",
+      text: "**Present Simple** — обычно, всегда, каждый день: I **take** / he **takes**. **Past Simple** — вчера, last year, ago: he **took**, he **had to**, he **could**. **Past Continuous** — процесс в прошлом (at 7 pm yesterday, when…): he **was taking**, they **were dancing**. **be going to** — планы: I'm **going to take part**…",
+      examples: ["Every day Stepa takes care of his pets. (Present Simple)", "Last year he took up dancing. (Past Simple)", "At 7 pm he was dancing. (Past Continuous)", "He is going to take part in a competition. (план)"],
+      mistake: "❌ Yesterday at 7 pm I danced while… → ✅ Yesterday at 7 pm I was dancing" }
+  ],
+
+  words: [
+    ["take after", "быть похожим на (родственника)", "/teɪk ˈɑːftə/"],
+    ["take up", "начать заниматься (хобби)", "/teɪk ˈʌp/"],
+    ["take off", "снимать (одежду); взлетать", "/teɪk ˈɒf/"],
+    ["take part in", "участвовать в", "/teɪk ˈpɑːt ɪn/"],
+    ["take care of", "заботиться о", "/teɪk ˈkeər əv/"],
+    ["take place", "проходить, происходить", "/teɪk ˈpleɪs/", "о событии"],
+    ["take back", "вернуть (в магазин)", "/teɪk ˈbæk/"],
+    ["hairdresser", "парикмахер", "/ˈheədresə/"],
+    ["dentist", "стоматолог", "/ˈdentɪst/"],
+    ["firefighter", "пожарный", "/ˈfaɪəfaɪtə/"],
+    ["architect", "архитектор", "/ˈɑːkɪtekt/", "ударение на первый слог"],
+    ["tour guide", "гид, экскурсовод", "/ˈtʊə ɡaɪd/"],
+    ["dangerous", "опасный", "/ˈdeɪndʒərəs/"],
+    ["challenging", "сложный, требующий усилий", "/ˈtʃælɪndʒɪŋ/"],
+    ["well-paid", "хорошо оплачиваемый", "/ˌwel ˈpeɪd/"],
+    ["badly-paid", "плохо оплачиваемый", "/ˌbædli ˈpeɪd/"]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "race", title: "Гонка: кто это? 🐀💨",
+      instruction: "Выбери правильную профессию или прилагательное. Быстрее!",
+      items: [
+        { q: "🪣🧹 This person cleans offices and schools.", o: ["cleaner", "dentist", "architect"], a: 0 },
+        { q: "✂️💇 This person cuts your hair.", o: ["hairdresser", "firefighter", "tour guide"], a: 0 },
+        { q: "🦷 This person looks after your teeth.", o: ["dentist", "cleaner", "hairdresser"], a: 0 },
+        { q: "🔥🧯 This person puts out fires.", o: ["firefighter", "architect", "dentist"], a: 0 },
+        { q: "🗺️ This person shows tourists a city.", o: ["tour guide", "hairdresser", "cleaner"], a: 0 },
+        { q: "📐🏠 This person designs buildings.", o: ["architect", "tour guide", "firefighter"], a: 0 },
+        { q: "Fire can kill! A firefighter's job is ___.", o: ["dangerous", "easy", "boring"], a: 0 },
+        { q: "Doctors get a lot of money. Their job is ___.", o: ["well-paid", "badly-paid", "easy"], a: 0 }
+      ] },
+
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками 🔎",
+      instruction: "Ты уже ошибался в похожих местах — теперь точно получится!",
+      items: [
+        { q: "After football I always ___ a shower.", o: ["take", "make", "do"], a: 0 },
+        { q: "We are tired. Let's ___ a break!", o: ["take", "make", "do"], a: 0 },
+        { q: "Yesterday Stepa ___ a break and played with his cat. (take)", a: ["took"] },
+        { q: "You ___ feed my rats chocolate! It's bad for them!", o: ["mustn't", "should", "have to"], a: 0 },
+        { q: "Children ___ play with fire. It's dangerous!", o: ["mustn't", "should", "don't have to"], a: 0 },
+        { q: "It's Sunday! We ___ get up early.", o: ["don't have to", "mustn't", "must"], a: 0 }
+      ],
+      tip: "make / do / take и разница mustn't ↔ don't have to", rule: [1, 3] },
+
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова 🐢",
+      vocab: [["hand in", "сдавать (работу)"], ["take notes", "записывать, конспектировать"], ["copy", "списывать"], ["pass an exam", "сдать экзамен"], ["do well", "хорошо справиться"], ["do the dishes", "мыть посуду"], ["make your bed", "заправлять кровать"], ["cleaner", "уборщик"]] },
+
+    { part: "practice", type: "bank", title: "Правила в доме Стёпы 🏠🐖",
+      instruction: "Вставь слова из банка. Каждое слово — один раз. Смотри: сейчас или в прошлом?",
+      items: [
+        "Rats are clever, but they {mustn't} eat chocolate. It's bad for them!",
+        "Stepa {has to} clean the rats' cage every Saturday.",
+        "It's the holidays! Stepa {doesn't have to} do homework today.",
+        "You {must} close the door — the mini-pig wants to run away!",
+        "Last year Stepa {had to} learn a new folk dance for a concert.",
+        "When he was four, he {couldn't} read, but he {could} dance!",
+        "Yesterday was Sunday, so he {didn't have to} go to school.",
+        "{Does} Stepa {have to} walk the dogs every day? — Yes, he does."
+      ],
+      tip: "has to — для he/she; had to / could / couldn't — для прошлого", rule: [0, 1, 2, 5] },
+
+    { part: "practice", type: "match", title: "Фразовые глаголы с take 🧩",
+      instruction: "Соедини глагол и перевод.",
+      pairs: [
+        ["take after", "быть похожим на родственника"],
+        ["take up", "начать заниматься (хобби)"],
+        ["take off", "снимать (обувь, одежду)"],
+        ["take part in", "участвовать в"],
+        ["take care of", "заботиться о"],
+        ["take place", "проходить (о событии)"],
+        ["take back", "вернуть в магазин"]
+      ],
+      rule: 4 },
+
+    { part: "practice", type: "bank", title: "Take, takes или took? 📷",
+      instruction: "Вставь фразовый глагол в правильной форме. Подсказка: обычно → takes, в прошлом → took.",
+      items: [
+        "Stepa {takes after} his dad — they both love animals.",
+        "Last year Stepa {took up} Russian folk dancing.",
+        "Please {take off} your shoes — the turtle is sleeping on the carpet!",
+        "Every day Stepa {takes care of} four rats, a cat, two dogs, a turtle and a mini-pig.",
+        "Next month Stepa is going to {take part in} a dance competition.",
+        "The competition will {take place} in a big theatre.",
+        "These trousers are too small. I'm going to {take back} them to the shop.",
+        "Yesterday the plane {took off} at 6 am and flew to the Maldives! 🏝️"
+      ],
+      tip: "take place — о событии; take part in — участвовать", rule: [4, 5] },
+
+    { part: "final", type: "quest", title: "Стёпа — гид на Мальдивах 🏝️",
+      place: "Мальдивы",
+      intro: "Сегодня Стёпа работает **гидом** на Мальдивах! Туристы задают вопросы — выбери правильный ответ Стёпы.",
+      scenes: [
+        { place: "Аэропорт", scene: "🛬 Самолёт приземлился. К Стёпе подходит турист.", who: "Tourist", say: "Hi! Are you our guide? What do you do?",
+          choices: [
+            { t: "Yes! I'm a tour guide. I show tourists the islands.", ok: true, reply: "Great! Let's go!" },
+            { t: "Yes! I'm a hairdresser. I show tourists the islands.", fb: "💡 Hairdresser стрижёт волосы ✂️ Гид — tour guide." },
+            { t: "Yes! I am showing tourists the islands every day.", fb: "💡 Every day — Present Simple: I show." }
+          ] },
+        { place: "Лодка", scene: "🚤 Солнце очень жаркое.", who: "Tourist", say: "It's so hot! What do I have to do?",
+          choices: [
+            { t: "You must put on sun cream!", ok: true, reply: "Good idea, thanks!" },
+            { t: "You mustn't put on sun cream!", fb: "💡 mustn't = нельзя. Крем от солнца нужен: must." },
+            { t: "You must to put on sun cream!", fb: "💡 После must нет to: You must put on…" }
+          ] },
+        { place: "Пляж", scene: "🏖️ Белый песок, голубая вода.", who: "Tourist", say: "Can we walk on the sand in our shoes?",
+          choices: [
+            { t: "Take off your shoes — the sand is soft and warm!", ok: true, reply: "Oh, it's lovely!" },
+            { t: "Take up your shoes — the sand is soft and warm!", fb: "💡 take up — начать хобби. Снять обувь — take off." },
+            { t: "Take after your shoes — the sand is soft and warm!", fb: "💡 take after — быть похожим на родственника. Снять — take off." }
+          ] },
+        { place: "Риф", scene: "🐢 Рядом плывёт морская черепаха!", who: "Tourist", say: "Can I touch the turtle?",
+          choices: [
+            { t: "No! You mustn't touch it. Sea turtles are wild.", ok: true, reply: "OK, I'll just take a photo! 📷" },
+            { t: "No, you don't have to touch it.", fb: "💡 don't have to = не обязательно. Запрет — mustn't." },
+            { t: "Yes, you must touch it!", fb: "💡 Диких животных трогать нельзя: mustn't." }
+          ] },
+        { place: "Кафе", scene: "🥥 Туристы пьют кокосовую воду.", who: "Tourist", say: "What were you doing at 7 pm yesterday?",
+          choices: [
+            { t: "I was dancing at a Russian folk dance show!", ok: true, reply: "Wow! A guide and a dancer!" },
+            { t: "I am dancing at a Russian folk dance show!", fb: "💡 Вчера в 7 — процесс в прошлом: Past Continuous — I was dancing." },
+            { t: "I were dancing at a Russian folk dance show!", fb: "💡 I was, you/we/they were: I was dancing." }
+          ] },
+        { place: "Отель", scene: "📝 Турист пишет открытку и расстроен.", who: "Tourist", say: "Oh no, I made a mistake in my postcard!",
+          choices: [
+            { t: "Don't worry — just do your best!", ok: true, reply: "Thanks, Stepa! 😊" },
+            { t: "Don't worry — just make your best!", fb: "💡 Запомни: do your best." },
+            { t: "Don't worry — just take your best!", fb: "💡 Запомни: do your best." }
+          ] },
+        { place: "Аэропорт", scene: "✈️ Туристы улетают домой.", who: "Tourist", say: "Thank you! Your job is so exciting! What are your plans?",
+          choices: [
+            { t: "I'm going to take part in a guide competition!", ok: true, reply: "You'll win! Bye, Stepa! 👋" },
+            { t: "I'm going to take place in a guide competition!", fb: "💡 take place — о событии. Участвовать — take part in." },
+            { t: "I'm going to take care in a guide competition!", fb: "💡 take care of — заботиться. Участвовать — take part in." }
+          ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🏆", text: "Ни одной ошибки! Стёпа — лучший гид Мальдив! 🏝️" },
+        { max: 2, emoji: "🌴", text: "Отличная работа! Туристы очень довольны!" },
+        { emoji: "🐢", text: "Неплохо! Загляни в «Подсказку» и попробуй ещё раз — черепашка верит в тебя!" }
+      ] }
+  ]
+});
+</script>
+</body></html>
