@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Соня", nameEn: "Sonya", gender: "f",
+  theme: "lilac",
+  teacher: "",
+  teacherSign: "Надежда",
+  title: "People: looks & character",
+  intro: "Сегодня вспоминаем слова про **внешность** и **характер**: кудрявый, веснушки, терпеливый, целеустремлённый… Если забыла слово — загляни во вкладку **«Слова»**, там всё с переводом и озвучкой. А в конце тебя ждёт *детектив*: кто съел печенье Тимофея? 🍪🕵️‍♀️",
+  celebrate: { text: "Супер, Соня! Ты настоящий детектив! 🕵️‍♀️", emoji: "💜", rain: ["💜","🍪","🐶","🤸‍♀️","✨"], btn: "Ура!", fx: "both" },
+
+  rules: [
+    { title: "Как выглядит? Какой? Кем работает?",
+      text: "Это три разных вопроса — их легко перепутать!\n• **What does she look like?** — Как она выглядит? (внешность: tall, slim, curly hair…)\n• **What is she like?** — Какая она? (характер: patient, sociable…)\n• **What does she do?** — Кем она работает? (a vet, a coach…)",
+      examples: ["What does your coach look like? — She's tall and slim.", "What is Timofey like? — He's very sociable.", "What does your mum do? — She's a doctor."],
+      mistake: "❌ What does she like? = Что она любит? — это совсем другой вопрос!" },
+    { title: "-ED или -ING?",
+      text: "**-ed** — что я чувствую (про человека): I'm tired, I'm bored, I'm scared, I'm disappointed.\n**-ing** — какая вещь/ситуация (она вызывает это чувство): a tiring day, a boring film, a disappointing result.",
+      examples: ["The lesson was boring, so I was bored.", "Training was tiring. I was so tired!"],
+      mistake: "❌ I'm boring = «Я скучная» 😅 Правильно: I'm bored = «Мне скучно»." },
+    { title: "who / whose / which / where / when",
+      text: "**who** — про человека\n**whose** — чей (чья собака, чья мама)\n**which** — про вещь или животное\n**where** — где (место)\n**when** — когда (время)",
+      examples: ["This is the girl who does gymnastics.", "That's the boy whose dog is very cute.", "This is the gym where I train."],
+      mistake: "❌ my coach which… → ✅ my coach who…" },
+    { title: "Фразовые глаголы и предлоги",
+      text: "**give up** — сдаваться, бросать\n**give back** — вернуть\n**give away** — отдать, раздать\n**cope with** — справиться с\n**famous for** — известен чем-то\n**lose control of** — потерять контроль над",
+      examples: ["Never give up!", "Can you give me back my book?", "She's famous for her cakes."],
+      mistake: "❌ famous with → ✅ famous for" }
+  ],
+
+  words: [
+    ["fit", "в хорошей форме, спортивный", "/fɪt/", ""],
+    ["imaginative", "с богатым воображением, фантазёр", "/ɪˈmædʒɪnətɪv/", "ударение на MA"],
+    ["sociable", "общительный", "/ˈsəʊʃəbl/", "ударение на SO"],
+    ["determined", "целеустремлённый, упорный", "/dɪˈtɜːmɪnd/", "читается «дитЁрминд»"],
+    ["patient", "терпеливый", "/ˈpeɪʃnt/", "«пэйшнт»"],
+    ["creative", "творческий, креативный", "/kriˈeɪtɪv/", ""],
+    ["bald", "лысый", "/bɔːld/", ""],
+    ["teenager", "подросток", "/ˈtiːneɪdʒə/", "13–19 лет"],
+    ["middle-aged", "средних лет", "/ˌmɪdl ˈeɪdʒd/", "примерно 40–60 лет"],
+    ["elderly", "пожилой", "/ˈeldəli/", "вежливое слово вместо old"],
+    ["slim", "стройный", "/slɪm/", "это комплимент 😊"],
+    ["skinny", "очень худой, тощий", "/ˈskɪni/", ""],
+    ["plump", "полненький, пухленький", "/plʌmp/", ""],
+    ["well-built", "крепкий, хорошо сложённый", "/ˌwel ˈbɪlt/", ""],
+    ["freckles", "веснушки", "/ˈfreklz/", ""],
+    ["spiky hair", "волосы торчком, ёжиком", "/ˈspaɪki/", ""],
+    ["wavy hair", "волнистые волосы", "/ˈweɪvi/", "wave — волна"],
+    ["curly hair", "кудрявые волосы", "/ˈkɜːli/", ""],
+    ["pretty", "хорошенькая, симпатичная", "/ˈprɪti/", ""],
+    ["cute", "милый", "/kjuːt/", ""],
+    ["ugly", "некрасивый, страшненький", "/ˈʌɡli/", ""],
+    ["give up", "сдаваться; бросать (занятие)", "/ɡɪv ʌp/", ""],
+    ["give back", "вернуть", "/ɡɪv bæk/", ""],
+    ["give away", "отдать, раздать", "/ɡɪv əˈweɪ/", ""],
+    ["cope with", "справляться с", "/kəʊp wɪð/", ""],
+    ["be famous for", "быть известным чем-то", "/ˈfeɪməs fɔː/", ""],
+    ["lose control of", "потерять контроль над", "/luːz kənˈtrəʊl/", ""],
+    ["tired / tiring", "уставший / утомительный", "/ˈtaɪəd/ /ˈtaɪərɪŋ/", "-ed — я чувствую, -ing — какая вещь"],
+    ["bored / boring", "мне скучно / скучный", "/bɔːd/ /ˈbɔːrɪŋ/", ""],
+    ["scared / scary", "испуганный / страшный", "/skeəd/ /ˈskeəri/", ""],
+    ["disappointed / disappointing", "разочарованный / разочаровывающий", "/ˌdɪsəˈpɔɪntɪd/", ""],
+    ["What does she look like?", "Как она выглядит?", "", "внешность"],
+    ["What is she like?", "Какая она? (характер)", "", "характер"],
+    ["What does she do?", "Кем она работает?", "", "работа"]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "memory", title: "Мемори: внешность и характер",
+      count: 8, time: 150,
+      pairs: [["curly","кудрявый"],["freckles","веснушки"],["bald","лысый"],["patient","терпеливый"],["sociable","общительный"],["determined","целеустремлённый"],["elderly","пожилой"],["well-built","крепкий"],["slim","стройный"],["teenager","подросток"]] },
+
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками",
+      instruction: "Повторяем то, что было трудно в прошлых ДЗ: аэропорт, кафе, used to, вопросы с who.",
+      items: [
+        { q: "Our plane leaves from ___ 14. (выход на посадку)", o: ["Gate","Arrivals","Check-in"], a: 0 },
+        { q: "We landed and waited for Dad in ___ . (зал прилёта)", o: ["arrivals","departures","the gate"], a: 0 },
+        { q: "The plane will ___ in ten minutes. (взлетит)", o: ["take off","give up","give back"], a: 0 },
+        { q: "Did you swim in the sea in Phuket? — Yes, I ___ .", o: ["did","do","swam"], a: 0 },
+        { q: "Who do you do gymnastics ___ ? (С кем ты занимаешься гимнастикой?)", o: ["with","—","to"], a: 0 },
+        { q: "Can we have the ___, please? We want to pay. (счёт)", o: ["bill","change","menu"], a: 0 },
+        { q: "I ___ be scared of planes, but now I love flying. (раньше боялась)", o: ["used to","use to","am used"], a: 0 }
+      ] },
+
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова из прошлых ДЗ" },
+
+    { part: "practice", type: "bank", rule: [0,1], title: "Люди вокруг Сони",
+      instruction: "Нажми на слово из банка, чтобы вставить его в пропуск. Два слова лишние! Если не помнишь слово — открой вкладку «Слова».",
+      items: [
+        "My coach never shouts at us. She is very {patient}.",
+        "Timofey talks to everyone in the park. He is very {sociable}.",
+        "Grandpa hasn't got any hair. He is {bald}.",
+        "My friend has got red hair and lots of {freckles} on her nose.",
+        "A poodle is a dog with {curly} hair.",
+        "I train every day because I want to win. I'm {determined}!",
+        "Mum is making a cake that looks like a puppy right now. She is so {creative}!",
+        "Yesterday I had two trainings. I was very {tired} in the evening.",
+        "The film was {boring}, so Timofey fell asleep.",
+        "I will never give {up} gymnastics!"
+      ],
+      extra: ["elderly", "skinny", "bored"],
+      tip: "Внешность — curly, bald, freckles; характер — patient, sociable, determined, creative. -ed — что я чувствую, -ing — какой предмет." },
+
+    { part: "practice", type: "spot", rule: [1,2,3], title: "Найди ошибку: мой тренер",
+      instruction: "Соня написала рассказ про своего тренера, но сделала 7 ошибок. Нажми на неправильное слово и исправь его.",
+      text: "My coach Marina is [middle-age=>middle-aged]. She is slim and very [fitness=>fit]. She has got long [wave=>wavy] hair. She is very [patience=>patient] and kind. Marina is a woman [which=>who] used to be a champion. I am never [boring=>bored] at training. Last month I fell and I was very [disappointing=>disappointed], but Marina said: \"Don't give up!\" Now I have won two medals!",
+      tip: "Смотри на форму слова: прилагательное (patient), а не существительное (patience). Про человека — who." },
+
+    { part: "final", type: "detective", rule: 0,
+      title: "Детектив: кто съел печенье? 🍪",
+      case: "Дело о пропавшем печенье",
+      story: "Sonya baked chocolate cookies for Timofey and left them on the table near the open window. When she came back from the gym — the plate was empty! 😱 Five neighbours were in the garden that afternoon. Help Sonya find the thief!\n\n(Соня испекла шоколадное печенье для Тимофея и оставила его на столе у открытого окна. Когда она вернулась из спортзала — тарелка была пуста! В саду в тот день было пять соседей. Помоги найти вора!)",
+      steps: [
+        { q: "Timofey saw the thief from the window: \"The person had CURLY hair!\" — Что значит curly hair?", o: ["кудрявые волосы","волосы ёжиком","волнистые волосы"], a: 0, clue: "У вора кудрявые волосы" },
+        { q: "A neighbour said: \"The thief wasn't a teenager, but he wasn't elderly.\" — Сколько лет вору?", o: ["middle-aged — средних лет","young — молодой","elderly — пожилой"], a: 0, clue: "Вор — средних лет (middle-aged)" },
+        { q: "Mum said: \"He was WELL-BUILT, not skinny.\" — Что значит well-built?", o: ["крепкий, хорошо сложённый","очень худой","полненький"], a: 0, clue: "Вор крепкого телосложения" },
+        { q: "The thief left a note: \"Sorry! I was so ___ after the gym and I was hungry!\"", o: ["tired","tiring","boring"], a: 0, clue: "Вор ходит в спортзал и устал после тренировки" }
+      ],
+      suspects: [
+        { name: "Mr Brown", emoji: "👴", desc: "An elderly man with curly grey hair. He is slim and very patient." },
+        { name: "Kostya", emoji: "🧑", desc: "A skinny teenager with spiky hair and freckles." },
+        { name: "Uncle Pasha", emoji: "💪", desc: "A middle-aged man with curly hair. He is well-built and goes to the gym every day." },
+        { name: "Mrs Lee", emoji: "👩‍🦱", desc: "A middle-aged woman with wavy hair. She is plump and very sociable." },
+        { name: "Mr Green", emoji: "👨‍🦲", desc: "A middle-aged bald man. He is well-built and he is famous for his big muscles." }
+      ],
+      culprit: 2,
+      solution: "It was Uncle Pasha! He is middle-aged, he has got curly hair, he is well-built and he was tired after the gym. (Это дядя Паша! Он средних лет, кудрявый, крепкий и устал после спортзала.) Mr Green is bald, Mr Brown is elderly, Kostya is a teenager, and Mrs Lee has got wavy hair. 🍪" },
+
+    { part: "write", type: "write", rule: 0, title: "Составь сам%а%",
+      instruction: "Напиши по-английски. Используй слова из вкладки «Слова».",
+      items: [
+        { q: "Опиши Тимофея: What does he look like? What is he like? (Как он выглядит и какой у него характер?)", min: 25 },
+        { q: "Придумай вопрос с who и ответь на него. Например: Who do you go to the gym with? — I go with…", min: 10 },
+        { q: "Как ты изменилась? Напиши 2 предложения с used to. Например: I used to have short hair, but now…", min: 15, must: ["used to"] }
+      ] }
+  ]
+});
+</script>
+</body></html>
