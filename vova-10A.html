@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Вова", nameEn: "Vova", gender: "m",
+  theme: "strict",
+  teacher: "",
+  teacherSign: "Nadezhda",
+  title: "HW 10A Expressing movement · conditionals",
+  intro: "Вова, тема недели — **движение**: как сказать, куда ты идёшь (*across, through, past, towards…*). Плюс снова conditionals и фразы для созвонов: *walk you through, go back to, move on to*. Время ~20 минут.",
+  celebrate: { text: "Build passed. 0 errors.", emoji: "✅", rain: ["✅","🟢","🚀"], btn: "Merge", fx: "confetti" },
+
+  rules: [
+    { title: "2nd conditional",
+      text: "Воображаемая ситуация сейчас или в будущем: **If + Past Simple, would + V1**. После would — всегда начальная форма глагола, без -ed и без V2. После if — никогда не would.",
+      examples: ["If a dog ran towards me, I would stand still.", "If I lived in Austin, I wouldn't need night calls.", "If the lift broke, I would walk up the stairs."],
+      mistake: "I would ran ✗ / I would called ✗ / If I would see ✗ → I would run, I would call, If I saw" },
+    { title: "3rd conditional",
+      text: "Сожаление о прошлом, которое уже не изменить: **If + had + V3, would have + V3**. Помни V3: known, flown, slept, stung, woken, drunk, been, found, bitten, run.",
+      examples: ["If we had checked the logs, we would have found the bug.", "If I hadn't missed the bus, I wouldn't have been late."],
+      mistake: "If we tested…, we would found ✗ → If we had tested…, we would have found" },
+    { title: "Глагол движения + предлог",
+      text: "В английском глагол говорит **как** ты двигаешься (walk, run, drive, swim, fly), а предлог — **куда** (across, into, up, past…). В русском это часто приставка: *перебежал* = ran across, *вошёл* = went into, *выбежал* = ran out of, *прошёл мимо* = walked past.",
+      examples: ["I ran across the road.", "We drove through the tunnel.", "He walked out of the meeting room.", "A cat jumped over the fence."],
+      mistake: "I went in the office ✗ → I went into the office (движение внутрь)" },
+    { title: "across или through",
+      text: "**across** — с одной стороны на другую по поверхности: дорога, площадь, мост, река. **through** — сквозь, внутри чего-то: парк с деревьями, туннель, толпа, лес, дверь. Не путай through /θruː/ и throw (бросать).",
+      examples: ["Walk across the square.", "Push through the crowd to the exit.", "The train went through a long tunnel."],
+      mistake: "through the road ✗ → across the road" },
+    { title: "away и back",
+      text: "**away** — прочь, от этого места. **back** — обратно, туда, где был раньше. return уже значит «вернуться», поэтому return back — лишнее.",
+      examples: ["The bird flew away.", "I'll be back in five minutes.", "Can we go back to slide 4?"],
+      mistake: "return back ✗ → go back / return" },
+    { title: "Фразы для созвонов",
+      text: "Многие рабочие фразы — те же глаголы движения: по повестке созвона идут, как по маршруту.",
+      examples: ["Let me walk you through the new build. — Давайте я покажу по шагам…", "Can we go back to the previous slide?", "Let's move on to the next point.", "Let's go over the bugs from Friday. — Давайте пройдёмся по…", "I'll get back to you tomorrow. — Я вернусь к вам с ответом завтра."],
+      mistake: "walk you across ✗ / go across the bugs ✗ → walk you through / go over the bugs" }
+  ],
+
+  words: [
+    ["under", "под", "/ˈʌndə/", "under the bridge"],
+    ["along", "вдоль, по", "/əˈlɒŋ/", "along the street"],
+    ["round / around", "вокруг", "/raʊnd/ /əˈraʊnd/", "round the lake"],
+    ["through", "сквозь, через (внутри чего-то)", "/θruː/", "through the tunnel; не путай с throw"],
+    ["into", "в, внутрь", "/ˈɪntuː/", "go into the office"],
+    ["across", "через (с одной стороны на другую)", "/əˈkrɒs/", "across the road"],
+    ["over", "над, через (сверху)", "/ˈəʊvə/", "over the bridge"],
+    ["up", "вверх", "/ʌp/", "up the steps"],
+    ["down", "вниз", "/daʊn/", "down the steps"],
+    ["past", "мимо", "/pɑːst/", "walk past the café; глагол — passed"],
+    ["towards", "по направлению к", "/təˈwɔːdz/", "run towards me"],
+    ["out of", "из, наружу", "/ˈaʊt əv/", "out of the building"],
+    ["away", "прочь", "/əˈweɪ/", "run away"],
+    ["back", "назад, обратно", "/bæk/", "go back home"],
+    ["walk sb through", "объяснить по шагам", "/wɔːk θruː/", "Let me walk you through the build."],
+    ["go back to", "вернуться к (теме, слайду)", "/ɡəʊ bæk tə/", "Can we go back to slide 3?"],
+    ["move on to", "перейти к (следующему пункту)", "/muːv ɒn tə/", "Let's move on to the next point."],
+    ["go over", "пройтись по, разобрать", "/ɡəʊ ˈəʊvə/", "Let's go over the bugs."],
+    ["get back to sb", "ответить позже", "/ɡet bæk tə/", "I'll get back to you tomorrow."]
+  ],
+
+  tasks: [
+    // 1. Разминка
+    { part: "warmup", type: "wordfall", title: "Словопад: куда идём?", count: 10, speed: 7, dir: "en-ru",
+      words: [["under","под"],["along","вдоль"],["around","вокруг"],["through","сквозь"],["into","внутрь"],["across","через (поперёк)"],["over","над, через верх"],["up","вверх"],["down","вниз"],["past","мимо"],["towards","по направлению к"],["out of","из, наружу"],["away","прочь"],["back","обратно"]] },
+
+    // 2. Работа над ошибками
+    { part: "review", type: "mistakes", count: 6, title: "Bug fix 2.0", rule: [0,1], items: [
+      { q: "If a bee flew into my car, I would ___ (open) the window.", a: ["open"] },
+      { q: "If the server crashed during the demo, I would ___ (stay) calm and restart it.", a: ["stay"] },
+      { q: "If my laptop died before the call, I would ___ (join) from my phone.", a: ["join"] },
+      { q: "If the client asked for a new feature, I ___ it to the backlog.", o: ["would add","will add","would added"], a: 0 },
+      { q: "If I see this bug again, I ___ you a screenshot.", o: ["will send","would send","would sent"], a: 0 },
+      { q: "If I ___ late for the call, please start without me.", o: ["am","be","will be"], a: 0 },
+      { q: "If we ___ (check) the logs, we would have found the problem.", a: ["had checked"] },
+      { q: "If I had known about the meeting, I would have ___ (come) earlier.", a: ["come"] },
+      { q: "If the dog hadn't ___ (bite) the cable, the internet would have worked.", a: ["bitten"] },
+      { q: "Fix it: Sorry, I'm late on the meeting.", a: ["Sorry, I'm late for the meeting"] },
+      { q: "Fix it: Can I join to the call?", a: ["Can I join the call"] },
+      { q: "Fix it: I'll send you invite on a call.", a: ["I'll send you an invite to the call", "I'll send you an invite to a call", "I'll send you an invite for the call", "I'll send you an invite for a call"] },
+      { q: "Fix it: I'm working from office today.", a: ["I'm working from the office today"] },
+      { q: "Can you lend me your charger? I'll give ___ back after the call.", o: ["it","them","its"], a: 0 }
+    ]},
+
+    // 3. Повторяем слова
+    { part: "words", type: "vocab", count: 8 },
+
+    // 4. Отработка
+    { part: "practice", type: "bank", rule: [2,3,4], title: "Monday morning in Yerevan",
+      instruction: "Вставь предлоги движения. Одно слово лишнее.",
+      items: [
+        "On Monday I left my flat at 8:30 and walked {down} the stairs.",
+        "I went {out of} the building and walked {along} Abovyan Street.",
+        "At the traffic lights I walked {across} the road.",
+        "I went {past} my favourite café — no time for coffee, the call was at 9!",
+        "I took a shortcut {through} the park.",
+        "A big dog started running {towards} me, so I walked {round|around} it slowly.",
+        "Then I went {over} the little bridge, ran {up} the steps and went {into} the office.",
+        "At 9:01 I remembered: the call was online. So I went {back} home."
+      ],
+      extra: ["under"],
+      tip: "Повтори across / through и away / back во вкладке «Подсказка»." },
+
+    { part: "practice", type: "gaps", rule: [0,2], title: "What would you do?",
+      instruction: "Поставь глаголы в правильную форму (2nd conditional). После would — V1!",
+      items: [
+        "If the lift didn't work, I {would walk} (walk) up the stairs to the 9th floor.",
+        "If a stray dog ran towards me, I {wouldn't run|would not run} (not run) away.",
+        "If I {lived} (live) next to the office, I would walk across the park every morning.",
+        "If the metro {stopped} (stop) in the tunnel, I {would join} (join) the stand-up from my phone.",
+        "If I forgot my laptop at home, I {would go} (go) back for it.",
+        "If we {moved} (move) the release to Friday, I {would test} (test) the build on Thursday."
+      ],
+      tip: "If + Past Simple, would + V1. Не would ran / would called." },
+
+    { part: "practice", type: "spot", rule: [0,2,3,4], title: "Code review: сообщение в Slack",
+      instruction: "Найди и исправь 6 ошибок в сообщении Вовы в рабочий чат.",
+      text: "Hi team! Quick update: I'm going [in=>into] the office now. I walked [through=>across] the road and now I'm going [across=>through] the park. Our designer [past=>passed] me on his scooter five minutes ago 😅 If I [would be=>were|was] faster, I [will=>would] be there already. When I come, let's [return back=>go back|return] to the bug from Friday — I think I know how to fix it." },
+
+    { part: "practice", type: "chat", rule: [0,1,5], title: "Call with Jake",
+      instruction: "Созвон с Джейком из Остина. Выбирай правильные реплики.",
+      who: { name: "Jake", avatar: "🧑‍💻" },
+      script: [
+        { say: "Hi Vova! Can you hear me? Could you walk us through the new build?" },
+        { me: [
+          { t: "Sure. Let me walk you through the main changes.", ok: true, reply: "Great, go ahead." },
+          { t: "Sure. Let me walk you across the main changes.", fb: "💡 walk someone through — объяснить по шагам. across — это про дорогу или мост." }
+        ]},
+        { say: "Sorry, can we go back to the previous slide?" },
+        { me: [
+          { t: "Of course, I'll go back to the previous slide.", ok: true, reply: "Thanks." },
+          { t: "Of course, I'll return back to the previous slide.", fb: "💡 return уже значит «вернуться». Скажи go back to или return to." }
+        ]},
+        { say: "What would you do if players found a bug after the release?" },
+        { me: [
+          { t: "If they found a bug, I would fix it in a hotfix.", ok: true, reply: "Sounds like a plan." },
+          { t: "If they found a bug, I will fix it in a hotfix.", fb: "💡 Вопрос с would — ответ тоже с would: I would fix." },
+          { t: "If they would find a bug, I would fix it in a hotfix.", fb: "💡 После if не ставим would: If they found…" }
+        ]},
+        { say: "And why did we miss the deadline last time?" },
+        { me: [
+          { t: "If we had tested the build earlier, we would have found the bug.", ok: true, reply: "Fair point. Let's move on to the next item." },
+          { t: "If we tested the build earlier, we would found the bug.", fb: "💡 Про прошлое — 3rd conditional: had tested, would have found." }
+        ]},
+        { say: "I'll get back to you with the new date. Anything else?" },
+        { me: [
+          { t: "No, I think we've gone through everything. Thanks, Jake!", ok: true, reply: "Thanks, Vova. Have a good one!" },
+          { t: "No, I think we've gone across everything. Thanks, Jake!", fb: "💡 Пройтись по всем пунктам — go through / go over everything." }
+        ]}
+      ]},
+
+    // 7. Финал
+    { part: "final", type: "quest", title: "Release day",
+      place: "Ереван",
+      intro: "Сегодня релиз. В 9:00 созвон с Джейком из Остина, а у тебя всё идёт по закону Мёрфи. Доберись до офиса и проведи созвон без ошибок.",
+      scenes: [
+        { place: "Дом", scene: "🏠 8:40. До созвона 20 минут, лифт опять не работает.", who: "Neighbour",
+          say: "Morning, Vova! The lift is broken again.",
+          choices: [
+            { t: "No problem, I'll walk down the stairs.", ok: true, reply: "Good luck — it's the 7th floor!" },
+            { t: "No problem, I'll walk under the stairs.", fb: "💡 Вниз по лестнице — down the stairs. under — под." }
+          ]},
+        { place: "Улица", scene: "🐕 Большая собака бежит прямо к тебе.", who: "Owner",
+          say: "Don't worry, he's friendly! But what would you do if he weren't?",
+          choices: [
+            { t: "If he weren't friendly, I would stand still.", ok: true, reply: "Smart move." },
+            { t: "If he weren't friendly, I would ran away.", fb: "💡 После would — V1: would run." },
+            { t: "If he weren't friendly, I will run away.", fb: "💡 Воображаемая ситуация — would, не will." }
+          ]},
+        { place: "Парк", scene: "🌳 Через парк короче. Пишет коллега Ани.", who: "Ani",
+          say: "Where are you? The call starts in 10 minutes!",
+          choices: [
+            { t: "I'm walking through the park — 5 minutes!", ok: true, reply: "Hurry up!" },
+            { t: "I'm walking throw the park — 5 minutes!", fb: "💡 throw — бросать. Сквозь парк — through /θruː/." }
+          ]},
+        { place: "Офис", scene: "🏢 Ты вбегаешь в здание. Охранник просит пропуск.", who: "Security",
+          say: "Hi! Your pass, please.",
+          choices: [
+            { t: "Sorry, I left it at home. If I went back for it, I would miss the call.", ok: true, reply: "OK, go in — just this once." },
+            { t: "Sorry, I left it at home. If I would go back for it, I would miss the call.", fb: "💡 После if не ставим would: If I went back…" }
+          ]},
+        { place: "Созвон", scene: "💻 9:00. Jake на связи.", who: "Jake",
+          say: "Hi Vova! Could you walk us through the release plan?",
+          choices: [
+            { t: "Sure. First, let's go over the bugs from last week.", ok: true, reply: "Perfect." },
+            { t: "Sure. First, let's go across the bugs from last week.", fb: "💡 Пройтись по багам — go over / go through." }
+          ]},
+        { place: "Созвон", scene: "🐞 Тестер нашёл баг на Android.", who: "Jake",
+          say: "Why didn't we catch this bug before?",
+          choices: [
+            { t: "If we had tested it on Android, we would have found it.", ok: true, reply: "Good point. Let's do that next time." },
+            { t: "If we tested it on Android, we would found it.", fb: "💡 Про прошлое — had tested, would have found." }
+          ]}
+      ],
+      endings: [
+        { max: 0, emoji: "🚀", text: "Release shipped on time. Jake: «Great job, Vova!»" },
+        { max: 2, emoji: "✅", text: "Release is out, with a couple of hotfixes. Not bad!" },
+        { emoji: "🔁", text: "Today Murphy's law won. Try again — the build is waiting." }
+      ]}
+  ]
+});
+</script>
+</body></html>
