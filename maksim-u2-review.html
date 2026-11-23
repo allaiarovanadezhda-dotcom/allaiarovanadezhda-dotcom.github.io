@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Максим", nameEn: "Maksim", gender: "m",
+  theme: "gamer",
+  teacher: "",
+  title: "⛏️ Minecraft Review: Unit 2",
+  intro: "Привет, **Maksim**! Сегодня большой **повтор всего юнита** — в мире **Minecraft**. Профессии, одежда, причёски, характер, учёба и экзамены, а ещё **have to / must / mustn't / had to / could** и советы. Проходи уровни, собирай алмазы 💎 и выберись из шахты вместе с котом **Thomas**!",
+  celebrate: { text: "Level complete! Achievement unlocked: Grammar Master!", emoji: "💎", rain: ["💎","⛏️","🟩","🧱","🗡️"], btn: "Respawn 🔁", fx: "both" },
+
+  rules: [
+    { title: "have to / don't have to",
+      text: "**have to** — надо, обязан (так требуют правила, обстоятельства). **don't have to** — НЕ обязательно, можно не делать. С he/she/it: **has to / doesn't have to**. Вопрос: **Do you have to…? / Does he have to…?**",
+      examples: ["In survival mode you have to find food.", "It's Sunday — I don't have to get up early.", "Does Steve have to build a house? — Yes, he does."],
+      mistake: "❌ He have to… → ✅ He has to… ; ❌ Does he has to…? → ✅ Does he have to…?" },
+    { title: "must / mustn't",
+      text: "**must** — должен, очень важно (часто говорящий сам так считает). **mustn't** — НЕЛЬЗЯ, запрещено. Не путай: **mustn't** = нельзя, а **don't have to** = не обязательно.",
+      examples: ["You must take a torch into the cave.", "You mustn't stand next to a creeper!"],
+      mistake: "❌ You mustn't do it (а хотел сказать «не обязательно») → ✅ You don't have to do it." },
+    { title: "had to / didn't have to",
+      text: "Прошлое от have to и must: **had to** — пришлось, надо было. **didn't have to** — не нужно было. Вопрос: **Did you have to…?**",
+      examples: ["Yesterday I had to walk to school.", "We didn't have to wear school uniform.", "Did she have to walk? — Yes, she did."],
+      mistake: "❌ I musted… → ✅ I had to… ; ❌ Did you had to…? → ✅ Did you have to…?" },
+    { title: "could / couldn't",
+      text: "**could** — мог, умел (в прошлом). **couldn't** — не мог, не умел. После could — глагол без to.",
+      examples: ["I could ride a bike when I was five.", "Thomas couldn't climb the tree when he was a kitten."],
+      mistake: "❌ I could to swim → ✅ I could swim" },
+    { title: "Советы: Asking & giving advice",
+      text: "Просим совет: **I need your advice. / Can I ask your advice? / What should I wear?** Даём совет: **You should… / You shouldn't… / In my opinion, you should… / Why don't you + глагол? / What about + глагол-ing?**",
+      examples: ["Why don't you put on a tie?", "What about wearing a white shirt?", "You shouldn't wear trainers."],
+      mistake: "❌ What about wear… → ✅ What about wearing… ; ❌ Why don't you wearing… → ✅ Why don't you wear…" },
+    { title: "Make или do?",
+      text: "**make**: a mess, your bed, breakfast / lunch / dinner. **do**: homework, the dishes, the shopping, your best, well / badly. **take**: notes, an exam, a photo, the bus, medicine.",
+      examples: ["Don't make a mess!", "I always do the shopping on Saturday.", "Do you take notes in class?"],
+      mistake: "❌ make homework → ✅ do homework ; ❌ do a mess → ✅ make a mess" }
+  ],
+
+  words: [
+    ["architect", "архитектор", "/ˈɑːkɪtekt/", ""],
+    ["cleaner", "уборщик", "/ˈkliːnə/", ""],
+    ["computer programmer", "программист", "/kəmˈpjuːtə ˈprəʊɡræmə/", ""],
+    ["dentist", "стоматолог", "/ˈdentɪst/", ""],
+    ["engineer", "инженер", "/ˌendʒɪˈnɪə/", "ударение на -neer"],
+    ["factory worker", "рабочий на заводе", "/ˈfæktri ˈwɜːkə/", ""],
+    ["firefighter", "пожарный", "/ˈfaɪəfaɪtə/", ""],
+    ["hairdresser", "парикмахер", "/ˈheədresə/", ""],
+    ["journalist", "журналист", "/ˈdʒɜːnəlɪst/", ""],
+    ["secretary", "секретарь", "/ˈsekrətri/", ""],
+    ["tour guide", "экскурсовод", "/ˈtʊə ɡaɪd/", ""],
+    ["well-paid", "хорошо оплачиваемый", "/ˌwel ˈpeɪd/", ""],
+    ["badly paid", "плохо оплачиваемый", "/ˈbædli peɪd/", ""],
+    ["challenging", "сложный, требующий усилий", "/ˈtʃælɪndʒɪŋ/", ""],
+    ["dangerous", "опасный", "/ˈdeɪndʒərəs/", ""],
+    ["exciting", "захватывающий", "/ɪkˈsaɪtɪŋ/", ""],
+    ["safe", "безопасный", "/seɪf/", ""],
+    ["generous", "щедрый", "/ˈdʒenərəs/", ""],
+    ["hard-working", "трудолюбивый", "/ˌhɑːd ˈwɜːkɪŋ/", ""],
+    ["selfish", "эгоистичный", "/ˈselfɪʃ/", ""],
+    ["talkative", "болтливый", "/ˈtɔːkətɪv/", ""],
+    ["impatient", "нетерпеливый", "/ɪmˈpeɪʃnt/", ""],
+    ["dishonest", "нечестный", "/dɪsˈɒnɪst/", "h не читается"],
+    ["disorganised", "неорганизованный", "/dɪsˈɔːɡənaɪzd/", ""],
+    ["curly hair", "кудрявые волосы", "/ˈkɜːli heə/", ""],
+    ["spiky hair", "волосы ёжиком", "/ˈspaɪki heə/", ""],
+    ["bald", "лысый", "/bɔːld/", ""],
+    ["beard", "борода", "/bɪəd/", ""],
+    ["moustache", "усы", "/məˈstɑːʃ/", ""],
+    ["checked", "в клетку", "/tʃekt/", ""],
+    ["striped", "в полоску", "/straɪpt/", ""],
+    ["spotted", "в горошек", "/ˈspɒtɪd/", ""],
+    ["baggy", "мешковатый", "/ˈbæɡi/", ""],
+    ["tight", "облегающий, тесный", "/taɪt/", ""],
+    ["bracelet", "браслет", "/ˈbreɪslət/", ""],
+    ["revise for a test", "повторять к тесту", "/rɪˈvaɪz/", ""],
+    ["take notes", "делать записи", "/teɪk nəʊts/", ""],
+    ["hand in your homework", "сдать домашку", "/hænd ɪn/", ""],
+    ["copy someone's work", "списывать", "/ˈkɒpi/", ""],
+    ["pass / fail an exam", "сдать / провалить экзамен", "/pɑːs/ /feɪl/", ""],
+    ["make a mess", "устроить беспорядок", "/meɪk ə mes/", ""],
+    ["do the dishes", "мыть посуду", "/duː ðə ˈdɪʃɪz/", ""],
+    ["pickaxe", "кирка", "/ˈpɪkæks/", "Minecraft"],
+    ["sword", "меч", "/sɔːd/", "w не читается"],
+    ["shield", "щит", "/ʃiːld/", "Minecraft"],
+    ["torch", "факел", "/tɔːtʃ/", "Minecraft"],
+    ["cave", "пещера", "/keɪv/", "Minecraft"],
+    ["armour", "броня", "/ˈɑːmə/", "Minecraft"],
+    ["villager", "житель деревни", "/ˈvɪlɪdʒə/", "Minecraft"],
+    ["craft", "мастерить, крафтить", "/krɑːft/", "Minecraft"],
+    ["mine", "добывать (в шахте); шахта", "/maɪn/", "Minecraft"],
+    ["spawn", "появляться (о мобах)", "/spɔːn/", "Minecraft"],
+    ["survive", "выжить", "/səˈvaɪv/", "Minecraft"],
+    ["explode", "взорваться", "/ɪkˈspləʊd/", "так делает крипер 💥"]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "wordfall", title: "⛏️ Словопад: блоки падают!", count: 12, speed: 7, dir: "en-ru" },
+
+    { part: "review", type: "mistakes", title: "🧟 Работа над ошибками", count: 6, items: [
+      { q: "I ___ notes when the teacher came in.", o: ["was taking", "took", "am taking"], a: 0 },
+      { q: "While I was mining, a creeper suddenly ___.", o: ["appeared", "was appearing", "appears"], a: 0 },
+      { q: "It's snowing! Put on your ___.", o: ["scarf", "sandals", "shorts"], a: 0 },
+      { q: "I didn't revise, so I ___ the test.", o: ["failed", "passed", "took"], a: 0 }
+    ] },
+
+    { part: "words", type: "vocab", title: "🧱 Повторяем слова", count: 8, mode: "match" },
+
+    { part: "practice", type: "choice", title: "📜 Правила мира Minecraft", instruction: "Выбери: have to / has to / don't have to / must / mustn't.", rule: [0, 1], tip: "mustn't = нельзя, don't have to = не обязательно", items: [
+      { q: "Night is coming! You ___ build a house before the zombies spawn.", o: ["must", "mustn't", "don't have to"], a: 0 },
+      { q: "You ___ stand next to a creeper. It explodes!", o: ["mustn't", "must", "don't have to"], a: 0 },
+      { q: "It's peaceful mode, so you ___ fight any monsters.", o: ["don't have to", "mustn't", "must"], a: 0 },
+      { q: "___ Steve have to find food every day?", o: ["Does", "Do", "Has"], a: 0 },
+      { q: "Alex ___ mine diamonds with an iron pickaxe. A wooden one is too weak.", o: ["has to", "have to", "doesn't have to"], a: 0 },
+      { q: "You ___ dig straight down. You can fall into lava!", o: ["mustn't", "don't have to", "must"], a: 0 },
+      { q: "Do you have to craft a table first? — Yes, I ___.", o: ["do", "have", "must"], a: 0 },
+      { q: "Maksim ___ do his homework before he plays Minecraft.", o: ["has to", "have to", "mustn't"], a: 0 },
+      { q: "Tomorrow is Sunday — I ___ get up early. Hooray!", o: ["don't have to", "mustn't", "doesn't have to"], a: 0 }
+    ] },
+
+    { part: "practice", type: "bank", title: "🕹️ Первый день Стива", instruction: "Steve's first day in Minecraft. Вставь слова из банка.", rule: [2, 3], extra: ["must", "has to"], tip: "Прошлое: had to / didn't have to / could / couldn't", items: [
+      "On his first day Steve {couldn't} find any food.",
+      "He was very hungry, so he {had to} eat apples.",
+      "He {could} cut trees with his hands, but stone was too hard.",
+      "It was peaceful mode, so he {didn't have to} fight zombies.",
+      "{Did} he have to sleep in a hole? — Yes, he did!"
+    ] },
+
+    { part: "practice", type: "match", title: "👷 Кто это?", instruction: "Соедини профессию и что этот человек делает.", pairs: [
+      ["firefighter", "puts out fires"],
+      ["architect", "designs buildings"],
+      ["tour guide", "shows tourists a city"],
+      ["hairdresser", "cuts and dyes hair"],
+      ["journalist", "writes stories for the news"],
+      ["dentist", "looks after your teeth"],
+      ["computer programmer", "writes code for games"],
+      ["cleaner", "uses a bucket and a mop"]
+    ] },
+
+    { part: "practice", type: "race", title: "🛤️ Гонка на вагонетке: make, do, take", instruction: "Отвечай быстро — вагонетка едет!", rule: 5, items: [
+      { q: "Don't ___ a mess in my house!", o: ["make", "do", "take"], a: 0 },
+      { q: "Can you ___ the dishes, please?", o: ["do", "make", "take"], a: 0 },
+      { q: "I always ___ notes in class.", o: ["take", "make", "do"], a: 0 },
+      { q: "Don't worry. Just ___ your best!", o: ["do", "make", "take"], a: 0 },
+      { q: "___ your bed, please!", o: ["Make", "Do", "Take"], a: 0 },
+      { q: "I have to ___ in my homework on Monday.", o: ["hand", "pass", "copy"], a: 0 },
+      { q: "Did you ___ all your exams? — Yes, I got good marks!", o: ["pass", "fail", "copy"], a: 0 },
+      { q: "You shouldn't ___ your friend's homework.", o: ["copy", "revise", "hand"], a: 0 },
+      { q: "Who ___ breakfast in your family?", o: ["makes", "does", "takes"], a: 0 },
+      { q: "He ___ well in the test — he got an A!", o: ["did", "made", "took"], a: 0 }
+    ] },
+
+    { part: "practice", type: "memory", title: "🧩 Мемори: противоположности", instruction: "Найди пары слов с противоположным значением.", count: 8, time: 150, pairs: [
+      ["friendly", "unfriendly"],
+      ["honest", "dishonest"],
+      ["patient", "impatient"],
+      ["polite", "impolite"],
+      ["kind", "unkind"],
+      ["organised", "disorganised"],
+      ["well-paid", "badly paid"],
+      ["dangerous", "safe"],
+      ["boring", "exciting"],
+      ["easy", "challenging"]
+    ] },
+
+    { part: "practice", type: "order", title: "🗨️ Собери совет", instruction: "Собери предложение из слов.", rule: 4, items: [
+      "What should I wear to the party?",
+      "Why don't you put on your new hoodie?",
+      "What about wearing your checked shirt?",
+      "You shouldn't wear baggy shorts.",
+      "In my opinion, you should have a haircut."
+    ] },
+
+    { part: "practice", type: "chat", title: "🧑‍🌾 Житель деревни просит совета", instruction: "Villager Bob пишет тебе. Выбирай правильные ответы.", rule: 4, who: { name: "Villager Bob", avatar: "🧑‍🌾" }, script: [
+      { say: "Hi Maksim! Can I ask your advice? There's a party in the village tonight." },
+      { me: [
+        { t: "Sure! What's the problem?", ok: true, reply: "What should I wear? 🤔" },
+        { t: "Poor you!", fb: "💡 Bob ещё ничего плохого не рассказал. Просто спроси, в чём проблема." }
+      ] },
+      { me: [
+        { t: "Why don't you wear your smart jacket?", ok: true, reply: "Hmm, it's very tight now… 😬" },
+        { t: "Why don't you wearing your smart jacket?", fb: "💡 После Why don't you — глагол без -ing: Why don't you wear…" },
+        { t: "What about wear your smart jacket?", fb: "💡 После What about — глагол с -ing: What about wearing…" }
+      ] },
+      { me: [
+        { t: "What about wearing your striped hoodie?", ok: true, reply: "Great idea! It's baggy and comfortable. 👍" },
+        { t: "What about to wear your striped hoodie?", fb: "💡 What about + -ing: What about wearing…" }
+      ] },
+      { say: "Guess what happened yesterday! A creeper blew up my house! 💥" },
+      { me: [
+        { t: "Poor you!", ok: true, reply: "Yes… But then I found three diamonds in the hole! 💎" },
+        { t: "Lucky you!", fb: "💡 Взорвали дом — это плохо. Говорим Poor you!" }
+      ] },
+      { me: [
+        { t: "Lucky you!", ok: true, reply: "And then I fell into the river in front of everyone! 🙈" },
+        { t: "How embarrassing!", fb: "💡 Найти алмазы — это удача: Lucky you!" }
+      ] },
+      { me: [
+        { t: "How embarrassing!", ok: true, reply: "I know! My hair is messy and spiky now. Should I go to the party like this?" },
+        { t: "Lucky you!", fb: "💡 Упасть в реку при всех — неловко: How embarrassing!" }
+      ] },
+      { me: [
+        { t: "In my opinion, you should have a haircut.", ok: true, reply: "OK, I think it's a good idea! Thanks, Maksim! See you at the party! 🎉" },
+        { t: "In my opinion, you should to have a haircut.", fb: "💡 После should — глагол без to." }
+      ] }
+    ] },
+
+    { part: "practice", type: "millionaire", title: "💎 Кто хочет стать миллионером? (алмазным!)", items: [
+      { q: "Before a test you should ___ for it.", o: ["revise", "take", "hand", "copy"], a: 0 },
+      { q: "In class Maksim always ___ notes.", o: ["takes", "does", "makes", "hands"], a: 0 },
+      { q: "I studied hard and ___ my exam!", o: ["passed", "failed", "copied", "took"], a: 0 },
+      { q: "You have to hand ___ your homework tomorrow.", o: ["in", "on", "of", "at"], a: 0 },
+      { q: "I got a good ___ in Maths!", o: ["mark", "note", "exam", "work"], a: 0 },
+      { q: "A person who designs houses is an ___.", o: ["architect", "engineer", "secretary", "cleaner"], a: 0 },
+      { q: "Which one is an accessory?", o: ["bracelet", "leggings", "cardigan", "hoodie"], a: 0 },
+      { q: "A man with no hair is ___.", o: ["bald", "curly", "wavy", "spiky"], a: 0 },
+      { q: "A person who always works a lot is ___.", o: ["hard-working", "lazy", "selfish", "shy"], a: 0 },
+      { q: "A person who gives presents to everyone is ___.", o: ["generous", "selfish", "rude", "serious"], a: 0 }
+    ] },
+
+    { part: "final", type: "escape", title: "🕳️ Escape Room: побег из шахты", story: "Maksim и кот **Thomas** упали в глубокую шахту в Minecraft! Наступает ночь, крипёры уже рядом… Открой 7 дверей, чтобы выбраться наверх! ⛏️🐱", rooms: [
+      { q: "Sign on Door 1: «Danger! Lava! You ___ walk here!»", o: ["mustn't", "must", "don't have to"], a: 0 },
+      { q: "Thomas can't swim. When he was a kitten, he ___ swim either.", o: ["couldn't", "could", "had to"], a: 0 },
+      { q: "The chest opens with the opposite of «patient».", o: ["impatient", "unpatient", "dispatient"], a: 0 },
+      { q: "Door 4 asks: «Who puts out fires?»", o: ["firefighter", "engineer", "journalist"], a: 0 },
+      { q: "A villager shouts: «Don't ___ a mess in my mine!»", o: ["make", "do", "take"], a: 0 },
+      { q: "Yesterday the minecart was broken, so we ___ walk.", o: ["had to", "must", "have to"], a: 0 },
+      { q: "Last door! Thomas is scared of the dark. Give him good advice:", o: ["Why don't you take a torch?", "Why don't you taking a torch?", "What about take a torch?"], a: 0 }
+    ] },
+
+    { part: "final", type: "detective", title: "🕵️ Детектив: кто украл алмазы?", case: "Пропали алмазы Максима!", story: "Maksim построил дом в Minecraft и спрятал в сундук 10 алмазов 💎. Утром сундук оказался пустым! Кот **Thomas** ночью кое-что видел. Отвечай на вопросы — получай улики и найди вора!", steps: [
+      { q: "Thomas says: «I ___ see well because it was very dark.»", o: ["couldn't", "could", "didn't have to"], a: 0, clue: "Thomas всё-таки увидел волосы в лунном свете — вор НЕ лысый." },
+      { q: "The thief ___ run fast because a creeper was behind him!", o: ["had to", "has to", "must"], a: 0, clue: "Около сундука вор уронил шарф в горошек (spotted scarf)." },
+      { q: "Steve ___ work last night — there was a big fire in the village.", o: ["had to", "didn't have to", "couldn't"], a: 0, clue: "Стив всю ночь тушил пожар. Это не он." },
+      { q: "Alex says: «I was ill. I ___ leave my house.»", o: ["couldn't", "could", "mustn't"], a: 0, clue: "Алекс болела и не выходила из дома. Это не она." },
+      { q: "A person who takes things that aren't theirs is ___.", o: ["dishonest", "honest", "patient"], a: 0, clue: "Thomas вспомнил: у вора были большие усы (moustache)!" }
+    ], suspects: [
+      { name: "Alex", emoji: "👩‍🦰", desc: "curly red hair, checked shirt, an engineer" },
+      { name: "Steve", emoji: "🧔", desc: "a beard and straight hair, a firefighter" },
+      { name: "Zed the Zombie", emoji: "🧟", desc: "bald, baggy trousers, very lazy" },
+      { name: "Villager Bob", emoji: "🧑‍🌾", desc: "a big moustache, a spotted scarf, a tour guide" }
+    ], culprit: 3, solution: "Это Villager Bob! У него большие усы и шарф в горошек. Он тур-гид, а это badly paid job — вот он и взял алмазы. Но Bob извинился и вернул все 10 алмазов 💎. Maksim, ты отличный детектив! 🕵️" }
+  ]
+});
+</script>
+</body></html>
