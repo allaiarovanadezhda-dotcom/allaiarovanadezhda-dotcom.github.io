@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Тимофей", nameEn: "Timofey", gender: "m",
+  theme: "gamer",
+  decor: ["🏒", "🥅", "⛸️", "🐱", "🐶", "🐹"],
+  teacher: "",
+  whatsapp: true,
+  title: "Много-много! Множественное число",
+  intro: "Привет, Тимофей! 🏒 Сегодня учимся говорить, когда предметов **много**: one cat 🐱 → two cat**s** 🐱🐱. А ещё повторим игрушки, животных, одежду и глаголы. Поехали!",
+  celebrate: { text: "ГОЛ! Всё верно! Ты чемпион!", emoji: "🏒", rain: ["🏒", "🥅", "⭐", "🐱", "🐶", "🐹"], btn: "Ура!", fx: "both" },
+
+  rules: [
+    { title: "Почти все слова: + S",
+      text: "Чаще всего просто добавляем **s** в конце.",
+      examples: ["cat → cats 🐱🐱", "ball → balls ⚽⚽", "dog → dogs 🐶🐶", "zoo → zoos (гласная + o → тоже просто s)"],
+      mistake: "❌ cates → ✅ cats" },
+    { title: "x, s, ss, ch, sh: + ES",
+      text: "Если слово кончается на **x, s, ss, ch, sh** — добавляем **es**. Так же после согласной + **o**.",
+      examples: ["box → boxes 📦📦", "bus → buses 🚌🚌", "dress → dresses 👗👗", "watch → watches ⌚⌚", "tomato → tomatoes 🍅🍅"],
+      mistake: "❌ boxs → ✅ boxes. Запомни исключения: photos, pianos" },
+    { title: "согласная + Y: Y → IES",
+      text: "Если перед **y** согласная — убираем y и пишем **ies**.",
+      examples: ["puppy → puppies 🐶🐶", "teddy → teddies 🧸🧸", "baby → babies", "fly → flies"],
+      mistake: "❌ puppys → ✅ puppies. Но: boy → boys, day → days (перед y гласная)" },
+    { title: "F или FE: → VES",
+      text: "Если слово кончается на **f** или **fe** — меняем на **ves**.",
+      examples: ["leaf → leaves 🍃🍃", "wolf → wolves 🐺🐺", "knife → knives 🔪🔪"],
+      mistake: "❌ wolfs → ✅ wolves" },
+    { title: "Глаголы: что делают?",
+      text: "Когда героев **много** (cats, dogs, we, they), глагол не меняется.",
+      examples: ["Cats sleep. 😴", "Dogs run. 🏃", "Hamsters eat. 🥕", "Ducks swim. 🏊", "Birds fly. 🕊️"],
+      mistake: "eat — есть, sleep — спать, lie — лежать" },
+    { title: "Исключения — слова-хитрецы",
+      text: "Эти слова меняются по-своему. Их надо просто **запомнить**.",
+      examples: ["photo → photos 📷, piano → pianos 🎹 (без e!)", "mouse → mice 🐭", "child → children 👦", "man → men 👨, woman → women 👩", "tooth → teeth 🦷, foot → feet 🦶", "fish → fish 🐟, sheep → sheep 🐑 (не меняются)"],
+      mistake: "❌ mouses → ✅ mice; ❌ childs → ✅ children" }
+  ],
+
+  words: [
+    ["fox", "лиса", "/fɒks/", "много: foxes 🦊"],
+    ["box", "коробка", "/bɒks/", "много: boxes 📦"],
+    ["bus", "автобус", "/bʌs/", "много: buses 🚌"],
+    ["dress", "платье", "/dres/", "много: dresses 👗"],
+    ["watch", "часы (наручные)", "/wɒtʃ/", "много: watches ⌚"],
+    ["puppy", "щенок", "/ˈpʌpi/", "много: puppies 🐶"],
+    ["teddy", "плюшевый мишка", "/ˈtedi/", "много: teddies 🧸"],
+    ["leaf", "листок", "/liːf/", "много: leaves 🍃"],
+    ["wolf", "волк", "/wʊlf/", "много: wolves 🐺"],
+    ["tomato", "помидор", "/təˈmɑːtəʊ/", "много: tomatoes 🍅"],
+    ["mouse", "мышка", "/maʊs/", "много: mice 🐭"],
+    ["child", "ребёнок", "/tʃaɪld/", "много: children 👦"],
+    ["tooth", "зуб", "/tuːθ/", "много: teeth 🦷"],
+    ["foot", "ступня", "/fʊt/", "много: feet 🦶"],
+    ["sheep", "овца", "/ʃiːp/", "много: sheep 🐑"]
+  ],
+
+  tasks: [
+    // 1. РАЗМИНКА
+    { part: "warmup", type: "race", title: "Хоккейный матч",
+      instruction: "Выбери правильное слово — и забей гол! 🏒",
+      skinText: { me: "🏒", rival: "🧤", goal: "🥅", meName: "Тимофей", rivalName: "Вратарь", title: "Хоккейный матч",
+        ok: ["ГОЛ!", "Шайба в воротах!", "Супер бросок!", "ГОЛ! Трибуны кричат!"],
+        bad: "Вратарь поймал шайбу! 🧤", win: "Победа! Ты забил больше всех! 🏆", lose: "Вратарь сегодня сильный. Попробуй ещё раз!" },
+      items: [
+        { q: "🐱 one cat → two …", o: ["cats", "cates"], a: 0 },
+        { q: "📦 one box → two …", o: ["boxes", "boxs"], a: 0 },
+        { q: "🐶 one puppy → two …", o: ["puppies", "puppys"], a: 0 },
+        { q: "🐺 one wolf → two …", o: ["wolves", "wolfs"], a: 0 },
+        { q: "⚽ one ball → two …", o: ["balls", "balles"], a: 0 },
+        { q: "🍅 one tomato → two …", o: ["tomatoes", "tomatos"], a: 0 }
+      ] },
+
+    // 2. РАБОТА НАД ОШИБКАМИ
+    { part: "review", type: "mistakes", count: 4, title: "Работа над ошибками",
+      instruction: "Вспоминаем, что было трудно.",
+      items: [
+        { q: "❄️ Зима — это…", o: ["winter", "summer"], a: 0 },
+        { q: "🧥 jacket — это…", o: ["куртка", "шапка"], a: 0 },
+        { q: "🐹 hamster — это…", o: ["хомячок", "кролик"], a: 0 }
+      ] },
+
+    // 3. ПОВТОРЯЕМ СЛОВА
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова",
+      instruction: "Вспомни слова прошлых уроков.",
+      vocab: [
+        ["ball", "мяч"], ["doll", "кукла"], ["car", "машинка"], ["kite", "воздушный змей"], ["robot", "робот"], ["train", "поезд"], ["bike", "велосипед"],
+        ["cat", "кошка"], ["dog", "собака"], ["hamster", "хомячок"], ["rabbit", "кролик"], ["horse", "лошадь"], ["bird", "птица"], ["frog", "лягушка"], ["duck", "утка"],
+        ["T-shirt", "футболка"], ["jeans", "джинсы"], ["shoes", "ботинки"], ["hat", "шапка"], ["jacket", "куртка"], ["socks", "носки"], ["jumper", "свитер"],
+        ["spring", "весна"], ["summer", "лето"], ["autumn", "осень"], ["winter", "зима"],
+        ["eat", "есть"], ["sleep", "спать"], ["lie", "лежать"], ["run", "бегать"], ["jump", "прыгать"], ["swim", "плавать"], ["fly", "летать"], ["play", "играть"], ["walk", "гулять"]
+      ] },
+
+    { part: "words", type: "memory", title: "Мемори: игрушки, звери, одежда",
+      instruction: "Открывай карточки и находи пары! 🃏",
+      count: 8,
+      pairs: [
+        ["🧸 teddy", "плюшевый мишка"], ["🪁 kite", "воздушный змей"], ["🐹 hamster", "хомячок"], ["🐰 rabbit", "кролик"],
+        ["🧦 socks", "носки"], ["🧢 hat", "шапка"], ["👖 jeans", "джинсы"], ["🍂 autumn", "осень"]
+      ] },
+
+    { part: "words", type: "bank", title: "Что делают животные?", rule: 4,
+      instruction: "Вставь глагол из банка слов.",
+      items: [
+        "🐱🐱 Cats {sleep} on the bed. 😴",
+        "🐶🐶 Dogs {run} in the park.",
+        "🐹🐹 Hamsters {eat} carrots. 🥕",
+        "🦆🦆 Ducks {swim} in the lake.",
+        "🐦🐦 Birds {fly} in the sky.",
+        "🐸🐸 Frogs {jump}.",
+        "🐶🐶 Puppies {lie} on the sofa. 🛋️"
+      ],
+      extra: ["play"],
+      tip: "eat — есть, sleep — спать, lie — лежать, run — бегать, jump — прыгать, swim — плавать, fly — летать" },
+
+    // 4. ОТРАБОТКА
+    { part: "practice", type: "choice", title: "Один или много?", rule: [0, 1, 2, 3],
+      instruction: "Выбери, как сказать «много».",
+      items: [
+        { q: "🦊 fox → ?", o: ["foxs", "foxes"], a: 1 },
+        { q: "🐰 rabbit → ?", o: ["rabbits", "rabbites"], a: 0 },
+        { q: "🚌 bus → ?", o: ["buses", "buss"], a: 0 },
+        { q: "🧸 teddy → ?", o: ["teddys", "teddies"], a: 1 },
+        { q: "🍃 leaf → ?", o: ["leaves", "leafs"], a: 0 },
+        { q: "🦘 kangaroo → ?", o: ["kangarooes", "kangaroos"], a: 1 }
+      ],
+      tip: "Смотри на конец слова: x, s, ch, sh → es; согласная + y → ies; f → ves" },
+
+    { part: "practice", type: "bank", title: "Посчитай!", rule: [0, 1, 2, 3],
+      instruction: "Посчитай картинки и вставь слово.",
+      items: [
+        "🧸🧸🧸 three {teddies}",
+        "👗👗 two {dresses}",
+        "📦📦📦📦 four {boxes}",
+        "🐹🐹 two {hamsters}",
+        "🍃🍃🍃 three {leaves}",
+        "⌚⌚ two {watches}"
+      ],
+      extra: ["teddys", "boxs"],
+      tip: "Осторожно: в банке есть 2 слова с ошибкой!" },
+
+    { part: "practice", type: "match", title: "Найди пару", rule: [0, 1, 2, 3],
+      instruction: "Соедини: один → много.",
+      pairs: [["box", "boxes"], ["baby", "babies"], ["leaf", "leaves"], ["tomato", "tomatoes"], ["zoo", "zoos"], ["dog", "dogs"]] },
+
+    { part: "practice", type: "choice", title: "Слова-хитрецы", rule: 5,
+      instruction: "Эти слова не слушаются правил! Выбери верно.",
+      items: [
+        { q: "📷 photo → ?", o: ["photos", "photoes"], a: 0 },
+        { q: "🎹 piano → ?", o: ["pianos", "pianoes"], a: 0 },
+        { q: "🐭 mouse → ?", o: ["mice", "mouses"], a: 0 },
+        { q: "👦 child → ?", o: ["children", "childs"], a: 0 },
+        { q: "👨 man → ?", o: ["men", "mans"], a: 0 },
+        { q: "🦷 tooth → ?", o: ["teeth", "tooths"], a: 0 },
+        { q: "🦶 foot → ?", o: ["feet", "foots"], a: 0 },
+        { q: "🐟 fish → ?", o: ["fish", "fishes"], a: 0 },
+        { q: "🐑 sheep → ?", o: ["sheep", "sheeps"], a: 0 }
+      ],
+      tip: "Исключения надо просто запомнить: mice, children, men, teeth, feet, fish, sheep, photos, pianos" },
+
+    { part: "practice", type: "memory", title: "Мемори: слова-хитрецы", rule: 5,
+      instruction: "Найди пары: один → много! 🃏",
+      count: 8,
+      pairs: [
+        ["🐭 mouse", "🐭🐭 mice"], ["👦 child", "👦👦 children"], ["👨 man", "👨👨 men"], ["👩 woman", "👩👩 women"],
+        ["🦷 tooth", "🦷🦷 teeth"], ["🦶 foot", "🦶🦶 feet"], ["📷 photo", "📷📷 photos"], ["🎹 piano", "🎹🎹 pianos"]
+      ] },
+
+    { part: "practice", type: "order", title: "Собери фразу", rule: 4,
+      instruction: "Нажимай слова по порядку.",
+      items: ["Cats sleep on the bed.", "Dogs run in the park.", "Ducks swim."] },
+
+    // 7. ПИШЕМ САМИ
+    { part: "write", type: "write", title: "Пишем сами",
+      items: [{ q: "Напиши 3 слова во множественном числе про хоккей или про животных (например: sticks, cats).", min: 3 }] },
+
+    // 8. ФИНАЛ
+    { part: "final", type: "quest", title: "Тимофей в зоомагазине",
+      place: "Зоомагазин",
+      intro: "Тимофей идёт в зоомагазин посмотреть на хомячков! 🐹 Помоги ему ответить продавцу.",
+      scenes: [
+        { place: "Вход", scene: "🏪 Зоомагазин", who: "Shop assistant",
+          say: "Hello, Timofey! Look! We have got three…",
+          choices: [
+            { t: "hamsters 🐹🐹🐹", ok: true, reply: "Yes! Three little hamsters!" },
+            { t: "hamsteres", fb: "💡 hamster — просто +s → hamsters" } ] },
+        { place: "Щенки", scene: "🐶🐶 Клетка со щенками", who: "Shop assistant",
+          say: "And here are two…",
+          choices: [
+            { t: "puppies", ok: true, reply: "Yes! They are so cute!" },
+            { t: "puppys", fb: "💡 согласная + y → ies: puppy → puppies" } ] },
+        { place: "Склад", scene: "📦📦 Коробки с кормом", who: "Shop assistant",
+          say: "Can you help me? Carry the…",
+          choices: [
+            { t: "boxes", ok: true, reply: "Thank you! You are strong!" },
+            { t: "boxs", fb: "💡 после x → es: box → boxes" } ] },
+        { place: "Котята", scene: "🐱🐱 Котята закрыли глазки", who: "Shop assistant",
+          say: "Shh! The kittens…",
+          choices: [
+            { t: "sleep 😴", ok: true, reply: "Yes, they sleep. They are tired!" },
+            { t: "swim 🏊", fb: "💡 Котята не плавают 😄 sleep — спать" } ] },
+        { place: "Птицы", scene: "🦜🦜 Попугаи", who: "Shop assistant",
+          say: "Look at the birds! They can…",
+          choices: [
+            { t: "fly 🕊️", ok: true, reply: "Yes! They fly!" },
+            { t: "lie", fb: "💡 lie — лежать. Птицы летают: fly" } ] },
+        { place: "Подарок", scene: "🎁 Подарок", who: "Shop assistant",
+          say: "You are a great helper! Take a present: two…",
+          choices: [
+            { t: "teddies 🧸🧸", ok: true, reply: "Thank you! Now go play hockey! 🏒" },
+            { t: "teddys", fb: "💡 teddy → teddies (y → ies)" } ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🏆", text: "Тимофей — лучший помощник зоомагазина! Хомячки машут лапками 🐹👋" },
+        { max: 2, emoji: "🐹", text: "Почти идеально! Хомячки довольны." },
+        { emoji: "🐶", text: "Неплохо! Загляни в «Подсказку» и попробуй ещё раз." }
+      ] }
+  ]
+});
+</script>
+</body></html>
