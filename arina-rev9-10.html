@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Арина", nameEn: "Arina", gender: "f",
+  theme: "pinkblue",
+  teacher: "",
+  title: "Passive (all tenses) + Revision 9 & 10 + ЕГЭ",
+  intro: "Сегодня большая тренировка! 🏃‍♀️ **Passive во всех временах** (is being done, was being done, has been done, had been done), **Revision 9 & 10**, **словообразование как на ЕГЭ** и **Speaking Show** — 10 вопросов как на ЕГЭ, кнопка 🎤 в самом верху страницы (отвечай вслух, записывать не нужно). Если что-то забыла, загляни во вкладку *Подсказка*.",
+  teacherSign: "Твой тренер по английскому",
+  celebrate: { text: "Арина, ты на 1 месте! Золотая медаль твоя! 🥇", emoji: "🥇", rain: ["🥇","🏃‍♀️","💗","💙","🐱","🎥"], btn: "На пьедестал!", fx: "both" },
+
+  rules: [
+    { title: "Passive — все времена",
+      text: "Passive = **be** в нужном времени + **V3** (past participle). Меняется только **be**, а V3 остаётся тем же.\n\n• Present Simple: **am/is/are + V3**\n• Past Simple: **was/were + V3**\n• Present Continuous: **am/is/are being + V3** — делают прямо сейчас\n• Past Continuous: **was/were being + V3** — делали в тот момент в прошлом\n• Present Perfect: **has/have been + V3** — уже сделано (результат сейчас, for/since, ever, yet, so far)\n• Past Perfect: **had been + V3** — было сделано ДО другого момента в прошлом\n• Future: **will be + V3**",
+      examples: ["The track is being cleaned right now.", "When I arrived, the medals were being given out.", "My video has been watched 2,000 times.", "All the tickets had been sold before the race started.", "A new stadium will be built next year."],
+      mistake: "Нельзя терять be или V3: ❌ The track is being clean. ❌ The tickets had sold. ✅ The tickets had been sold." },
+    { title: "Passive — вопросы, отрицания, by",
+      text: "Вопрос: первое вспомогательное слово ставим перед подлежащим: **Has** the race **been cancelled**? **Was** the room **being painted**?\nОтрицание: not после первого вспомогательного: The results **haven't been checked** yet. The door **hadn't been locked**.\n**by** нужен, только если важно, КТО сделал: The video was filmed **by Arina**.",
+      examples: ["Is the gym being repaired?", "The winner hasn't been announced yet.", "This photo was taken by my coach."],
+      mistake: "❌ Has been the race cancelled? ✅ Has the race been cancelled?" },
+    { title: "Словообразование: прилагательные",
+      text: "Типичные суффиксы прилагательных:\n• **-ful** (полный чего-то): help → helpful, use → useful, pain → painful\n• **-less** (без): care → careless, fear → fearless, hope → hopeless\n• **-able / -ible** (можно): rely → reliable, afford → affordable, access → accessible\n• **-ous**: danger → dangerous, nerve → nervous, curiosity → curious\n• **-y**: storm → stormy, mood → moody, scare → scary\n• **-ive**: impress → impressive, act → active\n• **-al**: nation → national, benefit → beneficial\n• **-ing / -ed**: exciting (что-то), excited (человек)",
+      examples: ["It's dangerous to run on ice.", "My cat is fearless.", "The result was impressive."],
+      mistake: "Следи за изменениями букв: rely → reliable (y → i), nerve → nervous (e выпадает), benefit → beneficial." },
+    { title: "Словообразование ЕГЭ: существительные и приставки",
+      text: "Сначала смотри, **какая часть речи** нужна в пропуске: после a/the/прилагательного — существительное; перед существительным — прилагательное; при глаголе — наречие (-ly).\n\n**Существительные:** -tion (prepare → preparation), -ance (perform → performance), -ment (achieve → achievement), -ness (happy → happiness), -er/-or (organise → organiser).\n**Отрицательные приставки:** un- (unhappy), im- (impossible, impatient), in- (incorrect), ir- (irregular), il- (illegal), dis- (dislike).\n**Наречия:** official → officially, easy → easily.\n**Проверь число:** если нужно множественное число, добавь -s (organisers).",
+      examples: ["Her preparation started in September.", "It's impossible to win without training.", "The result was officially confirmed."],
+      mistake: "Не забывай про множественное число и отрицание по смыслу: «нетерпеливый» = impatient, а не patient." },
+    { title: "Revision 9: conditionals, for/since",
+      text: "• **Zero:** If + present, present — всегда так (факты).\n• **First:** If + present, **will** — реальное будущее.\n• **Second:** If + past, **would** — нереальное/воображаемое сейчас.\n• **Third:** If + **had V3**, **would have V3** — прошлое, которое уже не изменить.\n\n**Present Perfect + for/since:** for + период (for 5 years), since + точка (since 2019). How long have you…?\n**Present Perfect vs Past Simple:** если есть конкретное время в прошлом (yesterday, in 2020, when I was 8) — Past Simple.",
+      examples: ["If you heat ice, it melts.", "If it rains, the race will be cancelled.", "If I had a cat, I'd call it Speedy.", "If I hadn't fallen, I would have won.", "I've known my coach for five years."],
+      mistake: "❌ If I would have… ✅ If I had… ❌ I have run my first race in 2015. ✅ I ran my first race in 2015." },
+    { title: "Revision 10: expressing movement",
+      text: "**across** — через (по поверхности, с одной стороны на другую)\n**through** — через (внутри: лес, туннель)\n**over** — через (сверху: забор, мост)\n**under** — под\n**along** — вдоль\n**round** — вокруг\n**into / out of** — в / из\n**up / down** — вверх / вниз\n**past** — мимо\n**towards** — по направлению к",
+      examples: ["She ran across the road.", "We ran through the forest.", "The horse jumped over the fence.", "They ran round the track three times."],
+      mistake: "❌ ran through the road. ✅ ran across the road." }
+  ],
+
+  words: [
+    ["injury", "травма", "/ˈɪndʒəri/", "ударение на 1-й слог"],
+    ["referee", "судья (в футболе)", "/ˌrefəˈriː/", "ударение на последний слог"],
+    ["draw", "ничья; сыграть вничью", "/drɔː/", ""],
+    ["beat", "обыграть (соперника)", "/biːt/", "beat – beat – beaten"],
+    ["warm up", "разминаться", "/wɔːm ʌp/", ""],
+    ["push-ups", "отжимания", "/ˈpʊʃ ʌps/", ""],
+    ["pull-ups", "подтягивания", "/ˈpʊl ʌps/", ""],
+    ["sit-ups", "упражнения на пресс", "/ˈsɪt ʌps/", ""],
+    ["squats", "приседания", "/skwɒts/", ""],
+    ["abs", "мышцы пресса", "/æbz/", ""],
+    ["across", "через (по поверхности)", "/əˈkrɒs/", ""],
+    ["through", "через (внутри)", "/θruː/", ""],
+    ["towards", "по направлению к", "/təˈwɔːdz/", ""],
+    ["terrified of", "в ужасе от", "/ˈterɪfaɪd/", ""],
+    ["wasp", "оса", "/wɒsp/", ""],
+    ["reliable", "надёжный", "/rɪˈlaɪəbl/", "rely → reliable"],
+    ["impressive", "впечатляющий", "/ɪmˈpresɪv/", ""],
+    ["beneficial", "полезный", "/ˌbenɪˈfɪʃl/", "benefit → beneficial"],
+    ["accessible", "доступный", "/əkˈsesəbl/", "-ible, не -able"],
+    ["fearless", "бесстрашный", "/ˈfɪələs/", ""],
+    ["impatient", "нетерпеливый", "/ɪmˈpeɪʃnt/", ""],
+    ["preparation", "подготовка", "/ˌprepəˈreɪʃn/", "prepare → preparation"],
+    ["performance", "выступление", "/pəˈfɔːməns/", ""]
+  ],
+
+  tasks: [
+    // 1. РАЗМИНКА
+    { part: "warmup", type: "race", skin: "run", title: "Гонка-разминка", instruction: "Беги к финишу: выбирай правильный ответ как можно быстрее!",
+      items: [
+        { q: "отжимания", o: ["push-ups", "pull-ups", "sit-ups"], a: 0 },
+        { q: "подтягивания", o: ["pull-ups", "push-ups", "squats"], a: 0 },
+        { q: "пресс (мышцы)", o: ["abs", "arms", "ankles"], a: 0 },
+        { q: "травма", o: ["injury", "damage", "wound"], a: 0 },
+        { q: "ничья", o: ["draw", "equal", "tie up"], a: 0 },
+        { q: "She ran ___ the road.", o: ["across", "through", "into"], a: 0 },
+        { q: "The track ___ right now.", o: ["is being cleaned", "is cleaning", "has cleaned"], a: 0 },
+        { q: "Футбольный судья", o: ["referee", "judge", "coach"], a: 0 }
+      ] },
+
+    // 2. РАБОТА НАД ОШИБКАМИ
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками",
+      items: [
+        { q: "I've been a member of this club ___ 2019.", a: ["since"] },
+        { q: "If I ___ (have) more free time, I would film more videos.", a: ["had"] },
+        { q: "If she ___ (not / fall), she would have won the race.", a: ["hadn't fallen", "had not fallen"] },
+        { q: "My cat is afraid ___ the vacuum cleaner.", a: ["of"] }
+      ] },
+
+    // 3. ПОВТОРЯЕМ СЛОВА
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова" },
+
+    // 4. ОТРАБОТКА — PASSIVE
+    { part: "practice", type: "gaps", rule: 0, title: "Passive: все времена", instruction: "Поставь глагол в скобках в **Passive** в правильном времени. Смотри на подсказки: now, at that moment, since, before…",
+      tip: "Повтори формулы: is being V3 / was being V3 / has been V3 / had been V3.",
+      items: [
+        "Look! The running track {is being cleaned} right now. (clean)",
+        "My new video {has been watched} 2,000 times since Monday. (watch)",
+        "When I arrived at the stadium, the medals {were being given} to the winners. (give)",
+        "We were too late: the race {had been cancelled} an hour before. (cancel)",
+        "The flat is so quiet — our cat {is being taken} to the vet at the moment. (take)",
+        "{Has} the date of the competition {been changed}? (change)",
+        "I couldn't use the gym yesterday because it {was being repaired}. (repair)",
+        "The athletes were happy because their times {had been checked} twice. (check)",
+        "Sorry, the coach can't talk now — he {is being interviewed} by a journalist. (interview)",
+        "By 2015 the old track {had been replaced} with a new one. (replace)",
+        "Hundreds of photos {have been posted} since the race started. (post)",
+        "The results {haven't been announced|have not been announced} yet. (not / announce)",
+        "These running shoes {are made} in Vietnam. (make)",
+        "A new stadium {will be built} in our town next year. (build)"
+      ] },
+
+    { part: "practice", type: "choice", rule: 0, title: "Passive: выбери время", instruction: "Выбери правильный вариант. Внимание: иногда нужен **active**!",
+      tip: "Сравни: was being painted (процесс) и had been painted (уже готово).",
+      items: [
+        { q: "Right now the runners ___ at the start line for a magazine.", o: ["are being photographed", "are photographing", "have been photographed"], a: 0 },
+        { q: "So far the video ___ by more than a thousand people.", o: ["has been liked", "was being liked", "is liked"], a: 0 },
+        { q: "When we came in, the room ___, so we waited outside.", o: ["was being painted", "had been painted", "was painting"], a: 0 },
+        { q: "When we came in, the room looked new — it ___ the day before.", o: ["had been painted", "was being painted", "has painted"], a: 0 },
+        { q: "The cat ___ twice today, so don't give him any more food!", o: ["has been fed", "is being fed", "had fed"], a: 0 },
+        { q: "While I ___ by the doctor, my phone rang.", o: ["was being examined", "was examining", "had been examined"], a: 0 },
+        { q: "The new coach ___ to the team yet.", o: ["hasn't been introduced", "isn't introduced", "wasn't being introduced"], a: 0 },
+        { q: "I didn't recognise the stadium. It ___ completely.", o: ["had been rebuilt", "was rebuilding", "has rebuilt"], a: 0 },
+        { q: "Arina ___ a great video of the race yesterday.", o: ["filmed", "was filmed", "had been filmed"], a: 0 }
+      ] },
+
+    { part: "practice", type: "rewrite", rule: [0, 1], title: "Active → Passive", instruction: "Перепиши предложения в **Passive**. Время не меняется!",
+      tip: "Сначала определи время активного предложения, потом поставь be в это же время + V3.",
+      items: [
+        { q: "They are repairing the running track.", hint: "The running track…", a: ["The running track is being repaired"] },
+        { q: "Someone has stolen my bike.", hint: "My bike…", a: ["My bike has been stolen"] },
+        { q: "They were filming the race when it started to rain.", hint: "The race…", a: ["The race was being filmed when it started to rain"] },
+        { q: "They had sold all the tickets before the match started.", hint: "All the tickets…", a: ["All the tickets had been sold before the match started"] },
+        { q: "People are watching my new video right now.", hint: "My new video…", a: ["My new video is being watched right now"] },
+        { q: "The coach hasn't checked our results yet.", hint: "Our results…", a: ["Our results haven't been checked yet", "Our results haven't been checked by the coach yet", "Our results have not been checked yet", "Our results have not been checked by the coach yet"] }
+      ] },
+
+    { part: "practice", type: "spot", rule: 0, title: "Найди ошибки: новости спортклуба", instruction: "В тексте 5 ошибок в Passive. Найди и исправь их.",
+      text: "Big news! A new running track [is building=>is being built] in our town right now. The plan [was announce=>was announced] last spring. When I visited the place on Saturday, the old fence [was being removing=>was being removed]. By the end of the day, half of the old track [had removed=>had been removed]. So far, more than 500 trees [have planted=>have been planted] around the stadium. I can't wait to run there!" },
+
+    // 4b. REVISION 9 & 10
+    { part: "practice", type: "bank", rule: 5, title: "Revision 10: movement", instruction: "Вставь слово из банка. Два слова лишние.",
+      extra: ["under", "up"],
+      items: [
+        "Look left and right before you run {across} the road.",
+        "The horse jumped {over} the fence.",
+        "We ran {through} the dark forest.",
+        "Every evening I jog {along} the river.",
+        "The athletes ran {round} the track three times.",
+        "My cat jumped {into} the box and fell asleep.",
+        "She ran {towards} the finish line and smiled at the camera.",
+        "He took his phone {out of} his pocket and started filming.",
+        "We walked {past} the stadium but didn't go in."
+      ] },
+
+    { part: "practice", type: "gaps", title: "Revision 9 & 10: слова", instruction: "Вставь слово по подсказке в скобках.",
+      tip: "Повтори слова на вкладке «Слова».",
+      items: [
+        "Our team {beat} the best team in the city 3:0. (обыграла)",
+        "The match ended in a {draw}, 1:1. (ничья)",
+        "Before every race I {warm up} for 15 minutes. (разминаюсь)",
+        "The {referee} showed him a red card. (судья)",
+        "Tennis is played on a {court}. (корт)",
+        "I couldn't run for a month because of a knee {injury}. (травма)",
+        "He {scored} the winning goal in the last minute. (забил)",
+        "Arina does fifty {push-ups|push ups|pushups} every morning. (отжимания)",
+        "A {bat} sleeps upside down during the day. (летучая мышь)",
+        "My cat has been {terrified} {of} the vacuum cleaner since he was a kitten. (в ужасе боится)"
+      ] },
+
+    { part: "practice", type: "choice", rule: 4, title: "Revision 9 & 10: грамматика", instruction: "Conditionals 0–3, Present Perfect с for/since, Present Perfect или Past Simple. Выбери верный вариант.",
+      tip: "Повтори правило «Revision 9» во вкладке «Подсказка».",
+      items: [
+        { q: "If I ___ a second cat, I would call it Speedy.", o: ["had", "have", "would have"], a: 0 },
+        { q: "What ___ if you saw a snake on the running track?", o: ["would you do", "will you do", "did you do"], a: 0 },
+        { q: "If you heat ice, it ___.", o: ["melts", "would melt", "melted"], a: 0 },
+        { q: "If it rains tomorrow, the race ___.", o: ["will be cancelled", "would be cancelled", "would have been cancelled"], a: 0 },
+        { q: "If I hadn't fallen, I ___ the race.", o: ["would have won", "would win", "will win"], a: 0 },
+        { q: "Arina ___ in this club since 2019.", o: ["has been", "was", "is"], a: 0 },
+        { q: "I've known my coach ___ five years.", o: ["for", "since", "during"], a: 0 },
+        { q: "How long ___ your cat?", o: ["have you had", "do you have", "did you have"], a: 0 },
+        { q: "I ___ my first race when I was eight.", o: ["ran", "have run", "had been run"], a: 0 },
+        { q: "___ you ever ___ a marathon?", o: ["Have / run", "Did / run", "Have / ran"], a: 0 },
+        { q: "If it ___ so cold, we would train outside.", o: ["weren't", "won't be", "isn't"], a: 0 }
+      ] },
+
+    // 4c. СЛОВООБРАЗОВАНИЕ: ПРИЛАГАТЕЛЬНЫЕ
+    { part: "practice", type: "gaps", rule: 2, title: "Словообразование: прилагательные", instruction: "Образуй **прилагательное** от слова в скобках. Иногда нужна отрицательная приставка — смотри на смысл!",
+      tip: "Повтори суффиксы -ful, -less, -able/-ible, -ous, -y, -ive, -al.",
+      items: [
+        "Arina is very {reliable} — she never misses a training session. (RELY)",
+        "Push-ups and squats are {beneficial} for your whole body. (BENEFIT)",
+        "My cat is {curious} — he always wants to know what's in my bag. (CURIOSITY)",
+        "The coach gave us some really {useful} advice before the race. (USE)",
+        "Don't be so {impatient}! Wait for the start signal. (PATIENT)",
+        "The video I filmed at the stadium was really {impressive}. (IMPRESS)",
+        "My cat is completely {fearless} — he isn't afraid of big dogs at all. (FEAR)",
+        "She felt {nervous} before the final because the other runners were so fast. (NERVE)",
+        "Running on ice is {dangerous} — you can easily fall. (DANGER)",
+        "The weather was {stormy}, so the race was moved to Sunday. (STORM)",
+        "The new stadium is easily {accessible} by metro. (ACCESS)",
+        "It's {impossible} to run a marathon without training. (POSSIBLE)"
+      ] },
+
+    // 6. ФОРМАТ ЭКЗАМЕНА
+    { part: "exam", type: "exam", show: "ЕГЭ Шоу: грамматика (задания 19–24)", time: 8, title: "ЕГЭ: грамматика",
+      instruction: "Текст «The Olympic Games». Преобразуй слово в скобках так, чтобы оно грамматически подходило по смыслу. Здесь много Passive!",
+      items: [
+        { q: "The first Olympic Games ___ in Ancient Greece almost 3,000 years ago.", word: "HOLD", a: ["were held"] },
+        { q: "Today the Games ___ by billions of people all over the world.", word: "WATCH", a: ["are watched"] },
+        { q: "Right now a new Olympic village ___ for the next Games.", word: "BUILD", a: ["is being built"] },
+        { q: "Since 2000, many new sports ___ to the programme.", word: "ADD", a: ["have been added"] },
+        { q: "By the time the 2020 Games started, all the tickets ___.", word: "SELL", a: ["had been sold"] },
+        { q: "While the athletes ___, it suddenly started to rain.", word: "INTERVIEW", a: ["were being interviewed"] },
+        { q: "The winners ___ gold medals at the end of the event.", word: "GIVE", a: ["will be given"] }
+      ] },
+
+    { part: "exam", type: "exam", show: "ЕГЭ Шоу: словообразование (задания 26–31)", time: 8, title: "ЕГЭ: словообразование", rule: 3,
+      instruction: "Текст «My first big race». Образуй от слова в скобках однокоренное слово, которое подходит по смыслу и грамматически.",
+      items: [
+        { q: "Last month Arina took part in a ___ running competition.", word: "NATION", a: ["national"] },
+        { q: "Her ___ for the race started in September.", word: "PREPARE", a: ["preparation"] },
+        { q: "Her coach says she is one of the most ___ runners in the city.", word: "TALENT", a: ["talented"] },
+        { q: "The 800-metre final was incredibly ___.", word: "EXCITE", a: ["exciting"] },
+        { q: "Unfortunately, the ___ made a mistake with the timing.", word: "ORGANISE", a: ["organisers", "organizers"] },
+        { q: "But later her result was ___ confirmed.", word: "OFFICIAL", a: ["officially"] },
+        { q: "It was the best ___ of her career so far.", word: "PERFORM", a: ["performance"] }
+      ] },
+
+    // 7. ПИШЕМ САМИ
+    { part: "write", type: "write", rule: 0, title: "Пишем сами",
+      items: [
+        { q: "Напиши 5–6 предложений: что изменилось в твоём спортклубе, школе или городе за последнее время? Используй Passive в разных временах: что **сейчас делается** (is being…), что **уже сделано** (has been…), что **делали** в какой-то момент (was being…), что **было сделано до** чего-то (had been…).", min: 50, must: ["is being", "has been", "had been"] }
+      ] },
+
+    // 8. ФИНАЛ
+    { part: "final", type: "detective", rule: [0, 4], title: "Детектив: пропавшая медаль",
+      case: "Дело о пропавшей золотой медали 🥇",
+      story: "Суббота, чемпионат города. Arina выиграла 800 метров! Медали хранились в коробке в комнате тренеров. За 15 минут до награждения коробку открыли — золотой медали Арины нет! К счастью, Арина весь день снимала видео для своего блога… Ответь на вопросы — каждый правильный ответ даёт улику.",
+      steps: [
+        { q: "The medals ___ in the coaches' room since the morning.", o: ["had been kept", "had kept", "were keeping"], a: 0, clue: "Ключ от комнаты был только у трёх человек." },
+        { q: "At 2 pm, while the track ___, someone went into the room.", o: ["was being cleaned", "was cleaning", "has been cleaned"], a: 0, clue: "На видео Арины в 14:05 у двери виден человек в зелёной куртке." },
+        { q: "The door ___ — it was simply open.", o: ["hadn't been locked", "didn't lock", "isn't locked"], a: 0, clue: "Уборщик Борис весь день был в синей форме." },
+        { q: "If Arina ___ the video, nobody would have found the thief.", o: ["hadn't filmed", "didn't film", "wouldn't film"], a: 0, clue: "Тренер Ольга Петровна в 14:00 давала интервью — это подтвердил журналист." },
+        { q: "Later, a green jacket ___ in the bag of one of the runners.", o: ["was found", "found", "was finding"], a: 0, clue: "Зелёная куртка с логотипом «Fast Feet Club» — это клуб соперницы." }
+      ],
+      suspects: [
+        { name: "Борис", emoji: "🧹", desc: "уборщик стадиона, весь день мыл трибуны" },
+        { name: "Ольга Петровна", emoji: "👩‍🏫", desc: "тренер, у неё есть ключ" },
+        { name: "Вика", emoji: "🏃‍♀️", desc: "бегунья из «Fast Feet Club», пришла второй" }
+      ],
+      culprit: 2,
+      solution: "Это Вика! Она очень хотела сделать фото с золотой медалью для своего блога. Но видео Арины всё показало 🎥 Медаль вернули, и Arina поднялась на первую ступеньку пьедестала! 🥇💗💙" }
+  ]
+});
+</script>
+<script>
+(function(){
+  var a=document.createElement("a");
+  a.href="arina-speak-show.html";
+  a.innerHTML="🎤 <b>Speaking Show</b> — 10 вопросов как на ЕГЭ (со звуком) ➜";
+  a.setAttribute("style","display:block;max-width:560px;margin:10px auto;padding:14px 16px;border-radius:18px;text-align:center;font:16px -apple-system,Segoe UI,Roboto,sans-serif;color:#fff;text-decoration:none;background:linear-gradient(90deg,#ff5fae,#7ab8ff);box-shadow:0 6px 16px rgba(255,95,174,.35);position:relative;z-index:5");
+  document.body.insertBefore(a, document.body.firstChild);
+})();
+</script>
+</body></html>
