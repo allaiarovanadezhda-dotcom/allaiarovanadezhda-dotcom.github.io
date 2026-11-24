@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script>
+// Тайский фон: сиреневый закат, море, пальмы (рисунок кодом, без картинок)
+(function(){
+  var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 800' preserveAspectRatio='xMidYMax slice'>"
+  + "<defs><linearGradient id='s' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#d9c6fa'/><stop offset='.5' stop-color='#f7c3dd'/><stop offset='.63' stop-color='#ffd9b0'/></linearGradient>"
+  + "<linearGradient id='w' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#c9b3ec'/><stop offset='1' stop-color='#9c86d6'/></linearGradient></defs>"
+  + "<rect width='400' height='505' fill='url(#s)'/>"
+  + "<circle cx='200' cy='505' r='68' fill='#fff1c2'/>"
+  + "<rect y='505' width='400' height='295' fill='url(#w)'/>"
+  + "<g fill='#fff1c2' opacity='.75'><rect x='148' y='516' width='104' height='4' rx='2'/><rect x='164' y='532' width='72' height='4' rx='2'/><rect x='178' y='549' width='44' height='3' rx='2'/><rect x='189' y='568' width='22' height='3' rx='2'/></g>"
+  + "<g fill='none' stroke='#8a6bb8' stroke-width='2' stroke-linecap='round'><path d='M80 190q7-7 14 0q7-7 14 0'/><path d='M120 160q5-5 10 0q5-5 10 0'/><path d='M290 220q6-6 12 0q6-6 12 0'/></g>"
+  + "<path d='M262 600h52l-9 9h-35z' fill='#7a5ca8'/><path d='M287 598v-32l16 28z' fill='#7a5ca8'/>"
+  + "<path d='M0 690Q200 645 400 700V800H0Z' fill='#f6e1c6'/>"
+  + "<g id='p' fill='#6e4f96'><path d='M30 800Q45 640 105 520' stroke='#6e4f96' stroke-width='12' fill='none'/>"
+  + "<path d='M105 520Q60 465 0 488Q62 488 105 520Z'/><path d='M105 520Q92 450 38 428Q88 470 105 520Z'/>"
+  + "<path d='M105 520Q130 448 188 444Q136 474 105 520Z'/><path d='M105 520Q168 492 204 540Q156 514 105 520Z'/>"
+  + "<path d='M105 520Q78 540 46 592Q92 550 105 520Z'/><circle cx='100' cy='528' r='6'/><circle cx='111' cy='530' r='6'/></g>"
+  + "<use href='#p' transform='translate(400 120) scale(-.85 .85)'/>"
+  + "</svg>";
+  var css = "body{background:#f3e3f7!important}"
+  + "body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;"
+  + "background:url(\"data:image/svg+xml," + encodeURIComponent(svg) + "\") center bottom/cover no-repeat}";
+  var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
+})();
+</script>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Соня", nameEn: "Sonya", gender: "f",
+  theme: "lilac",
+  teacher: "",
+  title: "Phuket: bugs, beach & shopping 🌴",
+  intro: "Sawasdee ka, Sonya! 🙏 Сегодня ты едешь на **Пхукет**: собираешь чемодан, встречаешь насекомых и морских жителей, заказываешь блинчик на ночном рынке и меряешь платье в магазине. Если забыла слово, загляни во вкладку **«Слова»** 💜",
+  celebrate: { text: "Ура! Ты готова к Пхукету! 🌴", emoji: "🌺", rain: ["🌴","🌺","🥭","🐢","🥞","🦀"], btn: "Ещё раз 🎉", fx: "both" },
+  teacherSign: "Твой учитель английского 💜",
+
+  rules: [
+    { title: "bite или sting? (кусать или жалить)",
+      text: "**bite – bit – bitten** — кусать (комар, муравей, паук, собака).\n**sting – stung – stung** — жалить (пчела, оса, медуза).\nВ прошлом времени: *A mosquito **bit** me. A bee **stung** me.*",
+      examples: ["Something bit me last night! (Меня кто-то укусил ночью!)", "A jellyfish stung my leg. (Медуза ужалила меня в ногу.)", "Have you ever been stung by a bee? (Тебя когда-нибудь жалила пчела?)"],
+      mistake: "A mosquito bited me ❌ → A mosquito bit me ✅" },
+    { title: "Кафе, рынок, магазин: вежливые фразы",
+      text: "**Can I have …, please?** — Можно мне …?\n**The same, but without …** — То же самое, но без …\n**Spicy / not spicy** — острое / не острое; **with / without sugar** — с сахаром / без сахара.\n**Can I try it on?** — Можно примерить?\n**Do you have the same, but one size bigger?** — Есть такое же, но на размер больше?\n**… in a different colour?** — … другого цвета?\n**Is there a discount?** — Есть скидка?",
+      examples: ["Can I have a banana pancake, please?", "The same, but without Nutella, please.", "Not spicy, please. I don't like spicy food."],
+      mistake: "Can I try on it? ❌ → Can I try it on? ✅" },
+    { title: "Времена и used to",
+      text: "**Present Simple** — обычно: *I always pack my toothbrush.*\n**Present Continuous** — прямо сейчас: *I am packing my suitcase now.*\n**Past Simple** — вчера, в прошлом: *Mum bought sunscreen yesterday.*\n**Present Perfect** — уже / никогда: *I have already packed my swimsuit.*\n**Future Simple** — будет: *Tomorrow I will take my camera.*\n**used to** — раньше было, а теперь нет: *I used to forget my toothbrush, but now I always take it.*",
+      examples: ["Who are you going with? — With Mum!", "I used to be afraid of crabs, but now I'm not."],
+      mistake: "I use to forget… ❌ → I used to forget… ✅" }
+  ],
+
+  words: [
+    ["spider", "паук", "/ˈspaɪdə/", "🕷️"],
+    ["ant", "муравей", "/ænt/", "🐜 ants — муравьи"],
+    ["mosquito", "комар", "/məˈskiːtəʊ/", "🦟 ударение на «ски»"],
+    ["bee", "пчела", "/biː/", "🐝"],
+    ["fly", "муха", "/flaɪ/", "🪰 и ещё «летать»"],
+    ["butterfly", "бабочка", "/ˈbʌtəflaɪ/", "🦋"],
+    ["cockroach", "таракан", "/ˈkɒkrəʊtʃ/", "🪳"],
+    ["bite – bit – bitten", "кусать", "/baɪt/", "комар, муравей, собака"],
+    ["sting – stung – stung", "жалить", "/stɪŋ/", "пчела, оса, медуза"],
+    ["jellyfish", "медуза", "/ˈdʒelifɪʃ/", "🪼"],
+    ["crab", "краб", "/kræb/", "🦀"],
+    ["starfish", "морская звезда", "/ˈstɑːfɪʃ/", "⭐"],
+    ["octopus", "осьминог", "/ˈɒktəpəs/", "🐙"],
+    ["turtle", "черепаха", "/ˈtɜːtl/", "🐢"],
+    ["shrimps", "креветки", "/ʃrɪmps/", "🦐"],
+    ["shark", "акула", "/ʃɑːk/", "🦈"],
+    ["suitcase", "чемодан", "/ˈsuːtkeɪs/", "🧳"],
+    ["pack", "собирать (вещи)", "/pæk/", "I'm packing my suitcase."],
+    ["sunscreen", "солнцезащитный крем", "/ˈsʌnskriːn/", "🧴"],
+    ["toothpaste", "зубная паста", "/ˈtuːθpeɪst/", ""],
+    ["toothbrush", "зубная щётка", "/ˈtuːθbrʌʃ/", "🪥"],
+    ["deodorant", "дезодорант", "/diˈəʊdərənt/", "ударение на «о»"],
+    ["camera", "фотоаппарат", "/ˈkæmərə/", "📷"],
+    ["swimsuit", "купальник", "/ˈswɪmsuːt/", "👙"],
+    ["flip-flops", "шлёпанцы", "/ˈflɪp flɒps/", "🩴"],
+    ["sunglasses", "солнечные очки", "/ˈsʌnɡlɑːsɪz/", "🕶️"],
+    ["charger", "зарядка", "/ˈtʃɑːdʒə/", "🔌"],
+    ["spicy / not spicy", "острое / не острое", "/ˈspaɪsi/", "🌶️"],
+    ["with / without sugar", "с сахаром / без сахара", "/wɪˈðaʊt/", ""],
+    ["the same, but without …", "то же самое, но без …", "", ""],
+    ["banana pancake", "блинчик с бананом", "/bəˈnɑːnə ˈpænkeɪk/", "🥞🍌"],
+    ["fitting room", "примерочная", "/ˈfɪtɪŋ ruːm/", "🪞"],
+    ["try it on", "примерить", "/traɪ ɪt ɒn/", "it — в середине!"],
+    ["one size bigger / smaller", "на размер больше / меньше", "", ""],
+    ["lipstick", "помада", "/ˈlɪpstɪk/", "💄"],
+    ["in a different colour", "другого цвета", "/ˈkʌlə/", ""],
+    ["discount", "скидка", "/ˈdɪskaʊnt/", "не путай с discotheque 🪩"]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "memory", title: "Мемори: насекомые и морские жители",
+      pairs: [["spider","паук"],["ant","муравей"],["mosquito","комар"],["bee","пчела"],["jellyfish","медуза"],["crab","краб"],["turtle","черепаха"],["octopus","осьминог"]],
+      count: 8 },
+
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками",
+      items: [
+        { q: "In the airport: «Go to ___ 12, your plane is boarding!» (выход на посадку)", o: ["gate","straw","check-in"], a: 0 },
+        { q: "The soup is cold. Mum, can you ___ it ___, please? (подогреть)", o: ["heat … up","give … up","take … off"], a: 0 },
+        { q: "My coach is about 50 years old. He is ___.", o: ["middle-aged","middle-age","middle-ages"], a: 0 },
+        { q: "A girl with blue eyes is a ___ girl.", o: ["blue-eyed","blue-eye","blue-eyes"], a: 0 },
+        { q: "I used to have short hair, but now ___ long hair.", o: ["I have","have","I having"], a: 0 },
+        { q: "I used to be afraid of spiders, but now ___.", o: ["I'm not","no","not afraid I"], a: 0 },
+        { q: "Timofey used to sleep with the light on, but now he ___.", o: ["doesn't","no","not"], a: 0 }
+      ] },
+
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова из прошлых ДЗ" },
+
+    { part: "practice", type: "bank", title: "Ночь на Пхукете 🌙🕷️",
+      instruction: "Соня и мама приехали в отель. Нажимай на слова, чтобы вставить их в пропуски. Два слова лишние!",
+      items: [
+        "Mum, look! A big {spider} is sitting on the wall above my bed!",
+        "There are lots of {ants} on the table. Who left the mango there?",
+        "Something {bit} me last night! — It was a {mosquito}, look at your arm.",
+        "Yesterday a {bee} {stung} me in the hotel garden, and now my hand is red.",
+        "Don't touch the {jellyfish}! It can sting you.",
+        "Tomorrow we will see {turtles} on a boat trip!",
+        "I used to be afraid of {crabs}, but now I'm not.",
+        "Timofey has never seen a real {octopus}.",
+        "Look, there's a {starfish} on the sand!"
+      ],
+      extra: ["butterfly","shark"],
+      tip: "Повтори: bite – bit (кусать), sting – stung (жалить).", rule: 0 },
+
+    { part: "practice", type: "quest", title: "Квест: вечер на Пхукете 🏮",
+      place: "Пхукет",
+      intro: "🌴🌅 Вечер. Вы с мамой гуляете по Пхукету: ночной рынок, кафе у моря и магазины. Выбирай правильную фразу!",
+      scenes: [
+        { place: "Ночной рынок", scene: "🏮🌙🥞 Ночной рынок. Пахнет жареными бананами. Тётя за прилавком жарит блинчики на огромной сковороде и улыбается тебе.", who: "Pancake lady 👩🏻‍🍳",
+          say: "Hello, darling! What would you like?",
+          choices: [
+            { t: "Can I have a banana pancake, please?", ok: true, reply: "Sure! One banana pancake! 🍌" },
+            { t: "I want pancake banana.", fb: "💡 Сначала banana, потом pancake: a banana pancake. И вежливее — Can I have…? «Можно мне блинчик с бананом?» = Can I have a banana pancake, please?" },
+            { t: "Can I has a banana pancake?", fb: "💡 После can всегда have, а не has. «Можно мне блинчик с бананом?» = Can I have a banana pancake, please?" } ] },
+        { place: "Ночной рынок", scene: "🍫🥞 Тётя уже держит в руке большую банку Nutella.", who: "Pancake lady 👩🏻‍🍳",
+          say: "With Nutella?",
+          choices: [
+            { t: "Yes, please! And with sugar.", ok: true, reply: "Mmm, yummy! 😋" },
+            { t: "Yes, please! And with salt.", fb: "💡 salt — это соль 🧂! Сахар — sugar. «Да, пожалуйста! И с сахаром» = Yes, please! And with sugar." },
+            { t: "Yes, please. And sugar with.", fb: "💡 with ставим перед словом: with sugar. «И с сахаром» = And with sugar." } ] },
+        { place: "Ночной рынок", scene: "👩 Мама тоже хочет блинчик, но она не любит шоколад.", who: "Pancake lady 👩🏻‍🍳",
+          say: "And one for your mum?",
+          choices: [
+            { t: "Yes, the same, but without Nutella, please.", ok: true, reply: "One banana pancake, no Nutella. Here you are! 🥞" },
+            { t: "Yes, the same, but with Nutella, please.", fb: "💡 with — с, without — без. Мама не любит шоколад! «То же самое, но без Нутеллы» = the same, but without Nutella." },
+            { t: "Yes, the different, but without Nutella.", fb: "💡 the same — то же самое, different — другой. «Да, то же самое, но без Нутеллы, пожалуйста» = Yes, the same, but without Nutella, please." } ] },
+        { place: "Кафе у моря", scene: "🍜🌊 Маленькое кафе прямо у моря. Официант в цветной рубашке приносит меню с фотографиями лапши.", who: "Waiter 🧑🏽‍🍳",
+          say: "Hi! Are you ready to order?",
+          choices: [
+            { t: "Yes. Can I have Pad Thai with shrimps, please?", ok: true, reply: "Of course! Spicy or not spicy? 🌶️" },
+            { t: "Yes. Can I have Pad Thai with spiders, please?", fb: "💡 spiders — это пауки 🕷️! Креветки — shrimps 🦐. «Можно мне пад тай с креветками?» = Can I have Pad Thai with shrimps, please?" },
+            { t: "Yes. I can have Pad Thai with shrimps?", fb: "💡 В вопросе can стоит первым: Can I have…? «Можно мне пад тай с креветками?» = Can I have Pad Thai with shrimps, please?" } ] },
+        { place: "Кафе у моря", scene: "🌶️🔥 Официант показывает на маленький красный перчик в меню.", who: "Waiter 🧑🏽‍🍳",
+          say: "Spicy or not spicy?",
+          choices: [
+            { t: "Not spicy, please. I don't like spicy food.", ok: true, reply: "OK, not spicy for you! 👍" },
+            { t: "Not spicy, please. I doesn't like spicy food.", fb: "💡 С I — don't, а не doesn't. «Не острое, пожалуйста. Я не люблю острую еду» = Not spicy, please. I don't like spicy food." },
+            { t: "Very spicy, please! I don't like spicy food.", fb: "💡 very spicy — очень острое 🔥, а ты говоришь, что не любишь острое! «Не острое, пожалуйста» = Not spicy, please." } ] },
+        { place: "Кафе у моря", scene: "🧋 На соседнем столике стоит оранжевый тайский чай со льдом.", who: "Waiter 🧑🏽‍🍳",
+          say: "And to drink? Our Thai iced tea is very sweet!",
+          choices: [
+            { t: "An iced tea without sugar, please.", ok: true, reply: "Without sugar — good choice! 🧋" },
+            { t: "A iced tea without sugar, please.", fb: "💡 Перед гласным звуком — an: an iced tea. «Чай со льдом без сахара, пожалуйста» = An iced tea without sugar, please." },
+            { t: "An iced tea, please. No sugar with.", fb: "💡 Так не говорят. «Без сахара» = without sugar. «Чай со льдом без сахара, пожалуйста» = An iced tea without sugar, please." } ] },
+        { place: "Кафе у моря", scene: "🦟 Ой! На руке вдруг появилось красное пятнышко и чешется…", who: "Waiter 🧑🏽‍🍳",
+          say: "Oh no! Did something bite you?",
+          choices: [
+            { t: "Yes, a mosquito bit me! Do you have any cream?", ok: true, reply: "Here you are. Mosquitoes love tourists! 😄" },
+            { t: "Yes, a mosquito bited me!", fb: "💡 bite — неправильный глагол: bite – bit. «Да, меня укусил комар!» = Yes, a mosquito bit me!" },
+            { t: "Yes, a turtle bit me!", fb: "💡 turtle — черепаха 🐢, а на руке — укус комара (mosquito) 🦟. «Да, меня укусил комар!» = Yes, a mosquito bit me!" } ] },
+        { place: "Магазин одежды", scene: "👗🪞 Магазин у пляжа. Много ярких платьев, у стены — примерочная с фиолетовой занавеской.", who: "Shop assistant 💁🏻‍♀️",
+          say: "Hello! Can I help you?",
+          choices: [
+            { t: "Yes, I like this dress. Can I try it on?", ok: true, reply: "Of course! The fitting room is over there. 🪞" },
+            { t: "Yes, I like this dress. Can I try on it?", fb: "💡 it стоит в середине: try it on. «Мне нравится это платье. Можно его примерить?» = I like this dress. Can I try it on?" },
+            { t: "Yes, I like this dress. Where is the kitchen?", fb: "💡 kitchen — это кухня 😄. Примерочная — fitting room. «Можно его примерить?» = Can I try it on?" } ] },
+        { place: "Примерочная", scene: "🪞😬 Ты в примерочной. Платье очень красивое, но маленькое — не застёгивается.", who: "Shop assistant 💁🏻‍♀️",
+          say: "How is it?",
+          choices: [
+            { t: "It's too small. Do you have the same, but one size bigger?", ok: true, reply: "Yes! Here is a size M. 👗" },
+            { t: "It's too small. Do you have the same, but one size smaller?", fb: "💡 smaller — меньше, а платье и так маленькое! Нужно bigger — больше. «Есть такое же, но на размер больше?» = Do you have the same, but one size bigger?" },
+            { t: "It's too big small.", fb: "💡 too small — слишком маленькое (без big). «Оно слишком маленькое. Есть такое же, но на размер больше?» = It's too small. Do you have the same, but one size bigger?" } ] },
+        { place: "Магазин косметики", scene: "💄✨ Рядом магазин косметики. Тебе нравится помада, но цвет слишком тёмный.", who: "Shop assistant 💁🏻‍♀️",
+          say: "This lipstick is very popular!",
+          choices: [
+            { t: "Do you have the same lipstick, but in a different colour?", ok: true, reply: "Yes! We have pink and peach. 🍑" },
+            { t: "Do you have the same lipstick, but in a different size?", fb: "💡 size — размер, а тебе нужен другой цвет — colour. «Есть такая же помада, но другого цвета?» = Do you have the same lipstick, but in a different colour?" },
+            { t: "You have the same lipstick other colour?", fb: "💡 В вопросе нужен do: Do you have…? «Есть такая же помада, но другого цвета?» = Do you have the same lipstick, but in a different colour?" } ] },
+        { place: "Магазин косметики", scene: "🏷️ На помаде ценник: 300 бат. Ты хочешь взять две — розовую и персиковую.", who: "Shop assistant 💁🏻‍♀️",
+          say: "It's 300 baht.",
+          choices: [
+            { t: "Is there a discount? I'm buying two!", ok: true, reply: "OK, two for 500 baht! 🎉" },
+            { t: "Is there a discotheque? I'm buying two!", fb: "💡 discotheque — дискотека 🪩! Скидка — discount. «Есть скидка? Я беру две!» = Is there a discount? I'm buying two!" },
+            { t: "There is a discount? I'm buying two!", fb: "💡 В вопросе is стоит первым: Is there…? «Есть скидка?» = Is there a discount?" } ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🏆", text: "Wow! Ни одной ошибки — ты говоришь как настоящая путешественница!" },
+        { max: 3, emoji: "🌴", text: "Отлично! Почти без ошибок — на Пхукете ты точно не потеряешься." },
+        { emoji: "🐢", text: "Неплохо! Посмотри фразы во вкладке «Подсказка» и пройди квест ещё раз." }
+      ],
+      rule: 1 },
+
+    { part: "practice", type: "spot", title: "Найди ошибку: мой чемодан 🧳",
+      instruction: "Соня собирает чемодан и пишет об этом в дневник. Найди и исправь 7 ошибок.",
+      text: "Tonight I [packing=>am packing] my suitcase for Phuket. I have already [pack=>packed] my swimsuit, sunglasses and flip-flops. I [use to=>used to] forget my toothbrush, but now I always pack it first! I also need toothpaste and deodorant. Yesterday Mum [buy=>bought] a big bottle of sunscreen, because the sun in Thailand is very strong. Tomorrow I [take=>will take] my camera — I want to take photos of turtles and starfish. My phone charger [are=>is] on the table, I mustn't forget it! Timofey asked me: \"[Who you are=>Who are you] going with?\" — \"With Mum!\"",
+      tip: "Посмотри, какое время нужно: сейчас, уже, вчера или завтра.", rule: 2 },
+
+    { part: "final", type: "detective", title: "Детектив: кто ужалил Соню? 🔍",
+      case: "Дело о таинственном укусе",
+      story: "On the second day in Phuket, Sonya went to the beach. She swam in the sea and suddenly — ouch! Something hurt her leg! 😱 The lifeguard came to help. Who did it? Отвечай на вопросы и собирай улики!",
+      steps: [
+        { q: "Sonya said: \"Something ___ me!\" Ей было больно, как от жала. Как сказать «ужалил»?", o: ["stung","bit","bought"], a: 0,
+          clue: "Соню ужалили, а не укусили. Комар кусает (bites) — значит, это не комар 🦟." },
+        { q: "Mum asked: \"___ were you with in the water?\" — \"Nobody, I was alone.\"", o: ["Who","Whose","Where"], a: 0,
+          clue: "Соня была одна, далеко от берега. Краб живёт на песке — его там не было 🦀." },
+        { q: "Before the beach, Sonya put on ___, because the sun was very strong.", o: ["sunscreen","toothpaste","deodorant"], a: 0,
+          clue: "На этом пляже нет цветов, а пчёлы летают там, где цветы 🌸." },
+        { q: "The lifeguard said: \"I ___ a lot of them in the water today.\"", o: ["have seen","have see","seen"], a: 0,
+          clue: "Спасатель видел в воде много прозрачных «желе» 🫧." },
+        { q: "Next time Sonya ___ more careful in the sea.", o: ["will be","is","was"], a: 0,
+          clue: "Спасатель полил ногу уксусом — так лечат ожог от медузы." }
+      ],
+      suspects: [
+        { name: "Mosquito", emoji: "🦟", desc: "Кусает ночью в комнате" },
+        { name: "Crab", emoji: "🦀", desc: "Щиплется клешнями, живёт на песке" },
+        { name: "Jellyfish", emoji: "🪼", desc: "Прозрачная, живёт в море" },
+        { name: "Bee", emoji: "🐝", desc: "Жалит, летает у цветов" }
+      ],
+      culprit: 2,
+      solution: "Это была медуза (jellyfish) 🪼! Она живёт в море и жалит (stings). Комар кусает, краб сидит на песке, а пчела летает у цветов. Не переживай: нога быстро прошла, а вечером Соня съела банановый блинчик 🥞" },
+
+    { part: "write", type: "write", title: "Пишем сами ✍️",
+      items: [
+        { q: "Что ты положишь в чемодан? Допиши: In my suitcase there is… I will also take… because… (Например: In my suitcase there is a swimsuit. I will also take sunscreen because the sun is strong.)", min: 12, must: ["will"] },
+        { q: "Ты в кафе. Закажи еду и попроси что-то поменять. Начни так: Can I have…, please? Not spicy… / The same, but without…", min: 8, must: ["Can I have"] },
+        { q: "Напиши вопрос с who и ответь на него. Например: Who is afraid of spiders in your family? — My… is.", min: 8, must: ["Who"] }
+      ] }
+  ]
+});
+</script>
+</body></html>
