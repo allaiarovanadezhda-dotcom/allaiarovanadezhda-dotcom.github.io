@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Никита", nameEn: "Nikita", gender: "m",
+  theme: "football",
+  teacher: "",
+  title: "Extra HW 1B: Looks, Personality & OGE Listening",
+  intro: "Дополнительное ДЗ по 1B: внешность и характер, **am / is / are или do / does**, Present Simple с **-s** и **ОГЭ аудирование (задания 1, 2 и 3)**. Голосовых нет, всё письменно. ⏱ 30 минут.",
+  celebrate: { text: "GOOOAL! Всё верно, Никита!", emoji: "⚽", rain: ["⚽", "🏆", "🥅", "👟"], btn: "Ура!", fx: "both" },
+  teacherSign: "Надежда",
+
+  rules: [
+    { title: "am / is / are или do / does?",
+      text: "**am / is / are** — когда после подлежащего идёт прилагательное, существительное или место (tired, hungry, a footballer, at home). **do / does** — когда после подлежащего идёт обычный глагол (play, like, train). Никогда не ставь их вместе: не «I am eat», а «I eat».",
+      examples: ["Are you tired? — Yes, I am.", "Do you play football? — Yes, I do.", "Is he shy? — No, he isn't.", "Does he train every day? — Yes, he does."],
+      mistake: "❌ Do you tired? → ✅ Are you tired?   ❌ I am eat pizza → ✅ I eat pizza" },
+    { title: "Present Simple: he / she / it + -s",
+      text: "С **he, she, it** (и одним человеком: my coach, Nikita) глагол получает **-s**. После **-ch, -sh, -s, -x, -o** пишем **-es**: watches, goes. Согласная + **y** → **-ies**: try → tries. **have → has**. В вопросе и отрицании -s уходит в **does / doesn't**, а глагол без -s.",
+      examples: ["He plays. She watches. It goes.", "He has short hair.", "Does he play? He doesn't play."],
+      mistake: "❌ He play → ✅ He plays   ❌ Does he plays? → ✅ Does he play?" },
+    { title: "What does he look like? / What's he like?",
+      text: "**What does he look like?** — про внешность (tall, slim, curly hair). **What is he like?** — про характер (kind, lazy, shy).",
+      examples: ["What does your coach look like? — He's tall and he's got a beard.", "What's your coach like? — He's strict but kind."],
+      mistake: "❌ What is he look like? → ✅ What does he look like?" },
+    { title: "Описание волос: порядок слов",
+      text: "**длина → форма → цвет + hair**: long / short → straight / curly / wavy → dark / fair / red / black.",
+      examples: ["He's got short curly dark hair.", "She's got long straight fair hair."],
+      mistake: "❌ He's got dark short hair → ✅ He's got short dark hair" },
+    { title: "ОГЭ аудирование",
+      text: "На ОГЭ в аудировании три задания. Каждая запись звучит **два раза**. Перед прослушиванием прочитай вопросы и подчеркни ключевые слова. Неверные варианты часто содержат слова из записи, но смысл у них другой!",
+      examples: ["Задание 1 (вопросы 1–4): 4 диалога, выбор 1/2/3", "Задание 2 (вопрос 5): 5 говорящих, 6 утверждений, одно лишнее", "Задание 3 (вопросы 6–11): разговор, вписать одно слово"],
+      mistake: "Не выбирай вариант только потому, что услышал из него слово. Проверяй смысл." }
+  ],
+
+  words: [
+    ["tall", "высокий", "/tɔːl/", ""],
+    ["short", "низкий; короткий", "/ʃɔːt/", ""],
+    ["slim", "стройный", "/slɪm/", ""],
+    ["overweight", "полный, с лишним весом", "/ˌəʊvəˈweɪt/", "ударение на weight"],
+    ["curly", "кудрявый", "/ˈkɜːli/", ""],
+    ["straight", "прямой (о волосах)", "/streɪt/", "gh не читается"],
+    ["fair", "светлый (о волосах)", "/feə/", ""],
+    ["beard", "борода", "/bɪəd/", ""],
+    ["moustache", "усы", "/məˈstɑːʃ/", ""],
+    ["kind", "добрый", "/kaɪnd/", ""],
+    ["generous", "щедрый", "/ˈdʒenərəs/", "ударение на ge"],
+    ["mean", "жадный", "/miːn/", "противоположность generous"],
+    ["lazy", "ленивый", "/ˈleɪzi/", ""],
+    ["hard-working", "трудолюбивый", "/ˌhɑːdˈwɜːkɪŋ/", ""],
+    ["shy", "застенчивый", "/ʃaɪ/", ""],
+    ["talkative", "болтливый", "/ˈtɔːkətɪv/", "l не читается"],
+    ["friendly", "дружелюбный", "/ˈfrendli/", ""],
+    ["strict", "строгий", "/strɪkt/", ""]
+  ],
+
+  tasks: [
+    /* 1. РАЗМИНКА */
+    { part: "warmup", type: "race", skin: "football", title: "Warm-up match ⚽",
+      instruction: "Выбирай противоположное по смыслу слово — и забивай голы!",
+      items: [
+        { q: "tall ↔ ?", o: ["short", "slim", "kind"], a: 0 },
+        { q: "lazy ↔ ?", o: ["hard-working", "shy", "mean"], a: 0 },
+        { q: "generous ↔ ?", o: ["mean", "kind", "lazy"], a: 0 },
+        { q: "curly hair ↔ ?", o: ["straight hair", "fair hair", "long hair"], a: 0 },
+        { q: "talkative ↔ ?", o: ["quiet", "friendly", "strict"], a: 0 },
+        { q: "slim ↔ ?", o: ["overweight", "tall", "short"], a: 0 }
+      ] },
+
+    /* 2. РАБОТА НАД ОШИБКАМИ */
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками",
+      instruction: "Ошибки из прошлого ДЗ, но с новыми примерами. Читай предложение до конца — подсказка всегда в нём!",
+      items: [
+        { q: "Our new striker is 1 metre 95. He's very ___ .", o: ["tall", "overweight", "slim"], a: 0 },
+        { q: "Some fans eat five hot dogs at every match. They're a bit ___ .", o: ["overweight", "tall", "straight"], a: 0 },
+        { q: "My brother gives his new boots to his friend. He's very ___ .", o: ["generous", "lazy", "shy"], a: 0 },
+        { q: "Kate never helps at home — she lies on the sofa all day. She's ___ .", o: ["lazy", "kind", "talkative"], a: 0 },
+        { q: "Ivan doesn't talk to new people. His face goes red. He's ___ .", o: ["shy", "generous", "funny"], a: 0 },
+        { q: "Our captain is always nice to the young players. He's ___ .", o: ["kind", "lazy", "mean"], a: 0 },
+        { q: "___ you hungry after the match?", o: ["Are", "Do", "Does"], a: 0 },
+        { q: "___ your coach angry today?", o: ["Is", "Does", "Do"], a: 0 },
+        { q: "___ you nervous before penalties?", a: ["Are"] }
+      ] },
+
+    /* 3. ПОВТОРЯЕМ СЛОВА */
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова" },
+
+    /* 4. ОТРАБОТКА */
+    { part: "practice", type: "gaps", rule: 0, title: "am / is / are or do / does?",
+      instruction: "Вставь **am, is, are, do, does, don't, doesn't, isn't**. Сначала посмотри, что стоит после подлежащего: прилагательное → am/is/are, глагол → do/does.",
+      items: [
+        "{Are} you tired after training? — Yes, I {am}.",
+        "{Do} you like your new boots? — Yes, I {do}.",
+        "{Is} your coach strict? — No, he {isn't|is not}.",
+        "{Does} your coach shout at the players? — No, he {doesn't|does not}.",
+        "I {am} not lazy! I {don't|do not} sleep all day.",
+        "What {does} your best friend look like?",
+        "What {is} your best friend like?",
+        "My parents {are} at the stadium, but they {don't|do not} have tickets for the VIP zone."
+      ],
+      tip: "Повтори правило «am / is / are или do / does?»" },
+
+    { part: "practice", type: "gaps", rule: 1, title: "Present Simple: don't forget -s! ⚽",
+      instruction: "Поставь глагол в скобках в правильную форму Present Simple.",
+      items: [
+        "Our goalkeeper {wears} big orange gloves. (wear)",
+        "My friend Artyom {watches} football every evening. (watch)",
+        "The coach {goes} to the stadium by bus. (go)",
+        "Our captain {has} short dark hair. (have)",
+        "He {tries} to score in every match. (try)",
+        "Our new player {speaks} three languages. (speak)",
+        "My little brother {doesn't play|does not play} football. (not play)",
+        "{Does} your friend {play} in a team? (play)"
+      ],
+      tip: "he / she / it → -s, -es, -ies; has; в вопросе does + глагол без -s" },
+
+    { part: "practice", type: "order", rule: [2, 3], title: "Build the sentence",
+      instruction: "Собери предложение из слов.",
+      items: [
+        "He has got short curly black hair.",
+        "She has got long straight fair hair.",
+        "My coach is tall and a bit overweight.",
+        "What does your best friend look like?",
+        "What is your new teammate like?"
+      ],
+      tip: "Волосы: длина → форма → цвет. look like — с does, be like — с is." },
+
+    /* 5. ФОРМАТ ЭКЗАМЕНА: ОГЭ АУДИРОВАНИЕ */
+    { part: "exam", type: "choice", rule: 4, title: "🎧 ОГЭ Listening. Задание 1 (вопросы 1–4)",
+      instruction: "Нажми кнопку **🎧 ОГЭ Listening** в левом нижнем углу и включи запись **«Задание 1»**. Ты услышишь четыре коротких диалога A, B, C, D. Сначала прочитай вопросы. Слушай запись **два раза** подряд, без пауз, как на экзамене. Выбери 1, 2 или 3.",
+      items: [
+        { q: "1 (Dialogue A). The student wondered if…", o: ["water can boil at a temperature lower than 100 degrees.", "water can turn into steam when its temperature reaches 100 degrees.", "water can get hotter than 100 degrees."], a: 2 },
+        { q: "2 (Dialogue B). The female speaker wants to buy the coat now. She thinks…", o: ["it will cost double the price when winter comes.", "it will soon get much colder outside.", "someone else will buy it if they don't buy it right now."], a: 0 },
+        { q: "3 (Dialogue C). The male speaker supposes he is sick because of his…", o: ["terrible headache.", "cough and a sore throat.", "stomach ache."], a: 1 },
+        { q: "4 (Dialogue D). It is difficult to take care of old books because…", o: ["low and high temperatures, sunshine and humidity are very harmful to them.", "everyone wants to touch them and their pages get harmed.", "it is difficult to read them because their pages are yellowish."], a: 0 }
+      ],
+      tip: "Слушай смысл всей фразы, а не отдельные слова. Прослушай запись ещё раз." },
+
+    { part: "exam", type: "choice", rule: 4, title: "🎧 ОГЭ Listening. Задание 2 (вопрос 5)",
+      instruction: "Включи запись **«Задание 2»**. Ты услышишь пять высказываний (A–E). К каждому говорящему подбери утверждение. Одно утверждение лишнее, каждое используй только один раз. Слушай запись **два раза**.",
+      items: [
+        { q: "Speaker A", o: ["The speaker explains why he/she likes the city life.", "The speaker talks about a local tourist attraction.", "The speaker talks about unusual houses.", "The speaker describes the area where he/she lives.", "The speaker explains how to get to the city centre.", "The speaker describes his/her room."], a: 0 },
+        { q: "Speaker B", o: ["The speaker explains why he/she likes the city life.", "The speaker talks about a local tourist attraction.", "The speaker talks about unusual houses.", "The speaker describes the area where he/she lives.", "The speaker explains how to get to the city centre.", "The speaker describes his/her room."], a: 3 },
+        { q: "Speaker C", o: ["The speaker explains why he/she likes the city life.", "The speaker talks about a local tourist attraction.", "The speaker talks about unusual houses.", "The speaker describes the area where he/she lives.", "The speaker explains how to get to the city centre.", "The speaker describes his/her room."], a: 5 },
+        { q: "Speaker D", o: ["The speaker explains why he/she likes the city life.", "The speaker talks about a local tourist attraction.", "The speaker talks about unusual houses.", "The speaker describes the area where he/she lives.", "The speaker explains how to get to the city centre.", "The speaker describes his/her room."], a: 2 },
+        { q: "Speaker E", o: ["The speaker explains why he/she likes the city life.", "The speaker talks about a local tourist attraction.", "The speaker talks about unusual houses.", "The speaker describes the area where he/she lives.", "The speaker explains how to get to the city centre.", "The speaker describes his/her room."], a: 1 }
+      ],
+      tip: "Одно утверждение лишнее. Каждое утверждение используй только один раз." },
+
+    { part: "exam", type: "gaps", rule: 4, title: "🎧 ОГЭ Listening. Задание 3 (вопросы 6–11)",
+      instruction: "Включи запись **«Задание 3»**. Ты услышишь разговор Кейт и Кевина в Париже. Впиши в каждый пропуск **одно слово** из записи. Слушай запись **два раза**.",
+      items: [
+        "6. Kate is from {Canada}.",
+        "7. Kate's parents {travel} a lot because of their job.",
+        "8. Kate is going to have a {guided} excursion to the historical part of Paris.",
+        "9. Kevin is on a school {trip}.",
+        "10. Kevin plays the drums in a music {band}.",
+        "11. Kevin is deeply interested in {physics} and biology."
+      ],
+      tip: "Пиши ровно одно слово и проверь орфографию: на ОГЭ ошибка в слове = неверный ответ." },
+
+    /* 6. ФОРМАТ ЭКЗАМЕНА: ГРАММАТИКА И СЛОВООБРАЗОВАНИЕ */
+    { part: "exam", type: "exam", show: "ОГЭ Шоу ⚽", time: 20, title: "ОГЭ: грамматика и словообразование",
+      instruction: "Текст «Our new teammate». Преобразуй слово в скобках так, чтобы оно подходило по смыслу и грамматике. Задания 1–7 — грамматика, 8–12 — словообразование.",
+      items: [
+        { q: "Our new player ___ from Brazil.", word: "COME", a: ["comes"] },
+        { q: "He ___ very tall and slim.", word: "BE", a: ["is"] },
+        { q: "He ___ long curly hair and a small beard.", word: "HAVE", a: ["has", "has got"] },
+        { q: "He ___ Russian very well yet.", word: "NOT SPEAK", a: ["doesn't speak", "does not speak"] },
+        { q: "Last Saturday he ___ two goals.", word: "SCORE", a: ["scored"] },
+        { q: "Now he is ___ player in our team.", word: "GOOD", a: ["the best"] },
+        { q: "All the fans ___ him a lot.", word: "LIKE", a: ["like"] },
+        { q: "He is very ___ and says hello to everybody.", word: "FRIEND", a: ["friendly"] },
+        { q: "He is a ___ person — he always helps the younger players.", word: "HELP", a: ["helpful"] },
+        { q: "His father was a very ___ footballer too.", word: "SUCCESS", a: ["successful"] },
+        { q: "Sometimes he is too ___ in the changing room — he never stops talking!", word: "TALK", a: ["talkative"] },
+        { q: "He is never ___ to other players.", word: "KIND", a: ["unkind"] }
+      ],
+      tip: "he / she / it + -s; прошлое — -ed; суффиксы -ly, -ful, -ative; приставка un-" },
+
+    /* 8. ФИНАЛ */
+    { part: "final", type: "detective", title: "The case of the lucky boots 🕵️",
+      case: "Пропали счастливые бутсы Никиты!",
+      story: "Saturday morning. Nikita comes to the stadium for the big match. He opens his locker… and his lucky boots aren't there! The match starts in one hour. Nikita asks people questions. Answer correctly and get the clues!",
+      steps: [
+        { q: "The cleaner says: \"I saw a man near the changing room. He ___ got short dark hair.\"", o: ["has", "have", "is"], a: 0, clue: "У него короткие тёмные волосы." },
+        { q: "Nikita asks: \"___ he got a beard?\" — \"Yes, he has.\"", o: ["Has", "Does", "Is"], a: 0, clue: "У него есть борода." },
+        { q: "The security guard says: \"That man usually ___ to the stadium very early.\"", o: ["comes", "come", "is come"], a: 0, clue: "Этот человек всегда приходит очень рано." },
+        { q: "The coach says: \"Oleg? He ___ never early. He's very lazy!\"", o: ["is", "does", "are"], a: 0, clue: "Олег всегда опаздывает." },
+        { q: "\"What's Artyom like?\" — \"He's very ___ . He always buys things for the team.\"", o: ["generous", "mean", "shy"], a: 0, clue: "Артём очень щедрый и всё делает для команды." }
+      ],
+      suspects: [
+        { name: "Oleg", emoji: "🧔", desc: "tall, short dark hair, a beard; lazy, always late" },
+        { name: "Denis", emoji: "👱", desc: "short, long fair hair; shy and quiet" },
+        { name: "Artyom", emoji: "🧔‍♂️", desc: "tall, short dark hair, a beard; generous, always early" },
+        { name: "Max", emoji: "👨‍🦰", desc: "slim, red curly hair; funny and talkative" }
+      ],
+      culprit: 2,
+      solution: "It's Artyom! He's generous — he came early, cleaned Nikita's lucky boots and put new laces in them before the big match. The boots are back, and Nikita scores the winning goal! ⚽🏆" }
+  ]
+});
+</script>
+
+<!-- 🎧 Плеер для ОГЭ-аудирования (кнопка в левом нижнем углу). Записи: «Решу ОГЭ» -->
+<script>
+(function () {
+  var REC = [
+    ["Задание 1 (вопросы 1–4)", "https://en-oge.sdamgia.ru/files/3067.mp3"],
+    ["Задание 2 (вопрос 5)", "https://en-oge.sdamgia.ru/files/3068.mp3"],
+    ["Задание 3 (вопросы 6–11)", "https://en-oge.sdamgia.ru/files/3297.mp3"]
+  ];
+  function build() {
+    if (document.getElementById("oge-audio")) return;
+    var box = document.createElement("div");
+    box.id = "oge-audio";
+    box.style.cssText = "position:fixed;left:10px;bottom:10px;z-index:99999;font-family:system-ui,sans-serif;";
+    var list = REC.map(function (r) {
+      return '<div style="margin-bottom:10px"><div style="font-weight:600;font-size:14px;margin-bottom:4px">' + r[0] + '</div>' +
+        '<audio controls preload="none" playsinline src="' + r[1] + '" style="width:100%"></audio>' +
+        '<div style="font-size:11px"><a href="' + r[1] + '" target="_blank" rel="noopener">не играет? открыть по ссылке</a></div></div>';
+    }).join("");
+    box.innerHTML =
+      '<div id="oge-panel" style="display:none;background:#fff;border:2px solid #1b7f3b;border-radius:14px;padding:10px;margin-bottom:8px;box-shadow:0 4px 16px rgba(0,0,0,.2);width:min(320px,calc(100vw - 20px));max-height:70vh;overflow:auto;box-sizing:border-box">' +
+        '<div style="font-weight:700;color:#1b7f3b;margin-bottom:8px">🎧 ОГЭ Listening</div>' + list +
+        '<div style="font-size:12px;color:#555">Каждую запись слушай 2 раза, без пауз.</div>' +
+      '</div>' +
+      '<button id="oge-btn" type="button" style="background:#1b7f3b;color:#fff;border:0;border-radius:24px;padding:10px 16px;font-size:15px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.25)">🎧 ОГЭ Listening</button>';
+    document.body.appendChild(box);
+    document.getElementById("oge-btn").onclick = function () {
+      var p = document.getElementById("oge-panel");
+      p.style.display = p.style.display === "none" ? "block" : "none";
+    };
+    // одновременно играет только одна запись
+    box.addEventListener("play", function (e) {
+      box.querySelectorAll("audio").forEach(function (a) { if (a !== e.target) a.pause(); });
+    }, true);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build); else build();
+  setInterval(build, 1500);
+})();
+</script>
+</body></html>
