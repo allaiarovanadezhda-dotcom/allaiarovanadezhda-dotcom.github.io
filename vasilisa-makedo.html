@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Василиса", nameEn: "Vasilisa", gender: "f",
+  theme: "strict",
+  teacher: "",
+  title: "Make or do? Made of / from / out of / with",
+  intro: "Небольшое ДЗ по стр. 30–31: **make или do** и **из чего сделано** (made of / from / out of / with). Если сомневаешься — открой вкладку *Подсказка*. Голосовых сегодня нет 🙂",
+  celebrate: { text: "Perfect! Всё сделано без единой ошибки!", emoji: "🖤", rain: ["❄️","🐕","🖤","🤍"], btn: "Ура!", fx: "both" },
+  teacherSign: "Nady",
+
+  rules: [
+    { title: "MAKE или DO",
+      text: "MAKE — когда мы что-то создаём, производим, получаем новый результат (make a cake, make a mistake, make a decision, make the bed, make a mess, make a noise, make friends, make money). DO — когда выполняем работу, дело, обязанность (do homework, do the washing-up, do the ironing, do the shopping, do exercise, do sport, do a course, do your best). Общие слова тоже с DO: do something, do nothing, do everything.",
+      examples: ["I made a mistake in the test.", "She does the ironing on Sundays.", "Don't make a noise — the dog is sleeping.", "What are you doing tonight? — Nothing."],
+      mistake: "❌ do a mistake → ✅ make a mistake; ❌ make homework → ✅ do homework; ❌ do the bed → ✅ make the bed" },
+    { title: "made of / made from",
+      text: "MADE OF — материал виден и не изменился (дерево осталось деревом). MADE FROM — материал изменился, его уже не узнать (из винограда — вино, из молока — сыр, из дерева — бумага).",
+      examples: ["This chair is made of wood.", "Paper is made from wood.", "Cheese is made from milk."],
+      mistake: "❌ Paper is made of wood → ✅ Paper is made from wood (дерева в бумаге уже не видно)" },
+    { title: "made out of / made with",
+      text: "MADE OUT OF — сделано из необычных вещей, которые обычно используют для другого (лампа из старых бутылок). MADE WITH — блюдо, в котором есть такой ингредиент (один из многих).",
+      examples: ["Her bag is made out of old jeans.", "This soup is made with fish and potatoes.", "The cake is made with chocolate."],
+      mistake: "❌ The pizza is made of cheese → ✅ The pizza is made with cheese (сыр — только один из ингредиентов)" },
+    { title: "Повторяем: планы на будущее",
+      text: "BE GOING TO — план, намерение (решила заранее). PRESENT CONTINUOUS — уже договорилась, есть время/место.",
+      examples: ["I'm going to learn 20 new words this week.", "I'm meeting my friend at 6 tomorrow."],
+      mistake: "❌ I going to → ✅ I'm going to" },
+    { title: "Повторяем: conditionals 0–3",
+      text: "Памятка: переведи на русский. Если в переводе есть «бы» — условие нереальное (2-й или 3-й тип). 0: If + Present, Present (всегда так). 1: If + Present, will (реально в будущем). 2: If + Past, would + V (нереально сейчас — «бы»). 3: If + had + V3, would have + V3 (нереально в прошлом — «бы», но уже не изменить).",
+      examples: ["If you heat ice, it melts. (0)", "If it snows, I'll walk the dog in the park. (1)", "If I lived in China, I would speak Chinese every day. (2 — «бы»)", "If I had studied, I would have passed. (3 — «бы», прошлое)"],
+      mistake: "❌ If it will snow… → ✅ If it snows… (после if нет will)" }
+  ],
+
+  words: [
+    ["make the bed", "заправлять кровать", "/meɪk ðə bed/", ""],
+    ["do the washing-up", "мыть посуду", "/duː ðə ˈwɒʃɪŋ ʌp/", ""],
+    ["do the ironing", "гладить бельё", "/duː ði ˈaɪənɪŋ/", "ударение: IRoning"],
+    ["make a mess", "устроить беспорядок", "/meɪk ə mes/", ""],
+    ["make a mistake", "сделать ошибку", "/meɪk ə mɪˈsteɪk/", "НЕ do a mistake"],
+    ["make a decision", "принять решение", "/meɪk ə dɪˈsɪʒn/", ""],
+    ["do exercise", "делать зарядку, тренироваться", "/duː ˈeksəsaɪz/", ""],
+    ["make a noise", "шуметь", "/meɪk ə nɔɪz/", ""],
+    ["wool", "шерсть", "/wʊl/", ""],
+    ["leather", "кожа (материал)", "/ˈleðə/", ""],
+    ["cotton", "хлопок", "/ˈkɒtn/", ""],
+    ["glass", "стекло", "/ɡlɑːs/", ""],
+    ["wood", "дерево (материал)", "/wʊd/", ""],
+    ["flour", "мука", "/ˈflaʊə/", "звучит как flower"]
+  ],
+
+  tasks: [
+    // 1. РАЗМИНКА
+    { part: "warmup", type: "wordfall", title: "Словопад", count: 8, speed: 7, dir: "en-ru" },
+
+    // 2. РАБОТА НАД ОШИБКАМИ
+    { part: "review", type: "mistakes", count: 4, items: [
+      { q: "If it ___ tomorrow, I'll take my dog to the forest.", o: ["snows", "will snow", "snowed"], a: 0 },
+      { q: "If I ___ Chinese better, I would watch Chinese films without subtitles. (знала бы)", o: ["knew", "know", "will know"], a: 0 },
+      { q: "Next summer I ___ visit my aunt. (план)", o: ["am going to", "going to", "go to"], a: 0 },
+      { q: "Excuse me, I think there ___ a mistake in the bill.", o: ["is", "are", "be"], a: 0 }
+    ]},
+
+    // 3. ПОВТОРЯЕМ СЛОВА
+    { part: "words", type: "vocab", count: 8, vocab: [
+      ["main course", "основное блюдо"], ["tuna", "тунец"], ["rare", "с кровью (о мясе)"],
+      ["faint", "упасть в обморок"], ["lose consciousness", "потерять сознание"], ["impression", "впечатление"],
+      ["boarding pass", "посадочный талон"], ["check in", "зарегистрироваться (на рейс)"],
+      ["departures", "зал вылета"], ["luggage", "багаж"], ["look forward to", "с нетерпением ждать"],
+      ["depend on", "зависеть от"]
+    ]},
+
+    // 4. ОТРАБОТКА
+    { part: "practice", type: "gaps", rule: 0, title: "Make или do?",
+      instruction: "Впиши make или do в правильной форме (make / makes / made / making, do / does / did / doing).",
+      items: [
+        "Every morning I {make} my bed before breakfast.",
+        "My mum usually {does} the ironing on Sunday evening.",
+        "Yesterday my dog {made} a terrible mess in the kitchen.",
+        "I can't go out — I'm {doing} my homework.",
+        "Don't worry, everyone {makes} mistakes.",
+        "Last night my brother {did} the washing-up without complaining!",
+        "It's hard to {make} a decision when you are tired.",
+        "Shh! Don't {make} a noise, the baby is sleeping.",
+        "I try to {do} exercise three times a week."
+      ],
+      tip: "Создаём результат — MAKE, выполняем работу/дело — DO. Посмотри вкладку «Подсказка»." },
+
+    { part: "practice", type: "choice", rule: [1, 2], title: "Из чего сделано?",
+      instruction: "Выбери: made of, made from, made out of или made with.",
+      items: [
+        { q: "My winter hat is ___ wool — it's very warm.", o: ["made of", "made from", "made with"], a: 0 },
+        { q: "Bread is ___ flour, water and salt.", o: ["made from", "made of", "made out of"], a: 0 },
+        { q: "My friend has a lamp ___ old glass bottles!", o: ["made out of", "made with", "made from"], a: 0 },
+        { q: "This fish soup is ___ potatoes, onions and salmon.", o: ["made with", "made of", "made out of"], a: 0 },
+        { q: "Paper is ___ wood.", o: ["made from", "made of", "made with"], a: 0 },
+        { q: "My dog's new collar is ___ leather.", o: ["made of", "made from", "made with"], a: 0 },
+        { q: "The kids built a little house ___ snow and old boxes.", o: ["made out of", "made with", "made from"], a: 0 },
+        { q: "Butter is ___ milk.", o: ["made from", "made of", "made out of"], a: 0 }
+      ],
+      tip: "Материал виден — OF; изменился — FROM; необычные вещи — OUT OF; ингредиент блюда — WITH." },
+
+    // 6. ФОРМАТ ЭКЗАМЕНА (ЕГЭ: грамматика + словообразование)
+    { part: "exam", type: "exam", show: "ЕГЭ Шоу", time: 40, title: "ЕГЭ: преобразуй слово",
+      instruction: "Как в ЕГЭ (задания 19–29): поставь слово в скобках в правильную форму, чтобы оно подходило по смыслу.",
+      items: [
+        { q: "Last winter my brother and I ___ a huge snowman in our yard.", word: "MAKE", a: ["made"] },
+        { q: "It was the ___ day of the year — minus forty!", word: "COLD", a: ["coldest"] },
+        { q: "The snowman's nose ___ out of an old carrot.", word: "MAKE", a: ["was made"] },
+        { q: "If it snows again tomorrow, we ___ another one.", word: "BUILD", a: ["will build", "'ll build"] },
+        { q: "My grandma's wool socks are really ___.", word: "COMFORT", a: ["comfortable"] },
+        { q: "My friend is very ___ — she makes toys out of old socks.", word: "CREATE", a: ["creative"] },
+        { q: "Going to Magadan's hills was the best ___ of the weekend.", word: "DECIDE", a: ["decision"] }
+      ]},
+
+    // 8. ФИНАЛ
+    { part: "final", type: "detective", title: "Детектив: тайна снеговика",
+      case: "Кто испортил снеговика Василисы?",
+      story: "Magadan, Sunday morning, −25°C. Vasilisa made a perfect snowman near her house yesterday. This morning the snowman has no hat, no nose and a big hole in its side. Her dog is sitting next to it and looks very innocent… Help Vasilisa find out what happened!",
+      steps: [
+        { q: "The snowman's hat was ___ wool, so it was soft and warm.", o: ["made of", "made from", "made with"], a: 0, clue: "На снегу лежат синие шерстяные нитки 🧶" },
+        { q: "Next to the snowman there is a cookie ___ chocolate and nuts.", o: ["made with", "made of", "made out of"], a: 0, clue: "Кто-то ел печенье прямо тут — крошки ведут к соседнему дому 🍪" },
+        { q: "Someone ___ a big mess — there are footprints everywhere.", o: ["made", "did"], a: 0, clue: "Следы маленьких ботинок, а не собачьих лап 👣" },
+        { q: "The neighbour says: «My son was ___ his homework all morning!» But his boots are wet…", o: ["doing", "making"], a: 0, clue: "Ботинки соседского мальчика мокрые, а в кармане — морковка 🥕" }
+      ],
+      suspects: [
+        { name: "The dog", emoji: "🐕", desc: "Сидит рядом и виляет хвостом" },
+        { name: "The crow", emoji: "🐦‍⬛", desc: "Любит блестящее и ворует еду" },
+        { name: "Little Misha", emoji: "👦", desc: "Соседский мальчик, обожает печенье" }
+      ],
+      culprit: 2,
+      solution: "Это Миша! Он взял шерстяную шапку и морковку для своего снеговика, ел печенье и оставил следы ботинок. А собака ни в чём не виновата 🐕🖤" }
+  ]
+});
+</script>
+<script>HW_CHEERS = { gender: "f" };</script>
+<script src="hw-cheers.js"></script>
+</body></html>
