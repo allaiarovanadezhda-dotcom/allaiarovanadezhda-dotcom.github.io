@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  id: "nikita-shopping",
+  student: "Никита", nameEn: "Nikita", gender: "m",
+  theme: "football",
+  teacher: "",
+  title: "Shops & Shopping ⚽",
+  intro: "Привет, Никита! ⚽ Сегодня: **магазины и покупки**, трудные слова про одежду и украшения, **do/does или am/is/are** и **аудирование ОГЭ** (задания 1–3).\n\n🔇 **Нет звука в аудировании?** На iPhone сбоку, над кнопками громкости, есть **переключатель беззвучного режима**. Переключи его, чтобы не было видно оранжевой полоски, и прибавь громкость. Если переключателя нет (новые iPhone): открой Пункт управления и нажми на 🔔 колокольчик.",
+  rules: [
+    {
+      title: "am / is / are или do / does?",
+      text: "**am / is / are** — с прилагательным, местом, профессией и с -ing (что происходит сейчас).\n**do / does** — только чтобы задать вопрос или сделать отрицание с обычным глаголом (like, play, buy, cost…). В утверждении do не нужен.\n\nI → am / do · he, she, it → is / does · you, we, they → are / do",
+      examples: [
+        "I am hungry. The shop is closed. They are at the market.",
+        "I am looking for football boots. (сейчас)",
+        "I buy bread at the baker's. (обычно, без am!)",
+        "Do you pay in cash? — Does he like Messi? — She doesn't wear tights."
+      ],
+      mistake: "❌ I am eat / I looking → ✅ I eat (обычно) / I am looking (сейчас)"
+    },
+    {
+      title: "-s в 3-м лице (he / she / it)",
+      text: "В Present Simple после he, she, it, my friend, Messi… глагол получает **-s / -es**.\nНо если в предложении есть **does / doesn't**, -s у глагола уже нет — он «ушёл» в does.",
+      examples: [
+        "Messi plays for Inter Miami. My mum buys fish at the fishmonger's.",
+        "Does he play football? He doesn't wear a tie."
+      ],
+      mistake: "❌ He play / Does he plays → ✅ He plays / Does he play"
+    },
+    {
+      title: "Магазины с 's",
+      text: "baker's, butcher's, chemist's — это «магазин пекаря», «магазин мясника». Слово shop не пишем, но 's нужно. Говорим **at the baker's** (в пекарне), **go to the chemist's** (идти в аптеку).",
+      examples: ["I buy bread at the baker's.", "We need medicine — let's go to the chemist's."],
+      mistake: "❌ at the baker → ✅ at the baker's"
+    }
+  ],
+  words: [
+    ["shopping mall", "торговый центр", "/ˈʃɒpɪŋ mɔːl/", ""],
+    ["department store", "универмаг", "", ""],
+    ["market", "рынок", "", ""],
+    ["store", "магазин", "", ""],
+    ["stationery shop", "канцелярский магазин", "/ˈsteɪʃənri/", "ударение на STA"],
+    ["bookshop", "книжный магазин", "", ""],
+    ["jewellery shop", "ювелирный магазин", "/ˈdʒuːəlri/", "в Америке: jewelry"],
+    ["chemist's", "аптека", "/ˈkemɪsts/", "ch читается как к"],
+    ["hypermarket", "гипермаркет", "", ""],
+    ["supermarket", "супермаркет", "", ""],
+    ["greengrocer's", "овощной магазин", "/ˈɡriːnɡrəʊsəz/", ""],
+    ["toy shop", "магазин игрушек", "", ""],
+    ["sports shop", "спортивный магазин", "", ""],
+    ["baker's", "пекарня", "/ˈbeɪkəz/", ""],
+    ["butcher's", "мясной магазин", "/ˈbʊtʃəz/", "u как у"],
+    ["confectioner's", "кондитерская", "/kənˈfekʃənəz/", ""],
+    ["record shop", "магазин дисков", "", ""],
+    ["newsagent's", "газетный киоск", "/ˈnjuːzeɪdʒənts/", ""],
+    ["florist's", "цветочный магазин", "/ˈflɒrɪsts/", ""],
+    ["optician's", "оптика", "/ɒpˈtɪʃənz/", ""],
+    ["fishmonger's", "рыбный магазин", "/ˈfɪʃmʌŋɡəz/", ""],
+    ["flea market", "блошиный рынок", "/fliː/", ""],
+    ["charity shop", "благотворительный магазин", "/ˈtʃærəti/", "деньги идут на помощь людям"],
+    ["baked goods", "выпечка", "", ""],
+    ["dairy goods", "молочные продукты", "/ˈdeəri/", ""],
+    ["handcrafted goods", "товары ручной работы", "", ""],
+    ["foodstuffs", "продовольственные товары", "", ""],
+    ["bargain", "удачная покупка", "/ˈbɑːɡɪn/", ""],
+    ["reduced prices", "сниженные цены", "", ""],
+    ["discount", "скидка", "/ˈdɪskaʊnt/", ""],
+    ["change", "сдача", "", ""],
+    ["small change", "мелочь", "", ""],
+    ["sale", "распродажа", "", ""],
+    ["expensive", "дорогой", "/ɪkˈspensɪv/", ""],
+    ["cheap", "дешёвый", "", ""],
+    ["shopping basket", "корзина для покупок", "", ""],
+    ["to pay in cash", "платить наличными", "", ""],
+    ["to pay by credit card", "платить кредиткой", "", "без the"],
+    ["to pay by cheque", "платить чеком", "/tʃek/", "без the"],
+    ["in great demand", "очень востребованный", "", ""],
+    ["to be out of stock", "нет в наличии", "", ""],
+    ["to spend money", "тратить деньги", "", ""],
+    ["to waste money", "тратить деньги на ветер", "/weɪst/", ""],
+    ["to cost", "стоить", "", "cost – cost – cost"],
+    ["to buy / to purchase", "покупать", "/ˈpɜːtʃəs/", "buy – bought – bought"],
+    ["to sell", "продавать", "", "sell – sold – sold"],
+    ["fitting room", "примерочная", "", ""],
+    ["to try something on", "примерить что-то", "", ""],
+    ["flip-flops", "сланцы, шлёпанцы", "", ""],
+    ["bracelet", "браслет", "/ˈbreɪslət/", ""],
+    ["ring", "кольцо", "", "rings — кольца"],
+    ["earrings", "серёжки", "/ˈɪərɪŋz/", "ear (ухо) + ring"],
+    ["tie", "галстук", "/taɪ/", ""],
+    ["tights", "колготки", "/taɪts/", ""],
+    ["necklace", "ожерелье, цепочка", "/ˈnekləs/", "neck (шея) + lace"],
+    ["belt", "ремень", "", ""],
+    ["gloves", "перчатки", "/ɡlʌvz/", ""],
+    ["slippers", "тапочки", "", ""]
+  ],
+  tasks: [
+    // 1. РАЗМИНКА
+    {
+      part: "warmup", type: "race", skin: "football",
+      title: "Гонка: где это купить?",
+      instruction: "Выбери магазин как можно быстрее ⚽",
+      rule: 2,
+      items: [
+        { q: "You need bread. Go to the…", o: ["baker's", "butcher's", "chemist's"], a: 0 },
+        { q: "You need medicine. Go to the…", o: ["chemist's", "optician's", "florist's"], a: 0 },
+        { q: "You need new glasses. Go to the…", o: ["optician's", "newsagent's", "greengrocer's"], a: 0 },
+        { q: "You need roses for your mum. Go to the…", o: ["florist's", "fishmonger's", "baker's"], a: 0 },
+        { q: "You need meat for a barbecue. Go to the…", o: ["butcher's", "confectioner's", "stationery shop"], a: 0 },
+        { q: "You need a cake and sweets. Go to the…", o: ["confectioner's", "butcher's", "chemist's"], a: 0 },
+        { q: "You need apples and potatoes. Go to the…", o: ["greengrocer's", "jewellery shop", "toy shop"], a: 0 },
+        { q: "You want cheap old things, and the money helps people. Go to the…", o: ["charity shop", "department store", "hypermarket"], a: 0 }
+      ]
+    },
+
+    // 2. РАБОТА НАД ОШИБКАМИ
+    {
+      part: "review", type: "mistakes", count: 6,
+      title: "Работа над ошибками",
+      rule: [0, 1],
+      items: [
+        { q: "I ___ chips every day.", o: ["eat", "am eat", "eats"], a: 0 },
+        { q: "Look! They ___ in the park.", o: ["are running", "running", "run"], a: 0 },
+        { q: "___ he play for a football club?", o: ["Does", "Is", "Do"], a: 0 },
+        { q: "My friend ___ new trainers. (want)", a: ["wants"] },
+        { q: "My dad ___ at the shop now. (work)", a: ["is working", "'s working"] },
+        { q: "She ___ like shopping. (не любит)", a: ["doesn't", "does not"] }
+      ]
+    },
+
+    // 3. ПОВТОРЯЕМ СЛОВА
+    {
+      part: "words", type: "vocab", count: 6,
+      title: "Повторяем слова",
+      vocab: [
+        ["curly hair", "кудрявые волосы"], ["straight hair", "прямые волосы"],
+        ["beard", "борода"], ["moustache", "усы"], ["slim", "стройный"],
+        ["generous", "щедрый"], ["talkative", "разговорчивый"], ["shy", "застенчивый"],
+        ["mean", "жадный"], ["lazy", "ленивый"]
+      ]
+    },
+
+    // 4. ОТРАБОТКА
+    {
+      part: "practice", type: "match",
+      title: "Трудные слова: одежда и украшения",
+      instruction: "Соедини слово и перевод.",
+      pairs: [
+        ["flip-flops", "сланцы"], ["bracelet", "браслет"], ["ring", "кольцо"],
+        ["earrings", "серёжки"], ["tie", "галстук"], ["tights", "колготки"],
+        ["necklace", "ожерелье"], ["belt", "ремень"], ["gloves", "перчатки"], ["slippers", "тапочки"]
+      ]
+    },
+    {
+      part: "practice", type: "choice",
+      title: "am / is / are или do / does?",
+      instruction: "Выбери правильное слово. Подумай: есть обычный глагол (buy, like, cost) — нужен do/does. Нет глагола или есть -ing — нужен am/is/are.",
+      rule: [0, 1],
+      tip: "Повтори правило «am / is / are или do / does?» во вкладке «Подсказка».",
+      items: [
+        { q: "___ you often go to the shopping mall?", o: ["Do", "Are", "Does"], a: 0 },
+        { q: "My mum ___ at the baker's now.", o: ["is", "does", "are"], a: 0 },
+        { q: "Where ___ your brother buy his football boots?", o: ["does", "is", "do"], a: 0 },
+        { q: "These earrings ___ very expensive.", o: ["are", "do", "is"], a: 0 },
+        { q: "She ___ like wearing tights.", o: ["doesn't", "isn't", "don't"], a: 0 },
+        { q: "We ___ looking for the fitting room.", o: ["are", "do", "is"], a: 0 },
+        { q: "I ___ pay in cash. I always pay by card.", o: ["don't", "am not", "doesn't"], a: 0 },
+        { q: "How much ___ this bracelet cost?", o: ["does", "is", "do"], a: 0 }
+      ]
+    },
+
+    // 5. ФОРМАТ ЭКЗАМЕНА
+    {
+      part: "exam", type: "exam", show: "ОГЭ Шоу", time: 20,
+      title: "ОГЭ: грамматика и словообразование",
+      instruction: "Преобразуй слово в скобках так, чтобы оно подходило по смыслу и грамматике.",
+      rule: [0, 1],
+      items: [
+        { q: "Look! The shop assistant ___ the price of the boots.", word: "CHANGE", a: ["is changing", "'s changing"] },
+        { q: "My dad ___ new football boots for me every year.", word: "BUY", a: ["buys"] },
+        { q: "___ your sister often go to the flea market?", word: "DO", a: ["Does"] },
+        { q: "These boots are too ___ for me. I can't buy them.", word: "EXPENSE", a: ["expensive"] },
+        { q: "The shop assistant was very ___ and helped me choose a present.", word: "HELP", a: ["helpful"] }
+      ]
+    },
+    {
+      part: "exam", type: "choice",
+      title: "🎧 ОГЭ Аудирование · Задание 1",
+      instruction: "🎧 Запись 1. Вы услышите четыре коротких диалога (A, B, C, D). Где происходит каждый? Одно место лишнее. Запись звучит 2 раза — послушай её 2 раза.",
+      items: [
+        { q: "Dialogue A", o: ["1) On a street", "2) In the cinema", "3) In a classroom", "4) In an internet cafe", "5) At home"], a: 2, keep: true },
+        { q: "Dialogue B", o: ["1) On a street", "2) In the cinema", "3) In a classroom", "4) In an internet cafe", "5) At home"], a: 4, keep: true },
+        { q: "Dialogue C", o: ["1) On a street", "2) In the cinema", "3) In a classroom", "4) In an internet cafe", "5) At home"], a: 0, keep: true },
+        { q: "Dialogue D", o: ["1) On a street", "2) In the cinema", "3) In a classroom", "4) In an internet cafe", "5) At home"], a: 1, keep: true }
+      ]
+    },
+    {
+      part: "exam", type: "choice",
+      title: "🎧 ОГЭ Аудирование · Задание 2",
+      instruction: "🎧 Запись 2. Вы услышите пять высказываний (A–E). О чём говорит каждый человек? Одно утверждение лишнее. Послушай 2 раза.",
+      items: [
+        { q: "Speaker A talks about…", o: ["1) his/her fashion hobby", "2) clothes popular with teenagers", "3) expensive trends for teenagers", "4) his/her friend’s shopping habits", "5) his/her favourite shop", "6) his/her favourite colours for clothes"], a: 3, keep: true },
+        { q: "Speaker B talks about…", o: ["1) his/her fashion hobby", "2) clothes popular with teenagers", "3) expensive trends for teenagers", "4) his/her friend’s shopping habits", "5) his/her favourite shop", "6) his/her favourite colours for clothes"], a: 0, keep: true },
+        { q: "Speaker C talks about…", o: ["1) his/her fashion hobby", "2) clothes popular with teenagers", "3) expensive trends for teenagers", "4) his/her friend’s shopping habits", "5) his/her favourite shop", "6) his/her favourite colours for clothes"], a: 5, keep: true },
+        { q: "Speaker D talks about…", o: ["1) his/her fashion hobby", "2) clothes popular with teenagers", "3) expensive trends for teenagers", "4) his/her friend’s shopping habits", "5) his/her favourite shop", "6) his/her favourite colours for clothes"], a: 1, keep: true },
+        { q: "Speaker E talks about…", o: ["1) his/her fashion hobby", "2) clothes popular with teenagers", "3) expensive trends for teenagers", "4) his/her friend’s shopping habits", "5) his/her favourite shop", "6) his/her favourite colours for clothes"], a: 4, keep: true }
+      ]
+    },
+    {
+      part: "exam", type: "choice",
+      title: "🎧 ОГЭ Аудирование · Задания 3–8",
+      instruction: "🎧 Запись 3. Вы услышите разговор двух друзей. В заданиях 3–8 выбери правильный ответ 1, 2 или 3. Послушай 2 раза.",
+      items: [
+        { q: "3. Lisa's brother is…", o: ["1) a football referee.", "2) a football fan.", "3) a football player."], a: 2, keep: true },
+        { q: "4. Lisa is fond of…", o: ["1) hockey.", "2) figure skating.", "3) football."], a: 1, keep: true },
+        { q: "5. Lisa lives close to…", o: ["1) a swimming pool.", "2) a stadium.", "3) a skating rink."], a: 1, keep: true },
+        { q: "6. Lisa's father works for…", o: ["1) a building company.", "2) a telephone company.", "3) an airline company."], a: 0, keep: true },
+        { q: "7. Lisa's mother is missing the game because she is…", o: ["1) ill.", "2) busy.", "3) abroad."], a: 0, keep: true },
+        { q: "8. This football match is played in…", o: ["1) summer.", "2) autumn.", "3) spring."], a: 2, keep: true }
+      ]
+    },
+
+    // 6. ФИНАЛ
+    {
+      part: "final", type: "chat",
+      title: "Финал: Никита в спортивном магазине",
+      instruction: "Ты пришёл за новыми бутсами. Выбирай правильные фразы!",
+      rule: [0, 1],
+      who: { name: "Shop assistant", avatar: "🧑‍💼" },
+      script: [
+        { say: "Hi! Can I help you?" },
+        { me: [
+          { t: "Yes, I am looking for football boots.", ok: true, reply: "Sure! What size do you need?" },
+          { t: "Yes, I looking for football boots.", fb: "💡 Что происходит сейчас: am + -ing → I am looking." },
+          { t: "Yes, I am look for football boots.", fb: "💡 После am нужен глагол с -ing: I am looking." }
+        ] },
+        { me: [
+          { t: "I need size 42.", ok: true, reply: "Here you are. The fitting room is over there. Do you want to try them on?" },
+          { t: "I am need size 42.", fb: "💡 need — обычный глагол, am не нужен: I need." },
+          { t: "I needs size 42.", fb: "💡 -s только для he/she/it. I need." }
+        ] },
+        { me: [
+          { t: "Yes, I do.", ok: true, reply: "So, how are they?" },
+          { t: "Yes, I am.", fb: "💡 Вопрос начинался с Do → отвечаем Yes, I do." },
+          { t: "Yes, I does.", fb: "💡 I → do. Does только для he/she/it." }
+        ] },
+        { me: [
+          { t: "They are great! How much do they cost?", ok: true, reply: "They're 80 pounds, but today there's a 20% discount." },
+          { t: "They are great! How much does they cost?", fb: "💡 they → do: How much do they cost?" },
+          { t: "They are great! How much are they cost?", fb: "💡 cost — обычный глагол, в вопросе нужен do: How much do they cost?" }
+        ] },
+        { me: [
+          { t: "What a bargain! Can I pay in cash?", ok: true, reply: "Of course. Here's your change. Anything else? Sorry, the red socks are out of stock." },
+          { t: "What a bargain! Can I pay on cash?", fb: "💡 Платить наличными — pay in cash." },
+          { t: "What a discount! Can I pay by the cash?", fb: "💡 pay in cash, без the." }
+        ] },
+        { me: [
+          { t: "No, thanks. My friend plays football too, so I want a ball for him.", ok: true, reply: "Great idea! The balls are on sale too. Have a nice day, Nikita! ⚽" },
+          { t: "No, thanks. My friend play football too, so I want a ball for him.", fb: "💡 My friend = he → plays (с -s)." },
+          { t: "No, thanks. My friend is play football too, so I want a ball for him.", fb: "💡 Обычно / всегда → Present Simple без is: My friend plays." }
+        ] }
+      ]
+    }
+  ]
+});
+</script>
+
+<!-- 🎧 Записи аудирования ОГЭ с сайта «Решу ОГЭ» (en-oge.sdamgia.ru). Движок не трогаем: плеер сам встаёт под инструкцию «🎧 Запись N.» -->
+<script>
+(function () {
+  var AUDIO = {
+    "🎧 Запись 1.": "https://en-oge.sdamgia.ru/files/3013.mp3",
+    "🎧 Запись 2.": "https://en-oge.sdamgia.ru/files/3011.mp3",
+    "🎧 Запись 3.": "https://en-oge.sdamgia.ru/files/3012.mp3"
+  };
+
+  function makePanel(key) {
+    var url = AUDIO[key];
+    var box = document.createElement("div");
+    box.className = "nk-audio";
+    box.style.cssText = "margin:10px 0 14px;padding:12px;border-radius:16px;background:rgba(31,138,76,.08);border:2px solid rgba(31,138,76,.35);";
+    var au = document.createElement("audio");
+    au.controls = true; au.preload = "none"; au.src = url;
+    au.style.cssText = "width:100%;display:block;";
+    au.addEventListener("play", function () {
+      document.querySelectorAll(".nk-audio audio").forEach(function (x) { if (x !== au) x.pause(); });
+    });
+    box.appendChild(au);
+    var link = document.createElement("a");
+    link.href = url; link.target = "_blank"; link.rel = "noopener";
+    link.textContent = "Не включается? Открыть запись отдельно ↗";
+    link.style.cssText = "display:inline-block;margin-top:8px;font-size:14px;font-weight:700;color:#1f6b3d;";
+    box.appendChild(link);
+    var note = document.createElement("div");
+    note.style.cssText = "font-size:13px;opacity:.8;margin-top:6px;";
+    note.textContent = "🔇 Нет звука? Переключи кнопку беззвучного режима сбоку на iPhone (чтобы не было оранжевой полоски) и прибавь громкость.";
+    box.appendChild(note);
+    return box;
+  }
+
+  function scan() {
+    var els = document.body.getElementsByTagName("*");
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.closest && el.closest(".nk-audio")) continue;
+      for (var key in AUDIO) {
+        var own = false;
+        for (var c = el.firstChild; c; c = c.nextSibling) if (c.nodeType === 3 && c.textContent.indexOf(key) >= 0) { own = true; break; }
+        if (!own) continue;
+        var anchor = el;
+        if (anchor.parentElement && /flex|grid/.test(getComputedStyle(anchor.parentElement).display)) anchor = anchor.parentElement;
+        var nx = anchor.nextElementSibling;
+        if (nx && nx.classList && nx.classList.contains("nk-audio")) continue;
+        anchor.insertAdjacentElement("afterend", makePanel(key));
+      }
+    }
+  }
+
+  var pending = false;
+  function schedule() { if (pending) return; pending = true; setTimeout(function () { pending = false; scan(); }, 150); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", schedule); else schedule();
+  new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+</body></html>
