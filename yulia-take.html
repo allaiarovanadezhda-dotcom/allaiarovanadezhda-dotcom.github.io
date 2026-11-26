@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Юлия", nameEn: "Yulia", gender: "f",
+  theme: "barbie",
+  formal: true,
+  teacher: "",
+  title: "Phrasal verbs with TAKE + Tenses + ЕГЭ 19–36",
+  intro: "Юлия, в этом задании вас ждут **фразовые глаголы с take**, сложные случаи **Present Perfect / Past Simple** и **Past Perfect**, немного **conditionals** и полный блок ЕГЭ **19–36**. Задания непростые, так что не торопитесь: если сомневаетесь, нажмите *💡 Подсказка*. Удачи! 🎾💗",
+  celebrate: { text: "Game, set and match! Вы справились блестяще!", emoji: "🎾", rain: ["💗","🎾","✨","🏆","🎀"], btn: "Ура!", fx: "both" },
+
+  rules: [
+    { title: "Phrasal verbs with TAKE",
+      text: "take after sb — быть похожим на родственника; take up — начать заниматься (хобби) или занимать (время, место); take off — взлететь, резко стать успешным, снять (одежду); take on — нанять, взять на себя (работу); take over — взять под контроль, перенять обязанности; take in — понять и запомнить, приютить, ушить одежду; take sth back — вернуть в магазин или забрать свои слова назад; take sth out on sb — срывать злость на ком-то; take sb up on sth — принять предложение; take sth up with sb — обсудить проблему с тем, кто может её решить; take sb through sth — подробно объяснить; take to sb/sth — проникнуться симпатией, пристраститься.",
+      examples: ["She takes after her mother.", "I took up Pilates last year.", "Don't take it out on me!", "I'll take you up on your offer."],
+      mistake: "take after — это не «брать после», а «быть похожим на родственника»." },
+    { title: "Present Perfect или Past Simple",
+      text: "Past Simple: время закончилось или указано (yesterday, ago, last year, in 2020, when I was a child), вопрос When…? и How long ago…?. Present Perfect: результат важен сейчас, период ещё не закончился (this week, today, so far), с since/for, ever, never, just, already, yet. После It's the first/second time… всегда Present Perfect. В конструкции It's been ages since I last… после since ставим Past Simple. Ещё одна ловушка: has gone (ушёл и ещё не вернулся) и has been (был и уже вернулся).",
+      examples: ["I've known her since I was seven.", "How long ago did you start?", "It's the third time I've lost it.", "He's gone to the shop."],
+      mistake: "I have seen him yesterday ❌ → I saw him yesterday ✅" },
+    { title: "Past Perfect",
+      text: "Past Perfect (had + V3) — действие, которое произошло раньше другого действия в прошлом. Типичные сигналы: by the time, already, before, after, when (если одно случилось раньше), It was the first time…, I wish I had… (сожаление о прошлом), косвенная речь (said that she had…). Hardly had I… when… и No sooner had I… than… — «едва я… как…», с обратным порядком слов. Past Perfect Continuous (had been + V-ing) — действие длилось до момента в прошлом.",
+      examples: ["When I got home, I realised I had left my racket at the club.", "No sooner had the match started than it began to rain.", "I wish I had booked the court earlier."],
+      mistake: "No sooner the match had started ❌ → No sooner had the match started ✅" },
+    { title: "Conditionals: mixed и инверсия",
+      text: "Смешанный тип: прошлое условие и результат сейчас — If + had V3, would + V (If I hadn't stayed up, I wouldn't be tired now). Условие про постоянное качество и результат в прошлом — If + V2, would have V3 (If she were more confident, she would have won). Unless = if not. Инверсия без if: Had I known… = If I had known…",
+      examples: ["If I hadn't stayed up so late, I wouldn't be so tired now.", "Had I known, I would have come.", "Unless you book today, you won't get a slot."],
+      mistake: "Unless you don't book ❌ → Unless you book ✅ (unless уже содержит отрицание)" },
+    { title: "ЕГЭ 19–29: как решать",
+      text: "19–24 (грамматика): прочитайте всё предложение и определите, что нужно: время, залог (was invited), степень сравнения, множественное число, местоимение или порядковое числительное. 25–29 (словообразование): определите часть речи (перед существительным нужно прилагательное, перед глаголом наречие) и проверьте, не нужна ли отрицательная приставка (un-, il-, in-, dis-) или множественное число.",
+      examples: ["achieve → achievement", "logic → illogical", "forget → unforgettable"],
+      mistake: "Часто забывают -s у существительных во множественном числе и отрицательную приставку." }
+  ],
+
+  words: [
+    ["take after sb", "быть похожим на (родственника)"],
+    ["take sth apart", "разобрать на части"],
+    ["take sth back", "вернуть (в магазин); забрать свои слова назад"],
+    ["take sth down", "разобрать (конструкцию); записать"],
+    ["take sb in", "приютить"],
+    ["take sth in", "понять и запомнить; ушить (одежду)"],
+    ["take off", "взлететь; резко стать успешным; внезапно уйти"],
+    ["take sth off", "снять (одежду); взять выходной"],
+    ["take on sth", "приобрести (вид, черту)"],
+    ["take sb on", "нанять; вступить в борьбу с"],
+    ["take sth on", "взять на себя (работу, ответственность)"],
+    ["take sb out", "пригласить (в ресторан и т. п.)"],
+    ["take sth out", "вынуть; оформить (кредит, страховку)"],
+    ["take sth out on sb", "срывать (злость) на ком-то"],
+    ["take sth over", "перенять обязанности; взять под контроль"],
+    ["take sb through sth", "подробно объяснить, провести через"],
+    ["take to sth", "начать регулярно делать"],
+    ["take to sb/sth", "проникнуться симпатией"],
+    ["take up sth", "начать заниматься (хобби); занимать (время, место)"],
+    ["take sb up on sth", "принять (предложение)"],
+    ["take sth up with sb", "обсудить проблему с тем, кто может её решить"]
+  ],
+
+  tasks: [
+    /* 1. РАЗМИНКА */
+    { part: "warmup", type: "wordfall", title: "Словопад: TAKE", count: 10, speed: 7, dir: "en-ru" },
+
+    /* 2. РАБОТА НАД ОШИБКАМИ */
+    { part: "review", type: "mistakes", title: "Работа над ошибками", count: 8, items: [
+      { q: "Choose the correct sentence.", o: ["Could you explain the rule to me?", "Could you explain me the rule?"], a: 0 },
+      { q: "My friend suggested ___ (go) to the gym together.", a: ["going"] },
+      { q: "He promised ___ (not / tell) anyone about it.", a: ["not to tell"] },
+      { q: "If we hadn't left so late, we ___ (not / be) late for training.", a: ["wouldn't have been", "would not have been"] },
+      { q: "If you stretch every day, your back ___ (feel) much better soon.", a: ["will feel"] },
+      { q: "If I had known about the sale, I ___ (buy) new trainers.", a: ["would have bought"] },
+      { q: "I was so tired that I played really ___ (bad).", a: ["badly"] },
+      { q: "She never does anything silly — she is very ___ (practical, makes good decisions).", a: ["sensible"] },
+      { q: "You can't trust him, he's so ___ (RELY).", a: ["unreliable"] },
+      { q: "My little brother is going through a ___ (REBEL) stage.", a: ["rebellious"] }
+    ] },
+
+    /* 3. ПОВТОРЯЕМ СЛОВА */
+    { part: "words", type: "vocab", title: "Повторяем слова", count: 8 },
+
+    /* 4. ОТРАБОТКА */
+    { part: "practice", type: "gaps", title: "TAKE + particle", rule: 0,
+      instruction: "Вставьте нужный предлог или частицу (в некоторых предложениях их две).",
+      items: [
+        "Yulia really takes {after} her dad: they're both calm and incredibly competitive.",
+        "I took {up} Pilates last year to improve my flexibility.",
+        "My new racket bag takes {up} half of the car boot!",
+        "Her career really took {off} after she won the junior championship.",
+        "Please take {off} your trainers before you come into the studio.",
+        "I'm sorry I called you lazy. I take it {back}.",
+        "When the old coach retired, his daughter took {over} the tennis academy.",
+        "The lecture was so fast that I couldn't take it all {in}.",
+        "I know you lost the match, but don't take it {out} {on} me!",
+        "Thanks for the free lesson offer — I'll take you {up} {on} it!",
+        "If you're unhappy with the schedule, take it {up} {with} the manager.",
+        "Our coach took us {through} every exercise step by step."
+      ],
+      tip: "Повторите значения фразовых глаголов с take во вкладке «Подсказка»." },
+
+    { part: "practice", type: "gaps", title: "Present Perfect or Past Simple?", rule: 1,
+      instruction: "Раскройте скобки, используя Present Perfect или Past Simple. Внимательно смотрите на маркеры времени: здесь много ловушек!",
+      items: [
+        "I {have known|'ve known} (know) my coach since I {was} (be) seven.",
+        "— {Have you ever been} (you / ever / be) to Wimbledon? — No, but my sister {went} (go) there two years ago, and she {hasn't stopped|has not stopped} (not stop) talking about it since.",
+        "This is the third time this month that I {have lost|'ve lost} (lose) my racket bag.",
+        "How long ago {did you take} (you / take) up Pilates?",
+        "I {have had|'ve had} (have) three trainings this week, and it's only Wednesday!",
+        "When I was a child, I {never ate|didn't ever eat|did not ever eat} (never / eat) vegetables. Now I can't live without salads.",
+        "— Someone {has taken|'s taken} (take) my water bottle! — Calm down, I {took} (take) it by mistake after training.",
+        "It's been ages since I last {played} (play) doubles.",
+        "— {Did you watch} (you / watch) the final last night? — No, I {haven't watched|have not watched} (not watch) it yet. Don't tell me who won!",
+        "Agatha Christie {wrote} (write) more than 60 novels, but my favourite blogger {has written|'s written} (write) only one book so far.",
+        "— I {didn't see|did not see} (not see) Masha at the party yesterday. — That's because she {has been|'s been} (be) ill since Monday.",
+        "— Where's your coach? — He {has gone|'s gone} (go) to the shop. He'll be back in ten minutes."
+      ],
+      tip: "Если время указано или закончилось (ago, yesterday, when I was…) — Past Simple. Since/for, so far, this week, ever/never, yet — Present Perfect." },
+
+    { part: "practice", type: "gaps", title: "Past Perfect or Past Simple?", rule: 2,
+      instruction: "Раскройте скобки, используя Past Perfect (Simple или Continuous) или Past Simple.",
+      items: [
+        "When I {got} (get) home, I realised I {had left|'d left} (leave) my racket at the club.",
+        "The coach was annoyed because we {hadn't done|had not done} (not do) the exercises he {had given|'d given} (give) us.",
+        "The match {had already started|'d already started} (already / start) when we finally {found} (find) our seats.",
+        "By the end of last season, she {had won|'d won} (win) five junior tournaments.",
+        "I {didn't recognise|did not recognise|didn't recognize|did not recognize} (not recognise) him at first because he {had grown|'d grown} (grow) a beard.",
+        "She {had been training|'d been training|had trained|'d trained} (train) for three hours when she {hurt} (hurt) her knee.",
+        "Hardly {had I sat} (I / sit) down when my phone {rang} (ring).",
+        "It was the first time she {had ever played|'d ever played|had played|'d played} (ever / play) on grass, so she {was} (be) a bit nervous."
+      ],
+      tip: "Что случилось раньше другого действия в прошлом — Past Perfect. После Hardly / No sooner — обратный порядок слов: had I…" },
+
+    { part: "practice", type: "rewrite", title: "Say it with Past Perfect", rule: 2,
+      instruction: "Перепишите предложение так, чтобы смысл не изменился. Начните с подсказки.",
+      items: [
+        { q: "She finished her warm-up. Then she went on court.", hint: "After she …", a: ["After she had finished her warm-up she went on court", "After she'd finished her warm-up she went on court"] },
+        { q: "The match started, and immediately it began to rain.", hint: "No sooner …", a: ["No sooner had the match started than it began to rain", "No sooner had the match started than it started to rain"] },
+        { q: "We got to the stadium. The final was already over.", hint: "By the time … (finish)", a: ["By the time we got to the stadium the final had already finished", "By the time we got to the stadium the final had finished", "By the time we got to the stadium the final had already ended", "By the time we got to the stadium the final had ended"] },
+        { q: "I'm sorry I didn't book the court earlier.", hint: "I wish …", a: ["I wish I had booked the court earlier", "I wish I'd booked the court earlier"] },
+        { q: "Before that tournament, I had never played abroad.", hint: "That tournament was the first time …", a: ["That tournament was the first time I had ever played abroad", "That tournament was the first time I had played abroad", "That tournament was the first time I'd ever played abroad", "That tournament was the first time I'd played abroad"] },
+        { q: "Anna said: «I lost my racket yesterday.»", hint: "Anna said that …", a: ["Anna said that she had lost her racket the day before", "Anna said that she had lost her racket the previous day", "Anna said she had lost her racket the day before", "Anna said she had lost her racket the previous day"] }
+      ],
+      tip: "No sooner had + подлежащее + V3 … than …; By the time + Past Simple, … had + V3; I wish I had + V3." },
+
+    { part: "practice", type: "gaps", title: "Tricky conditionals", rule: 3,
+      instruction: "Раскройте скобки. Внимание: здесь есть смешанные типы и инверсия.",
+      items: [
+        "If I {hadn't stayed|had not stayed} (not stay) up so late last night, I {wouldn't be|would not be} (not be) so tired now.",
+        "If she {were|was} (be) a more confident person, she {would have won|'d have won} (win) yesterday's match.",
+        "Unless you {book} (book) the court today, you {won't get|will not get} (not get) a slot for Saturday.",
+        "{Had I known} (I / know) about the tournament, I would have signed up.",
+        "If I {were|was} (be) you, I {would take|'d take} (take) up Pilates — it's great for tennis players."
+      ],
+      tip: "Прошлое условие + результат сейчас: If + had V3, would + V. Had I known = If I had known. Unless = if not." },
+
+    /* 5. ФОРМАТ ЕГЭ */
+    { part: "exam", type: "exam", title: "ЕГЭ: задания 19–24 (грамматика)", show: "ЕГЭ Шоу", time: 20, rule: 4,
+      instruction: "Преобразуйте слово в скобках так, чтобы оно грамматически соответствовало содержанию текста. Текст: «My First International Tournament».",
+      items: [
+        { q: "19. Last summer Yulia ___ to take part in her first international tournament.", word: "INVITE", a: ["was invited"] },
+        { q: "20. The night before the first match she was so nervous that she ___ at all.", word: "NOT SLEEP", a: ["didn't sleep", "did not sleep"] },
+        { q: "21. Two ___ in the front row were holding a huge pink banner with her name on it.", word: "WOMAN", a: ["women"] },
+        { q: "22. By the time the match began, thousands of fans ___ their seats.", word: "TAKE", a: ["had taken"] },
+        { q: "23. Her coach, who ___ her for six years by then, gave her one last piece of advice.", word: "TRAIN", a: ["had trained", "had been training"] },
+        { q: "24. «If you stay calm, you ___,» he whispered.", word: "WIN", a: ["will win"] }
+      ] },
+
+    { part: "exam", type: "exam", title: "ЕГЭ: задания 25–29 (словообразование)", show: "ЕГЭ Шоу", time: 20, rule: 4,
+      instruction: "Образуйте от слова в скобках однокоренное слово так, чтобы оно грамматически и лексически соответствовало содержанию текста.",
+      items: [
+        { q: "25. Winning a match abroad was a great ___ for such a young player.", word: "ACHIEVE", a: ["achievement"] },
+        { q: "26. Yulia played ___ and never gave up, even when she was losing.", word: "CONFIDENT", a: ["confidently"] },
+        { q: "27. Some of her decisions on court seemed ___, but they always worked.", word: "LOGIC", a: ["illogical"] },
+        { q: "28. After the final, the ___ of the tournament thanked all the players.", word: "ORGANISE", a: ["organisers", "organizers"] },
+        { q: "29. For Yulia, that week was absolutely ___.", word: "FORGET", a: ["unforgettable"] }
+      ] },
+
+    { part: "exam", type: "exam", title: "ЕГЭ: задания 30–36 (лексика)", show: "ЕГЭ Шоу", time: 20,
+      instruction: "Выберите вариант, который подходит по смыслу и грамматически. Текст: «From Tennis to Pilates».",
+      items: [
+        { q: "30. After a long season, Yulia decided to ___ a break from competitions.", o: ["take", "make", "do", "keep"], a: 0 },
+        { q: "31. She ___ up Pilates to help her body recover.", o: ["took", "got", "made", "put"], a: 0 },
+        { q: "32. At first the exercises looked easy, but they turned ___ to be very challenging.", o: ["out", "up", "over", "off"], a: 0 },
+        { q: "33. Her instructor paid special ___ to breathing.", o: ["attention", "care", "notice", "interest"], a: 0 },
+        { q: "34. Soon Pilates had a positive ___ on her game.", o: ["effect", "sense", "consequence", "reason"], a: 0 },
+        { q: "35. Now she ___ her success to a balance of hard work and rest.", o: ["owes", "puts", "makes", "holds"], a: 0 },
+        { q: "36. «Listen to your body,» she ___ every young player she meets.", o: ["tells", "says", "speaks", "talks"], a: 0 }
+      ] },
+
+    /* 6. ФИНАЛ */
+    { part: "final", type: "race", title: "Финал: Yulia's Grand Slam", skin: "tennis", items: [
+      { q: "Yulia ___ tennis since she was six.", o: ["has played", "played", "had played"], a: 0 },
+      { q: "Yulia ___ her first trophy when she was nine.", o: ["won", "has won", "had won"], a: 0 },
+      { q: "By the time Yulia arrived, the match ___.", o: ["had started", "has started", "starts"], a: 0 },
+      { q: "No sooner ___ the court than it started to rain.", o: ["had Yulia left", "Yulia had left", "did Yulia leave"], a: 0 },
+      { q: "If Yulia hadn't trained so hard, she ___ in the final now.", o: ["wouldn't be", "wouldn't have been", "won't be"], a: 0 },
+      { q: "Yulia really takes ___ her mum — they're both so determined.", o: ["after", "to", "on"], a: 0 },
+      { q: "Yulia's coach took her ___ every exercise step by step.", o: ["through", "over", "in"], a: 0 },
+      { q: "Don't take your stress ___ your friends, Yulia!", o: ["out on", "off on", "up with"], a: 0 },
+      { q: "Should Yulia win this match, she ___ to the semi-final.", o: ["will go", "would have gone", "went"], a: 0 }
+    ] }
+  ]
+});
+</script>
+</body></html>
