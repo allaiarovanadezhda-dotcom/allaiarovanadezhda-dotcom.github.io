@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Стёпа", nameEn: "Stepa", gender: "m",
+  theme: "sunny",
+  teacher: "",
+  title: "Много или мало? much, many, a few, a little + take",
+  intro: "Привет, Стёпа! ☀️ Сегодня разбираемся, **где сказать «много», а где «мало»** — и что можно посчитать, а что нельзя. А ещё снова тренируем хитрые глаголы с **take**. В конце тебя ждёт работа в зоомагазине 🐹🐀🐖\n\nЕсли сомневаешься — открой вкладку *«Подсказка»*.",
+  celebrate: { text: "Супер, Стёпа! Ни одной ошибки — даже мини-пиг в восторге!", emoji: "🐖", rain: ["🐀","🐖","🐢","🐶","🐱","☀️"], btn: "Ура!", fx: "both" },
+
+  rules: [
+    { title: "1. Можно посчитать или нельзя?",
+      text: "**Исчисляемые** (countable) — то, что можно посчитать: one rat, two rats, three dogs. У них есть множественное число.\n**Неисчисляемые** (uncountable) — то, что посчитать нельзя: water, juice, food, time, money, cheese, bread, grass.\n⚠️ Хитрые неисчисляемые: **homework, advice, news, money** — у них нет -s и нет a/an!",
+      examples: ["four rats, two dogs ✅ (считаем)", "some water, a lot of time ✅ (не считаем)", "I've got a lot of homework. ✅"],
+      mistake: "two moneys ❌, a homework ❌, many advices ❌" },
+    { title: "2. Много: many / much / a lot of",
+      text: "**many** — много (исчисляемые): many rats, many friends\n**much** — много (неисчисляемые): much water, much time — обычно в вопросах и отрицаниях\n**a lot of** — много (подходит ко всем!), особенно в утвердительных предложениях\nВопросы: **How many** rats? (сколько штук) / **How much** food? (сколько еды)",
+      examples: ["How many dogs have you got?", "I haven't got much time.", "Stepa has got a lot of pets."],
+      mistake: "many water ❌ → much water / a lot of water ✅" },
+    { title: "3. Мало: few / little — Немного: a few / a little",
+      text: "**few** — МАЛО (исчисляемые) 😟 — плохо, почти нет\n**little** — МАЛО (неисчисляемые) 😟\n**a few** — НЕСКОЛЬКО (исчисляемые) 🙂 — немного, но хватает\n**a little** — НЕМНОГО (неисчисляемые) 🙂\nСекрет: есть **a** — значит «есть немного, и это хорошо». Нет **a** — «почти нет, грустно». Часто так: **very few / very little** (очень мало), **only a few / only a little** (только немного, но хватит).",
+      examples: ["I've got a few friends. 🙂 (несколько — хорошо)", "I've got very few friends. 😟 (мало — грустно)", "There's a little juice — let's drink it! 🙂"],
+      mistake: "a little carrots ❌ → a few carrots ✅ (морковки можно посчитать)" },
+    { title: "4. some / any",
+      text: "**some** — немного, несколько — в утвердительных предложениях и в просьбах/предложениях (Would you like some tea? / Can I have some…?)\n**any** — в вопросах и отрицаниях: Have you got any…? / There aren't any…\n⚠️ После **mustn't, don't, haven't, weren't** — тоже **any**.",
+      examples: ["There are some apples on the table.", "Have you got any toys?", "There weren't any bananas."],
+      mistake: "I haven't got some money ❌ → I haven't got any money ✅" },
+    { title: "5. Глаголы с take",
+      text: "**take off** — снимать (одежду, обувь); взлетать (о самолёте)\n**take part in** — участвовать в\n**take place** — происходить, проходить (о событии)\n**take care of** — заботиться о\n**take after** — быть похожим на родственника\n**take up** — начать заниматься (хобби, спортом)\n**take a photo** — сфотографировать\n**It takes + время** — занимает (времени)\nФормы: take — **takes** (he/she/it сейчас) — **took** (вчера, в прошлом)",
+      examples: ["Take off your shoes, please.", "Stepa takes care of his rats.", "The concert took place in Moscow."],
+      mistake: "take up your shoes ❌ → take off ✅; take place in a competition ❌ → take part in ✅" },
+    { title: "6. Подсказка по временам ⏰",
+      text: "**Present Simple** — обычно, каждый день: Stepa **feeds** his rats every day. (he/she/it + **-s**!)\n**Past Simple** — вчера, last year, ago: He **took** a photo. He **was** busy. Вопрос/отрицание: **did** + глагол: Did he **take**…? There **weren't** any…\n**Past Continuous** — был в процессе: While he **was walking** the dogs, he **saw** a cat.\n**should / shouldn't** — совет: You **should** buy a few carrots.\n**have to / must / mustn't** — надо / нельзя: I **have to** feed the pig. You **mustn't** give him sweets. (после must — **без to**!)",
+      examples: ["Every morning he takes care of the rats. (Present Simple)", "Last year he took part in a competition. (Past Simple)", "While he was walking, he took a photo. (Past Cont. + Past Simple)"],
+      mistake: "I must to go ❌ → I must go ✅" }
+  ],
+
+  words: [
+    ["countable", "исчисляемый (можно посчитать)", "/ˈkaʊntəbl/", "rats, dogs, apples"],
+    ["uncountable", "неисчисляемый (нельзя посчитать)", "/ʌnˈkaʊntəbl/", "water, time, money"],
+    ["many", "много (исчисляемые)", "/ˈmeni/", "many rats"],
+    ["much", "много (неисчисляемые)", "/mʌtʃ/", "much water"],
+    ["a lot of", "много (ко всем)", "/ə lɒt əv/", ""],
+    ["a few", "несколько, немного 🙂", "/ə fjuː/", "исчисляемые"],
+    ["a little", "немного 🙂", "/ə ˈlɪtl/", "неисчисляемые"],
+    ["few", "мало 😟", "/fjuː/", "исчисляемые"],
+    ["little", "мало 😟", "/ˈlɪtl/", "неисчисляемые"],
+    ["some", "немного, несколько", "/sʌm/", "утверждения, просьбы"],
+    ["any", "какой-нибудь; нисколько", "/ˈeni/", "вопросы, отрицания"],
+    ["homework", "домашнее задание", "/ˈhəʊmwɜːk/", "неисчисляемое! без -s"],
+    ["advice", "совет, советы", "/ədˈvaɪs/", "неисчисляемое!"],
+    ["news", "новости, новость", "/njuːz/", "неисчисляемое!"],
+    ["money", "деньги", "/ˈmʌni/", "неисчисляемое!"],
+    ["grass", "трава", "/ɡrɑːs/", "неисчисляемое"],
+    ["customer", "покупатель", "/ˈkʌstəmə/", ""],
+    ["pet shop", "зоомагазин", "/pet ʃɒp/", ""],
+    ["take off", "снимать (одежду); взлетать", "/teɪk ɒf/", ""],
+    ["take part in", "участвовать в", "/teɪk pɑːt ɪn/", ""],
+    ["take place", "происходить, проходить", "/teɪk pleɪs/", "о событии"],
+    ["take care of", "заботиться о", "/teɪk keər əv/", ""],
+    ["take after", "быть похожим на родственника", "/teɪk ˈɑːftə/", ""],
+    ["take up", "начать заниматься (хобби)", "/teɪk ʌp/", ""],
+    ["take a photo", "сфотографировать", "/teɪk ə ˈfəʊtəʊ/", ""]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "race", title: "Гонка: считаем или нет? 🐀💨",
+      instruction: "Быстро выбирай! Можно посчитать — many / a few. Нельзя — much / a little.", rule: [0,1],
+      items: [
+        { q: "How ___ rats has Stepa got? — Four!", o: ["many", "much"], a: 0 },
+        { q: "How ___ water does a capybara drink?", o: ["much", "many"], a: 0 },
+        { q: "Can I have a ___ cheese for my rats?", o: ["little", "few"], a: 0 },
+        { q: "Stepa has got a ___ dogs — two.", o: ["few", "little"], a: 0 },
+        { q: "I haven't got ___ homework today. 🎉", o: ["much", "many"], a: 0 },
+        { q: "There are ___ capybaras in this zoo.", o: ["a lot of", "much"], a: 0 },
+        { q: "Mum gave me some good ___.", o: ["advice", "advices"], a: 0 },
+        { q: "My dad hasn't got much ___.", o: ["money", "moneys"], a: 0 }
+      ] },
+
+    { part: "review", type: "mistakes", count: 6, title: "Работа над ошибками 🔎",
+      instruction: "Вспоминаем глаголы с take, где были ошибки в прошлый раз.", rule: 4,
+      items: [
+        { q: "Please ___ your hat — we are in the house now. (снять)", a: ["take off"] },
+        { q: "Stepa wants to ___ a folk dance festival. (участвовать в)", a: ["take part in"] },
+        { q: "Lera's birthday party ___ at home last Saturday. (проходила)", a: ["took place"] },
+        { q: "The plane ___ at 6 o'clock, and we flew to the Maldives.", o: ["took off", "took up", "took part"], a: 0 },
+        { q: "Do you want to ___ in the school concert?", o: ["take part", "take place", "take up"], a: 0 },
+        { q: "My sister ___ yoga last month — now she goes there every week.", o: ["took up", "took off", "took place"], a: 0 }
+      ] },
+
+    { part: "words", type: "vocab", count: 8, title: "Повторяем слова 🐢" },
+
+    { part: "practice", type: "choice", title: "Много или мало? 🤔",
+      instruction: "Читай внимательно: по смыслу тут МНОГО или МАЛО? Хорошо это (a few / a little) или плохо (few / little)?", rule: [1,2],
+      tip: "Посмотри на конец предложения: «about twenty» — много, «only one» — мало, «enough» — немного, но хватает.",
+      items: [
+        { q: "Stepa is happy! He's got ___ friends at his dance school — about twenty!", o: ["a lot of", "few"], a: 0 },
+        { q: "Poor turtle! It has very ___ space in its old box — it can't move.", o: ["little", "a lot of"], a: 0 },
+        { q: "I've got ___ money — enough for an ice cream. Let's buy one! 🍦", o: ["a little", "little"], a: 0 },
+        { q: "There were very ___ people on the beach — it was empty and quiet.", o: ["few", "many"], a: 0 },
+        { q: "Hurry up! We haven't got ___ time — the bus is coming!", o: ["much", "many"], a: 0 },
+        { q: "The dogs were hungry because Stepa gave them very ___ food — only one spoon.", o: ["little", "much"], a: 0 },
+        { q: "I know ___ English songs — five or six. I can sing them! 🎤", o: ["a few", "few"], a: 0 }
+      ] },
+
+    { part: "practice", type: "bank", title: "Один день Стёпы 🐖☀️",
+      instruction: "Вставь слова из банка. Каждое слово — один раз. Думай: можно посчитать? Много или мало? Вопрос, отрицание или утверждение?", rule: [1,2,3],
+      tip: "very few / very little — мало 😟; only a few / only a little — немного, но хватает 🙂; any — в отрицаниях и вопросах.",
+      items: [
+        "Stepa spends {a lot of} time with his pets every day.",
+        "How {many} rats has he got? — Four!",
+        "How {much} food does the mini pig eat? — Oh, a lot!",
+        "Yesterday Stepa was very busy. He had very {little} free time — only ten minutes.",
+        "We have only {a little} time, but it's enough for a snack.",
+        "Last year the cat was sad — he had very {few} friends.",
+        "I've got only {a few} carrots, but it's enough for the capybara.",
+        "Stepa, I've got {some} good news for you! We're going to the zoo!",
+        "There weren't {any} bananas left — not even one! The mini pig ate them all."
+      ] },
+
+    { part: "practice", type: "bank", title: "Take, takes или took? 📷",
+      instruction: "Вставь нужный глагол с take. Смотри на время: каждый день (takes), вчера/в прошлом году (took), просьба (take). Есть 2 лишних.", rule: [4,5],
+      tip: "Сначала смысл (снять? участвовать? заботиться?), потом время: every day → takes, last year → took.",
+      extra: ["take place", "took off"],
+      items: [
+        "Please {take off} your shoes — the mini pig is sleeping on the carpet!",
+        "Every morning Stepa {takes care of} his four rats.",
+        "Last year Stepa {took part in} a folk dance competition.",
+        "The competition {took place} in a big theatre.",
+        "Lera says Stepa {takes after} their dad — they both love animals.",
+        "Yesterday, while Stepa was walking the dogs, he {took a photo} of a funny cat.",
+        "Stepa wants to {take up} swimming before his trip to the Maldives."
+      ] },
+
+    { part: "final", type: "quest", title: "Стёпа работает в зоомагазине 🏪🐹",
+      place: "Pet Shop",
+      intro: "Сегодня Стёпа — продавец в зоомагазине! Отвечай покупателям правильно: много или мало, some или any, и не забудь про take.",
+      scenes: [
+        { place: "Pet Shop", scene: "🛒 Заходит покупательница", who: "Mrs Brown",
+          say: "Hi! I've got a new capybara. How much food does it need?",
+          choices: [
+            { t: "It needs a lot of grass — capybaras eat all day!", ok: true, reply: "Wow! Thank you!" },
+            { t: "It needs many grass — capybaras eat all day!", fb: "💡 grass — неисчисляемое, many нельзя. Нужно a lot of grass." }
+          ] },
+        { place: "Pet Shop", scene: "🥕 Mrs Brown смотрит на морковку", who: "Mrs Brown",
+          say: "Should I buy a lot of carrots for it?",
+          choices: [
+            { t: "No, just a few. Capybaras shouldn't eat too many carrots.", ok: true, reply: "OK, I'll take three." },
+            { t: "No, just a little carrots. Capybaras shouldn't eat too much carrots.", fb: "💡 carrots можно посчитать → a few carrots, too many carrots." }
+          ] },
+        { place: "Pet Shop", scene: "🐀 Заходит мальчик с клеткой", who: "Tom",
+          say: "Hi! I'm going to take part in a football match this weekend. Can you look after my rats?",
+          choices: [
+            { t: "Sure! I take care of four rats at home.", ok: true, reply: "Great! Thank you so much!" },
+            { t: "Sure! I take after four rats at home.", fb: "💡 take after — быть похожим на родственника. Заботиться — take care of." }
+          ] },
+        { place: "Pet Shop", scene: "🧸 Tom смотрит на полки", who: "Tom",
+          say: "Have you got any toys for rats?",
+          choices: [
+            { t: "Sorry, we haven't got any toys now, but we've got some nice houses.", ok: true, reply: "Cool, I'll buy a house!" },
+            { t: "Sorry, we haven't got some toys now, but we've got any nice houses.", fb: "💡 В отрицании — any (haven't got any), в утверждении — some (we've got some)." }
+          ] },
+        { place: "Pet Shop", scene: "📸 Заходит девочка с телефоном", who: "Alice",
+          say: "Your mini pig is so cute! Can I take a photo of him and give him a sweet?",
+          choices: [
+            { t: "You can take a photo, but you mustn't give him any sweets.", ok: true, reply: "OK! Smile, piggy! 📸" },
+            { t: "You can take a photo, but you mustn't give him some sweets.", fb: "💡 mustn't — это отрицание, поэтому any sweets." }
+          ] },
+        { place: "Pet Shop", scene: "📋 Вечер. Подходит директор", who: "Manager",
+          say: "Stepa, the shop was very busy today! How many customers did we have?",
+          choices: [
+            { t: "We had a lot of customers — about fifty!", ok: true, reply: "Fantastic!" },
+            { t: "We had very few customers — about fifty!", fb: "💡 few — это МАЛО. Пятьдесят покупателей — это много: a lot of customers." }
+          ] },
+        { place: "Pet Shop", scene: "💰 Директор открывает кассу", who: "Manager",
+          say: "Is there much money in the box?",
+          choices: [
+            { t: "No, there's only a little money — people paid by card.", ok: true, reply: "That's fine!" },
+            { t: "No, there are only a few money — people paid by card.", fb: "💡 money — неисчисляемое: a little money, и глагол is (there's)." }
+          ] },
+        { place: "Pet Shop", scene: "🕕 Пора домой", who: "Manager",
+          say: "Great job! What do you have to do before you go home?",
+          choices: [
+            { t: "I have to feed the mini pig and take off my uniform.", ok: true, reply: "Perfect. See you tomorrow, Stepa!" },
+            { t: "I must to feed the mini pig and take up my uniform.", fb: "💡 После must — без to. А снять форму — take off." }
+          ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🏆", text: "Стёпа — лучший продавец месяца! Директор дарит ему игрушку для крыс 🐀🎁" },
+        { max: 2, emoji: "👍", text: "Отличная работа! Пара ошибок — но покупатели довольны 😊" },
+        { emoji: "🐖", text: "Мини-пиг немного запутался… Загляни в «Подсказку» и попробуй ещё раз!" }
+      ] }
+  ]
+});
+</script>
+</body></html>
