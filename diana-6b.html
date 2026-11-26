@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+var TASKS = [
+  { part:"warmup", type:"race", skin:"runway", title:"Разминка: body",
+    instruction:"Выходим на подиум! Выбирай слово про тело — каждый верный ответ = шаг вперёд 💃",
+    items:[
+      { q:"You do this with your hands at the end of a great show.", o:["clap","nod","bite"], a:0 },
+      { q:"You move your head up and down to say *yes*.", o:["nod","wave","kick"], a:0 },
+      { q:"You move your hand from side to side to say goodbye.", o:["wave","point","stare"], a:0 },
+      { q:"Don't ___ at people on the metro — it's rude to look at them for so long!", o:["stare","smell","whistle"], a:0 },
+      { q:"Footballers ___ the ball, basketball players throw it.", o:["kick","bite","blow"], a:0 },
+      { q:"The part of the body between your head and your shoulders.", o:["neck","knee","back"], a:0 },
+      { q:"You have ten of these on your feet.", o:["toes","fingers","lips"], a:0 },
+      { q:"Which word has a silent **k**?", o:["knee","kick","back"], a:0 }
+    ] },
+
+  { part:"review", type:"mistakes", count:6, title:"Вспоминаем прошлые темы",
+    instruction:"Короткий повтор: have to / must, -ed / -ing, предлоги и телефонные фразы.",
+    items:[
+      { q:"You ___ wear a uniform at our school — it's optional.", o:["don't have to","mustn't","can't"], a:0 },
+      { q:"After a twelve-hour flight I was absolutely ___ (EXHAUST).", a:["exhausted"] },
+      { q:"She's really good ___ languages — she speaks four!", o:["at","in","on"], a:0 },
+      { q:"Sorry, you're breaking up. Can I call you ___ in five minutes?", a:["back"] },
+      { q:"The documentary about wild cats was ___ (FASCINATE).", a:["fascinating"] },
+      { q:"Our plans for the weekend depend ___ the weather.", o:["on","of","from"], a:0 }
+    ] },
+
+  { part:"words", type:"bank", title:"Sport is back!",
+    instruction:"Прошлым летом Диана была в Барселоне, и друг позвал её на футбол. Вставь слова про спорт. Два слова — лишние.",
+    items:[
+      "We got to the {stadium} an hour before the match started.",
+      "Almost 90,000 {spectators} were watching — the noise was unbelievable!",
+      "Before the game, the players {warmed up} for twenty minutes.",
+      "The {referee} gave a yellow card to a player who kicked an {opponent}.",
+      "In the 30th minute the captain {scored} a fantastic goal.",
+      "Unfortunately, one player {got injured} and had to leave the {pitch}.",
+      "In the end Barcelona {beat} Real Madrid 2–1, and the {coach} was jumping with joy.",
+      "My friend {works out} in the gym four times a week — he wants to {get fit} for a marathon."
+    ],
+    extra:["won","umpire","court","drew"],
+    tip:"**beat** + соперник (beat Real Madrid), **win** + матч/кубок (win the match). **referee** — футбол, **umpire** — теннис. **pitch** — футбольное поле, **court** — корт." },
+
+  { part:"practice", type:"gaps", rule:[0,1,2], title:"6B b · must, might (not) or can't?",
+    instruction:"Упражнение из учебника. Вставь **must**, **might (not)** или **can't**.",
+    items:[
+      "A: Do you know anyone who drives a Ferrari? B: Yes, my nephew. I don't know his salary, but he {must} earn a fortune!",
+      "A: Why don't you buy this dress for your mum? B: I'm not sure. She {might not|may not|mightn't} like it. It's a bit short for her.",
+      "A: My sister works as an interpreter for the EU. B: She {must} speak a lot of languages to work there.",
+      "A: Did you know that Andy's parents have split up? B: Poor Andy. He {can't|cannot} be very happy about that.",
+      "A: Are your neighbours away? All the curtains are closed. B: I'm not sure. I suppose they {might|may|could} be on holiday.",
+      "A: Where's your colleague today? B: She {must} be ill. She called to say she was going to the doctor's.",
+      "A: I'm looking forward to seeing Jane! I haven't seen her for years. B: You {might not|may not|mightn't} recognize her — she's lost a lot of weight.",
+      "A: My daughter has failed all her exams again. B: She {can't|cannot} be working very hard.",
+      "A: Why is Tina so happy? B: I'm not sure, but she {might|may|could} have a new partner.",
+      "A: Where does your boss live? B: I don't know, but he {can't|cannot} live near the office because he commutes every day by train."
+    ],
+    tip:"Есть подсказка «I'm not sure» → **might**. Уверена, что НЕ так → **can't** (не mustn't!)." },
+
+  { part:"practice", type:"match", rule:4, title:"Take: что это значит?",
+    instruction:"Соедини фразовый глагол с объяснением.",
+    pairs:[
+      ["take after somebody", "be similar to a parent or relative"],
+      ["take up something", "start a new hobby or activity"],
+      ["take off (a plane)", "leave the ground"],
+      ["take something back", "return something to a shop"],
+      ["take somebody on", "employ someone"],
+      ["take something in", "understand and remember information"],
+      ["take something out on somebody", "treat someone badly because you're upset about something else"],
+      ["take somebody up on something", "accept an offer or suggestion"],
+      ["take somebody out", "invite someone to a restaurant, cinema etc. and pay"],
+      ["take something over", "take control or responsibility from someone else"]
+    ] },
+
+  { part:"practice", type:"bank", rule:4, title:"Take в жизни",
+    instruction:"Вставь фразовый глагол с **take**. Два варианта — лишние.",
+    items:[
+      "Everyone says I {take after} my mum — we have the same eyes and the same laugh.",
+      "Last year my cousin {took up} yoga, and now she does it every morning.",
+      "Our plane {took off} two hours late because of the fog.",
+      "These jeans are too small. I'm going to {take them back} to the shop tomorrow.",
+      "The lecture was so fast that I couldn't {take in} all the information.",
+      "I'm sorry I shouted. I had a terrible day, but I shouldn't {take it out on} you.",
+      "Thanks for offering me a lift — I might {take you up on} that!",
+      "When the manager left, Anna {took over} the whole project.",
+      "The new café near my house is {taking on} staff — maybe I'll apply for a summer job.",
+      "It's your birthday, so I'm {taking you out} for dinner. My treat!",
+      "My little brother loves to {take apart} old radios to see how they work."
+    ],
+    extra:["took down","take to"],
+    tip:"Открой вкладку «Слова» — там все значения take с переводом и озвучкой." },
+
+  { part:"practice", type:"choice", rule:4, title:"Take: выбери частицу",
+    instruction:"Другие значения **take** из твоего списка. Выбери, какое слово нужно после take.",
+    items:[
+      { q:"Hold on, let me get a pen and **take** your number ___.", o:["down","off","after"], a:0 },
+      { q:"It's really hot in here — I'm going to **take** my jacket ___.", o:["off","in","to"], a:0 },
+      { q:"Her little video about cats **took** ___ and got two million views in a week!", o:["off","up","apart"], a:0 },
+      { q:"When their house flooded, their neighbours **took** them ___ for a month.", o:["in","out","over"], a:0 },
+      { q:"I didn't understand the instructions, so my brother **took** me ___ them step by step.", o:["through","after","down"], a:0 },
+      { q:"My grandma immediately **took** ___ my new boyfriend — she says he's charming.", o:["to","after","on"], a:0 },
+      { q:"The soup was cold, so we **took** it ___ **with** the manager.", o:["up","in","over"], a:0 },
+      { q:"Before the trip, we **took** ___ travel insurance.", o:["out","off","back"], a:0 },
+      { q:"I'm so tired — I'm going to **take** Friday ___ and have a long weekend.", o:["off","up","down"], a:0 },
+      { q:"After the renovation, the old hotel **took** ___ a completely new look.", o:["on","after","to"], a:0 }
+    ],
+    tip:"Сверяйся со вкладкой «Слова»: у take off, take in, take out по несколько значений." },
+
+  { part:"practice", type:"bank", title:"The body in action",
+    instruction:"Слова со стр. 160. Вставь глагол или часть тела. Три слова — лишние.",
+    items:[
+      "The audience {clapped} for five minutes after the show.",
+      "Please don't {stare} at people on the metro — it makes them feel uncomfortable.",
+      "When I asked if she was ready, she just {nodded} and smiled.",
+      "Careful! That dog might {bite}.",
+      "She {waved} goodbye to us from the train window.",
+      "Can you {taste} the soup and tell me if it needs more salt?",
+      "He put two fingers in his mouth and {whistled} loudly.",
+      "I've hurt my {knee}, so I can't go running today.",
+      "\"Open your mouth and stick out your {tongue},\" said the doctor.",
+      "My {stomach} hurts — I ate too much pizza last night."
+    ],
+    extra:["kicked","pointed","shoulder"],
+    tip:"**stare at** — пристально смотреть, **nod** — кивать, **wave** — махать. **tongue** /tʌŋ/, **stomach** /ˈstʌmək/." },
+
+  { part:"exam", type:"choice", rule:5, title:"ЕГЭ · Аудирование, задание 2",
+    audio:"https://en-ege.sdamgia.ru/files/28065.mp3", page:"https://en-ege.sdamgia.ru/problem?id=3577",
+    instruction:"Вы услышите **диалог** Джейка и мисс Кларк. Определите, какие утверждения **A–G** соответствуют содержанию (**1 — True**), какие не соответствуют (**2 — False**) и о чём в тексте **не сказано** (**3 — Not stated**). Запись звучит дважды.",
+    items:[
+      { q:"**A.** Jake succeeded in his school-leaving exams.", o:["1 — True","2 — False","3 — Not stated"], a:0, keep:true },
+      { q:"**B.** Jake has an elder brother.", o:["1 — True","2 — False","3 — Not stated"], a:2, keep:true },
+      { q:"**C.** Jake wants to teach the subject Miss Clark teaches.", o:["1 — True","2 — False","3 — Not stated"], a:2, keep:true },
+      { q:"**D.** Miss Clark is surprised with Jake's career choice.", o:["1 — True","2 — False","3 — Not stated"], a:0, keep:true },
+      { q:"**E.** Jake doesn't believe in the abilities of every student.", o:["1 — True","2 — False","3 — Not stated"], a:1, keep:true },
+      { q:"**F.** Miss Clark thinks Jake's made the right choice.", o:["1 — True","2 — False","3 — Not stated"], a:0, keep:true },
+      { q:"**G.** Miss Clark isn't happy to hear Jake's words.", o:["1 — True","2 — False","3 — Not stated"], a:1, keep:true }
+    ],
+    tip:"**Not stated** — когда в тексте этого просто нет (например, сказано, что брат есть, но не сказано, старший он или младший). **False** — когда в тексте сказано обратное." },
+
+  { part:"exam", type:"choice", rule:5, title:"ЕГЭ · Аудирование, задания 3–9",
+    audio:"https://en-ege.sdamgia.ru/files/8885.mp3", page:"https://en-ege.sdamgia.ru/problem?id=1765",
+    instruction:"Вы услышите **интервью** со стилистом Jane Dixon. Выберите правильный ответ **1, 2 или 3**. Запись звучит дважды. Вопросы идут в том же порядке, что и интервью.",
+    items:[
+      { q:"**3.** In what way may Jane Dixon be known to the general public?", o:["1) Her photos are in glossy magazines.","2) She appears in many shows on MTV.","3) Her work with celebrities can be seen in the media."], a:2, keep:true },
+      { q:"**4.** What does Jane Dixon say about working in the beauty industry?", o:["1) It is both challenging and exciting.","2) It is so hard that you might need a psychologist.","3) Showbiz people often disagree with their hairstylists."], a:0, keep:true },
+      { q:"**5.** How does Jane Dixon describe her daily routine?", o:["1) She has to do some work as the head of a nonprofit organization.","2) She spends much time training young hairstylists.","3) She has to spend a lot of time in courts."], a:1, keep:true },
+      { q:"**6.** What, according to Jane Dixon, is the best part of her job?", o:["1) Everybody in the showbiz knows you.","2) You help people look more beautiful.","3) You can communicate with celebrities."], a:1, keep:true },
+      { q:"**7.** What does Jane Dixon consider fashionable this season?", o:["1) Short curly hair.","2) Simple hairstyles.","3) Autumn colors."], a:2, keep:true },
+      { q:"**8.** Why, according to Jane Dixon, are extensions so popular among celebrities?", o:["1) They bring out a hairstyle.","2) They make a hairstyle look expensive.","3) They are fashionable right now."], a:0, keep:true },
+      { q:"**9.** Which of the following does Jane Dixon NOT recommend as part of day-to-day hair care?", o:["1) Avoid shampoos for everyday use.","2) Protect your hair from the rain.","3) Brush your hair every day."], a:0, keep:true }
+    ],
+    tip:"Читай вопрос и три варианта ДО прослушивания. Неверные варианты часто содержат слова из записи — выбирай по смыслу, а не по совпадению слов." }
+];
+
+HW({
+  student: "Диана", nameEn: "Diana", gender: "f",
+  theme: "purple",
+  decor: ["💜", "✨", "🐱", "✈️", "🏆"],
+  teacher: "",
+  teacherSign: "Надежда",
+  title: "6B · Modals of deduction: must, might, can't",
+  intro: "Привет! 💜 Сегодня учимся делать догадки с **must / might / can't**. Ещё в ДЗ — упражнения из учебника (6B a и b), слова про **тело** (стр. 160), **фразовые глаголы с take**, повтор **спорта** и **аудирование ЕГЭ** (задания 2 и 3–9). Для аудирования лучше взять наушники 🎧\n\nПрогресс сохраняется — можно делать по частям. Если что-то забыла — открой вкладку «Подсказка» 💡",
+  celebrate: { text: "Идеально! Ты звезда этого показа! ✨", emoji: "🪽💜🪽", rain: ["💜", "✨", "🪽", "💎", "👑", "🐱"], btn: "Ура! 💜", fx: "both" },
+
+  rules: [
+    { title: "might / may / could — возможно",
+      text: "Когда думаешь, что что-то **возможно** правда (примерно 50/50).\n**might / may / could + глагол**\nОтрицание: **might not / may not** (не couldn't!).",
+      examples: ["Her phone is off. She might be on the plane.", "Take an umbrella — it may rain later.", "He might not know about the party."],
+      mistake: "❌ He can be at home now. ✅ He might / may / could be at home now. (can для догадок не используем)" },
+    { title: "must — уверена, что ДА",
+      text: "Когда ты **уверена**, что что-то правда, потому что есть доказательства.\n**must + глагол**",
+      examples: ["All the lights are off. They must be out.", "She travels every month. She must love flying."],
+      mistake: "Здесь must — это не «должна», а «наверняка». Сравни: You must wear a helmet (правило) / He must be tired (догадка)." },
+    { title: "can't — уверена, что НЕТ",
+      text: "Когда ты **уверена**, что что-то **неправда** или невозможно. Это противоположность must в догадках.",
+      examples: ["That can't be Jack's wife — his wife has dark hair.", "You've just eaten! You can't be hungry."],
+      mistake: "❌ They mustn't be out — the lights are on. ✅ They can't be out — the lights are on." },
+    { title: "must / might / can't + be + -ing",
+      text: "Если догадка о том, что происходит **прямо сейчас**, используй **be + -ing**.",
+      examples: ["The music is very loud. They must be having a party.", "She isn't answering. She might be driving.", "He can't be sleeping — I can hear him on the phone."],
+      mistake: "❌ They must have a party now. ✅ They must be having a party." },
+    { title: "Phrasal verbs with TAKE",
+      text: "**take after** — быть похожей на родственника\n**take up** — начать (хобби); занимать (время, место)\n**take off** — взлететь; стать популярным; внезапно уйти\n**take sth off** — снять (одежду); взять выходной\n**take back** — вернуть в магазин; забрать слова назад\n**take in** — понять и запомнить; ушить одежду; **take sb in** — приютить\n**take on** — нанять; взять на себя работу; сразиться с кем-то\n**take out** — вынуть; пригласить куда-то и заплатить; оформить (кредит, страховку)\n**take sth out on sb** — срываться на ком-то\n**take over** — взять на себя (вместо другого); захватить контроль\n**take apart** — разобрать; **take down** — разобрать (конструкцию); записать\n**take sb through sth** — подробно объяснить\n**take to sb/sth** — проникнуться симпатией; начать регулярно делать\n**take sb up on sth** — принять предложение; **take sth up with sb** — обсудить проблему",
+      examples: ["I take after my dad.", "She's taken up tennis.", "Don't take it out on me!"],
+      mistake: "Местоимение — в середину: ✅ take it back, ❌ take back it." },
+    { title: "ЕГЭ: как делать аудирование",
+      text: "**Задание 1:** до записи подчеркни ключевые слова в 7 утверждениях; в записи ищи синонимы. Одно утверждение лишнее.\n**Задание 2:** True — сказано то же; False — сказано обратное; Not stated — об этом нет информации.\n**Задания 3–9:** вопросы идут по порядку интервью. Неверные варианты часто повторяют слова из записи — выбирай по смыслу.\nЗапись всегда звучит **дважды**.",
+      examples: ["with flying colours = excellently", "it's not my cup of tea = it doesn't suit me"],
+      mistake: "Не путай False и Not stated: если в тексте нет информации — это Not stated, даже если утверждение кажется неправдой." }
+  ],
+
+  words: [
+    ["back", "спина", "/bæk/", ""],
+    ["face", "лицо", "/feɪs/", ""],
+    ["neck", "шея", "/nek/", ""],
+    ["shoulder", "плечо", "/ˈʃəʊldə/", ""],
+    ["stomach", "живот", "/ˈstʌmək/", "ch читается как [k]"],
+    ["knee", "колено", "/niː/", "k не читается"],
+    ["finger", "палец руки", "/ˈfɪŋɡə/", ""],
+    ["toe", "палец ноги", "/təʊ/", ""],
+    ["lips", "губы", "/lɪps/", ""],
+    ["tongue", "язык (орган)", "/tʌŋ/", "-ue не читается"],
+    ["teeth", "зубы (tooth — зуб)", "/tiːθ/", ""],
+    ["feet", "ступни (foot — ступня)", "/fiːt/", ""],
+    ["bite", "кусать", "/baɪt/", "bit — bitten"],
+    ["blow", "дуть", "/bləʊ/", "blew — blown"],
+    ["clap", "хлопать в ладоши", "/klæp/", ""],
+    ["kick", "бить ногой, пинать", "/kɪk/", ""],
+    ["nod", "кивать", "/nɒd/", "nod your head"],
+    ["point", "показывать пальцем", "/pɔɪnt/", "point at sb"],
+    ["smell", "нюхать; пахнуть", "/smel/", ""],
+    ["stare", "пристально смотреть", "/steə/", "stare at sb"],
+    ["taste", "пробовать на вкус", "/teɪst/", ""],
+    ["throw", "бросать", "/θrəʊ/", "threw — thrown"],
+    ["touch", "трогать", "/tʌtʃ/", ""],
+    ["wave", "махать", "/weɪv/", "wave goodbye"],
+    ["whistle", "свистеть", "/ˈwɪsl/", "t не читается"],
+    ["take after somebody", "быть похожей на (родственника)", "", ""],
+    ["take something apart", "разобрать на части", "", ""],
+    ["take something back", "вернуть в магазин; забрать слова назад", "", ""],
+    ["take something down", "разобрать (конструкцию); записать", "", ""],
+    ["take somebody in", "приютить", "", ""],
+    ["take something in", "понять и запомнить; ушить (одежду)", "", ""],
+    ["take off", "взлететь; стать популярным; внезапно уйти", "", ""],
+    ["take something off", "снять (одежду); взять выходной", "", ""],
+    ["take on something", "приобрести (вид, качество)", "", ""],
+    ["take somebody on", "нанять; сразиться с кем-то", "", ""],
+    ["take something on", "взять на себя (работу, ответственность)", "", ""],
+    ["take somebody out", "пригласить куда-то и заплатить", "", ""],
+    ["take something out", "вынуть; оформить (кредит, страховку)", "", ""],
+    ["take something out on somebody", "срываться на ком-то", "", ""],
+    ["take something over", "взять на себя; захватить контроль", "", ""],
+    ["take somebody through something", "подробно объяснить", "", ""],
+    ["take to something", "начать регулярно что-то делать", "", ""],
+    ["take to somebody", "проникнуться симпатией", "", ""],
+    ["take up something", "начать (хобби); занимать (время, место)", "", ""],
+    ["take somebody up on something", "принять предложение", "", ""],
+    ["take something up with somebody", "обсудить проблему (с тем, кто может решить)", "", ""]
+  ],
+
+  vocab: [
+    ["athlete","спортсмен"], ["coach","тренер"], ["captain","капитан"], ["fans","болельщики"],
+    ["spectators","зрители"], ["referee","судья (футбол)"], ["umpire","судья (теннис)"], ["opponent","соперник"],
+    ["stadium","стадион"], ["court","корт"], ["pitch","футбольное поле"], ["track","беговая дорожка"],
+    ["slope","горный склон"], ["changing room","раздевалка"], ["beat","обыграть (соперника)"], ["win","выиграть (матч)"],
+    ["draw","сыграть вничью"], ["score","забить (гол)"], ["train","тренироваться"], ["warm up","разминаться"],
+    ["work out","заниматься в спортзале"], ["get fit","прийти в форму"], ["get injured","получить травму"],
+    ["be knocked out","вылететь из турнира"], ["kick off","начать матч"], ["sprain","растянуть (связку)"],
+    ["exhausted","измученный"], ["embarrassing","неловкий, позорный"], ["frustrated","раздосадованный"],
+    ["furious","в ярости"], ["delighted","в восторге"], ["fascinating","захватывающий"], ["disappointed","разочарованный"],
+    ["hang up","повесить трубку"], ["call back","перезвонить"], ["cut off","прервать (звонок)"], ["engaged","занято (линия)"],
+    ["put on hold","поставить на ожидание"], ["charger","зарядка"], ["ringtone","рингтон"],
+    ["look down on","смотреть свысока"], ["put up with","терпеть"], ["get on with","ладить с"], ["run out of","закончиться"],
+    ["insecure","неуверенный в себе"], ["reliable","надёжный"], ["sociable","общительный"], ["competitive","любит побеждать"],
+    ["bossy","любит командовать"], ["owe","быть должным"], ["afford","позволить себе"], ["rush hour","час пик"], ["set off","отправиться в путь"],
+    ["apologize for","извиняться за"], ["rely on","полагаться на"], ["be keen on","увлекаться"], ["be fed up with","устать от, надоело"],
+    ["argue with","спорить с"], ["complain about","жаловаться на"], ["succeed in","преуспеть в"]
+  ],
+
+  tasks: TASKS
+});
+
+/* ---------- Аудио для заданий ЕГЭ (вставляется в карточку задания) ---------- */
+(function () {
+  TASKS.forEach(function (t, i) {
+    if (!t.audio) return;
+    var card = document.getElementById("task-" + i);
+    if (!card) return;
+    var inner = card.querySelector(".inner"), body = card.querySelector(".body");
+    if (!inner || !body) return;
+    var box = document.createElement("div");
+    box.style.cssText = "background:#fff;border:2px dashed #8b5cf6;border-radius:16px;padding:12px;margin:0 0 12px";
+    var head = document.createElement("div");
+    head.style.cssText = "font-weight:800;margin-bottom:8px";
+    head.textContent = "🎧 Запись (слушай 2 раза, как на экзамене)";
+    var au = document.createElement("audio");
+    au.controls = true; au.preload = "none"; au.src = t.audio;
+    au.setAttribute("playsinline", ""); au.style.cssText = "width:100%;display:block";
+    var note = document.createElement("div");
+    note.style.cssText = "font-size:14px;line-height:1.4;background:#f4efff;border-radius:10px;padding:8px 10px;margin-top:8px";
+    note.textContent = "🔇 Если звук не включается — на iPhone переключи сбоку кнопку беззвучного режима (чтобы не было оранжевой полоски) и прибавь громкость кнопками сбоку. Если всё равно не играет — открой задание на «Решу ЕГЭ» по ссылке ниже и послушай там.";
+    var link = document.createElement("a");
+    link.href = t.page || t.audio; link.target = "_blank"; link.rel = "noopener";
+    link.textContent = "Открыть это аудирование на «Решу ЕГЭ» ↗";
+    link.style.cssText = "display:inline-block;margin-top:8px;font-weight:700;color:#8b5cf6";
+    box.appendChild(head); box.appendChild(au); box.appendChild(note); box.appendChild(link);
+    inner.insertBefore(box, body);
+  });
+})();
+</script>
+</body></html>

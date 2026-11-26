@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Лера", nameEn: "Lera", gender: "f",
+  theme: "pink",
+  teacher: "",
+  title: "HW 2A+ · Phrasal verbs with TAKE · Present Perfect Simple vs Continuous · Health",
+  intro: "Привет, Лера! 🌸 Тема здоровья позади — закрепляем. Сегодня: **фразовые глаголы с take** (их много, но они очень нужны на ЕГЭ), ещё раз **Present Perfect Simple vs Continuous** — на новых примерах, **слова про здоровье** и настоящий блок **ЕГЭ 19–34**. В конце — квест, где ты помощник тренера в аэростудии 🎪",
+  celebrate: { text: "Perfect! Всё верно — ты справилась сама! Ты точно take after настоящих чемпионов 🦋", emoji: "🪽", rain: ["🌸","🎀","🪽","✨","🐱","💗"], btn: "Ура! 💖", fx: "both" },
+
+  rules: [
+    { title: "Present Perfect Simple или Continuous?",
+      text: "**Continuous (have been + -ing)** — важен *процесс*, длительность или видимые *следы* действия («почему ты запыхалась?»). Часто с *How long…? / for / since / all day / lately*.\n**Simple (have + V3)** — важен *результат* или *количество*: сколько сделано, сколько раз (*How many…? / three times / already*). Действие закончено — результат налицо.",
+      examples: ["Your eyes are red. Have you been crying? — следы процесса", "I've been reading all evening. — процесс", "I've read 80 pages. — результат, количество", "How long have you been learning French? / How many words have you learnt?"],
+      mistake: "Не путай «следы» и «результат»: The box is empty — someone **has eaten** the cookies (всё съедено). There are only two left — someone **has been eating** my cookies (процесс, ещё не всё)." },
+    { title: "Глаголы состояния — только Simple",
+      text: "Глаголы *know, have (=иметь), like, love, hate, want, believe, understand, belong, be* не ставим в Continuous, даже если речь о длительности.",
+      examples: ["How long have you **had** your cat? (не have you been having)", "I've **known** Polina since 2022.", "We've **been** friends for three years."],
+      mistake: "have = иметь → только Simple. Но have a shower / have lunch / have problems (=испытывать) — уже действие, Continuous можно: I've been having problems with this trick." },
+    { title: "Фразовые глаголы с TAKE: где ставить объект",
+      text: "**Разделяемые** (take sth off / back / in / out / down / apart / over, take sb out / in / on): существительное можно поставить в середину или в конец, а **местоимение — только в середину**.\n**Неразделяемые** (take after sb, take to sb/sth, take off = взлететь/умчаться): объект всегда после частицы.\nТрёхчастные: take **it out on** sb, take sb **up on** sth, take sth **up with** sb, take sb **through** sth.",
+      examples: ["Take your coat off. / Take off your coat. / Take **it** off. ✅", "Take off it. ❌", "She takes after her dad. ✅ (не takes her dad after)", "I'm sorry I took it out on you."],
+      mistake: "take up = начать (хобби) / занимать место-время; take to = полюбить, пристраститься; take on = взять на себя / нанять / принять вызов; take over = принять дела / захватить контроль." },
+    { title: "ЕГЭ: задания 19–34 — как не потерять баллы",
+      text: "**19–24 (грамматика):** смотри на маркеры времени (*yesterday, since, by the time*), на подлежащее (ед./мн. число) и на «до какого момента». Пиши слово с полной орфографией.\n**25–29 (словообразование):** сначала определи часть речи (перед существительным — прилагательное, после глагола — наречие), потом проверь смысл: может, нужна отрицательная приставка (*un-, im-, dis-*) или множественное число.\n**30–34 (лексика):** это коллокации — слова, которые «дружат»: *pay attention, take part, tell a story*.",
+      examples: ["the ___ (GOOD) → the best", "an ___ (AMAZE) park → amazing", "___ (POSSIBLE) to choose → impossible"],
+      mistake: "Частая ошибка: правильная часть речи, но забыла -s во множественном числе или отрицательную приставку." }
+  ],
+
+  words: [
+    ["take after somebody", "быть похожим на (родственника)"],
+    ["take something apart", "разобрать на части"],
+    ["take something back (shop)", "вернуть (товар в магазин)"],
+    ["take something back (words)", "забрать свои слова обратно"],
+    ["take something down (structure)", "разобрать, снять (конструкцию)"],
+    ["take something down (notes)", "записать"],
+    ["take somebody in", "приютить, дать кров"],
+    ["take something in (understand)", "понять и усвоить (информацию)"],
+    ["take something in (clothes)", "ушить (одежду)"],
+    ["take off (plane)", "взлететь"],
+    ["take off (career)", "резко пойти в гору, стать популярным"],
+    ["take off (leave)", "внезапно уйти, умчаться"],
+    ["take something off (clothes)", "снять (одежду)"],
+    ["take time off", "взять выходной / отгул"],
+    ["take on something (quality)", "приобрести (вид, качество)"],
+    ["take somebody on (employ)", "нанять (на работу)"],
+    ["take somebody on (compete)", "сразиться, принять вызов"],
+    ["take something on (job)", "взять на себя (обязанность, работу)"],
+    ["take somebody out", "пригласить куда-то (и заплатить)"],
+    ["take something out (remove)", "вынуть, удалить"],
+    ["take something out (insurance)", "оформить (страховку, кредит)"],
+    ["take something out on somebody", "срывать (злость) на ком-то"],
+    ["take something over (from sb)", "принять дела (от кого-то)"],
+    ["take something over (control)", "захватить контроль"],
+    ["take somebody through something", "подробно объяснить, провести шаг за шагом"],
+    ["take to something (habit)", "начать регулярно, пристраститься"],
+    ["take to somebody/something", "проникнуться симпатией"],
+    ["take up something (time/space)", "занимать (время, место)"],
+    ["take up something (hobby)", "начать заниматься (хобби)"],
+    ["take somebody up on something", "принять (предложение)"],
+    ["take something up with somebody", "обсудить (проблему) с тем, кто может решить"]
+  ],
+
+  tasks: [
+    /* ===== 1. РАЗМИНКА ===== */
+    { part: "warmup", type: "memory", title: "Мемори: take + …",
+      instruction: "Найди пары: фразовый глагол — значение. Это новые слова, просто познакомься с ними 🃏",
+      count: 8, time: 150,
+      pairs: [
+        ["take after", "быть похожим на родственника"],
+        ["take up (hobby)", "начать заниматься"],
+        ["take off (plane)", "взлететь"],
+        ["take in (clothes)", "ушить"],
+        ["take over", "принять дела"],
+        ["take on (job)", "нанять"],
+        ["take back (words)", "забрать слова обратно"],
+        ["take out (insurance)", "оформить страховку"]
+      ] },
+
+    /* ===== 2. РАБОТА НАД ОШИБКАМИ ===== */
+    { part: "review", type: "mistakes", title: "Работа над ошибками", count: 6,
+      items: [
+        { q: "Polina isn't scared of heights. — ___ I. (я тоже не боюсь)", a: ["Neither am", "Nor am"] },
+        { q: "Your hair is wet and smells of chlorine. ___? (you / swim)", a: ["Have you been swimming"] },
+        { q: "How long ___ this phone? It looks really old! (you / have)", a: ["have you had"] },
+        { q: "I ___ at my phone when somebody called my name. (look)", a: ["was looking"] },
+        { q: "After the X-ray the doctor told me I ___ a muscle in my back. (pull)", a: ["had pulled"] },
+        { q: "The train was late, but we got to the theatre just ___ to see the curtain go up.", o: ["in time", "on time"], a: 0 },
+        { q: "The ferry leaves at 9:15 exactly, so please be ___.", o: ["on time", "in time"], a: 0 },
+        { q: "I walked 15 km in my new trainers and now I've got ___ on my little toe.", o: ["a blister", "a bruise", "a rash"], a: 0 },
+        { q: "I bumped into the table and now there's a dark blue mark on my knee. It's ___.", o: ["a bruise", "a blister", "a sprain"], a: 0 },
+        { q: "I last went to the theatre in May. → I haven't ___", a: ["I haven't been to the theatre since May", "I have not been to the theatre since May"] },
+        { q: "It's my first time on a plane. → I've never ___", a: ["I've never been on a plane before", "I have never been on a plane before", "I've never flown before", "I have never flown before"] },
+        { q: "After the roller coaster I felt ___ and had to sit down.", o: ["dizzy", "swollen", "sprained"], a: 0 }
+      ] },
+
+    /* ===== 3. ПОВТОРЯЕМ СЛОВА ===== */
+    { part: "words", type: "vocab", title: "Повторяем слова", count: 10 },
+
+    { part: "words", type: "gaps", title: "Здоровье: слово в другой форме",
+      instruction: "Слова из p.152 Illnesses and injuries. Поставь слово в скобках в нужную форму — как в ЕГЭ 25–29.",
+      items: [
+        "I can't stop {sneezing} — I think I'm allergic to my friend's new kitten. (SNEEZE)",
+        "His wrist was so {swollen} that he couldn't even hold a cup. (SWELL)",
+        "The gymnast had a serious knee {injury} and missed the whole season. (INJURE)",
+        "Don't take the plaster off — your finger is still {bleeding}. (BLEED)",
+        "{Dizziness} is a common side effect of this medicine. (DIZZY)",
+        "The boxer was {unconscious} for a few seconds after the punch. (CONSCIOUS)",
+        "My throat is so {painful} that I can hardly swallow. (PAIN)",
+        "Polina is {allergic} to nuts, so she always reads the labels. (ALLERGY)",
+        "It was so hot in the cinema that a woman in the front row {fainted}. (FAINT)",
+        "The doctor said the cut had an {infection} and gave me antibiotics. (INFECT)",
+        "I {coughed} all night and didn't sleep at all. (COUGH)",
+        "Put some ice on it — it will stop the {swelling}. (SWELL)"
+      ],
+      tip: "Повтори p.152: swell → swollen / swelling, injure → injury, dizzy → dizziness." },
+
+    /* ===== 4. ОТРАБОТКА: TAKE ===== */
+    { part: "practice", type: "match", title: "Take: что это значит?", rule: 2,
+      instruction: "Соедини фразовый глагол с определением на английском.",
+      pairs: [
+        ["take somebody on", "give somebody a job"],
+        ["take something apart", "separate it into pieces"],
+        ["take something down", "write it on paper"],
+        ["take somebody up on", "say yes to their offer"],
+        ["take to something", "start doing it as a habit"],
+        ["take something over", "get control of it"],
+        ["take somebody in", "let them live in your home"],
+        ["take off (career)", "suddenly become successful"]
+      ] },
+
+    { part: "practice", type: "choice", title: "Take ___ ? Выбери частицу", rule: 2,
+      instruction: "Выбери частицу, которая подходит по смыслу.",
+      items: [
+        { q: "This huge wardrobe takes ___ half of my tiny room.", o: ["up", "in", "over", "on"], a: 0 },
+        { q: "At first I didn't like the main character, but by episode 3 I really took ___ her.", o: ["to", "after", "up", "in"], a: 0 },
+        { q: "I can't help you with your bill. You should take it ___ with the manager.", o: ["up", "on", "out", "over"], a: 0 },
+        { q: "Please fasten your seatbelts — we're going to take ___ in five minutes.", o: ["off", "out", "up", "on"], a: 0 },
+        { q: "During the storm my grandparents took ___ a wet little kitten. Now he's the boss of the house!", o: ["in", "on", "up", "to"], a: 0 },
+        { q: "The young player took ___ the world champion — and almost won!", o: ["on", "up", "in", "over"], a: 0 },
+        { q: "When the dog started barking, the cat took ___ and hid under the sofa.", o: ["off", "up", "on", "out"], a: 0 },
+        { q: "I didn't mean what I said, I'm sorry. I take it ___.", o: ["back", "off", "in", "down"], a: 0 },
+        { q: "The dentist had to take ___ two of my teeth before I got braces.", o: ["out", "off", "down", "apart"], a: 0 },
+        { q: "After the festival the workers spent two days taking ___ the huge stage.", o: ["down", "up", "over", "in"], a: 0 },
+        { q: "With all the candles, the old cinema took ___ a mysterious atmosphere.", o: ["on", "in", "up", "after"], a: 0 },
+        { q: "It's your birthday! Can I take you ___ for dinner? My treat!", o: ["out", "off", "in", "up"], a: 0 }
+      ],
+      tip: "Выучи по вкладке «Слова» — у take много значений, смотри на контекст." },
+
+    { part: "practice", type: "gaps", title: "Take + все времена", rule: [2, 0],
+      instruction: "Поставь фразовый глагол из скобок в нужное время и форму. Если объект — местоимение (it, them, you), поставь его в середину!",
+      items: [
+        "Everyone says I {take after} my grandmother — we both love old films and can't sit still for a minute. (take after)",
+        "Our plane {took off} two hours late because of the fog, so we missed our connection in Istanbul. (take off)",
+        "Sorry I didn't answer — I {was taking off} my make-up when you called. (take off)",
+        "If you don't like the dress, {take it back} to the shop — you've still got the receipt! (take back, imperative)",
+        "These trousers are too big for me, so my mum is going to {take them in} this weekend. (take in)",
+        "I'm sorry I {took it out on} you yesterday — I was upset about my test, not about you. (take out on)",
+        "Our old coach has moved to Sochi, so a new coach {has taken over|took over|is taking over} our group. (take over)",
+        "The film was so fast that I couldn't {take in} everything the first time I watched it. (take in)",
+        "When the studio offered her a free trial lesson, she {took them up on} the offer at once. (take up on)",
+        "Our cat usually hates strangers, but she {has taken to|took to} the new vet — she didn't even hiss at him! (take to)",
+        "Before we tried it on the hoop, the instructor {took us through} every step of the routine. (take through)",
+        "I'm going to {take} next Friday {off} to go to the film festival. (take off)",
+        "Since that trailer came out, the young actor's career {has taken off} — everyone is talking about him. (take off)",
+        "I can't {take on} any more projects this month — I've already got three competitions. (take on)",
+        "Dad {had taken out} travel insurance before we left, and thank goodness he had! (take out)",
+        "By the time she's thirty, she hopes she {will have taken over|'ll have taken over} her mum's yoga studio. (take over)"
+      ],
+      tip: "Местоимение — в середину: take it back, take them in. Неразделяемые: take after her, take to him." },
+
+    /* ===== 4. ОТРАБОТКА: PRESENT PERFECT ===== */
+    { part: "practice", type: "gaps", title: "Simple или Continuous? Глагол в скобках", rule: [0, 1],
+      instruction: "Present Perfect Simple или Continuous? Подумай: процесс и следы — или результат и количество? И помни про глаголы состояния.",
+      items: [
+        "Your hands are covered in chalk! {Have you been training} on the hoop? (you / train)",
+        "I {'ve watched|have watched} four films this weekend — my eyes hurt! (watch)",
+        "I {'ve been watching|have been watching} films all weekend, so I haven't done my essay. (watch)",
+        "How long {have you known} your best friend? (you / know)",
+        "Masha {'s had|has had} her cat Plombir since she was nine. (have)",
+        "Why does the kitchen smell so good? {Have you been baking}? (you / bake)",
+        "We {'ve been waiting|have been waiting} for the bus for forty minutes and it still hasn't come. (wait)",
+        "Oh no, someone {has eaten} all the cookies — the box is empty! (eat)",
+        "Hey, someone {has been eating} my cookies — there are only two left! (eat)",
+        "I {haven't seen|have not seen} Sonya since the summer camp. (not see)",
+        "My legs ache because I {'ve been stretching|have been stretching} for an hour. (stretch)",
+        "How many countries {have you visited}? (you / visit)",
+        "I {'ve been feeling|have been feeling|'ve felt|have felt} a bit dizzy since this morning — maybe I should sit down. (feel)",
+        "Lera {'s been learning|has been learning} English for ten years, and she {'s passed|has passed} three international exams. (learn / pass)"
+      ],
+      tip: "Следы на лице/руках → Continuous. Сколько штук / всё закончено → Simple. know, have (иметь) → только Simple." },
+
+    { part: "practice", type: "rewrite", title: "Перепиши по подсказке", rule: [0, 1],
+      instruction: "Перепиши предложение, начиная со слов в подсказке. Смысл не меняется.",
+      items: [
+        { q: "I started reading this book on Monday. I'm still reading it.", hint: "I've …… since Monday.", a: ["I've been reading this book since Monday", "I have been reading this book since Monday", "I've been reading it since Monday", "I have been reading it since Monday"] },
+        { q: "I started reading this book on Monday. I'm on page 200 now.", hint: "I've …… 200 pages", a: ["I've read 200 pages", "I have read 200 pages", "I've read 200 pages of this book", "I have read 200 pages of this book", "I've read 200 pages since Monday", "I have read 200 pages since Monday"] },
+        { q: "The last time I went to the cinema was two months ago.", hint: "I haven't ……", a: ["I haven't been to the cinema for two months", "I have not been to the cinema for two months", "I haven't been to the cinema in two months", "I haven't gone to the cinema for two months"] },
+        { q: "This is the first time I've tried aerial silks.", hint: "I've never ……", a: ["I've never tried aerial silks before", "I have never tried aerial silks before"] },
+        { q: "When did you start doing Pilates?", hint: "How long ……?", a: ["How long have you been doing Pilates", "How long have you done Pilates"] },
+        { q: "My cat and I became best friends three years ago.", hint: "My cat and I have ……", a: ["My cat and I have been best friends for three years", "My cat and I have been friends for three years"] },
+        { q: "It started raining two hours ago, and it's still raining.", hint: "It's ……", a: ["It's been raining for two hours", "It has been raining for two hours"] },
+        { q: "I met Polina in 2022.", hint: "I've known ……", a: ["I've known Polina since 2022", "I have known Polina since 2022"] }
+      ],
+      tip: "for + период (for two months), since + точка (since May). Глаголы состояния: I've known, I've had." },
+
+    { part: "practice", type: "spot", title: "Найди ошибки: пост Леры", rule: [0, 1],
+      instruction: "Лера пишет пост об аэрогимнастике. Найди и исправь ошибки в временах (их 6). Остальное верно!",
+      text: "I [practise=>have been practising|'ve been practising] aerial gymnastics for five years, and I love it more every year. This season I [have been taking=>have taken|'ve taken] part in three competitions and I [have been winning=>have won|'ve won] two medals! My coach says I [am knowing=>know] the basics really well. Still, I [have been having=>have had|'ve had|have been having] problems with one trick since September. I've watched hundreds of videos about it. Today my arms are aching because I [trained=>have been training|'ve been training] all morning — but I think I'm finally getting it! 💪"
+    },
+
+    { part: "practice", type: "gaps", title: "Все времена: Лера в Анталье",
+      instruction: "История про здоровье и путешествие. Поставь глаголы в скобках в нужное время: Past Simple, Past Continuous, Past Perfect, Present Perfect, будущее…",
+      items: [
+        "Last July Lera {flew} to Antalya with her parents. (fly)",
+        "Their plane {took off} at 6 a.m., so by the time they landed she {had slept} only three hours. (take off / sleep)",
+        "On the second day, while she {was swimming} near the beach, something {stung} her leg. (swim / sting)",
+        "By the evening her ankle {had swollen|was swollen|had swelled} and she {felt} really dizzy. (swell / feel)",
+        "Luckily, her dad {had taken out} travel insurance before the trip, so they {went} to a private clinic. (take out / go)",
+        "The doctor {took her through} the treatment step by step and said she {had had} an allergic reaction. (take through / have)",
+        "Since then Lera {has never swum|hasn't swum|has not swum} in the sea without water shoes. (never / swim)",
+        "Next summer she {is going to take|'s going to take|will take} antihistamines with her, just in case. (take)"
+      ],
+      tip: "Повтори narrative tenses: фон — Past Continuous, событие — Past Simple, «уже до этого» — Past Perfect." },
+
+    /* ===== 5. ГОВОРЕНИЕ ===== */
+    { part: "speak", type: "speak", title: "Говорение", max: 120,
+      tip: "Отвечай развёрнуто, 3–5 предложений на вопрос. Постарайся использовать минимум 4 фразовых глагола с take и оба Present Perfect.",
+      items: [
+        "Which member of your family do you take after? In what way — appearance or personality?",
+        "What hobby have you taken up recently, or would you like to take up? Why?",
+        "What have you been doing a lot lately? And what have you achieved this month?",
+        "Have you ever been ill or injured before an important event? What happened and how did you feel?"
+      ] },
+
+    /* ===== 6. ФОРМАТ ЭКЗАМЕНА ===== */
+    { part: "exam", type: "exam", title: "ЕГЭ 19–24: Грамматика", show: "ЕГЭ Шоу · 19–24", time: 8, rule: 3,
+      instruction: "Текст «Aerial Silks». Преобразуй слово заглавными буквами так, чтобы оно грамматически подходило к тексту.",
+      items: [
+        { q: "(19) Aerial silks is one of the ___ circus disciplines.", word: "BEAUTIFUL", a: ["most beautiful"] },
+        { q: "(20) The long pieces of fabric ___ from strong polyester or nylon.", word: "MAKE", a: ["are made"] },
+        { q: "(21) Nowadays many young ___ take up silks to stay fit and flexible.", word: "WOMAN", a: ["women"] },
+        { q: "(22) The sport ___ in popularity since the early 2000s, and new studios open every year.", word: "GROW", a: ["has grown", "has been growing"] },
+        { q: "(23) If you ___ it just once, you will understand why people love it.", word: "TRY", a: ["try"] },
+        { q: "(24) My first coach told me that she ___ such a fearless student before.", word: "NOT SEE", a: ["had not seen", "hadn't seen"] }
+      ] },
+
+    { part: "exam", type: "exam", title: "ЕГЭ 25–29: Словообразование", show: "ЕГЭ Шоу · 25–29", time: 6, rule: 3,
+      instruction: "Текст «Cinema at Home». Образуй однокоренное слово, которое подходит по смыслу и грамматике.",
+      items: [
+        { q: "(25) Watching films at home has become a very popular ___ among teenagers.", word: "ACT", a: ["activity"] },
+        { q: "(26) Streaming services offer a huge ___ of films and series.", word: "VARY", a: ["variety"] },
+        { q: "(27) In fact, there are so many options that it is often ___ to choose one.", word: "POSSIBLE", a: ["impossible"] },
+        { q: "(28) Some psychologists say that ___ choice makes us less happy.", word: "LIMIT", a: ["unlimited"] },
+        { q: "(29) Still, nothing can replace the ___ of watching a new film on a big screen.", word: "EXCITE", a: ["excitement"] }
+      ] },
+
+    { part: "exam", type: "exam", title: "ЕГЭ 30–34: Лексика", show: "ЕГЭ Шоу · 30–34", time: 6, rule: 3,
+      instruction: "Текст «A Trip to Georgia». Выбери слово, которое подходит в пропуск.",
+      items: [
+        { q: "(30) As soon as the plane ___, I fell asleep and woke up only in Tbilisi.", o: ["took off", "took up", "took on", "took over"], a: 0 },
+        { q: "(31) I had never ___ much attention to mountains before, but the Caucasus was breathtaking.", o: ["paid", "given", "made", "taken"], a: 0 },
+        { q: "(32) Our guide, Nino, ___ us a lot of stories about the old churches and castles.", o: ["told", "said", "spoke", "talked"], a: 0 },
+        { q: "(33) On the third day I ___ my ankle on a rocky path, and it hurt a lot.", o: ["twisted", "bent", "folded", "curved"], a: 0 },
+        { q: "(34) Luckily, it was nothing serious, and the next day I was able to ___ part in a Georgian cooking class.", o: ["take", "make", "have", "do"], a: 0 }
+      ] },
+
+    /* ===== 7. ПИШЕМ САМИ ===== */
+    { part: "write", type: "write", title: "Пишем сами",
+      items: [
+        { q: "Напиши о своём хобби (80–100 слов): как давно ты им занимаешься, чего уже добилась, чем занимаешься в последнее время и что хочешь начать. Используй Present Perfect Simple И Continuous и минимум 3 фразовых глагола с take.", min: 80, must: ["have been", "take"] },
+        { q: "ЕГЭ, задание 37 (письмо, 100–140 слов). Your English pen friend Emily writes: «…I've just taken up running, but I keep getting injured — last week I twisted my ankle! How do you stay fit? Have you ever been injured? What would you advise me?» Ответь на её вопросы и задай ей 3 вопроса о её беге.", min: 100, must: ["Dear Emily"] }
+      ] },
+
+    /* ===== 8. ФИНАЛ ===== */
+    { part: "final", type: "quest", title: "Квест: Лера — помощник тренера",
+      place: "Аэростудия «Flying Kitty»",
+      intro: "Твой тренер Анна уезжает в отпуск. Неделю студия — на тебе! Отвечай правильно, чтобы всё прошло идеально 🎪🐱",
+      scenes: [
+        { place: "Раздевалка", scene: "📱 Звонит тренер Анна", who: "Coach Anna",
+          say: "Lera, I'm going on holiday next week. Could you help me with my Saturday group?",
+          choices: [
+            { t: "Of course! I'd be happy to take it over.", ok: true, reply: "Brilliant, I knew I could count on you!" },
+            { t: "Of course! I'd be happy to take after it.", fb: "take after = быть похожей на родственника. Принять дела от кого-то — take over." },
+            { t: "Of course! I'd be happy to take it up with them.", fb: "take sth up with sb = обсудить проблему. Здесь нужно take over — принять группу." }
+          ] },
+        { place: "Раздевалка", scene: "📱 Анна продолжает", who: "Coach Anna",
+          say: "Just remind me — how long have you been doing aerial hoop?",
+          choices: [
+            { t: "I've been doing it for five years.", ok: true, reply: "Five years! That's why you're so good." },
+            { t: "I'm doing it for five years.", fb: "Действие началось в прошлом и продолжается до сих пор → Present Perfect Continuous: I've been doing it for…" },
+            { t: "I've been doing it since five years.", fb: "since + момент (since 2021), for + период (for five years)." }
+          ] },
+        { place: "Зал", scene: "🎪 Суббота. Новенькая Саша боится", who: "Sasha",
+          say: "Lera, I'm really scared of this trick. Can you explain it slowly?",
+          choices: [
+            { t: "Sure! I'll take you through it step by step.", ok: true, reply: "Thank you! Now it doesn't look so scary." },
+            { t: "Sure! I'll take you in step by step.", fb: "take sb in = приютить. Объяснить шаг за шагом — take sb through sth." },
+            { t: "Sure! I'll take you on step by step.", fb: "take sb on = нанять или сразиться с кем-то. Здесь нужно take you through it." }
+          ] },
+        { place: "Зал", scene: "😣 Саша показывает ладонь", who: "Sasha",
+          say: "Ouch! The hoop rubbed my hand, and now there's a little bubble of water on my palm.",
+          choices: [
+            { t: "Oh, it's just a blister. Let's put a plaster on it.", ok: true, reply: "Phew, thanks! It already feels better." },
+            { t: "Oh, it's just a bruise. Let's put a plaster on it.", fb: "bruise — синяк (тёмное пятно от удара). Пузырь от натирания — blister." },
+            { t: "Oh, it's just a rash. Let's put a plaster on it.", fb: "rash — сыпь. Пузырь от трения — blister." }
+          ] },
+        { place: "Холл", scene: "👩 Приходит мама Кати", who: "Katya's mum",
+          say: "Why is Katya so red and out of breath?",
+          choices: [
+            { t: "Don't worry — she's been practising her routine for half an hour.", ok: true, reply: "Oh, I see! She's really keen, isn't she?" },
+            { t: "Don't worry — she's practised her routine for half an hour.", fb: "Видимые следы процесса (красная, запыхалась) → Continuous: she's been practising." },
+            { t: "Don't worry — she practises her routine for half an hour.", fb: "Нужен Present Perfect Continuous: процесс до этого момента и его следы сейчас." }
+          ] },
+        { place: "Холл", scene: "📱 Вечером снова звонит Анна", who: "Coach Anna",
+          say: "How did it go? Was anyone late? The class started at ten sharp.",
+          choices: [
+            { t: "Everyone was on time — nobody was late!", ok: true, reply: "Wow, that never happens with me! 😄" },
+            { t: "Everyone was in time — nobody was late!", fb: "on time = точно по расписанию. in time = успеть до того, как что-то случится (in time to see the start)." },
+            { t: "Everyone was at time — nobody was late!", fb: "Такого выражения нет. По расписанию — on time." }
+          ] },
+        { place: "Холл", scene: "🌟 Анна делает предложение", who: "Coach Anna",
+          say: "I'm so impressed. Would you like to work with me every Saturday? I'll pay you, of course.",
+          choices: [
+            { t: "Yes! I'd love to take you up on that offer!", ok: true, reply: "Then it's official — I'm taking you on as my assistant! 🎀" },
+            { t: "Yes! I'd love to take that offer out!", fb: "take out = вынуть / оформить (страховку). Принять предложение — take sb up on an offer." },
+            { t: "Yes! I'd love to take off that offer!", fb: "take off = взлететь / снять одежду. Принять предложение — take sb up on it." }
+          ] }
+      ],
+      endings: [
+        { max: 0, emoji: "🏆", text: "Идеально! Анна официально взяла тебя помощником тренера. Студия «Flying Kitty» гордится тобой! 🐱✨" },
+        { max: 2, emoji: "🌸", text: "Отличная неделя! Пара мелочей — и ты готова вести группу сама." },
+        { emoji: "💪", text: "Неделя была непростой, но ты справилась! Повтори take-глаголы во вкладке «Слова» и попробуй ещё раз." }
+      ] }
+  ]
+});
+</script>
+</body></html>
