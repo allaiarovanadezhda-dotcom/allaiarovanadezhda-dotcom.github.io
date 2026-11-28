@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HW</title></head>
+<body>
+<script src="hw-engine-v1.js"></script>
+<script>
+HW({
+  student: "Вова", nameEn: "Vova", gender: "m",
+  theme: "strict",
+  teacher: "",
+  title: "10B Phrasal verbs · conditionals",
+  intro: "Сегодня — **phrasal verbs**: где ставить *it / them*, какие глаголы разделяются, а какие нет, и полезные фразовые глаголы для работы. В конце — **conditionals** и созвон с Jake. Около 20 минут.",
+
+  rules: [
+    { title: "Phrasal verbs: три типа",
+      text: "Phrasal verb = глагол + частица (on, off, up, for…). 1) **Без дополнения**: get up, go out, log in. 2) **Разделяемые** (с дополнением): частицу можно поставить до или после существительного — turn off the TV = turn the TV off. 3) **Неразделяемые**: глагол и частица всегда вместе — look for, look after, get on with, run out of, look forward to, come up with.",
+      examples: ["Put on your headphones. = Put your headphones on.", "I'm looking for the bug report. (NOT looking the bug report for)"],
+      mistake: "I'm looking my keys for. → I'm looking for my keys." },
+    { title: "Местоимение — только в середину",
+      text: "Если дополнение — местоимение (**it, them, him, me…**) и глагол разделяемый, оно **всегда** стоит между глаголом и частицей. У неразделяемых — после частицы.",
+      examples: ["Turn it off. (NOT turn off it)", "I'll set it up tomorrow.", "I'm looking for it."],
+      mistake: "I'll call back you. → I'll call you back." },
+    { title: "1st vs 2nd conditional",
+      text: "**1st** — реальная ситуация: If + Present Simple, **will** + глагол. **2nd** — нереальная/воображаемая: If + Past Simple, **would** + глагол. После if никогда не ставим will/would. (3rd — про прошлое, которое уже не изменить: If + had + V3, would have + V3.)",
+      examples: ["If the tests pass, we'll release tonight. (реально)", "If I lived in the US, I'd speak English every day. (не живу)", "If we had checked the logs, we would have found it. (не проверили)"],
+      mistake: "If they found a bug, I will fix it. → I would fix it." },
+    { title: "Phrasal verbs для работы (B1)",
+      text: "set up — организовать, настроить · put off — отложить · figure out — разобраться, понять · sort out — решить (проблему) · catch up — наверстать, обсудить новости · come up with — придумать · carry on — продолжать · find out — узнать · back up — сделать резервную копию · log in — войти (в систему) · hang up — положить трубку, отключиться",
+      examples: ["Let's set up a call for Tuesday.", "Can we put the meeting off until Friday?"] }
+  ],
+
+  words: [
+    ["turn on / turn off", "включить / выключить", "/tɜːn ɒn/ /tɜːn ɒf/", ""],
+    ["turn up / turn down", "сделать громче / тише", "/tɜːn ʌp/ /tɜːn daʊn/", ""],
+    ["put on", "надеть", "/pʊt ɒn/", ""],
+    ["take off", "снять (одежду)", "/teɪk ɒf/", ""],
+    ["try on", "примерить", "/traɪ ɒn/", ""],
+    ["pick up", "поднять; забрать", "/pɪk ʌp/", ""],
+    ["throw away", "выбросить", "/θrəʊ əˈweɪ/", ""],
+    ["fill in", "заполнить (форму)", "/fɪl ɪn/", ""],
+    ["look up", "посмотреть (в словаре, в интернете)", "/lʊk ʌp/", ""],
+    ["give back", "вернуть (кому-то)", "/ɡɪv bæk/", ""],
+    ["call back", "перезвонить", "/kɔːl bæk/", ""],
+    ["look for", "искать", "/lʊk fɔː/", "неразделяемый"],
+    ["look after", "присматривать, заботиться", "/lʊk ˈɑːftə/", "неразделяемый"],
+    ["get on with", "ладить с кем-то", "/ɡet ɒn wɪð/", "неразделяемый"],
+    ["run out of", "закончиться (о запасах)", "/rʌn aʊt əv/", "неразделяемый"],
+    ["look forward to", "ждать с нетерпением", "/lʊk ˈfɔːwəd tə/", "+ noun / -ing"],
+    ["set up", "организовать, настроить", "/set ʌp/", ""],
+    ["put off", "отложить", "/pʊt ɒf/", ""],
+    ["figure out", "разобраться, понять", "/ˈfɪɡə aʊt/", ""],
+    ["sort out", "решить, уладить", "/sɔːt aʊt/", ""],
+    ["catch up", "наверстать; обменяться новостями", "/kætʃ ʌp/", ""],
+    ["come up with", "придумать", "/kʌm ʌp wɪð/", "неразделяемый"],
+    ["carry on", "продолжать", "/ˈkæri ɒn/", ""],
+    ["find out", "узнать", "/faɪnd aʊt/", ""],
+    ["back up", "сделать резервную копию", "/bæk ʌp/", ""],
+    ["log in", "войти в систему", "/lɒɡ ɪn/", ""]
+  ],
+
+  tasks: [
+    { part: "warmup", type: "wordfall", title: "Словопад: phrasal verbs", count: 8, speed: 7, dir: "en-ru" },
+
+    { part: "review", type: "mistakes", title: "Работа над ошибками", count: 4, items: [
+      { q: "If the build fails again, I ___ (call) you.", a: ["will call", "'ll call"] },
+      { q: "If I had more time, I ___ (help) you with the tests.", a: ["would help", "'d help"] },
+      { q: "We didn't test it. If we had tested it, we would have ___ (find) the bug.", a: ["found"] },
+      { q: "The file is gone! Someone has ___ (write) over it.", a: ["written"] },
+      { q: "Can I ___ the meeting?", o: ["join to", "join"], a: 1 },
+      { q: "Let's go ___ the agenda before we start.", o: ["over", "across"], a: 0 },
+      { q: "I walked ___ the office without stopping.", o: ["past", "passed"], a: 0 },
+      { q: "I forgot my charger, so I ___ home.", o: ["went back", "returned back"], a: 0 },
+      { q: "I'm working from ___ office today.", o: ["the", "—"], a: 0 },
+      { q: "I'll send you ___ invite to the call.", o: ["an", "—"], a: 0 }
+    ] },
+
+    { part: "words", type: "vocab", title: "Повторяем слова", count: 6 },
+
+    { part: "practice", type: "match", title: "Phrasal verbs (p. 163)", instruction: "Соедини фразовый глагол с переводом.", pairs: [
+      ["turn up", "сделать громче"],
+      ["turn down", "сделать тише"],
+      ["take off", "снять (одежду)"],
+      ["try on", "примерить"],
+      ["pick up", "поднять; забрать"],
+      ["throw away", "выбросить"],
+      ["fill in", "заполнить (форму)"],
+      ["look up", "посмотреть в словаре"],
+      ["give back", "вернуть"],
+      ["look after", "присматривать"]
+    ] },
+
+    { part: "practice", type: "bank", title: "Phrasal verbs в работе", instruction: "Вставь фразовый глагол. Каждый — один раз.", rule: [0, 1], items: [
+      "I can't hear Jake. Can you {turn up} the volume?",
+      "{Turn off} your mic when you're not speaking.",
+      "Please {fill in} this form before the release.",
+      "I don't know this word. I'll {look it up} after the call.",
+      "Don't {throw away} the old builds — we may need them.",
+      "Sorry, I'm in a meeting. Can I {call you back} in ten minutes?",
+      "I borrowed Arsen's charger. I need to {give it back} today.",
+      "Let's finish — we're {running out of} time.",
+      "I'm really {looking forward to} the release party!"
+    ], extra: ["turn down", "put on"], tip: "Повтори: местоимение (it, you) — между глаголом и частицей." },
+
+    { part: "practice", type: "choice", title: "Разделяется или нет?", instruction: "Выбери правильный порядок слов.", rule: [0, 1], items: [
+      { q: "Your headphones are on the desk. ___", o: ["Put them on.", "Put on them."], a: 0 },
+      { q: "I can't find the bug report. I'm still ___.", o: ["looking for it", "looking it for"], a: 0 },
+      { q: "The music is too loud. Can you ___?", o: ["turn it down", "turn down it"], a: 0 },
+      { q: "This form is important. Please ___ today.", o: ["fill it in", "fill in it"], a: 0 },
+      { q: "I don't need these old files. I'll ___.", o: ["throw them away", "throw away them"], a: 0 },
+      { q: "Who ___ while you're at the conference?", o: ["looks after your dog", "looks your dog after"], a: 0 },
+      { q: "Coffee? Sorry, we've ___.", o: ["run out of it", "run it out of"], a: 0 },
+      { q: "Jake is great. I ___ really well.", o: ["get on with him", "get him on with"], a: 0 },
+      { q: "Что правильно?", o: ["Оба: turn off the light и turn the light off", "Только turn off the light"], a: 0 }
+    ], tip: "Неразделяемые: look for, look after, get on with, run out of. С остальными it/them — в середину." },
+
+    { part: "practice", type: "bank", title: "Phrasal verbs для работы (B1)", instruction: "Вставь подходящий глагол. Если не помнишь значение — открой «Подсказку».", rule: 3, items: [
+      "Let's {set up} a call with the US team for Tuesday.",
+      "The client is busy, so we have to {put off} the meeting until Friday.",
+      "I still can't {figure out} why the game crashes on Android.",
+      "Don't worry, I'll {sort out} the problem with the server today.",
+      "I was on holiday last week. Can we {catch up} after the stand-up?",
+      "We need to {come up with} a new name for the second level.",
+      "Sorry for interrupting. Please {carry on}.",
+      "Can you {find out} when the release is?",
+      "Always {back up} your files before an update.",
+      "I can't {log in} — my password doesn't work."
+    ], extra: ["give up", "hang up"], tip: "Повтори значения в «Подсказке» → Phrasal verbs для работы." },
+
+    { part: "practice", type: "gaps", title: "Will или would?", instruction: "Поставь глагол в правильную форму. Сначала реши: ситуация реальная (will) или воображаемая (would)?", rule: 2, items: [
+      "If the tests {pass}, we'll release the update tomorrow. (pass)",
+      "If I {were|was} your manager, I would give you a day off. (be)",
+      "If I lived in the US, I {would speak|'d speak} English every day. (speak)",
+      "We {will miss|'ll miss} the deadline if we don't sort out this bug. (miss)",
+      "What {would you do} if you won a million dollars? (you / do)",
+      "If I {had} more free time, I'd make my own game. (have)",
+      "If you turn off the server now, players {won't be|will not be} able to log in. (not be)",
+      "If I didn't love my job, I {wouldn't work|would not work} on weekends. (not work)"
+    ], tip: "После if — никогда will/would. Реально → will, нереально → would." },
+
+    { part: "final", type: "chat", title: "Call with Jake", instruction: "Вова на созвоне с Jake перед релизом. Выбирай правильную реплику.", rule: [1, 2], who: { name: "Jake", avatar: "🧑‍💼" }, script: [
+      { say: "Hi Vova! Did you manage to fix the login bug?" },
+      { me: [
+        { t: "Not yet, but I've figured it out. I'll sort it out today.", ok: true, reply: "Great! Is the fix ready for tonight?" },
+        { t: "Not yet, but I've figured out it. I'll sort out it today.", fb: "💡 it — между глаголом и частицей: figured it out, sort it out." }
+      ] },
+      { say: "If the fix is ready by five, can we release tonight?" },
+      { me: [
+        { t: "Yes, if the tests pass, we'll release it tonight.", ok: true, reply: "Perfect." },
+        { t: "Yes, if the tests will pass, we release it tonight.", fb: "💡 После if — Present Simple (pass), а will — в другой части: we'll release." }
+      ] },
+      { say: "Marketing wants to change the date again. What would you do if you were the producer?" },
+      { me: [
+        { t: "If I were the producer, I would put the release off until Monday.", ok: true, reply: "Makes sense. Monday is safer." },
+        { t: "If I am the producer, I will put off it until Monday.", fb: "💡 Воображаемая ситуация → 2nd conditional: If I were…, I would… И put it off, а не put off it." }
+      ] },
+      { say: "Good idea. Can you set up a call with them?" },
+      { me: [
+        { t: "Sure, I'll set it up for tomorrow morning.", ok: true, reply: "Thanks! One more thing: we've run out of test devices." },
+        { t: "Sure, I'll set up it for tomorrow morning.", fb: "💡 set it up — местоимение в середине." }
+      ] },
+      { me: [
+        { t: "No problem, I'll look for some in the office.", ok: true, reply: "You're a star. Sorry, I have to hang up now." },
+        { t: "No problem, I'll look some for in the office.", fb: "💡 look for — неразделяемый: look for some." }
+      ] },
+      { me: [
+        { t: "Sure, talk later. I'm looking forward to the release!", ok: true, reply: "Me too! Bye!" },
+        { t: "Sure, talk later. I'm looking forward to release!", fb: "💡 look forward to + существительное с артиклем или -ing: to the release / to releasing." }
+      ] }
+    ] }
+  ]
+});
+</script>
+</body></html>
